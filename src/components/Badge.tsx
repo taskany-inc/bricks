@@ -35,3 +35,5 @@ export const Badge: React.FC<BadgeProps> = ({ size = 's', children, className })
         {children}
     </StyledBadge>
 );
+
+export default Badge;
