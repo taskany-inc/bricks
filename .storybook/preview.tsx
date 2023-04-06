@@ -1,4 +1,8 @@
+import React from 'react';
 import type { Preview } from '@storybook/react';
+import { LightTheme } from '@taskany/colors';
+
+import { TextStyle } from '../src/components/Text';
 
 const preview: Preview = {
     parameters: {
@@ -9,7 +13,17 @@ const preview: Preview = {
                 date: /Date$/,
             },
         },
+        layout: 'centered',
     },
+    decorators: [
+        (Story) => (
+            <>
+                <LightTheme/>
+                <TextStyle />
+                <Story />
+            </>
+        )
+    ],
 };
 
 export default preview;
