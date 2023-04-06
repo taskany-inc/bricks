@@ -36,7 +36,7 @@ const calcTextSize = (size: keyof typeof textSizes, weight: keyof typeof textWei
         font-weight: ${textWeight[weight]};
     `;
 
-interface TextProps {
+export interface TextProps {
     size?: keyof typeof textSizes;
     weight?: keyof typeof textWeight;
     color?: string;

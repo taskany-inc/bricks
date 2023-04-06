@@ -67,7 +67,9 @@
     "styled-components": "^5.3.6"
   },
   "dependencies": {
+    "@monaco-editor/react": "4.4.6",
     "@taskany/colors": "1.0.3",
+    "react-dropzone": "14.2.3",
     "react-remark": "2.1.0",
     "remark-emoji": "3.1.0",
     "remark-gfm": "3.0.1"
