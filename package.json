@@ -17,16 +17,23 @@
   "scripts": {
     "clean": "rm -rf ./components ./es ./hooks ./utils index.d.ts index.js index.js.map",
     "build": "npm run clean && npm run build:cjm && npm run build:esm",
+    "build:babel-cjm": "BABEL_ENV=cjs babel ./src --out-dir . --extensions .ts,.tsx",
+    "build:babel-esm": "BABEL_ENV=esm babel ./src --out-dir ./es --extensions .ts,.tsx",
+    "build:babel": "npm run clean && npm run build:babel-cjm && npm run build:babel-esm && npm run build:types",
+    "build:types": "tsc --outDir . --emitDeclarationOnly",
     "build:cjm": "tsc",
     "build:esm": "tsc -p ./tsconfig.esm.json",
     "lint": "eslint --ext .js,.ts,.tsx .",
     "prepare": "husky install",
     "type-check": "npx tsc --noEmit",
-    "storybook": "storybook dev -p 6006",
+    "storybook": "BABEL_ENV=dev storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
   "license": "ISC",
   "devDependencies": {
+    "@babel/cli": "7.21.0",
+    "@babel/core": "7.21.4",
+    "@babel/plugin-transform-modules-commonjs": "7.21.2",
     "@babel/preset-env": "7.21.4",
     "@babel/preset-react": "7.18.6",
     "@babel/preset-typescript": "7.21.4",
@@ -43,6 +50,7 @@
     "@types/styled-components": "5.1.26",
     "@typescript-eslint/eslint-plugin": "5.43.0",
     "@typescript-eslint/parser": "5.56.0",
+    "babel-plugin-inline-react-svg": "2.0.2",
     "eslint": "8.33.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-prettier": "8.6.0",
@@ -72,7 +80,8 @@
     "react-dropzone": "14.2.3",
     "react-remark": "2.1.0",
     "remark-emoji": "3.1.0",
-    "remark-gfm": "3.0.1"
+    "remark-gfm": "3.0.1",
+    "teenyicons": "0.4.1"
   },
   "sideEffects": false
 }

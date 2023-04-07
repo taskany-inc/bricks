@@ -70,7 +70,7 @@ const StyledErrorTrigger = styled.div`
     z-index: 1;
 `;
 
-const ComboBox = React.forwardRef<HTMLDivElement, ComboBoxProps>(
+export const ComboBox = React.forwardRef<HTMLDivElement, ComboBoxProps>(
     (
         {
             text,
@@ -206,5 +206,3 @@ const ComboBox = React.forwardRef<HTMLDivElement, ComboBoxProps>(
         );
     },
 );
-
-export default ComboBox;

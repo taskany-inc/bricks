@@ -40,11 +40,9 @@ const clientRenderOptions: any = {
     remarkPlugins: [remarkGFM, remarkEmoji],
 };
 
-const Md: React.FC<MdProps> = ({ children = '' }) => {
+export const Md: React.FC<MdProps> = ({ children = '' }) => {
     const ssrContent = useRemarkSync(children, ssrRenderOptions);
     const [clientContent] = useRemark(clientRenderOptions);
 
     return <StyledMd>{clientContent ?? ssrContent}</StyledMd>;
 };
-
-export default Md;

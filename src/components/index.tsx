@@ -17,15 +17,16 @@ export * from './MenuItem';
 export * from './Portal';
 export * from './TabsMenu';
 export * from './Tag';
-export * from './Portal';
-// export * from './Link'; TODO
-// export * from './Modal'; TODO
-
+export * from './Icon';
+export * from './Footer';
+export * from './Modal';
+export * from './ModalPreview';
 export * from './Form';
 export * from './FormActions';
 export * from './FormCard';
 export * from './FormEditor';
-export * from './FormEditor';
-// export * from './FormMultiInput'; TODO
+export * from './FormInput';
+export * from './FormMultiInput';
 export * from './FormRadio';
+export * from './FormTextarea';
 export * from './FormTitle';
