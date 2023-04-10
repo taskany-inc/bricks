@@ -12,7 +12,6 @@ export * from './SheepLogo';
 export * from './Input';
 export * from './InputContainer';
 export * from './Link';
-export * from './Md';
 export * from './MenuItem';
 export * from './Portal';
 export * from './TabsMenu';

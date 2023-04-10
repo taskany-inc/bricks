@@ -4,11 +4,12 @@ const ignore = ['**/*.d.ts', '**/*.stories.ts', '**/*.stories.tsx'];
 module.exports = {
     env: {
         cjs: {
+            sourceType: 'unambiguous',
             presets: [['@babel/preset-env', {
                 "modules": "commonjs",
             }], '@babel/preset-react', '@babel/preset-typescript'],
             plugins,
-            ignore
+            ignore,
         },
         esm: {
             presets: [

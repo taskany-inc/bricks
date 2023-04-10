@@ -16,13 +16,11 @@
   ],
   "scripts": {
     "clean": "rm -rf ./components ./es ./hooks ./utils index.d.ts index.js index.js.map",
-    "build": "npm run clean && npm run build:cjm && npm run build:esm",
-    "build:babel-cjm": "BABEL_ENV=cjs babel ./src --out-dir . --extensions .ts,.tsx",
-    "build:babel-esm": "BABEL_ENV=esm babel ./src --out-dir ./es --extensions .ts,.tsx",
-    "build:babel": "npm run clean && npm run build:babel-cjm && npm run build:babel-esm && npm run build:types",
+    "build": "npm run clean && npm run build:cjm && npm run build:esm && npm run build:types",
+    "build:cjm": "BABEL_ENV=cjs babel ./src --out-dir . --extensions .ts,.tsx",
+    "build:esm": "BABEL_ENV=esm babel ./src --out-dir ./es --extensions .ts,.tsx",
     "build:types": "tsc --outDir . --emitDeclarationOnly",
-    "build:cjm": "tsc",
-    "build:esm": "tsc -p ./tsconfig.esm.json",
+    "prepublishOnly": "npm run build",
     "lint": "eslint --ext .js,.ts,.tsx .",
     "prepare": "husky install",
     "type-check": "npx tsc --noEmit",
@@ -78,9 +76,6 @@
     "@monaco-editor/react": "4.4.6",
     "@taskany/colors": "1.0.3",
     "react-dropzone": "14.2.3",
-    "react-remark": "2.1.0",
-    "remark-emoji": "3.1.0",
-    "remark-gfm": "3.0.1",
     "teenyicons": "0.4.1"
   },
   "sideEffects": false

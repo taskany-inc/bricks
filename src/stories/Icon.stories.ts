@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Icon } from '../components/Icon';
+import { UserIcon } from '../components/Icon';
 
-const meta: Meta<typeof Icon> = {
+const meta: Meta<typeof UserIcon> = {
     title: 'Icon',
-    component: Icon,
+    component: UserIcon,
 };
 
 export default meta;
@@ -13,6 +13,5 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
     args: {
         size: 'l',
-        type: 'calendar',
     },
 };

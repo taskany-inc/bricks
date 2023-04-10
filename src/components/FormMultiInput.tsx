@@ -5,8 +5,8 @@ import { gapS, gray3, gray8, radiusS, textColor } from '@taskany/colors';
 
 import { nullable } from '../utils/nullable';
 
+import { PlusIcon } from './Icon/PlusIcon';
 import { Text } from './Text';
-import { Icon } from './Icon';
 import { Tag } from './Tag';
 import { Input } from './Input';
 import { MenuItem } from './MenuItem';
@@ -100,7 +100,7 @@ export const FormMultiInput = React.forwardRef<HTMLDivElement, FormMultiInputPro
                     disabled={disabled}
                     onChange={onValueAdd}
                     items={items}
-                    renderTrigger={(props) => <Icon ref={props.ref} type="plus" size="xs" onClick={props.onClick} />}
+                    renderTrigger={(props) => <PlusIcon ref={props.ref} size="xs" onClick={props.onClick} />}
                     renderInput={(props) => (
                         <StyledInput
                             autoFocus

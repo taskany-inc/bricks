@@ -6,7 +6,7 @@ import { useKeyboard, KeyCode } from '../hooks/useKeyboard';
 import { nullable } from '../utils/nullable';
 
 import { Portal } from './Portal';
-import { Icon } from './Icon';
+import { CrossIcon } from './Icon';
 
 type ModalViewType = 'default' | 'warn' | 'danger';
 
@@ -84,7 +84,7 @@ const StyledCross = styled.div`
 
 export const ModalCross: React.FC<{ onClick?: () => void }> = ({ onClick }) => (
     <StyledCross onClick={onClick}>
-        <Icon type="cross" size="s" />
+        <CrossIcon size="s" />
     </StyledCross>
 );
 
