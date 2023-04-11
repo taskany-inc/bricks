@@ -40,3 +40,5 @@ export const CleanButton: React.FC<CleanButtonProps> = ({ className, onClick }) 
         +
     </StyledCleanButton>
 );
+
+export default CleanButton;

@@ -37,3 +37,5 @@ export const Dot = styled.span<DotProps>`
             `,
         }[size])}
 `;
+
+export default Dot;

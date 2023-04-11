@@ -206,3 +206,5 @@ export const ComboBox = React.forwardRef<HTMLDivElement, ComboBoxProps>(
         );
     },
 );
+
+export default ComboBox;

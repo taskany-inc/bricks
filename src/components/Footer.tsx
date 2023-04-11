@@ -24,3 +24,5 @@ export const Footer: React.FC = () => {
         </StyledFooter>
     );
 };
+
+export default Footer;

@@ -162,3 +162,5 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
         );
     },
 );
+
+export default Dropdown;

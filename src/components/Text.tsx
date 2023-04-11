@@ -154,3 +154,5 @@ export const TextStyle = createGlobalStyle`
         font-weight: ${textWeight.bolder};
     }
 `;
+
+export default Text;

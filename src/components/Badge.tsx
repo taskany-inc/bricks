@@ -5,6 +5,7 @@ import { gray7, gray9, radiusL } from '@taskany/colors';
 interface BadgeProps {
     size?: 's' | 'm';
     children: React.ReactNode;
+    className?: string;
 }
 
 const StyledBadge = styled.div<{ size: BadgeProps['size'] }>`
@@ -29,6 +30,8 @@ const StyledBadge = styled.div<{ size: BadgeProps['size'] }>`
         }[size]}
 `;
 
-export const Badge: React.FC<BadgeProps> = ({ size = 's', children }) => (
-    <StyledBadge size={size}>{children}</StyledBadge>
+export const Badge: React.FC<BadgeProps> = ({ size = 's', children, className }) => (
+    <StyledBadge className={className} size={size}>
+        {children}
+    </StyledBadge>
 );

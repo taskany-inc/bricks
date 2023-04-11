@@ -40,3 +40,5 @@ export const Fieldset: React.FC<FieldsetProps> = ({ view = 'default', title, chi
         </StyledFieldset>
     );
 };
+
+export default Fieldset;
