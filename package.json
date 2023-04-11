@@ -27,7 +27,7 @@
     "storybook": "BABEL_ENV=dev storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@babel/cli": "7.21.0",
     "@babel/core": "7.21.4",
