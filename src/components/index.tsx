@@ -22,8 +22,15 @@ export { FormActions } from './FormActions';
 export { FormCard } from './FormCard';
 export { FormEditor } from './FormEditor';
 export { FormInput } from './FormInput';
-// export * from './FormMultiInput'; TODO: add after <Icon />
+export * from './Icon';
+export { FormMultiInput } from './FormMultiInput';
+export { MenuItem } from './MenuItem';
+export { ModalCross, ModalContent, ModalHeader, Modal } from './Modal';
+export { ModalPreview } from './ModalPreview';
 export { FormRadio } from './FormRadio';
+export { Portal } from './Portal';
+export { TabsMenuItem, TabsMenu } from './TabsMenu';
+export { Tag } from './Tag';
 export { FormRadioInput } from './FormRadioInput';
 export { FormTextarea } from './FormTextarea';
 export { FormTitle } from './FormTitle';

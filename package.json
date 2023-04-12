@@ -1,6 +1,6 @@
 {
   "name": "@taskany/bricks",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Taskany Design System",
   "main": "index.js",
   "module": "es/index.js",
@@ -76,7 +76,8 @@
     "@monaco-editor/react": "4.4.6",
     "@taskany/colors": "1.0.4",
     "@tippyjs/react": "4.2.6",
-    "react-dropzone": "14.2.3"
+    "react-dropzone": "14.2.3",
+    "teenyicons": "0.4.1"
   },
   "sideEffects": false
 }
