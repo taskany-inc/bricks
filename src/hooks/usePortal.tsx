@@ -71,5 +71,3 @@ export const usePortal = (id: string) => {
 
     return getRootElem();
 };
-
-export default usePortal;
