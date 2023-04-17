@@ -35,7 +35,7 @@ export { FormRadioInput } from './FormRadioInput';
 export { FormTextarea } from './FormTextarea';
 export { FormTitle } from './FormTitle';
 export { TaskanyLogo } from './TaskanyLogo';
-export { Header, HeaderNavLink } from './Header';
+export { Header, HeaderNavLink, HeaderContent, HeaderLogo, HeaderMenu, HeaderNav } from './Header';
 export { Gravatar } from './Gravatar';
 export { UserPic } from './UserPic';
 export { UserMenu } from './UserMenu';

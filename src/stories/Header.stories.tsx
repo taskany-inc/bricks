@@ -2,7 +2,7 @@ import React, { FC, useCallback } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import styled from 'styled-components';
 
-import { Header, HeaderNavLink } from '../components/Header';
+import { Header, HeaderContent, HeaderMenu, HeaderNav, HeaderNavLink } from '../components/Header';
 import Button from '../components/Button';
 import UserMenu from '../components/UserMenu';
 import Dropdown from '../components/Dropdown';
@@ -18,10 +18,10 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-const navItems = ['Item 1', 'Item 2', 'Item 3'];
+const navItems = ['Item 1', 'Item 2'];
 
 const HeaderWrapper = styled.div`
-    min-width: 500px;
+    min-width: 650px;
 `;
 
 const CreateDropdown: FC = () => {
@@ -80,18 +80,24 @@ const CreateDropdown: FC = () => {
 export const PageHeader: Story = () => (
     <HeaderWrapper>
         <Header
-            menu={<UserMenu email="storybook@taskany.com" />}
+            menu={
+                <HeaderMenu>
+                    <UserMenu email="storybook@taskany.com" />
+                </HeaderMenu>
+            }
             nav={
-                <>
+                <HeaderNav>
                     {navItems.map((title) => (
                         <HeaderNavLink key={title} href="#">
                             {title}
                         </HeaderNavLink>
                     ))}
-                </>
+                </HeaderNav>
             }
         >
-            <CreateDropdown />
+            <HeaderContent>
+                <CreateDropdown />
+            </HeaderContent>
         </Header>
     </HeaderWrapper>
 );
