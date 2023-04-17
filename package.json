@@ -74,7 +74,7 @@
     "styled-components": "^5.3.6"
   },
   "dependencies": {
-    "@monaco-editor/react": "4.4.6",
+    "@monaco-editor/react": "4.5.0",
     "@taskany/colors": "1.0.4",
     "@tippyjs/react": "4.2.6",
     "md5": "2.3.0",
