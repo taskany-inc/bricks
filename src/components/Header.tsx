@@ -2,15 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import { textColor, gray7, colorPrimary, gray3 } from '@taskany/colors';
 
-import { nullable } from '../utils/nullable';
-
-import { SearchIcon } from './Icon';
 import { Link } from './Link';
 import { TaskanyLogo } from './TaskanyLogo';
 
 const HeaderContainer = styled.header`
     display: grid;
-    grid-template-columns: 20px 10fr 150px 55px;
+    grid-template-columns: 20px 1fr minmax(150px, auto) 55px;
     align-items: center;
     padding: 20px 40px;
 
@@ -31,14 +28,7 @@ const HeaderNav = styled.nav`
     padding-left: 40px;
 `;
 
-const HeaderSearch = styled.div`
-    position: relative;
-    display: inline-block;
-    margin-left: 30px;
-    top: 3px;
-`;
-
-const HeaderCreateButton = styled.div`
+const HeaderContent = styled.div`
     display: flex;
     align-items: center;
 `;
@@ -46,12 +36,6 @@ const HeaderCreateButton = styled.div`
 const HeaderMenu = styled.div`
     justify-self: end;
 `;
-
-export type HeaderNavItemProps = {
-    title: string;
-    href: string;
-    disabled?: boolean;
-};
 
 export const HeaderNavLink = styled.a<{ disabled?: boolean }>`
     display: inline-block;
@@ -83,11 +67,6 @@ export const HeaderNavLink = styled.a<{ disabled?: boolean }>`
     }
 `;
 
-const DefaultHeaderNavLink: React.FC<HeaderNavItemProps> = ({ href, title }) => (
-    <HeaderNavLink href={href} title={title}>
-        {title}
-    </HeaderNavLink>
-);
 const DefaultLogo: React.FC = () => (
     <Link href="/" inline>
         <TaskanyLogo />
@@ -96,35 +75,14 @@ const DefaultLogo: React.FC = () => (
 
 export const Header: React.FC<{
     logo?: React.ReactNode;
-    links?: HeaderNavItemProps[];
-    linkComponent?: React.FC<HeaderNavItemProps>;
-    actionButton?: React.ReactNode;
+    nav?: React.ReactNode;
+    children?: React.ReactNode;
     menu?: React.ReactNode;
-    onSearch?: (query: string) => void;
-}> = ({
-    menu,
-    logo = <DefaultLogo />,
-    links = [],
-    linkComponent: LinkComponent = DefaultHeaderNavLink,
-    onSearch,
-    actionButton,
-}) => (
+}> = ({ menu, logo = <DefaultLogo />, nav, children }) => (
     <HeaderContainer>
         <HeaderLogo>{logo}</HeaderLogo>
-
-        <HeaderNav>
-            {links.map((link, i) => (
-                <LinkComponent key={i} {...link} />
-            ))}
-
-            {nullable(onSearch, () => (
-                <HeaderSearch>
-                    <SearchIcon size="s" color={gray7} />
-                </HeaderSearch>
-            ))}
-        </HeaderNav>
-
-        <HeaderCreateButton>{actionButton}</HeaderCreateButton>
+        <HeaderNav>{nav}</HeaderNav>
+        <HeaderContent>{children}</HeaderContent>
         <HeaderMenu>{menu}</HeaderMenu>
     </HeaderContainer>
 );

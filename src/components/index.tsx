@@ -36,7 +36,6 @@ export { FormTextarea } from './FormTextarea';
 export { FormTitle } from './FormTitle';
 export { TaskanyLogo } from './TaskanyLogo';
 export { Header, HeaderNavLink } from './Header';
-export type { HeaderNavItemProps } from './Header';
 export { Gravatar } from './Gravatar';
 export { UserPic } from './UserPic';
 export { UserMenu } from './UserMenu';
