@@ -39,3 +39,5 @@ export { Header, HeaderNavLink, HeaderContent, HeaderLogo, HeaderMenu, HeaderNav
 export { Gravatar } from './Gravatar';
 export { UserPic } from './UserPic';
 export { UserMenu } from './UserMenu';
+export * from './StateDot';
+export { MarkedListItem } from './MarkedListItem';
