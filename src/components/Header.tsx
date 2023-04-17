@@ -14,7 +14,7 @@ const HeaderContainer = styled.header`
     background-color: ${gray3};
 `;
 
-const HeaderLogo = styled.span`
+export const HeaderLogo = styled.span`
     justify-self: center;
 
     transition: transform 200ms ease-in-out;
@@ -24,16 +24,16 @@ const HeaderLogo = styled.span`
     }
 `;
 
-const HeaderNav = styled.nav`
+export const HeaderNav = styled.nav`
     padding-left: 40px;
 `;
 
-const HeaderContent = styled.div`
+export const HeaderContent = styled.div`
     display: flex;
     align-items: center;
 `;
 
-const HeaderMenu = styled.div`
+export const HeaderMenu = styled.div`
     justify-self: end;
 `;
 
@@ -68,9 +68,11 @@ export const HeaderNavLink = styled.a<{ disabled?: boolean }>`
 `;
 
 const DefaultLogo: React.FC = () => (
-    <Link href="/" inline>
-        <TaskanyLogo />
-    </Link>
+    <HeaderLogo>
+        <Link href="/" inline>
+            <TaskanyLogo />
+        </Link>
+    </HeaderLogo>
 );
 
 export const Header: React.FC<{
@@ -80,10 +82,10 @@ export const Header: React.FC<{
     menu?: React.ReactNode;
 }> = ({ menu, logo = <DefaultLogo />, nav, children }) => (
     <HeaderContainer>
-        <HeaderLogo>{logo}</HeaderLogo>
-        <HeaderNav>{nav}</HeaderNav>
-        <HeaderContent>{children}</HeaderContent>
-        <HeaderMenu>{menu}</HeaderMenu>
+        {logo}
+        {nav}
+        {children}
+        {menu}
     </HeaderContainer>
 );
 
