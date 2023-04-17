@@ -38,9 +38,6 @@ export const BaseIcon = React.forwardRef<HTMLSpanElement, BaseIconProps>(
                 color={color}
                 strokeWidth={stroke}
                 onClick={onClick}
-                style={{
-                    cursor: onClick ? 'pointer' : 'default',
-                }}
             />
         );
 
