@@ -1,13 +1,10 @@
 import React, { useContext, useCallback } from 'react';
 
 import { nullable } from '../utils/nullable';
+import { radioContext } from '../context/radio';
+import { formContext } from '../context/form';
 
-import {
-    StyledFormRadioInput,
-    StyledFormRadioInputContainer,
-    StyledFormRadioInputLabel,
-    radioContext,
-} from './FormRadio';
+import { StyledFormRadioInput, StyledFormRadioInputContainer, StyledFormRadioInputLabel } from './FormRadio';
 
 interface FormRadioInputProps {
     name?: string;
@@ -20,6 +17,8 @@ interface FormRadioInputProps {
 
 export const FormRadioInput: React.FC<FormRadioInputProps> = (props) => {
     const { name, value, onChange } = useContext(radioContext);
+    const formCtx = useContext(formContext);
+    props.disabled = formCtx.disabled || props.disabled;
 
     const onRadioInputChange = useCallback(
         (e: React.ChangeEvent<HTMLInputElement>) => {

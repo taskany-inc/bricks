@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { danger10, gray2, gray3, gray8, radiusS, textColor } from '@taskany/colors';
 
 import { nullable } from '../utils/nullable';
+import { formContext } from '../context/form';
 
 import { Text } from './Text';
 import { Popup } from './Popup';
@@ -173,6 +174,8 @@ export const FormInput = React.forwardRef<HTMLInputElement, FormInputProps>((pro
     const [popupVisible, setPopupVisibility] = useState(false);
     const [inputFocused, setInputFocus] = useState(false);
     const popupRef = useRef<HTMLDivElement>(null);
+    const formCtx = useContext(formContext);
+    props.disabled = formCtx.disabled || props.disabled;
 
     useEffect(() => {
         if (props.error && inputFocused) {

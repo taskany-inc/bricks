@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { useDropzone } from 'react-dropzone';
 import Editor from '@monaco-editor/react';
@@ -9,6 +9,7 @@ import { nullable } from '../utils/nullable';
 import { useKeyboard, KeyCode } from '../hooks/useKeyboard';
 import { useMounted } from '../hooks/useMounted';
 import { useUpload } from '../hooks/useUpload';
+import { formContext } from '../context/form';
 
 import { Popup } from './Popup';
 
@@ -227,7 +228,20 @@ const maxEditorHeight = 450;
 
 export const FormEditor = React.forwardRef<HTMLDivElement, FormEditorProps>(
     (
-        { id, value, flat, height = 200, placeholder, error, autoFocus, disabled, onChange, onFocus, onBlur, onCancel },
+        {
+            id,
+            value,
+            flat,
+            height = 200,
+            placeholder,
+            error,
+            autoFocus,
+            disabled: internalDisabled,
+            onChange,
+            onFocus,
+            onBlur,
+            onCancel,
+        },
         ref,
     ) => {
         const [focused, setFocused] = useState(false);
@@ -241,6 +255,8 @@ export const FormEditor = React.forwardRef<HTMLDivElement, FormEditorProps>(
         const { loading, files, uploadFiles } = useUpload();
         // @ts-ignore
         const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop: uploadFiles });
+        const formCtx = useContext(formContext);
+        const disabled = formCtx.disabled || internalDisabled;
 
         const handleEditorDidMount = (editor: any /* IStandaloneEditor */) => {
             monacoEditorRef.current = editor;

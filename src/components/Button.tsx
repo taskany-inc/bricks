@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import {
     textColor,
@@ -24,6 +24,8 @@ import {
     radiusM,
     backgroundColor,
 } from '@taskany/colors';
+
+import { formContext } from '../context/form';
 
 interface ButtonProps {
     text?: string;
@@ -257,7 +259,10 @@ const Aligner = styled.span`
 `;
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-    ({ text, view = 'default', size = 'm', type = 'button', ...props }, ref) => {
+    ({ text, view = 'default', size = 'm', type = 'button', disabled: internalDisabled, ...props }, ref) => {
+        const formCtx = useContext(formContext);
+        const disabled = formCtx.disabled || internalDisabled;
+
         const content =
             props.iconLeft || props.iconRight ? (
                 <>
@@ -274,7 +279,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                 type={type}
                 view={view}
                 size={size}
-                tabIndex={props.disabled ? -1 : undefined}
+                tabIndex={disabled ? -1 : undefined}
+                disabled={disabled}
                 {...props}
                 forwardRef={ref}
             >

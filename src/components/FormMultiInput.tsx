@@ -1,9 +1,10 @@
 /* eslint-disable no-nested-ternary */
-import React, { useCallback, useState, ChangeEvent, useEffect } from 'react';
+import React, { useCallback, useState, ChangeEvent, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import { gapS, gray3, gray8, radiusS, textColor } from '@taskany/colors';
 
 import { nullable } from '../utils/nullable';
+import { formContext } from '../context/form';
 
 import { PlusIcon } from './Icon/PlusIcon';
 import { Text } from './Text';
@@ -60,11 +61,26 @@ const StyledComboBox = styled(ComboBox)`
 
 export const FormMultiInput = React.forwardRef<HTMLDivElement, FormMultiInputProps>(
     (
-        { name, id, items, label, value = [], query = '', error, disabled, placeholder, onChange, onInput, className },
+        {
+            name,
+            id,
+            items,
+            label,
+            value = [],
+            query = '',
+            error,
+            disabled: internalDisabled,
+            placeholder,
+            onChange,
+            onInput,
+            className,
+        },
         ref,
     ) => {
         const [completionVisible, setCompletionVisibility] = useState(false);
         const [inputState, setInputState] = useState(query);
+        const formCtx = useContext(formContext);
+        const disabled = formCtx.disabled || internalDisabled;
 
         useEffect(() => {
             onInput?.(inputState);

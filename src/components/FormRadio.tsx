@@ -1,23 +1,11 @@
-import React, { createContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { gapS, gray3, gray8, radiusS } from '@taskany/colors';
 
 import { nullable } from '../utils/nullable';
+import { radioContext } from '../context/radio';
 
 import { Text } from './Text';
-
-interface FormRadioContext {
-    name: FormRadioProps['name'];
-    value: FormRadioProps['value'];
-
-    onChange?: (v: FormRadioProps['value']) => void;
-}
-
-export const radioContext = createContext<FormRadioContext>({
-    name: undefined,
-    value: undefined,
-    onChange: undefined,
-});
 
 export const StyledFormRadioInputContainer = styled.div`
     padding: 8px 16px;
@@ -78,7 +66,7 @@ const StyledFormRadioLabel = styled(Text)`
     background-color: transparent;
 `;
 
-export const FormRadio: React.FC<FormRadioProps> = ({ label, flat, name, value, onChange, children }) => {
+export const FormRadio: React.FC<FormRadioProps> = ({ name, label, value, flat, children, onChange }) => {
     return (
         <radioContext.Provider value={{ name, value, onChange }}>
             <StyledFormRadio flat={flat}>
