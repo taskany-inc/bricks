@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { gray2, gray3, gray7, radiusS, textColor } from '@taskany/colors';
+
+import { formContext } from '../context/form';
 
 interface FormTextareaProps {
     id?: string;
@@ -80,6 +82,9 @@ const StyledFormTextarea = styled(
 `;
 
 export const FormTextarea = React.forwardRef<HTMLTextAreaElement, FormTextareaProps>((props, ref) => {
+    const formCtx = useContext(formContext);
+    props.disabled = formCtx.disabled || props.disabled;
+
     return <StyledFormTextarea forwardRef={ref} {...props} />;
 });
 

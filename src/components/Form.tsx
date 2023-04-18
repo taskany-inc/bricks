@@ -3,9 +3,11 @@ import styled from 'styled-components';
 import { gray3 } from '@taskany/colors';
 
 import { useKeyboard } from '../hooks/useKeyboard';
+import { formContext } from '../context/form';
 
 interface FormProps {
     children: React.ReactNode;
+    disabled?: boolean;
     submitHotkey?: Array<number>;
 
     onSubmit?: () => void;
@@ -15,7 +17,7 @@ const StyledForm = styled.form`
     background-color: ${gray3};
 `;
 
-export const Form: React.FC<FormProps> = ({ onSubmit, submitHotkey, children }) => {
+export const Form: React.FC<FormProps> = ({ children, disabled, submitHotkey, onSubmit }) => {
     const handleSubmit = (e?: React.SyntheticEvent) => {
         e?.preventDefault();
 
@@ -29,7 +31,7 @@ export const Form: React.FC<FormProps> = ({ onSubmit, submitHotkey, children }) 
 
     return (
         <StyledForm {...keyboard} onSubmit={handleSubmit}>
-            {children}
+            <formContext.Provider value={{ disabled }}>{children}</formContext.Provider>
         </StyledForm>
     );
 };
