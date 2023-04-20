@@ -12,6 +12,7 @@
 *.sublime-workspace
 
 ##### BUILD
+/context
 /components
 /hooks
 /utils
