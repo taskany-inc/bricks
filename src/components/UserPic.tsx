@@ -32,7 +32,7 @@ export const UserPic: React.FC<UserPicProps> = ({ src, email, size = 32, classNa
                 src={src}
                 height={sizePx}
                 width={sizePx}
-                onClick={src ? undefined : onClick}
+                onClick={onClick}
                 onError={onLoadError}
             />
         );
