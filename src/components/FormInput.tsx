@@ -175,7 +175,7 @@ export const FormInput = React.forwardRef<HTMLInputElement, FormInputProps>((pro
     const [inputFocused, setInputFocus] = useState(false);
     const popupRef = useRef<HTMLDivElement>(null);
     const formCtx = useContext(formContext);
-    props.disabled = formCtx.disabled || props.disabled;
+    const disabled = formCtx.disabled || props.disabled;
 
     useEffect(() => {
         if (props.error && inputFocused) {
@@ -246,6 +246,7 @@ export const FormInput = React.forwardRef<HTMLInputElement, FormInputProps>((pro
             <StyledFormInput
                 forwardRef={ref}
                 {...props}
+                disabled={disabled}
                 id={props.id || props.name}
                 onFocus={onFocus}
                 onBlur={onBlur}

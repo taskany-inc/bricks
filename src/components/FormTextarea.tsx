@@ -83,9 +83,9 @@ const StyledFormTextarea = styled(
 
 export const FormTextarea = React.forwardRef<HTMLTextAreaElement, FormTextareaProps>((props, ref) => {
     const formCtx = useContext(formContext);
-    props.disabled = formCtx.disabled || props.disabled;
+    const disabled = formCtx.disabled || props.disabled;
 
-    return <StyledFormTextarea forwardRef={ref} {...props} />;
+    return <StyledFormTextarea forwardRef={ref} {...props} disabled={disabled} />;
 });
 
 export default FormTextarea;

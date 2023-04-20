@@ -30,9 +30,11 @@ export const Form: React.FC<FormProps> = ({ children, disabled, submitHotkey, on
     });
 
     return (
-        <StyledForm {...keyboard} onSubmit={handleSubmit}>
-            <formContext.Provider value={{ disabled }}>{children}</formContext.Provider>
-        </StyledForm>
+        <formContext.Provider value={{ disabled }}>
+            <StyledForm {...keyboard} onSubmit={handleSubmit}>
+                {children}
+            </StyledForm>
+        </formContext.Provider>
     );
 };
 
