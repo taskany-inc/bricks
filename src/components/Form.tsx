@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { gray3 } from '@taskany/colors';
 
-import { useKeyboard } from '../hooks/useKeyboard';
+import { KeyCode, KeyMod, useKeyboard } from '../hooks/useKeyboard';
 import { formContext } from '../context/form';
 
 interface FormProps {
@@ -13,19 +13,21 @@ interface FormProps {
     onSubmit?: () => void;
 }
 
+const submitKeys = [KeyMod.CtrlCmd, KeyCode.Enter];
+
 const StyledForm = styled.form`
     background-color: ${gray3};
 `;
 
-export const Form: React.FC<FormProps> = ({ children, disabled, submitHotkey, onSubmit }) => {
+export const Form: React.FC<FormProps> = ({ children, disabled, submitHotkey = submitKeys, onSubmit }) => {
     const handleSubmit = (e?: React.SyntheticEvent) => {
         e?.preventDefault();
 
         onSubmit?.();
     };
 
-    const [keyboard] = useKeyboard(submitHotkey || [], () => handleSubmit(), {
-        disableGlobalEvent: false,
+    const [keyboard] = useKeyboard(submitHotkey, () => handleSubmit(), {
+        disableGlobalEvent: disabled,
         capture: true,
     });
 
