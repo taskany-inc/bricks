@@ -26,11 +26,19 @@ interface FormEditorProps {
         message?: string;
     };
 
+    messages?: {
+        attachments: string;
+        attachmentsUploading?: string;
+    };
+
     onChange?: (value: string | undefined) => void;
     onBlur?: () => void;
     onFocus?: () => void;
     onCancel?: () => void;
 }
+
+const defaultAttachmentsMesssage = 'Attach files by dragging & dropping, selecting or pasting them.';
+const defaultAttachmentsUploadingMessage = 'Uploading...';
 
 const defaultOptions: React.ComponentProps<typeof Editor>['options'] = {
     fontSize: 16,
@@ -241,6 +249,7 @@ export const FormEditor = React.forwardRef<HTMLDivElement, FormEditorProps>(
             onFocus,
             onBlur,
             onCancel,
+            messages = {},
         },
         ref,
     ) => {
@@ -428,8 +437,8 @@ export const FormEditor = React.forwardRef<HTMLDivElement, FormEditorProps>(
                             <StyledUploadButton>
                                 <StyledUploadInput onChange={onFileInputChange} type="file" multiple />
                                 {loading
-                                    ? 'Uploading...'
-                                    : 'Attach files by dragging & dropping, selecting or pasting them.'}
+                                    ? messages.attachmentsUploading || defaultAttachmentsUploadingMessage
+                                    : messages.attachments || defaultAttachmentsMesssage}
                             </StyledUploadButton>
                         ))}
                     </div>
