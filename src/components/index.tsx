@@ -43,3 +43,7 @@ export { Md } from './Md';
 export * from './StateDot';
 export { MarkedListItem } from './MarkedListItem';
 export * from './PageLoadProgress';
+export * from './FiltersContainers';
+export * from './FiltersCounter';
+export * from './FiltersDropdown';
+export * from './UserMenuItem';
