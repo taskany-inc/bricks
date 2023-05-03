@@ -19,7 +19,7 @@ interface DropdownTriggerProps {
     onClick: () => void;
 }
 
-interface DropdownItemProps {
+export interface DropdownItemProps {
     item: any;
     index: number;
     cursor: number;
