@@ -33,3 +33,8 @@ export * from './EditIcon';
 export * from './BinIcon';
 export * from './MoreVerticalIcon';
 export * from './BaseIcon';
+export * from './AddIcon';
+export * from './CircleIcon';
+export * from './FileIcon';
+export * from './KeyIcon';
+export * from './TickCircleIcon';
