@@ -27,26 +27,17 @@ import {
 
 import { formContext } from '../context/form';
 
-interface ButtonProps {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     text?: string;
     title?: string;
-    tabIndex?: number;
-    disabled?: boolean;
-    checked?: boolean;
     ghost?: boolean;
     view?: 'default' | 'primary' | 'warning' | 'danger';
     outline?: boolean;
     size?: 's' | 'm' | 'l';
-    type?: 'submit' | 'button';
     iconLeft?: React.ReactNode;
     iconRight?: React.ReactNode;
     brick?: 'left' | 'right' | 'center';
-    className?: string;
     children?: React.ReactNode;
-
-    onClick?: React.MouseEventHandler;
-    onMouseEnter?: React.MouseEventHandler;
-    onMouseLeave?: React.MouseEventHandler;
 }
 
 const StyledIcon = styled.span`
@@ -64,7 +55,6 @@ const StyledButton = styled(
         iconRight,
         iconLeft,
         ghost,
-        checked,
         outline,
         ...props
     }: ButtonProps & { forwardRef?: React.Ref<HTMLButtonElement> }) => <button ref={forwardRef} {...props} />,
