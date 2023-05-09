@@ -4,19 +4,22 @@ import { gray7, gray9, radiusL } from '@taskany/colors';
 
 interface BadgeProps {
     size?: 's' | 'm';
+    color?: string;
     children: React.ReactNode;
     className?: string;
 }
 
-const StyledBadge = styled.div<{ size: BadgeProps['size'] }>`
+const StyledBadge = styled.div<{ size: BadgeProps['size']; color?: BadgeProps['color'] }>`
     box-sizing: border-box;
 
-    background-color: ${gray7};
+    background-color: ${({ color }) => (color ? `${color}25` : gray7)};
 
     border-radius: ${radiusL};
+    border: ${({ color }) => `solid 1px ${color}`};
 
-    color: ${gray9};
+    color: ${({ color }) => color || gray9};
     font-size: 12px;
+    cursor: ${({ onClick }) => (onClick ? 'pointer' : 'default')};
 
     ${({ size }) =>
         size &&
@@ -28,6 +31,10 @@ const StyledBadge = styled.div<{ size: BadgeProps['size'] }>`
             padding: 2px 8px;
         `,
         }[size]}
+
+    &:hover {
+        background-color: ${({ color }) => (color ? `${color}45` : gray7)};
+    }
 `;
 
 export const Badge: React.FC<BadgeProps> = ({ size = 's', children, className }) => (
