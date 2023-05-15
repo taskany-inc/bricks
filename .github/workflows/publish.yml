@@ -7,14 +7,13 @@ on:
       - closed
     paths:
       - .release_notes/**
-
-env:
-  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       
 jobs:
   npm_publish:
     if: github.event.pull_request.merged == true
     uses: taskany-inc/release/.github/workflows/npm_publish.yml@main
+    secrets: inherit
   gh_release:
     if: github.event.pull_request.merged == true
     uses: taskany-inc/release/.github/workflows/gh_release.yml@main
+    secrets: inherit
