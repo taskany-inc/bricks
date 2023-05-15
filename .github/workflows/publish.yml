@@ -11,4 +11,8 @@ jobs:
   if_merged:
     if: github.event.pull_request.merged == true
     name: Publish Release
-    uses: taskany-inc/release/.github/workflows/publish.yml@main
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: taskany-inc/release/.github/workflows/checkout.yml@main
+      - uses: taskany-inc/release/.github/workflows/npm_publish.yml@main
+      - uses: taskany-inc/release/.github/workflows/gh_release.yml@main
