@@ -1,4 +1,4 @@
-name: Publish
+name: Publish Release
 
 on:
   pull_request_target:
@@ -13,6 +13,9 @@ jobs:
     name: Publish Release
     runs-on: ubuntu-latest
     steps: 
-      - uses: taskany-inc/release/.github/workflows/checkout.yml@main
-      - uses: taskany-inc/release/.github/workflows/npm_publish.yml@main
-      - uses: taskany-inc/release/.github/workflows/gh_release.yml@main
+      - name: Checkout
+        uses: taskany-inc/release/.github/workflows/checkout.yml@main
+      - name: Publish to NPM
+        uses: taskany-inc/release/.github/workflows/npm_publish.yml@main
+      - name: GitHub Release
+        uses: taskany-inc/release/.github/workflows/gh_release.yml@main
