@@ -5,13 +5,12 @@ on:
     types:
       - closed
     paths:
-      - '.release_notes/**'
+      - .release_notes/**
 
 jobs:
-  if_merged:
+  npm_publish:
     if: github.event.pull_request.merged == true
-    runs-on: ubuntu-latest
-    steps: 
-      - uses: taskany-inc/release/.github/workflows/checkout.yml@main
-      - uses: taskany-inc/release/.github/workflows/npm_publish.yml@main
-      - uses: taskany-inc/release/.github/workflows/gh_release.yml@main
+    uses: taskany-inc/release/.github/workflows/npm_publish.yml@main
+  gh_release:
+    if: github.event.pull_request.merged == true
+    uses: taskany-inc/release/.github/workflows/gh_release.yml@main
