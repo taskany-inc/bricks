@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [1.2.0](https://github.com/taskany-inc/bricks/compare/v1.1.0...v1.2.0) (2023-05-15)
+
+
+### Features
+
+* add Filters components ([ebc8f10](https://github.com/taskany-inc/bricks/commit/ebc8f106fcd79768eab272e6c32c4ccdf4c63e8e))
+
 ## 1.1.0 (2023-05-12)
 
 
