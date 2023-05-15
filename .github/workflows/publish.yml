@@ -1,12 +1,16 @@
 name: Publish Release
 
 on:
+  workflow_dispatch:
   pull_request_target:
     types:
       - closed
     paths:
       - .release_notes/**
 
+env:
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      
 jobs:
   npm_publish:
     if: github.event.pull_request.merged == true
