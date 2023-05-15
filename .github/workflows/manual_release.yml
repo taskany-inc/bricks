@@ -5,6 +5,4 @@ on: workflow_dispatch
 jobs:
   manual_release:
     name: Manual Release
-    runs-on: ubuntu-latest
-    steps:
-      - uses: taskany-inc/release/.github/workflows/release_pr.yml@main
+    uses: taskany-inc/release/.github/workflows/release_pr.yml@main
