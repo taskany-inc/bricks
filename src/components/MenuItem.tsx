@@ -20,6 +20,7 @@ interface MenuItemProps {
 }
 
 const StyledMenuItem = styled.div<{ focused?: boolean; color?: string; ghost?: boolean }>`
+    display: flex;
     box-sizing: border-box;
     justify-content: center;
     align-items: center;
