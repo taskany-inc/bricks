@@ -32,13 +32,7 @@ export const BaseIcon = React.forwardRef<HTMLSpanElement, BaseIconProps>(
     ({ size, value: Component, color = 'inherit', stroke = 1, className, onClick, noWrap }, ref) => {
         const sizePx = `${typeof size === 'string' ? iconSizesMap[size] : size}px`;
         const content = (
-            <Component
-                width={sizePx}
-                height={sizePx}
-                color={color}
-                strokeWidth={stroke}
-                onClick={onClick}
-            />
+            <Component width={sizePx} height={sizePx} color={color} strokeWidth={stroke} onClick={onClick} />
         );
 
         return noWrap ? (
