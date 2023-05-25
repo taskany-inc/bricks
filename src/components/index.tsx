@@ -1,4 +1,5 @@
 export { Badge } from './Badge';
+export { CircleProgressBar } from './CircleProgressBar';
 export { Button } from './Button';
 export { Text, TextStyle } from './Text';
 export { Card } from './Card';
