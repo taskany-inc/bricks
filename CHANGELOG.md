@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [1.3.0](https://github.com/taskany-inc/bricks/compare/v1.2.0...v1.3.0) (2023-05-30)
+
+
+### Features
+
+* add CircleProgressBar ([69a7006](https://github.com/taskany-inc/bricks/commit/69a7006751fbe64c47055635b21ad53099e59a0e))
+
+
+### Bug Fixes
+
+* **Dropdown:** add placement and arrow props ([a3a18e0](https://github.com/taskany-inc/bricks/commit/a3a18e089097b1191aa1dbeb1d2e8c513f8e9b94))
+* fixed lint error ([419fae9](https://github.com/taskany-inc/bricks/commit/419fae94a052b08ae54b2d599a1df9d552e7f0e2))
+
 ## [1.2.0](https://github.com/taskany-inc/bricks/compare/v1.1.0...v1.2.0) (2023-05-15)
 
 
