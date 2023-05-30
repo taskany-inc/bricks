@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState, ComponentProps } from 'react';
 import styled from 'styled-components';
 import { danger10 } from '@taskany/colors';
 
@@ -36,6 +36,8 @@ interface DropdownProps {
     visible?: boolean;
     disabled?: boolean;
     className?: string;
+    placement?: ComponentProps<typeof Popup>['placement'];
+    arrow?: ComponentProps<typeof Popup>['arrow'];
 
     error?: {
         message?: string;
@@ -62,7 +64,20 @@ const StyledErrorTrigger = styled.div`
 
 export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
     (
-        { visible = false, items = [], text, value, disabled, error, renderItem, renderTrigger, onChange, className },
+        {
+            visible = false,
+            items = [],
+            text,
+            value,
+            disabled,
+            error,
+            renderItem,
+            renderTrigger,
+            onChange,
+            className,
+            placement = 'bottom-start',
+            arrow = false,
+        },
         ref,
     ) => {
         const popupRef = useRef<HTMLDivElement>(null);
@@ -125,7 +140,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
                             <Popup
                                 tooltip
                                 view="danger"
-                                placement="top-start"
+                                placement={placement}
                                 visible={popupVisible}
                                 onClickOutside={onClickOutside}
                                 reference={popupRef}
@@ -149,12 +164,12 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
                 </span>
 
                 <Popup
-                    placement="bottom-start"
+                    placement={placement}
                     visible={popupVisible && Boolean(items.length)}
                     onClickOutside={onClickOutside}
                     reference={popupRef}
                     interactive
-                    arrow={false}
+                    arrow={arrow}
                     minWidth={100}
                     maxWidth={250}
                     offset={[-4, 8]}
