@@ -38,6 +38,7 @@ interface DropdownProps {
     className?: string;
     placement?: ComponentProps<typeof Popup>['placement'];
     arrow?: ComponentProps<typeof Popup>['arrow'];
+    offset?: ComponentProps<typeof Popup>['offset'];
 
     error?: {
         message?: string;
@@ -77,6 +78,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
             className,
             placement = 'bottom-start',
             arrow = false,
+            offset = [-4, 8],
         },
         ref,
     ) => {
@@ -172,7 +174,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
                     arrow={arrow}
                     minWidth={100}
                     maxWidth={250}
-                    offset={[-4, 8]}
+                    offset={offset}
                 >
                     <div {...onESC}>
                         {items?.map((item, index) => renderItem({ item, index, cursor, onClick: onItemClick(item) }))}
