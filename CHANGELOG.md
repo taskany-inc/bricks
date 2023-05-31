@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [1.3.1](https://github.com/taskany-inc/bricks/compare/v1.3.0...v1.3.1) (2023-05-31)
+
+
+### Bug Fixes
+
+* **Dropdown:** add offset props ([83b33ac](https://github.com/taskany-inc/bricks/commit/83b33ace9cfa1777668cd93c783606c44f0b6e8d))
+
 ## [1.3.0](https://github.com/taskany-inc/bricks/compare/v1.2.0...v1.3.0) (2023-05-30)
 
 
