@@ -18,10 +18,11 @@ const StyledCardInfo = styled(Text)`
 interface CardInfoProps {
     className?: string;
     children?: React.ReactNode;
+    onClick?: () => void;
 }
 
-export const CardInfo: React.FC<CardInfoProps> = ({ className, children }) => (
-    <StyledCardInfo className={className} size="xs" weight="bold" color={gray8}>
+export const CardInfo: React.FC<CardInfoProps> = ({ className, children, onClick }) => (
+    <StyledCardInfo className={className} size="xs" weight="bold" color={gray8} onClick={onClick}>
         {children}
     </StyledCardInfo>
 );
