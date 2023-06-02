@@ -3,29 +3,38 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import {
     textColor,
-    textColorPrimary,
     gray5,
     gray7,
     gray8,
     danger9,
     warn1,
     warn2,
+    warn4,
+    warn9,
     warn10,
+    warn5,
     warn0,
     gray6,
     gray9,
-    colorPrimary,
-    colorPrimaryAccent,
     gray10,
+    danger4,
+    danger5,
     danger10,
     gray4,
     danger1,
     danger2,
     radiusM,
-    backgroundColor,
+    primary10,
+    primary9,
+    primary7,
+    primary6,
+    primary1,
+    primary2,
 } from '@taskany/colors';
+import colorLayer from 'color-layer';
 
 import { formContext } from '../context/form';
+import { nullable } from '../utils';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     text?: string;
@@ -37,6 +46,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     iconLeft?: React.ReactNode;
     iconRight?: React.ReactNode;
     brick?: 'left' | 'right' | 'center';
+    hue?: [number, number];
     children?: React.ReactNode;
 }
 
@@ -82,6 +92,15 @@ const StyledButton = styled(
         background-color: ${gray5};
     }
 
+    &[type='submit']:not([disabled]) {
+        cursor: pointer;
+        user-select: none;
+
+        :active:not([disabled]) {
+            transform: scale(0.985);
+        }
+    }
+
     ${({ onClick }) =>
         onClick &&
         `
@@ -101,12 +120,10 @@ const StyledButton = styled(
             background-color: ${gray4};
 
             --color: ${gray9};
-        `}
+            --color-hover: ${gray10};
+            --bkg-color: ${gray4};
+            --bkg-color-hover: ${gray5};
 
-    ${({ view, onClick }) =>
-        view === 'default' &&
-        onClick &&
-        `
             :hover:not([disabled]),
             :focus:not([disabled]) {
                 color: ${textColor};
@@ -118,18 +135,20 @@ const StyledButton = styled(
     ${({ view }) =>
         view === 'primary' &&
         `
-            font-weight: 500;
-            color: ${textColorPrimary};
-            border-color: ${colorPrimary};
-            background-color: ${colorPrimary};
+            color: ${primary1};
+            border-color: ${primary10};
+            background-color: ${primary9};
 
-            --color: ${colorPrimary};
+            --color: ${primary10};
+            --color-hover: ${primary10};
+            --bkg-color: ${primary6};
+            --bkg-color-hover: ${primary7};
 
             :hover:not([disabled]),
             :focus:not([disabled]) {
-                color: ${textColorPrimary};
-                border-color: ${colorPrimaryAccent};
-                background-color: ${colorPrimaryAccent};
+                color: ${primary2};
+                border-color: ${primary10};
+                background-color: ${primary10};
             }
         `}
 
@@ -140,7 +159,10 @@ const StyledButton = styled(
             border-color: ${warn0};
             background-color: ${warn0};
 
-            --color: ${warn0};
+            --color: ${warn9};
+            --color-hover: ${warn10};
+            --bkg-color: ${warn4};
+            --bkg-color-hover: ${warn5};
 
             :hover:not([disabled]),
             :focus:not([disabled]) {
@@ -158,6 +180,9 @@ const StyledButton = styled(
             background-color: ${danger9};
 
             --color: ${danger9};
+            --color-hover: ${danger10};
+            --bkg-color: ${danger4};
+            --bkg-color-hover: ${danger5};
 
             :hover:not([disabled]),
             :focus:not([disabled]) {
@@ -167,17 +192,38 @@ const StyledButton = styled(
             }
         `}
 
+    ${({ hue }) => {
+        if (hue) {
+            const [h, theme] = hue;
+            const sat = h === 1 ? 0 : undefined;
+
+            return `
+                --color: ${colorLayer(h, 9, sat)[theme]};
+                --color-hover: ${colorLayer(h, 10, sat)[theme]};
+                --bkg-color: ${colorLayer(h, 4, sat)[theme]};
+                --bkg-color-hover: ${colorLayer(h, 5, sat)[theme]};
+            `;
+        }
+
+        return false;
+    }}
+
     ${({ outline }) =>
         outline &&
         `
-            background-color: transparent;
+            background-color: var(--bkg-color);
 
             color: var(--color);
 
+            border-color: var(--color);
+
             :hover:not([disabled]),
-            :focus:not([disabled]),
-            :active:not([disabled]) {
-                color: ${backgroundColor};
+            :focus:not([disabled]) {
+                color: var(--color-hover);
+
+                background-color: var(--bkg-color-hover);
+
+                border-color: var(--color-hover);
             }
         `}
 
@@ -256,12 +302,18 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         const content =
             props.iconLeft || props.iconRight ? (
                 <>
-                    {props.iconLeft ? <StyledIcon>{props.iconLeft}</StyledIcon> : null}
-                    {text ? <StyledText>{text}</StyledText> : null}
-                    {props.iconRight ? <StyledIcon>{props.iconRight}</StyledIcon> : null}
+                    {nullable(props.iconLeft, (i) => (
+                        <StyledIcon>{i}</StyledIcon>
+                    ))}
+                    {nullable(text, (t) => (
+                        <StyledText>{t}</StyledText>
+                    ))}
+                    {nullable(props.iconRight, (i) => (
+                        <StyledIcon>{i}</StyledIcon>
+                    ))}
                 </>
             ) : (
-                <>{text ? <StyledText>{text}</StyledText> : null}</>
+                nullable(text, (t) => <StyledText>{t}</StyledText>)
             );
 
         return (
