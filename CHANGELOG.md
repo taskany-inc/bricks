@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [1.5.0](https://github.com/taskany-inc/bricks/compare/v1.4.0...v1.5.0) (2023-06-03)
+
+
+### Features
+
+* **Button:** support hue as prop ([b0f4e8c](https://github.com/taskany-inc/bricks/commit/b0f4e8cb7ed89e63635270a4ef254a5b0b4162df))
+
+
+### Bug Fixes
+
+* **FormEditor:** do not call onCancel on click outside ([9a6924b](https://github.com/taskany-inc/bricks/commit/9a6924bbcdda23bc4e0ecb522e25fc50af57720a))
+
 ## [1.4.0](https://github.com/taskany-inc/bricks/compare/v1.3.1...v1.4.0) (2023-06-01)
 
 
