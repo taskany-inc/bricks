@@ -327,13 +327,9 @@ export const FormEditor = React.forwardRef<HTMLDivElement, FormEditorProps>(
                 // @ts-ignore
                 if (extraRef.current && !extraRef.current.contains(e.target)) {
                     onEditorBlur();
-
-                    if (!value) {
-                        onCancel?.();
-                    }
                 }
             },
-            [onEditorBlur, onCancel, value],
+            [onEditorBlur],
         );
 
         useEffect(() => {
