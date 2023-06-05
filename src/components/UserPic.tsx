@@ -6,7 +6,7 @@ import { Gravatar } from './Gravatar';
 interface UserPicProps {
     src?: string | null;
     size?: number;
-    email?: string;
+    email?: string | null;
     className?: string;
 
     onClick?: () => void;

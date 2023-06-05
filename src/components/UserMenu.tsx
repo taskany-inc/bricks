@@ -8,8 +8,8 @@ import { UserPic } from './UserPic';
 
 interface UserMenuProps {
     notifications?: boolean;
-    avatar?: string;
-    email?: string;
+    avatar?: string | null;
+    email?: string | null;
     onClick?: () => void;
 }
 
