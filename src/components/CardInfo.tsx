@@ -18,7 +18,7 @@ const StyledCardInfo = styled(Text)`
 interface CardInfoProps {
     className?: string;
     children?: React.ReactNode;
-    onClick?: () => void;
+    onClick?: (e?: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 export const CardInfo: React.FC<CardInfoProps> = ({ className, children, onClick }) => (
