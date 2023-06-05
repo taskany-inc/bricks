@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [1.6.0](https://github.com/taskany-inc/bricks/compare/v1.5.0...v1.6.0) (2023-06-05)
+
+
+### Features
+
+* **CardInfo:** added input parameter for onСlick ([1969283](https://github.com/taskany-inc/bricks/commit/19692836487745a1aceeb41173cd5f084bbba568))
+
 ## [1.5.0](https://github.com/taskany-inc/bricks/compare/v1.4.0...v1.5.0) (2023-06-03)
 
 
