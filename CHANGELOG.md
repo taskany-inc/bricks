@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [1.6.1](https://github.com/taskany-inc/bricks/compare/v1.6.0...v1.6.1) (2023-06-05)
+
+
+### Bug Fixes
+
+* **UserMenu:** support null as prop type ([514b415](https://github.com/taskany-inc/bricks/commit/514b41537854203c0737d46818177b498c4519cf))
+
 ## [1.6.0](https://github.com/taskany-inc/bricks/compare/v1.5.0...v1.6.0) (2023-06-05)
 
 
