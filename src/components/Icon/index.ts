@@ -38,3 +38,4 @@ export * from './CircleIcon';
 export * from './FileIcon';
 export * from './KeyIcon';
 export * from './TickCircleIcon';
+export * from './DoubleCaretRightCircleIcon';
