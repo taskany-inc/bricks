@@ -2,14 +2,44 @@ import React from 'react';
 import styled from 'styled-components';
 import { gray10, gray3, gray4, gray6, gray7, radiusM, textColor } from '@taskany/colors';
 
+import { nullable } from '../utils';
+
 interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
     view?: 'default' | 'primary' | 'warning' | 'danger';
     size?: 's' | 'm';
     forwardRef?: React.Ref<HTMLInputElement>;
+    iconLeft?: React.ReactNode;
+    iconRight?: React.ReactNode;
 }
 
+const StyledInputContainer = styled.div`
+    position: relative;
+    display: flex;
+    align-items: center;
+`;
+
+const StyledIconContainer = styled.div<{ size: InputProps['size']; position: 'left' | 'right' }>`
+    position: absolute;
+
+    ${({ size, position }) =>
+        size === 'm' &&
+        position === 'left' &&
+        `
+            left: 9px; // 8 + 1
+        `}
+
+    ${({ size, position }) =>
+        size === 'm' &&
+        position === 'right' &&
+        `
+            right: 9px; // 8 + 1
+        `}
+`;
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const StyledInput = styled(({ forwardRef, size, view, ...props }: InputProps) => <input ref={forwardRef} {...props} />)`
+const StyledInput = styled(({ forwardRef, size, view, iconLeft, iconRight, ...props }: InputProps) => (
+    <input ref={forwardRef} {...props} />
+))`
     box-sizing: border-box;
     width: 100%;
 
@@ -44,12 +74,43 @@ const StyledInput = styled(({ forwardRef, size, view, ...props }: InputProps) =>
 
             font-size: 13px;
         `}
+
+    ${({ size, iconLeft }) =>
+        size === 'm' &&
+        iconLeft &&
+        `
+            padding-left: 30px; // 8 + 8 + 15 - 1
+        `}
+
+    ${({ size, iconRight }) =>
+        size === 'm' &&
+        iconRight &&
+        `
+            padding-right: 30px; // 8 + 8 + 15 - 1
+        `}
 `;
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
-    ({ view = 'default', size = 'm', ...props }, ref) => (
-        <StyledInput forwardRef={ref} view={view} size={size} {...props} />
-    ),
+    ({ view = 'default', size = 'm', iconLeft, iconRight, ...props }, ref) =>
+        iconLeft || iconRight ? (
+            <StyledInputContainer>
+                {nullable(iconLeft, () => (
+                    <StyledIconContainer size={size} position="left">
+                        {iconLeft}
+                    </StyledIconContainer>
+                ))}
+
+                <StyledInput forwardRef={ref} view={view} size={size} iconLeft={iconLeft} {...props} />
+
+                {nullable(iconRight, () => (
+                    <StyledIconContainer size={size} position="right">
+                        {iconRight}
+                    </StyledIconContainer>
+                ))}
+            </StyledInputContainer>
+        ) : (
+            <StyledInput forwardRef={ref} view={view} size={size} {...props} />
+        ),
 );
 
 export default Input;
