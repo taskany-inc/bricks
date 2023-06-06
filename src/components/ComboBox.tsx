@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { danger10 } from '@taskany/colors';
 
 import { useKeyPress } from '../hooks/useKeyPress';
+import { useClickOutside } from '../hooks/useClickOutside';
 import { useKeyboard, KeyCode, KeyboardEvents } from '../hooks/useKeyboard';
 import { nullable } from '../utils/nullable';
 import { flatten } from '../utils/flatten';
@@ -53,6 +54,8 @@ interface ComboBoxProps {
     offset?: React.ComponentProps<typeof Popup>['offset'];
 
     onChange?: (value: any) => void;
+    onClose?: () => void;
+    onClickOutside?: (cb: () => void) => void;
 }
 
 const StyledComboBox = styled.span`
@@ -87,8 +90,10 @@ export const ComboBox = React.forwardRef<HTMLDivElement, ComboBoxProps>(
             renderItem,
             renderTrigger,
             renderInput,
-            onChange,
             renderItems,
+            onChange,
+            onClose,
+            onClickOutside,
         },
         ref,
     ) => {
@@ -113,10 +118,6 @@ export const ComboBox = React.forwardRef<HTMLDivElement, ComboBoxProps>(
             }
         }, [renderTrigger, editMode]);
 
-        const onClickOutside = useCallback(() => {
-            setEditMode(false);
-        }, []);
-
         const onTriggerClick = useCallback(() => {
             setEditMode(true);
         }, []);
@@ -131,6 +132,7 @@ export const ComboBox = React.forwardRef<HTMLDivElement, ComboBoxProps>(
 
         const [onESC] = useKeyboard([KeyCode.Escape], () => {
             setEditMode(false);
+            onClose?.();
         });
 
         const [onENTER] = useKeyboard([KeyCode.Enter], () => {
@@ -149,6 +151,13 @@ export const ComboBox = React.forwardRef<HTMLDivElement, ComboBoxProps>(
             }
         }, [flatItems, upPress]);
 
+        useClickOutside(inputRef, () => {
+            onClickOutside?.(() => {
+                setEditMode(false);
+                onClose?.();
+            });
+        });
+
         const children = flatItems.map((item: any, index: number) =>
             renderItem({ item, index, cursor, onClick: onItemClick(item) }),
         );
@@ -162,14 +171,7 @@ export const ComboBox = React.forwardRef<HTMLDivElement, ComboBoxProps>(
                             onMouseEnter={() => setPopupVisibility(true)}
                             onMouseLeave={() => setPopupVisibility(false)}
                         />
-                        <Popup
-                            tooltip
-                            view="danger"
-                            placement="top-start"
-                            visible={popupVisible}
-                            onClickOutside={onClickOutside}
-                            reference={popupRef}
-                        >
+                        <Popup tooltip view="danger" placement="top-start" visible={popupVisible} reference={popupRef}>
                             {err.message}
                         </Popup>
                     </>
@@ -190,7 +192,6 @@ export const ComboBox = React.forwardRef<HTMLDivElement, ComboBoxProps>(
                 <Popup
                     placement={placement}
                     visible={popupVisible && Boolean(flatItems.length)}
-                    onClickOutside={onClickOutside}
                     reference={popupRef}
                     interactive
                     arrow={false}
