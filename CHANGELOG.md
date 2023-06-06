@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [1.9.0](https://github.com/taskany-inc/bricks/compare/v1.8.0...v1.9.0) (2023-06-06)
+
+
+### Features
+
+* **ComboBox:** add onClickOutside and onClose hooks ([78e414a](https://github.com/taskany-inc/bricks/commit/78e414a0bd470cdcb5c7a507fdbe1d6d4c40e0b7))
+* **Input:** support icons on left and right sides ([8505309](https://github.com/taskany-inc/bricks/commit/850530920e8cf0e9cbfe53a08bd28c348bf60c2f))
+
 ## [1.8.0](https://github.com/taskany-inc/bricks/compare/v1.7.1...v1.8.0) (2023-06-06)
 
 
