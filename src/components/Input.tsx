@@ -2,25 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { gray10, gray3, gray4, gray6, gray7, radiusM, textColor } from '@taskany/colors';
 
-interface InputProps {
-    id?: string;
-    name?: string;
-    value?: string | number;
-    defaultValue?: string | number;
-    tabIndex?: number;
-    autoFocus?: boolean;
-    autoComplete?: string;
-    placeholder?: string;
-    disabled?: boolean;
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     view?: 'default' | 'primary' | 'warning' | 'danger';
-    size?: 's' | 'm' | 'l';
-    className?: string;
+    size?: 's' | 'm';
     forwardRef?: React.Ref<HTMLInputElement>;
-
-    onChange?: React.ChangeEventHandler<HTMLInputElement>;
-    onInput?: React.ChangeEventHandler<HTMLInputElement>;
-    onBlur?: React.FocusEventHandler<HTMLInputElement>;
-    onFocus?: React.FocusEventHandler<HTMLInputElement>;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
