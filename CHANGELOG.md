@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [1.7.0](https://github.com/taskany-inc/bricks/compare/v1.6.1...v1.7.0) (2023-06-06)
+
+
+### Features
+
+* input props extends all html input props ([6708683](https://github.com/taskany-inc/bricks/commit/67086835057f4efb5be0ba1331f46a10af2dc119))
+
 ## [1.6.1](https://github.com/taskany-inc/bricks/compare/v1.6.0...v1.6.1) (2023-06-05)
 
 
