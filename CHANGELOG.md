@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [1.8.0](https://github.com/taskany-inc/bricks/compare/v1.7.1...v1.8.0) (2023-06-06)
+
+
+### Features
+
+* **Icon:** add new caret icon ([b965b58](https://github.com/taskany-inc/bricks/commit/b965b58dd2070d9896dab064572ea97ed1d0f3da))
+
 ## [1.7.1](https://github.com/taskany-inc/bricks/compare/v1.7.0...v1.7.1) (2023-06-06)
 
 
