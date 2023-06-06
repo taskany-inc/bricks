@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { gray10, gray3, gray4, gray6, gray7, radiusM, textColor } from '@taskany/colors';
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
     view?: 'default' | 'primary' | 'warning' | 'danger';
     size?: 's' | 'm';
     forwardRef?: React.Ref<HTMLInputElement>;
