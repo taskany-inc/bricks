@@ -20,7 +20,13 @@ export interface BaseIconProps {
     onClick?: (e: React.MouseEvent) => void;
 }
 
-const StyledIcon = styled.span<{ onClick?: BaseIconProps['onClick'] }>`
+const StyledIcon = styled.span<{ onClick?: BaseIconProps['onClick']; color?: BaseIconProps['color'] }>`
+    ${({ color }) =>
+        color &&
+        `
+        color: ${color};
+    `}
+
     ${({ onClick }) =>
         onClick &&
         `
@@ -31,14 +37,18 @@ const StyledIcon = styled.span<{ onClick?: BaseIconProps['onClick'] }>`
 export const BaseIcon = React.forwardRef<HTMLSpanElement, BaseIconProps>(
     ({ size, value: Component, color = 'inherit', stroke = 1, className, onClick, noWrap }, ref) => {
         const sizePx = `${typeof size === 'string' ? iconSizesMap[size] : size}px`;
-        const content = (
-            <Component width={sizePx} height={sizePx} color={color} strokeWidth={stroke} onClick={onClick} />
-        );
+        const content = <Component width={sizePx} height={sizePx} strokeWidth={stroke} onClick={onClick} />;
 
         return noWrap ? (
             content
         ) : (
-            <StyledIcon ref={ref} className={className} style={{ lineHeight: 'initial' }} onClick={onClick}>
+            <StyledIcon
+                ref={ref}
+                className={className}
+                style={{ lineHeight: 'initial' }}
+                color={color}
+                onClick={onClick}
+            >
                 {content}
             </StyledIcon>
         );
