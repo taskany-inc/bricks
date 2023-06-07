@@ -97,6 +97,7 @@ export const ComboBox = React.forwardRef<HTMLDivElement, ComboBoxProps>(
         },
         ref,
     ) => {
+        const popupContentRef = useRef<HTMLDivElement>(null);
         const popupRef = useRef<HTMLDivElement>(null);
         const buttonRef = useRef<HTMLButtonElement>(null);
         const inputRef = useRef<HTMLInputElement>(null);
@@ -105,7 +106,6 @@ export const ComboBox = React.forwardRef<HTMLDivElement, ComboBoxProps>(
         const downPress = useKeyPress('ArrowDown');
         const upPress = useKeyPress('ArrowUp');
         const [cursor, setCursor] = useState(0);
-        // eslint-disable-next-line prefer-spread
         const flatItems = useMemo(() => flatten(items), [items]);
 
         useEffect(() => {
@@ -151,10 +151,16 @@ export const ComboBox = React.forwardRef<HTMLDivElement, ComboBoxProps>(
             }
         }, [flatItems, upPress]);
 
-        useClickOutside(inputRef, () => {
+        const onErrorMouseEnter = useCallback(() => setPopupVisibility(true), []);
+        const onErrorMouseLeave = useCallback(() => setPopupVisibility(false), []);
+
+        useClickOutside(inputRef, (e) => {
             onClickOutside?.(() => {
-                setEditMode(false);
-                onClose?.();
+                // popup is outside of component
+                if (!popupContentRef.current?.contains(e.target as Node)) {
+                    setEditMode(false);
+                    onClose?.();
+                }
             });
         });
 
@@ -168,8 +174,8 @@ export const ComboBox = React.forwardRef<HTMLDivElement, ComboBoxProps>(
                     <>
                         <StyledErrorTrigger
                             ref={popupRef}
-                            onMouseEnter={() => setPopupVisibility(true)}
-                            onMouseLeave={() => setPopupVisibility(false)}
+                            onMouseEnter={onErrorMouseEnter}
+                            onMouseLeave={onErrorMouseLeave}
                         />
                         <Popup tooltip view="danger" placement="top-start" visible={popupVisible} reference={popupRef}>
                             {err.message}
@@ -199,7 +205,7 @@ export const ComboBox = React.forwardRef<HTMLDivElement, ComboBoxProps>(
                     maxWidth={maxWidth}
                     offset={offset}
                 >
-                    <div {...onESC}>
+                    <div ref={popupContentRef} {...onESC}>
                         {renderItems ? renderItems(children as React.ReactNode) : (children as React.ReactNode)}
                     </div>
                 </Popup>
