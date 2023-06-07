@@ -19,10 +19,10 @@ const colorsMap: Record<ModalViewType, string> = {
 interface ModalProps {
     children: React.ReactNode;
     className?: string;
-
     visible?: boolean;
     width?: number;
     view?: ModalViewType;
+    cross?: boolean;
 
     onClose?: () => void;
     onShow?: () => void;
@@ -107,7 +107,16 @@ export const ModalContent = styled.div`
     padding: ${gapM};
 `;
 
-export const Modal: React.FC<ModalProps> = ({ visible, view, children, width = 800, onClose, onShow, className }) => {
+export const Modal: React.FC<ModalProps> = ({
+    visible,
+    view,
+    children,
+    width = 800,
+    className,
+    cross = true,
+    onClose,
+    onShow,
+}) => {
     const [onESC] = useKeyboard([KeyCode.Escape], () => onClose?.(), {
         disableGlobalEvent: false,
     });
@@ -126,22 +135,18 @@ export const Modal: React.FC<ModalProps> = ({ visible, view, children, width = 8
         visible && onShow?.();
     }, [visible, onShow]);
 
-    return (
-        <>
-            {nullable(visible, () => (
-                <Portal id="modal">
-                    <StyledModalSurface>
-                        <StyledModal className={className} view={view} style={{ width: `${width}px` }} {...onESC}>
-                            {nullable(onClose, () => (
-                                <ModalCross onClick={onClose} />
-                            ))}
-                            {children}
-                        </StyledModal>
-                    </StyledModalSurface>
-                </Portal>
-            ))}
-        </>
-    );
+    return visible ? (
+        <Portal id="modal">
+            <StyledModalSurface>
+                <StyledModal className={className} view={view} style={{ width: `${width}px` }} {...onESC}>
+                    {nullable(cross && onClose, () => (
+                        <ModalCross onClick={onClose} />
+                    ))}
+                    {children}
+                </StyledModal>
+            </StyledModalSurface>
+        </Portal>
+    ) : null;
 };
 
 export default Modal;
