@@ -39,3 +39,5 @@ export * from './FileIcon';
 export * from './KeyIcon';
 export * from './TickCircleIcon';
 export * from './DoubleCaretRightCircleIcon';
+export * from './GoalIcon';
+export * from './ProjectIcon';
