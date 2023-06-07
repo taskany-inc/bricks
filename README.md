@@ -13,11 +13,7 @@ $ npm i @taskany/bricks
 ```jsx
 import { Text } from '@taskany/bricks';
 
-const App = () => (
-    <>
-        <Text>Taskany Text Component</Text>
-    </>
-);
+const App = () => <Text>Taskany Text Component</Text>;
 ```
 
 ## Docs
