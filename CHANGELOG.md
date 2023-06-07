@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [1.9.1](https://github.com/taskany-inc/bricks/compare/v1.9.0...v1.9.1) (2023-06-07)
+
+
+### Bug Fixes
+
+* **ComboBox:** do not close on items click ([ceaa3bd](https://github.com/taskany-inc/bricks/commit/ceaa3bd93559cbd2ebd9a2f3e309df200e11aee7))
+* **useClickOutside:** add re-export ([932593c](https://github.com/taskany-inc/bricks/commit/932593c990a9990bb18833dba899ead022f15b82))
+
 ## [1.9.0](https://github.com/taskany-inc/bricks/compare/v1.8.0...v1.9.0) (2023-06-06)
 
 
