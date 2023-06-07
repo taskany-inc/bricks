@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [1.10.1](https://github.com/taskany-inc/bricks/compare/v1.10.0...v1.10.1) (2023-06-07)
+
+
+### Bug Fixes
+
+* **docs:** simplify example ([796130d](https://github.com/taskany-inc/bricks/commit/796130d073dad5a8de164814c87d11a1d34d81b1))
+
 ## [1.10.0](https://github.com/taskany-inc/bricks/compare/v1.9.1...v1.10.0) (2023-06-07)
 
 
