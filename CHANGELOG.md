@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [1.10.0](https://github.com/taskany-inc/bricks/compare/v1.9.1...v1.10.0) (2023-06-07)
+
+
+### Features
+
+* **Icon:** add goal and project icons ([343943e](https://github.com/taskany-inc/bricks/commit/343943e1d3854e0ebf117799be5f4ffefcc35e32))
+
 ## [1.9.1](https://github.com/taskany-inc/bricks/compare/v1.9.0...v1.9.1) (2023-06-07)
 
 
