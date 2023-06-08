@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { gray10, gray3, gray4, gray6, gray7, textColor } from '@taskany/colors';
+import { gray10, gray3, gray4, gray6, gray7, radiusM, textColor } from '@taskany/colors';
 
 import { nullable } from '../utils';
 
@@ -48,6 +48,8 @@ const StyledInput = styled(({ forwardRef, size, view, brick, iconLeft, iconRight
 
     outline: none;
     border: 1px solid;
+
+    border-radius: ${radiusM};
 
     transition: 200ms cubic-bezier(0.3, 0, 0.5, 1);
     transition-property: color, background-color, border-color;
