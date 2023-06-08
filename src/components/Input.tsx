@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { gray10, gray3, gray4, gray6, gray7, radiusM, textColor } from '@taskany/colors';
+import { gray10, gray3, gray4, gray6, gray7, textColor } from '@taskany/colors';
 
 import { nullable } from '../utils';
 
 interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
     view?: 'default' | 'primary' | 'warning' | 'danger';
+    brick?: 'left' | 'right' | 'center';
     size?: 's' | 'm';
     forwardRef?: React.Ref<HTMLInputElement>;
     iconLeft?: React.ReactNode;
@@ -37,7 +38,7 @@ const StyledIconContainer = styled.div<{ size: InputProps['size']; position: 'le
 `;
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const StyledInput = styled(({ forwardRef, size, view, iconLeft, iconRight, ...props }: InputProps) => (
+const StyledInput = styled(({ forwardRef, size, view, brick, iconLeft, iconRight, ...props }: InputProps) => (
     <input ref={forwardRef} {...props} />
 ))`
     box-sizing: border-box;
@@ -47,7 +48,6 @@ const StyledInput = styled(({ forwardRef, size, view, iconLeft, iconRight, ...pr
 
     outline: none;
     border: 1px solid;
-    border-radius: ${radiusM};
 
     transition: 200ms cubic-bezier(0.3, 0, 0.5, 1);
     transition-property: color, background-color, border-color;
@@ -67,6 +67,26 @@ const StyledInput = styled(({ forwardRef, size, view, iconLeft, iconRight, ...pr
             }
         `}
 
+    ${({ brick }) =>
+        brick === 'left' &&
+        `
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        `}
+
+    ${({ brick }) =>
+        brick === 'right' &&
+        `
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        `}
+
+    ${({ brick }) =>
+        brick === 'center' &&
+        `
+            border-radius: 0;
+        `}
+    
     ${({ size }) =>
         size === 'm' &&
         `
@@ -91,7 +111,7 @@ const StyledInput = styled(({ forwardRef, size, view, iconLeft, iconRight, ...pr
 `;
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
-    ({ view = 'default', size = 'm', iconLeft, iconRight, ...props }, ref) =>
+    ({ view = 'default', size = 'm', brick, iconLeft, iconRight, ...props }, ref) =>
         iconLeft || iconRight ? (
             <StyledInputContainer>
                 {nullable(iconLeft, () => (
@@ -100,7 +120,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
                     </StyledIconContainer>
                 ))}
 
-                <StyledInput forwardRef={ref} view={view} size={size} iconLeft={iconLeft} {...props} />
+                <StyledInput forwardRef={ref} view={view} size={size} brick={brick} iconLeft={iconLeft} {...props} />
 
                 {nullable(iconRight, () => (
                     <StyledIconContainer size={size} position="right">
@@ -109,7 +129,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
                 ))}
             </StyledInputContainer>
         ) : (
-            <StyledInput forwardRef={ref} view={view} size={size} {...props} />
+            <StyledInput forwardRef={ref} view={view} size={size} brick={brick} {...props} />
         ),
 );
 
