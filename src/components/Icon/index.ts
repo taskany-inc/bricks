@@ -41,3 +41,6 @@ export * from './TickCircleIcon';
 export * from './DoubleCaretRightCircleIcon';
 export * from './GoalIcon';
 export * from './ProjectIcon';
+export * from './MessageTextAltIcon';
+export * from './MessageTickIcon';
+export * from './TargetIcon';
