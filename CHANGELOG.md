@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [1.12.0](https://github.com/taskany-inc/bricks/compare/v1.11.0...v1.12.0) (2023-06-08)
+
+
+### Features
+
+* **Input:** default value is set for border-radius ([dcb2120](https://github.com/taskany-inc/bricks/commit/dcb2120f95974994ee789be2dbf3ccd617d16c7a))
+
 ## [1.11.0](https://github.com/taskany-inc/bricks/compare/v1.10.1...v1.11.0) (2023-06-08)
 
 
