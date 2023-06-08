@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [1.11.0](https://github.com/taskany-inc/bricks/compare/v1.10.1...v1.11.0) (2023-06-08)
+
+
+### Features
+
+* **Input:** added props brick ([cce2c1c](https://github.com/taskany-inc/bricks/commit/cce2c1cde006f7cfd58470b38a852041dc822051))
+
+
+### Bug Fixes
+
+* **Icon:** add new icons ([d3c2f2f](https://github.com/taskany-inc/bricks/commit/d3c2f2f1dbe9c2202a5d3a589054a1ee38c2d394))
+
 ## [1.10.1](https://github.com/taskany-inc/bricks/compare/v1.10.0...v1.10.1) (2023-06-07)
 
 
