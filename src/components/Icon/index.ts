@@ -44,3 +44,4 @@ export * from './ProjectIcon';
 export * from './MessageTextAltIcon';
 export * from './MessageTickIcon';
 export * from './TargetIcon';
+export * from './AttachIcon';
