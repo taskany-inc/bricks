@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [1.13.0](https://github.com/taskany-inc/bricks/compare/v1.12.0...v1.13.0) (2023-06-09)
+
+
+### Features
+
+* **FormEditor:** add upload button ([4a4b1bd](https://github.com/taskany-inc/bricks/commit/4a4b1bd194833dfc5b0d716feb6ec0f99533e263))
+* **FormTextrea:** support minHeight as prop ([405e895](https://github.com/taskany-inc/bricks/commit/405e895550b85daa10f4a0fde61a71ab4239e6a2))
+
 ## [1.12.0](https://github.com/taskany-inc/bricks/compare/v1.11.0...v1.12.0) (2023-06-08)
 
 
