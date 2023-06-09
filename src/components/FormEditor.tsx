@@ -12,6 +12,8 @@ import { useUpload } from '../hooks/useUpload';
 import { formContext } from '../context/form';
 
 import { Popup } from './Popup';
+import { Link } from './Link';
+import { AttachIcon } from './Icon';
 
 interface FormEditorProps {
     id?: string;
@@ -27,7 +29,8 @@ interface FormEditorProps {
     };
 
     messages?: {
-        attachments: string;
+        attachmentsButton: string;
+        attachmentsDescription: string;
         attachmentsUploading?: string;
     };
 
@@ -37,7 +40,8 @@ interface FormEditorProps {
     onCancel?: () => void;
 }
 
-const defaultAttachmentsMesssage = 'Attach files by dragging & dropping, selecting or pasting them.';
+const defaultAttachmentsButtonMessage = 'Attach files';
+const defaultAttachmentsDescriptionMesssage = "drag'n'drop or pasting also supported";
 const defaultAttachmentsUploadingMessage = 'Uploading...';
 
 const defaultOptions: React.ComponentProps<typeof Editor>['options'] = {
@@ -196,9 +200,7 @@ const StyledErrorTrigger = styled.div`
 `;
 
 const StyledUploadButton = styled.div`
-    position: absolute;
     padding: ${gapXs} ${gapS};
-    bottom: -38px;
 
     border-top: 1px dashed ${gray4};
 
@@ -210,8 +212,8 @@ const StyledUploadButton = styled.div`
 
 const StyledUploadInput = styled.input`
     position: absolute;
+    z-index: 90;
     width: 100%;
-    height: 100%;
 
     opacity: 0;
 
@@ -227,7 +229,21 @@ const StyledDropZone = styled.div`
     z-index: 100;
 
     opacity: 0;
-    visibility: hidden;
+`;
+
+const StyledUploadLink = styled(Link)`
+    position: relative;
+    z-index: 100;
+
+    text-decoration: none;
+
+    margin-right: ${gapXs};
+`;
+
+const StyledUploadIcon = styled(AttachIcon)`
+    position: relative;
+    top: 2px;
+    padding-right: ${gapXs};
 `;
 
 const mdImageLink = (url: string) => `![](${url})`;
@@ -263,7 +279,7 @@ export const FormEditor = React.forwardRef<HTMLDivElement, FormEditorProps>(
         const mounted = useMounted();
         const { loading, files, uploadFiles } = useUpload();
         // @ts-ignore
-        const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop: uploadFiles });
+        const { getRootProps, getInputProps, isDragActive, open } = useDropzone({ onDrop: uploadFiles });
         const formCtx = useContext(formContext);
         const disabled = formCtx.disabled || internalDisabled;
 
@@ -372,6 +388,16 @@ export const FormEditor = React.forwardRef<HTMLDivElement, FormEditorProps>(
             await uploadFiles(e.target.files);
         };
 
+        const uploadInputProps = getInputProps();
+
+        const onUploadLinkClick = useCallback(
+            (e: React.MouseEvent<HTMLAnchorElement>) => {
+                e.preventDefault();
+                open();
+            },
+            [open],
+        );
+
         return (
             <div tabIndex={0} ref={extraRef} style={{ outline: 'none' }} onPaste={onEditorPaste}>
                 <StyledEditor
@@ -387,7 +413,7 @@ export const FormEditor = React.forwardRef<HTMLDivElement, FormEditorProps>(
                 >
                     {nullable(isDragActive, () => (
                         <StyledDropZone>
-                            <input {...getInputProps()} />
+                            <input {...uploadInputProps} />
                         </StyledDropZone>
                     ))}
 
@@ -417,7 +443,12 @@ export const FormEditor = React.forwardRef<HTMLDivElement, FormEditorProps>(
 
                     <div
                         onFocus={onEditorFocus}
-                        style={{ height: contentHeight, minHeight: height, maxHeight: maxEditorHeight }}
+                        style={{
+                            height: contentHeight,
+                            minHeight: height,
+                            maxHeight: maxEditorHeight,
+                            paddingBottom: '24px', // upload message height
+                        }}
                     >
                         <Editor
                             loading=""
@@ -432,9 +463,18 @@ export const FormEditor = React.forwardRef<HTMLDivElement, FormEditorProps>(
                         {nullable(focused, () => (
                             <StyledUploadButton>
                                 <StyledUploadInput onChange={onFileInputChange} type="file" multiple />
-                                {loading
-                                    ? messages.attachmentsUploading || defaultAttachmentsUploadingMessage
-                                    : messages.attachments || defaultAttachmentsMesssage}
+
+                                {loading ? (
+                                    messages?.attachmentsUploading || defaultAttachmentsUploadingMessage
+                                ) : (
+                                    <>
+                                        <StyledUploadLink onClick={onUploadLinkClick}>
+                                            <StyledUploadIcon size="xs" />
+                                            {messages?.attachmentsButton || defaultAttachmentsButtonMessage}
+                                        </StyledUploadLink>
+                                        {messages?.attachmentsDescription || defaultAttachmentsDescriptionMesssage}
+                                    </>
+                                )}
                             </StyledUploadButton>
                         ))}
                     </div>
