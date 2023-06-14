@@ -7,6 +7,7 @@ interface BadgeProps {
     color?: string;
     children: React.ReactNode;
     className?: string;
+    onClick?: React.MouseEventHandler<HTMLDivElement>;
 }
 
 const StyledBadge = styled.div<{ size: BadgeProps['size']; color?: BadgeProps['color'] }>`
@@ -37,8 +38,8 @@ const StyledBadge = styled.div<{ size: BadgeProps['size']; color?: BadgeProps['c
     }
 `;
 
-export const Badge: React.FC<BadgeProps> = ({ size = 's', children, className }) => (
-    <StyledBadge className={className} size={size}>
+export const Badge: React.FC<BadgeProps> = ({ size = 's', children, className, onClick }) => (
+    <StyledBadge className={className} size={size} onClick={onClick}>
         {children}
     </StyledBadge>
 );
