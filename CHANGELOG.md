@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [1.14.0](https://github.com/taskany-inc/bricks/compare/v1.13.0...v1.14.0) (2023-06-14)
+
+
+### Features
+
+* **MarkedListItem:** optional props mark ([3dcbe3e](https://github.com/taskany-inc/bricks/commit/3dcbe3e78ab33e60a859b20591488ea2482416f8))
+
 ## [1.13.0](https://github.com/taskany-inc/bricks/compare/v1.12.0...v1.13.0) (2023-06-09)
 
 
