@@ -60,7 +60,7 @@ const StyledItemInfo = styled(Text)`
 
 export const MarkedListItem: React.FC<{
     children?: React.ReactNode;
-    mark: React.ReactNode;
+    mark?: React.ReactNode;
     hoverColor?: string;
     focused?: boolean;
     checked?: boolean;
