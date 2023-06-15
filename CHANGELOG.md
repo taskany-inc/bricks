@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [1.15.0](https://github.com/taskany-inc/bricks/compare/v1.14.0...v1.15.0) (2023-06-15)
+
+
+### Features
+
+* offline detector ([1599149](https://github.com/taskany-inc/bricks/commit/1599149cac9ac2e6ad8373174dfd249fade9849f))
+* onclick for badge ([4d65aaf](https://github.com/taskany-inc/bricks/commit/4d65aafbd0b6930ccfc9686eb8910458b2ab5b07))
+* target for link ([acbc296](https://github.com/taskany-inc/bricks/commit/acbc29616b29a4fa82f16bff94de1d27e0e1af7d))
+
 ## [1.14.0](https://github.com/taskany-inc/bricks/compare/v1.13.0...v1.14.0) (2023-06-14)
 
 
