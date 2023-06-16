@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [1.15.1](https://github.com/taskany-inc/bricks/compare/v1.15.0...v1.15.1) (2023-06-16)
+
+
+### Bug Fixes
+
+* **useOfflineDetector:** add re-export ([18188fb](https://github.com/taskany-inc/bricks/commit/18188fbf81dd189efd76de7f48d94db9277c4afd))
+
 ## [1.15.0](https://github.com/taskany-inc/bricks/compare/v1.14.0...v1.15.0) (2023-06-15)
 
 
