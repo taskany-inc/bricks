@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [1.15.2](https://github.com/taskany-inc/bricks/compare/v1.15.1...v1.15.2) (2023-06-17)
+
+
+### Bug Fixes
+
+* **TickCircleIcon:** fix typo in title ([00190d4](https://github.com/taskany-inc/bricks/commit/00190d43cd02f7daf3d3e78fa2528ab99896219e))
+
 ## [1.15.1](https://github.com/taskany-inc/bricks/compare/v1.15.0...v1.15.1) (2023-06-16)
 
 
