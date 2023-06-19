@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 
 export type UseOfflineDetectorParams = {
     setStatus: (online: boolean) => void;
-    pollingDelay: number;
-    remoteServerUrl: string;
+    pollingDelay?: number;
+    remoteServerUrl?: string;
 };
 
 export const useOfflineDetector = ({
