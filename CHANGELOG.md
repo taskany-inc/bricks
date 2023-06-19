@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [1.15.3](https://github.com/taskany-inc/bricks/compare/v1.15.2...v1.15.3) (2023-06-19)
+
+
+### Bug Fixes
+
+* **useOfflineDetector:** make props optional ([7c1eba0](https://github.com/taskany-inc/bricks/commit/7c1eba0e17c4367cffd07b9a597bd0ab50038483))
+
 ## [1.15.2](https://github.com/taskany-inc/bricks/compare/v1.15.1...v1.15.2) (2023-06-17)
 
 
