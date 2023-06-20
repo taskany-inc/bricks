@@ -6,7 +6,8 @@ import Text from './Text';
 
 interface CircleProgressBarProps {
     value: number;
-    size?: 's' | 'm' | 'l'; // default: 'm'
+    size?: 's' | 'm' | 'l';
+    className?: string;
 }
 
 const sizeMap = {
@@ -15,14 +16,18 @@ const sizeMap = {
     l: 32,
 };
 
-const StyledCircleProgressWrapper = styled.div`
+const StyledCircleProgressBar = styled.span`
+    display: inline-block;
+`;
+
+const StyledCircleProgressBarAligner = styled.span`
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
 `;
 
-const StyledCircleProgressValue = styled.span`
+const StyledCircleProgressBarValue = styled.span`
     position: absolute;
     top: 50%;
     right: 50%;
@@ -31,7 +36,12 @@ const StyledCircleProgressValue = styled.span`
     align-items: center;
     justify-content: center;
 `;
-export const CircleProgressBar = ({ value, size = 'm' }: CircleProgressBarProps) => {
+
+const StyledCircle = styled.circle`
+    transition: stroke-dasharray, stroke-dashoffset 100ms ease-in-out;
+`;
+
+export const CircleProgressBar: React.FC<CircleProgressBarProps> = ({ value, size = 'm', className }) => {
     const diameter = sizeMap[size];
     const strokeWidth = size === 's' ? 2 : 3;
     const radius = diameter / 2;
@@ -39,33 +49,37 @@ export const CircleProgressBar = ({ value, size = 'm' }: CircleProgressBarProps)
     if (value > 100) value = 100;
     if (value < 0) value = 0;
     const offset = circumReference - (value / 100) * circumReference;
+
     return (
-        <StyledCircleProgressWrapper>
-            <StyledCircleProgressValue>
-                <Text weight="bold" color={brandColor} size={size === 'l' ? 'xs' : 'xxs'} as="span">
-                    {value}
-                </Text>
-            </StyledCircleProgressValue>
-            <svg
-                viewBox={`${-strokeWidth / 2} ${-strokeWidth / 2} ${diameter + strokeWidth} ${diameter + strokeWidth}`}
-                width={diameter}
-                height={diameter}
-                className="svg"
-            >
-                <circle cx={radius} cy={radius} r={radius} fill="none" stroke={gray5} strokeWidth={strokeWidth} />
-                <circle
-                    cx={radius}
-                    cy={radius}
-                    r={radius}
-                    fill="none"
-                    stroke={brandColor}
-                    strokeWidth={strokeWidth}
-                    strokeDasharray={circumReference}
-                    strokeDashoffset={offset}
-                    transform={`rotate(-90 ${radius} ${radius})`}
-                />
-            </svg>
-        </StyledCircleProgressWrapper>
+        <StyledCircleProgressBar className={className}>
+            <StyledCircleProgressBarAligner>
+                <StyledCircleProgressBarValue>
+                    <Text weight="bold" color={brandColor} size={size === 'l' ? 'xs' : 'xxs'} as="span">
+                        {value}
+                    </Text>
+                </StyledCircleProgressBarValue>
+                <svg
+                    viewBox={`${-strokeWidth / 2} ${-strokeWidth / 2} ${diameter + strokeWidth} ${
+                        diameter + strokeWidth
+                    }`}
+                    width={diameter}
+                    height={diameter}
+                >
+                    <circle cx={radius} cy={radius} r={radius} fill="none" stroke={gray5} strokeWidth={strokeWidth} />
+                    <StyledCircle
+                        cx={radius}
+                        cy={radius}
+                        r={radius}
+                        fill="none"
+                        stroke={brandColor}
+                        strokeWidth={strokeWidth}
+                        strokeDasharray={circumReference}
+                        strokeDashoffset={offset}
+                        transform={`rotate(-90 ${radius} ${radius})`}
+                    />
+                </svg>
+            </StyledCircleProgressBarAligner>
+        </StyledCircleProgressBar>
     );
 };
 
