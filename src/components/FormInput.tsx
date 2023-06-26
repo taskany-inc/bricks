@@ -76,7 +76,8 @@ const StyledErrorTrigger = styled.div`
     height: 6px;
     border-radius: 100%;
     background-color: ${danger10};
-    top: 17px;
+    top: 50%;
+    transform: translateY(-50%);
     left: -2px;
 `;
 
