@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [1.19.0](https://github.com/taskany-inc/bricks/compare/v1.18.0...v1.19.0) (2023-06-28)
+
+
+### Features
+
+* **ExternalLinkIcon:** support new icon ([7fa7bed](https://github.com/taskany-inc/bricks/commit/7fa7bed0a19ff1a7b06c74679ec413738341304a))
+
 ## [1.18.0](https://github.com/taskany-inc/bricks/compare/v1.17.1...v1.18.0) (2023-06-28)
 
 
