@@ -47,3 +47,4 @@ export * from './TargetIcon';
 export * from './AttachIcon';
 export * from './ArrowRightSmallIcon';
 export * from './ArrowRightIcon';
+export * from './ExternalLinkIcon';
