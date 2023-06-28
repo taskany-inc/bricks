@@ -45,3 +45,4 @@ export * from './MessageTextAltIcon';
 export * from './MessageTickIcon';
 export * from './TargetIcon';
 export * from './AttachIcon';
+export * from './ArrowRightSmallIcon';
