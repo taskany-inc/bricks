@@ -46,3 +46,4 @@ export * from './MessageTickIcon';
 export * from './TargetIcon';
 export * from './AttachIcon';
 export * from './ArrowRightSmallIcon';
+export * from './ArrowRightIcon';
