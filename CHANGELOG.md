@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [1.18.0](https://github.com/taskany-inc/bricks/compare/v1.17.1...v1.18.0) (2023-06-28)
+
+
+### Features
+
+* add ArrowRightIcon ([85bd83f](https://github.com/taskany-inc/bricks/commit/85bd83fa9f4fb58f00bfeafbf829f01c7850c612))
+
 ## [1.17.1](https://github.com/taskany-inc/bricks/compare/v1.17.0...v1.17.1) (2023-06-28)
 
 
