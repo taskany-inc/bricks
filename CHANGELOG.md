@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [1.17.1](https://github.com/taskany-inc/bricks/compare/v1.17.0...v1.17.1) (2023-06-28)
+
+
+### Bug Fixes
+
+* **ArrowRightSmallIcon:** incorrect icon path ([f5e043d](https://github.com/taskany-inc/bricks/commit/f5e043db3052e2807ee455918a5b051ce6432ae7))
+
 ## [1.17.0](https://github.com/taskany-inc/bricks/compare/v1.16.1...v1.17.0) (2023-06-28)
 
 
