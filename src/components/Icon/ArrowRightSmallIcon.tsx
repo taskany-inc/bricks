@@ -1,5 +1,5 @@
 import React from 'react';
-import icon from 'teenyicons/solid/right-small.svg';
+import icon from 'teenyicons/solid/arrow-right-small.svg';
 
 import { BaseIcon, BaseIconProps } from './BaseIcon';
 
