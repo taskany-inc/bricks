@@ -48,3 +48,7 @@ export * from './AttachIcon';
 export * from './ArrowRightSmallIcon';
 export * from './ArrowRightIcon';
 export * from './ExternalLinkIcon';
+export * from './EnvelopeIcon';
+export * from './GitLabIcon';
+export * from './GitHubIcon';
+export * from './TelegramIcon';
