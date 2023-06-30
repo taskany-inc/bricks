@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useCallback, useEffect, useRef, useState, ComponentProps } from 'react';
+import React, { useCallback, useEffect, useRef, useState, ComponentProps, useMemo } from 'react';
 import styled from 'styled-components';
 import { danger10 } from '@taskany/colors';
 
@@ -8,6 +8,8 @@ import { useKeyPress } from '../hooks/useKeyPress';
 import { useKeyboard, KeyCode } from '../hooks/useKeyboard';
 
 import { Popup } from './Popup';
+import Input from './Input';
+import { CrossIcon } from './Icon/CrossIcon';
 
 interface DropdownTriggerProps {
     ref: React.RefObject<HTMLButtonElement>;
@@ -27,12 +29,13 @@ export interface DropdownItemProps {
     onClick: (value?: any) => void;
 }
 
-interface DropdownProps {
+export interface DropdownProps {
     renderItem: (props: DropdownItemProps) => React.ReactNode;
     renderTrigger: (props: DropdownTriggerProps) => React.ReactNode;
     text?: string;
     value?: any;
     items?: any[];
+    searchFilter?: (item: any, query: string) => boolean;
     visible?: boolean;
     disabled?: boolean;
     className?: string;
@@ -68,6 +71,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
         {
             visible = false,
             items = [],
+            searchFilter,
             text,
             value,
             disabled,
@@ -129,6 +133,21 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
             }
         }, [items, upPress]);
 
+        const [query, setQuery] = useState('');
+        const filteredItems = useMemo(
+            () => (query && searchFilter ? items.filter((item) => searchFilter(item, query)) : items),
+            [query, items, searchFilter],
+        );
+
+        const searchBoxRef = useRef<HTMLInputElement>(null);
+        useEffect(() => {
+            const { current } = searchBoxRef;
+
+            if (popupVisible && searchFilter && current) {
+                current.focus();
+            }
+        }, [searchFilter, popupVisible]);
+
         return (
             <StyledDropdown className={className} ref={ref}>
                 {!disabled &&
@@ -177,7 +196,28 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
                     offset={offset}
                 >
                     <div {...onESC}>
-                        {items?.map((item, index) => renderItem({ item, index, cursor, onClick: onItemClick(item) }))}
+                        {nullable(searchFilter, () => (
+                            <Input
+                                placeholder="search"
+                                value={query}
+                                ref={searchBoxRef}
+                                onChange={({ target }) => {
+                                    setQuery(target?.value);
+                                }}
+                                iconRight={
+                                    <CrossIcon
+                                        size="xxs"
+                                        onClick={() => {
+                                            setQuery('');
+                                            searchBoxRef.current?.focus();
+                                        }}
+                                    />
+                                }
+                            />
+                        ))}
+                        {filteredItems?.map((item, index) =>
+                            renderItem({ item, index, cursor, onClick: onItemClick(item) }),
+                        )}
                     </div>
                 </Popup>
             </StyledDropdown>
