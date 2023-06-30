@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useCallback, useEffect, useRef, useState, ComponentProps, useMemo } from 'react';
+import React, { useCallback, useEffect, useRef, useState, ComponentProps } from 'react';
 import styled from 'styled-components';
 import { danger10 } from '@taskany/colors';
 
@@ -35,7 +35,7 @@ export interface DropdownProps {
     text?: string;
     value?: any;
     items?: any[];
-    searchFilter?: (item: any, query: string) => boolean;
+    onSearchChange?: (query: string) => void;
     visible?: boolean;
     disabled?: boolean;
     className?: string;
@@ -71,7 +71,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
         {
             visible = false,
             items = [],
-            searchFilter,
+            onSearchChange,
             text,
             value,
             disabled,
@@ -134,19 +134,15 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
         }, [items, upPress]);
 
         const [query, setQuery] = useState('');
-        const filteredItems = useMemo(
-            () => (query && searchFilter ? items.filter((item) => searchFilter(item, query)) : items),
-            [query, items, searchFilter],
-        );
 
         const searchBoxRef = useRef<HTMLInputElement>(null);
         useEffect(() => {
             const { current } = searchBoxRef;
 
-            if (popupVisible && searchFilter && current) {
+            if (popupVisible && onSearchChange && current) {
                 current.focus();
             }
-        }, [searchFilter, popupVisible]);
+        }, [onSearchChange, popupVisible]);
 
         return (
             <StyledDropdown className={className} ref={ref}>
@@ -196,33 +192,32 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
                     offset={offset}
                 >
                     <div {...onESC}>
-                        {nullable(searchFilter, () => (
+                        {nullable(onSearchChange, () => (
                             <Input
                                 placeholder="search"
                                 value={query}
                                 ref={searchBoxRef}
                                 onChange={({ target }) => {
-                                    setQuery(target?.value);
+                                    const { value = '' } = target || {};
+                                    setQuery(value);
+                                    onSearchChange && onSearchChange(value);
                                 }}
                                 iconRight={
                                     <CrossIcon
                                         size="xxs"
                                         onClick={() => {
                                             setQuery('');
+                                            onSearchChange && onSearchChange('');
                                             searchBoxRef.current?.focus();
                                         }}
                                     />
                                 }
                             />
                         ))}
-                        {filteredItems?.map((item, index) =>
-                            renderItem({ item, index, cursor, onClick: onItemClick(item) }),
-                        )}
+                        {items?.map((item, index) => renderItem({ item, index, cursor, onClick: onItemClick(item) }))}
                     </div>
                 </Popup>
             </StyledDropdown>
         );
     },
 );
-
-export default Dropdown;

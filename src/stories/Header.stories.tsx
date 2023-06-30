@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Header, HeaderContent, HeaderMenu, HeaderNav, HeaderNavLink } from '../components/Header';
 import Button from '../components/Button';
 import UserMenu from '../components/UserMenu';
-import Dropdown from '../components/Dropdown';
+import { Dropdown } from '../components/Dropdown';
 import { ArrowDownSmallIcon, ArrowUpSmallIcon } from '../components/Icon';
 import MenuItem from '../components/MenuItem';
 
