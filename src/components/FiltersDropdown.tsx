@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unnecessary-type-constraint */
 import React, { useCallback, ReactNode } from 'react';
 
-import Dropdown, { DropdownItemProps } from './Dropdown';
+import Dropdown, { DropdownItemProps, DropdownProps } from './Dropdown';
 import MenuItem from './MenuItem';
 import { FiltersMenuItem } from './FiltersContainers';
 
@@ -23,10 +23,11 @@ export type FilterDropdownBaseProps<T> = {
     type?: 'single' | 'multiselect';
     onChange: (value: string[]) => void;
     renderItem: (props: FiltersDropdownItemProps<T>) => ReactNode;
+    searchFilter?: DropdownProps['searchFilter'];
 };
 
 export const FiltersDropdownBase = React.forwardRef<HTMLDivElement, FilterDropdownBaseProps<any>>(
-    ({ text, type = 'multiselect', disabled, items, value, onChange, renderItem }, ref) => {
+    ({ text, type = 'multiselect', disabled, items, value, onChange, renderItem, searchFilter }, ref) => {
         const onChangeHandler = useCallback(
             (item: FilterDropdownItem<any>) => {
                 const existedIndex = value.indexOf(item.id);
@@ -52,6 +53,7 @@ export const FiltersDropdownBase = React.forwardRef<HTMLDivElement, FilterDropdo
                 onChange={onChangeHandler}
                 items={items}
                 disabled={disabled}
+                searchFilter={searchFilter}
                 renderTrigger={(props) => (
                     <FiltersMenuItem
                         ref={props.ref}
@@ -73,16 +75,26 @@ export const FiltersDropdownBase = React.forwardRef<HTMLDivElement, FilterDropdo
     },
 );
 
-export const FiltersDropdown = React.forwardRef<HTMLDivElement, Omit<FilterDropdownBaseProps<string>, 'renderItem'>>(
-    (props, ref) => (
+interface FilterDropdownProps extends Omit<FilterDropdownBaseProps<string>, 'renderItem' | 'searchFilter'> {
+    search?: boolean;
+}
+
+export const FiltersDropdown = React.forwardRef<HTMLDivElement, FilterDropdownProps>(({ search, ...props }, ref) => {
+    const searchFilter = useCallback(
+        (item: any, query: string) => item.data.toLowerCase().includes(query.toLowerCase()),
+        [],
+    );
+
+    return (
         <FiltersDropdownBase
             ref={ref}
             {...props}
+            searchFilter={search ? searchFilter : undefined}
             renderItem={({ item, selected, onClick }) => (
                 <MenuItem ghost key={item.id} selected={selected} onClick={onClick}>
                     {item.data}
                 </MenuItem>
             )}
         />
-    ),
-);
+    );
+});
