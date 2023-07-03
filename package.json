@@ -44,7 +44,7 @@
     "@storybook/blocks": "7.0.21",
     "@storybook/react": "7.0.22",
     "@storybook/react-webpack5": "7.0.18",
-    "@storybook/testing-library": "^0.1.0",
+    "@storybook/testing-library": "^0.2.0",
     "@types/md5": "2.3.2",
     "@types/react": "18.2.6",
     "@types/react-dom": "18.0.11",
