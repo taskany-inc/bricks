@@ -10,6 +10,7 @@ import { useKeyboard, KeyCode } from '../hooks/useKeyboard';
 import { Popup } from './Popup';
 import Input from './Input';
 import { CrossIcon } from './Icon/CrossIcon';
+import MenuItem from './MenuItem';
 
 interface DropdownTriggerProps {
     ref: React.RefObject<HTMLButtonElement>;
@@ -42,6 +43,8 @@ export interface DropdownProps {
     placement?: ComponentProps<typeof Popup>['placement'];
     arrow?: ComponentProps<typeof Popup>['arrow'];
     offset?: ComponentProps<typeof Popup>['offset'];
+    searchPlaceholder?: string;
+    emptyText?: string;
 
     error?: {
         message?: string;
@@ -80,6 +83,8 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
             renderTrigger,
             onChange,
             className,
+            searchPlaceholder = 'Search',
+            emptyText = 'No items found',
             placement = 'bottom-start',
             arrow = false,
             offset = [-4, 8],
@@ -182,7 +187,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
 
                 <Popup
                     placement={placement}
-                    visible={popupVisible && Boolean(items.length)}
+                    visible={popupVisible}
                     onClickOutside={onClickOutside}
                     reference={popupRef}
                     interactive
@@ -194,7 +199,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
                     <div {...onESC}>
                         {nullable(onSearchChange, () => (
                             <Input
-                                placeholder="search"
+                                placeholder={searchPlaceholder}
                                 value={query}
                                 ref={searchBoxRef}
                                 onChange={({ target }) => {
@@ -215,6 +220,11 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
                             />
                         ))}
                         {items?.map((item, index) => renderItem({ item, index, cursor, onClick: onItemClick(item) }))}
+                        {nullable(!items.length, () => (
+                            <MenuItem ghost disabled>
+                                {emptyText}
+                            </MenuItem>
+                        ))}
                     </div>
                 </Popup>
             </StyledDropdown>

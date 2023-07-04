@@ -9,6 +9,7 @@ import { Dot } from './Dot';
 interface MenuItemProps {
     selected?: boolean;
     focused?: boolean;
+    disabled?: boolean;
     color?: string;
     ghost?: boolean;
     children?: React.ReactNode;
@@ -19,7 +20,7 @@ interface MenuItemProps {
     onClick?: () => void;
 }
 
-const StyledMenuItem = styled.div<{ focused?: boolean; color?: string; ghost?: boolean }>`
+const StyledMenuItem = styled.div<{ focused?: boolean; color?: string; ghost?: boolean; disabled?: boolean }>`
     box-sizing: border-box;
     justify-content: center;
     align-items: center;
@@ -34,16 +35,19 @@ const StyledMenuItem = styled.div<{ focused?: boolean; color?: string; ghost?: b
 
     font-size: 13px;
 
-    cursor: pointer;
-
     &:last-child {
         margin-bottom: 0;
     }
 
-    &:hover {
-        border-color: ${gray8};
-        background-color: ${gray4};
-    }
+    ${({ disabled }) =>
+        !disabled &&
+        `
+            cursor: pointer;
+            &:hover {
+                border-color: ${gray8};
+                background-color: ${gray4};
+            }
+        `}
 
     ${({ focused }) =>
         focused &&
@@ -70,11 +74,19 @@ export const MenuItem: React.FC<MenuItemProps> = ({
     children,
     selected,
     focused,
+    disabled,
     view,
     onClick,
     className,
 }) => (
-    <StyledMenuItem className={className} focused={focused} color={color} ghost={ghost} onClick={onClick}>
+    <StyledMenuItem
+        className={className}
+        focused={focused}
+        disabled={disabled}
+        color={color}
+        ghost={ghost}
+        onClick={onClick}
+    >
         {nullable(icon, () => (
             <StyledIcon>{icon}</StyledIcon>
         ))}
