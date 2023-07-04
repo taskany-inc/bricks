@@ -42,7 +42,7 @@
     "@storybook/addon-interactions": "7.0.18",
     "@storybook/addon-links": "7.0.22",
     "@storybook/blocks": "7.0.21",
-    "@storybook/react": "7.0.22",
+    "@storybook/react": "7.0.25",
     "@storybook/react-webpack5": "7.0.18",
     "@storybook/testing-library": "^0.2.0",
     "@types/md5": "2.3.2",
