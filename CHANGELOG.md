@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [1.22.0](https://github.com/taskany-inc/bricks/compare/v1.21.0...v1.22.0) (2023-07-04)
+
+
+### Features
+
+* **Dropdown:** empty variant for filters ([9295ea1](https://github.com/taskany-inc/bricks/commit/9295ea1fd62c323177108986b6c9be161d8aebb3))
+* **Footer:** added footer menu ([e06ec81](https://github.com/taskany-inc/bricks/commit/e06ec81a57a676e8b80c4ed16aa3c2e883269e75))
+
 ## [1.21.0](https://github.com/taskany-inc/bricks/compare/v1.20.0...v1.21.0) (2023-07-03)
 
 
