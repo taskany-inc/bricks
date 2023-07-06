@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [1.22.1](https://github.com/taskany-inc/bricks/compare/v1.22.0...v1.22.1) (2023-07-06)
+
+
+### Bug Fixes
+
+* **Footer:** pass ready jsx ([4c62d08](https://github.com/taskany-inc/bricks/commit/4c62d08334014fbde8a0008addd10f177395ead6))
+
 ## [1.22.0](https://github.com/taskany-inc/bricks/compare/v1.21.0...v1.22.0) (2023-07-04)
 
 
