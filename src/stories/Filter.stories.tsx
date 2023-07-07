@@ -30,7 +30,6 @@ type Story = StoryObj<typeof meta>;
 
 const FilterWrapper = styled.div`
     min-width: 750px;
-    --background-color-context: ${backgroundColor};
 `;
 
 const filterItems = [

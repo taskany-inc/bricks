@@ -93,7 +93,6 @@ export const ModalHeader = styled.div`
     z-index: 2;
 
     background-color: ${gray4};
-    --background-color-context: ${gray4};
 
     padding: ${gapM} ${gapM} ${gapS} ${gapM};
 
