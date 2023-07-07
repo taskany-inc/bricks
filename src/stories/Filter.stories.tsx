@@ -1,7 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import styled from 'styled-components';
-import { backgroundColor } from '@taskany/colors';
 
 import {
     FiltersCounterContainer,
@@ -30,7 +29,6 @@ type Story = StoryObj<typeof meta>;
 
 const FilterWrapper = styled.div`
     min-width: 750px;
-    --background-color-context: ${backgroundColor};
 `;
 
 const filterItems = [

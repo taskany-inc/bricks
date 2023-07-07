@@ -1,6 +1,6 @@
 import React, { ComponentProps } from 'react';
 import styled from 'styled-components';
-import { colorPrimary, danger0, gapXs, gray3, gray4, radiusS, warn0 } from '@taskany/colors';
+import { backgroundColor, colorPrimary, danger0, gapXs, gray3, gray4, radiusS, warn0 } from '@taskany/colors';
 import Tippy from '@tippyjs/react/headless';
 
 /**
@@ -77,7 +77,7 @@ const StyledPopupContainer = styled.div<{
 }>`
     position: relative;
 
-    background: var(--background-color-context);
+    background: ${backgroundColor};
 
     border-radius: ${radiusS};
 
