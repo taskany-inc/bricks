@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [1.22.2](https://github.com/taskany-inc/bricks/compare/v1.22.1...v1.22.2) (2023-07-10)
+
+
+### Bug Fixes
+
+* add icons ([fa4fb44](https://github.com/taskany-inc/bricks/commit/fa4fb441b01800e60dab320e749a2c21d54fc83f))
+* **ComboBox:** ref be any HTML element ([4f68662](https://github.com/taskany-inc/bricks/commit/4f686627be295a1dce9cbe336dceb4f6a5127a12))
+
 ## [1.22.1](https://github.com/taskany-inc/bricks/compare/v1.22.0...v1.22.1) (2023-07-06)
 
 
