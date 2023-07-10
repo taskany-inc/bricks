@@ -54,3 +54,4 @@ export * from './GitHubIcon';
 export * from './TelegramIcon';
 export * from './PinAltIcon';
 export * from './AddSmallIcon';
+export * from './DividerLineIcon';
