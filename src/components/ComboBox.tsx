@@ -14,7 +14,7 @@ import { Popup } from './Popup';
 interface ComboBoxTriggerProps {
     text: ComboBoxProps['text'];
     value: ComboBoxProps['value'];
-    ref: React.RefObject<HTMLButtonElement>;
+    ref: React.Ref<HTMLElement>;
     disabled?: boolean;
 
     onClick: () => void;
