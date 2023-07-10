@@ -52,3 +52,5 @@ export * from './EnvelopeIcon';
 export * from './GitLabIcon';
 export * from './GitHubIcon';
 export * from './TelegramIcon';
+export * from './PinAltIcon';
+export * from './AddSmallIcon';
