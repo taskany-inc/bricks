@@ -11,10 +11,10 @@ import { flatten } from '../utils/flatten';
 
 import { Popup } from './Popup';
 
-interface ComboBoxTriggerProps {
-    text: ComboBoxProps['text'];
-    value: ComboBoxProps['value'];
-    ref: React.Ref<HTMLElement>;
+interface ComboBoxTriggerProps<T extends HTMLElement = HTMLButtonElement, R extends React.Ref<T> = React.Ref<T>> {
+    text: ComboBoxProps<T>['text'];
+    value: ComboBoxProps<T>['value'];
+    ref: R;
     disabled?: boolean;
 
     onClick: () => void;
@@ -34,10 +34,10 @@ interface ComboBoxItemProps {
     onClick: (value?: any) => void;
 }
 
-interface ComboBoxProps {
+interface ComboBoxProps<T extends HTMLElement> {
     renderInput: (props: ComboBoxInputProps) => React.ReactNode;
     renderItem: (props: ComboBoxItemProps) => React.ReactNode | Record<any, any>;
-    renderTrigger?: (props: ComboBoxTriggerProps) => React.ReactNode;
+    renderTrigger?: (props: ComboBoxTriggerProps<T>) => React.ReactNode;
     renderItems?: (children: React.ReactNode | Array<Record<any, any>> | undefined) => React.ReactNode;
     text?: string;
     value?: any;
@@ -73,145 +73,150 @@ const StyledErrorTrigger = styled.div`
     z-index: 1;
 `;
 
-export const ComboBox = React.forwardRef<HTMLDivElement, ComboBoxProps>(
-    (
-        {
-            text,
-            value,
-            visible = false,
-            items = [],
-            disabled,
-            error,
-            maxWidth = 250,
-            minWidth = 150,
-            className,
-            placement = 'bottom-start',
-            offset = [-4, 8],
-            renderItem,
-            renderTrigger,
-            renderInput,
-            renderItems,
-            onChange,
-            onClose,
-            onClickOutside,
-        },
-        ref,
-    ) => {
-        const popupContentRef = useRef<HTMLDivElement>(null);
-        const popupRef = useRef<HTMLDivElement>(null);
-        const buttonRef = useRef<HTMLButtonElement>(null);
-        const inputRef = useRef<HTMLInputElement>(null);
-        const [popupVisible, setPopupVisibility] = useState(visible);
-        const [editMode, setEditMode] = useState(false);
-        const downPress = useKeyPress('ArrowDown');
-        const upPress = useKeyPress('ArrowUp');
-        const [cursor, setCursor] = useState(0);
-        const flatItems = useMemo(() => flatten(items), [items]);
+export function ComboBoxRenderFunction<T extends HTMLElement>(
+    props: ComboBoxProps<T>,
+    ref: React.ForwardedRef<HTMLDivElement>,
+): React.ReactElement {
+    const {
+        text,
+        value,
+        visible = false,
+        items = [],
+        disabled,
+        error,
+        maxWidth = 250,
+        minWidth = 150,
+        className,
+        placement = 'bottom-start',
+        offset = [-4, 8],
+        renderItem,
+        renderTrigger,
+        renderInput,
+        renderItems,
+        onChange,
+        onClose,
+        onClickOutside,
+    } = props;
+    const popupContentRef = useRef<HTMLDivElement>(null);
+    const popupRef = useRef<HTMLDivElement>(null);
+    const triggerRef = useRef<T>(null);
+    const inputRef = useRef<HTMLInputElement>(null);
+    const [popupVisible, setPopupVisibility] = useState(visible);
+    const [editMode, setEditMode] = useState(false);
+    const downPress = useKeyPress('ArrowDown');
+    const upPress = useKeyPress('ArrowUp');
+    const [cursor, setCursor] = useState(0);
+    const flatItems = useMemo(() => flatten(items), [items]);
 
-        useEffect(() => {
-            setPopupVisibility(visible);
-        }, [visible]);
+    useEffect(() => {
+        setPopupVisibility(visible);
+    }, [visible]);
 
-        useEffect(() => {
-            if (renderTrigger) {
-                setPopupVisibility(editMode);
-            }
-        }, [renderTrigger, editMode]);
+    useEffect(() => {
+        if (renderTrigger) {
+            setPopupVisibility(editMode);
+        }
+    }, [renderTrigger, editMode]);
 
-        const onTriggerClick = useCallback(() => {
-            setEditMode(true);
-        }, []);
+    const onTriggerClick = useCallback(() => {
+        setEditMode(true);
+    }, []);
 
-        const onItemClick = useCallback(
-            (value: any) => () => {
-                setEditMode(false);
-                onChange?.(value);
-            },
-            [onChange],
-        );
-
-        const [onESC] = useKeyboard([KeyCode.Escape], () => {
+    const onItemClick = useCallback(
+        (value: any) => () => {
             setEditMode(false);
-            onClose?.();
-        });
+            onChange?.(value);
+        },
+        [onChange],
+    );
 
-        const [onENTER] = useKeyboard([KeyCode.Enter], () => {
-            onItemClick(flatItems[cursor])();
-        });
+    const [onESC] = useKeyboard([KeyCode.Escape], () => {
+        setEditMode(false);
+        onClose?.();
+    });
 
-        useEffect(() => {
-            if (flatItems.length && downPress) {
-                setCursor((prevState) => (prevState < flatItems.length - 1 ? prevState + 1 : prevState));
+    const [onENTER] = useKeyboard([KeyCode.Enter], () => {
+        onItemClick(flatItems[cursor])();
+    });
+
+    useEffect(() => {
+        if (flatItems.length && downPress) {
+            setCursor((prevState) => (prevState < flatItems.length - 1 ? prevState + 1 : prevState));
+        }
+    }, [flatItems, downPress]);
+
+    useEffect(() => {
+        if (flatItems.length && upPress) {
+            setCursor((prevState) => (prevState > 0 ? prevState - 1 : prevState));
+        }
+    }, [flatItems, upPress]);
+
+    const onErrorMouseEnter = useCallback(() => setPopupVisibility(true), []);
+    const onErrorMouseLeave = useCallback(() => setPopupVisibility(false), []);
+
+    useClickOutside(inputRef, (e) => {
+        onClickOutside?.(() => {
+            // popup is outside of component
+            if (!popupContentRef.current?.contains(e.target as Node)) {
+                setEditMode(false);
+                onClose?.();
             }
-        }, [flatItems, downPress]);
-
-        useEffect(() => {
-            if (flatItems.length && upPress) {
-                setCursor((prevState) => (prevState > 0 ? prevState - 1 : prevState));
-            }
-        }, [flatItems, upPress]);
-
-        const onErrorMouseEnter = useCallback(() => setPopupVisibility(true), []);
-        const onErrorMouseLeave = useCallback(() => setPopupVisibility(false), []);
-
-        useClickOutside(inputRef, (e) => {
-            onClickOutside?.(() => {
-                // popup is outside of component
-                if (!popupContentRef.current?.contains(e.target as Node)) {
-                    setEditMode(false);
-                    onClose?.();
-                }
-            });
         });
+    });
 
-        const children = flatItems.map((item: any, index: number) =>
-            renderItem({ item, index, cursor, onClick: onItemClick(item) }),
-        );
+    const children = flatItems.map((item: any, index: number) =>
+        renderItem({ item, index, cursor, onClick: onItemClick(item) }),
+    );
 
-        return (
-            <StyledComboBox ref={ref} className={className}>
-                {nullable(error, (err) => (
+    return (
+        <StyledComboBox ref={ref} className={className}>
+            {nullable(error, (err) => (
+                <>
+                    <StyledErrorTrigger
+                        ref={popupRef}
+                        onMouseEnter={onErrorMouseEnter}
+                        onMouseLeave={onErrorMouseLeave}
+                    />
+                    <Popup tooltip view="danger" placement="top-start" visible={popupVisible} reference={popupRef}>
+                        {err.message}
+                    </Popup>
+                </>
+            ))}
+
+            <span ref={popupRef} {...onESC}>
+                {renderTrigger ? (
                     <>
-                        <StyledErrorTrigger
-                            ref={popupRef}
-                            onMouseEnter={onErrorMouseEnter}
-                            onMouseLeave={onErrorMouseLeave}
-                        />
-                        <Popup tooltip view="danger" placement="top-start" visible={popupVisible} reference={popupRef}>
-                            {err.message}
-                        </Popup>
+                        {editMode
+                            ? renderInput({ value, disabled, ref: inputRef, ...onENTER })
+                            : renderTrigger({ text, value, disabled, ref: triggerRef, onClick: onTriggerClick })}
                     </>
-                ))}
+                ) : (
+                    renderInput({ value, disabled, ref: inputRef, ...onENTER })
+                )}
+            </span>
 
-                <span ref={popupRef} {...onESC}>
-                    {renderTrigger ? (
-                        <>
-                            {editMode
-                                ? renderInput({ value, disabled, ref: inputRef, ...onENTER })
-                                : renderTrigger({ text, value, disabled, ref: buttonRef, onClick: onTriggerClick })}
-                        </>
-                    ) : (
-                        renderInput({ value, disabled, ref: inputRef, ...onENTER })
-                    )}
-                </span>
+            <Popup
+                placement={placement}
+                visible={popupVisible && Boolean(flatItems.length)}
+                reference={popupRef}
+                interactive
+                arrow={false}
+                minWidth={minWidth}
+                maxWidth={maxWidth}
+                offset={offset}
+            >
+                <div ref={popupContentRef} {...onESC}>
+                    {renderItems ? renderItems(children as React.ReactNode) : (children as React.ReactNode)}
+                </div>
+            </Popup>
+        </StyledComboBox>
+    );
+}
 
-                <Popup
-                    placement={placement}
-                    visible={popupVisible && Boolean(flatItems.length)}
-                    reference={popupRef}
-                    interactive
-                    arrow={false}
-                    minWidth={minWidth}
-                    maxWidth={maxWidth}
-                    offset={offset}
-                >
-                    <div ref={popupContentRef} {...onESC}>
-                        {renderItems ? renderItems(children as React.ReactNode) : (children as React.ReactNode)}
-                    </div>
-                </Popup>
-            </StyledComboBox>
-        );
-    },
-);
+export const ComboBox = <T extends HTMLElement>(
+    props: React.PropsWithoutRef<ComboBoxProps<T>> & React.RefAttributes<HTMLDivElement>,
+) => {
+    return React.forwardRef<HTMLDivElement, typeof props>(ComboBoxRenderFunction)(props);
+};
 
 export default ComboBox;
