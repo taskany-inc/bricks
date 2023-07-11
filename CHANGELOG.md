@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [1.23.0](https://github.com/taskany-inc/bricks/compare/v1.22.2...v1.23.0) (2023-07-11)
+
+
+### Features
+
+* **DividerLineIcon:** add icon ([d6fecb1](https://github.com/taskany-inc/bricks/commit/d6fecb1d9775a34018867fefec1299e88a42a1b1))
+
 ## [1.22.2](https://github.com/taskany-inc/bricks/compare/v1.22.1...v1.22.2) (2023-07-10)
 
 
