@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [1.23.2](https://github.com/taskany-inc/bricks/compare/v1.23.1...v1.23.2) (2023-07-12)
+
+
+### Bug Fixes
+
+* **ComboBox:** generic type replace for base `HTMLElement` ([cbcf153](https://github.com/taskany-inc/bricks/commit/cbcf153bf564b9a54c3462663ad74e6c8b416ca4))
+
 ## [1.23.1](https://github.com/taskany-inc/bricks/compare/v1.23.0...v1.23.1) (2023-07-12)
 
 
