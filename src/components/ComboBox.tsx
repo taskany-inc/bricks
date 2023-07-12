@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState, forwardRef } from 'react';
 import styled from 'styled-components';
 import { danger10 } from '@taskany/colors';
 
@@ -213,10 +213,6 @@ export function ComboBoxRenderFunction<T extends HTMLElement>(
     );
 }
 
-export const ComboBox = <T extends HTMLElement>(
-    props: React.PropsWithoutRef<ComboBoxProps<T>> & React.RefAttributes<HTMLDivElement>,
-) => {
-    return React.forwardRef<HTMLDivElement, typeof props>(ComboBoxRenderFunction)(props);
-};
+export const ComboBox = forwardRef<HTMLDivElement, ComboBoxProps<HTMLElement>>(ComboBoxRenderFunction);
 
 export default ComboBox;
