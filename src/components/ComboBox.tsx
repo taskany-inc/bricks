@@ -213,6 +213,10 @@ export function ComboBoxRenderFunction<T extends HTMLElement>(
     );
 }
 
-export const ComboBox = forwardRef<HTMLDivElement, ComboBoxProps<HTMLElement>>(ComboBoxRenderFunction);
+type CustomForwardRefResult = <T extends HTMLElement>(
+    props: React.PropsWithoutRef<ComboBoxProps<T>> & React.RefAttributes<HTMLDivElement>,
+) => React.ReactElement;
+
+export const ComboBox = forwardRef(ComboBoxRenderFunction) as CustomForwardRefResult;
 
 export default ComboBox;
