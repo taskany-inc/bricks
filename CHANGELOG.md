@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [1.23.3](https://github.com/taskany-inc/bricks/compare/v1.23.2...v1.23.3) (2023-07-12)
+
+
+### Bug Fixes
+
+* **ComboBox:** returns generic type for component as type casting ([6f878be](https://github.com/taskany-inc/bricks/commit/6f878be70b4827d991111384dc127136f1a18027))
+
 ## [1.23.2](https://github.com/taskany-inc/bricks/compare/v1.23.1...v1.23.2) (2023-07-12)
 
 
