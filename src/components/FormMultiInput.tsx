@@ -55,7 +55,7 @@ const StyledInput = styled(Input)`
     min-width: 100px;
 `;
 
-const StyledComboBox = styled(ComboBox)`
+const StyledComboBox = styled(ComboBox<HTMLButtonElement>)`
     margin-left: ${gapS};
 `;
 
