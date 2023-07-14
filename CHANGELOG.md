@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [1.23.4](https://github.com/taskany-inc/bricks/compare/v1.23.3...v1.23.4) (2023-07-14)
+
+
+### Bug Fixes
+
+* **ComboBox:** drop trigger ref ([a0cb273](https://github.com/taskany-inc/bricks/commit/a0cb273c240ff07b1bf3a227d17a16199120439c))
+
 ## [1.23.3](https://github.com/taskany-inc/bricks/compare/v1.23.2...v1.23.3) (2023-07-12)
 
 
