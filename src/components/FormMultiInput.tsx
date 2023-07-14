@@ -55,7 +55,7 @@ const StyledInput = styled(Input)`
     min-width: 100px;
 `;
 
-const StyledComboBox = styled(ComboBox<HTMLButtonElement>)`
+const StyledComboBox = styled(ComboBox)`
     margin-left: ${gapS};
 `;
 
@@ -120,7 +120,7 @@ export const FormMultiInput = React.forwardRef<HTMLDivElement, FormMultiInputPro
                     disabled={disabled}
                     onChange={onValueAdd}
                     items={items}
-                    renderTrigger={(props) => <PlusIcon ref={props.ref} size="xs" onClick={props.onClick} />}
+                    renderTrigger={(props) => <PlusIcon size="xs" onClick={props.onClick} />}
                     renderInput={(props) => (
                         <StyledInput
                             autoFocus
