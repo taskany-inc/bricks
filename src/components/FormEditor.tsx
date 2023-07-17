@@ -27,6 +27,7 @@ interface FormEditorProps {
     error?: {
         message?: string;
     };
+    disableAttaches?: boolean;
 
     messages?: {
         attachmentsButton: string;
@@ -266,6 +267,7 @@ export const FormEditor = React.forwardRef<HTMLDivElement, FormEditorProps>(
             onBlur,
             onCancel,
             messages = {},
+            disableAttaches,
         },
         ref,
     ) => {
@@ -411,7 +413,7 @@ export const FormEditor = React.forwardRef<HTMLDivElement, FormEditorProps>(
                     {...onESC}
                     onClick={disabled ? undefined : () => {}}
                 >
-                    {nullable(isDragActive, () => (
+                    {nullable(isDragActive && !disableAttaches, () => (
                         <StyledDropZone>
                             <input {...uploadInputProps} />
                         </StyledDropZone>
@@ -460,7 +462,7 @@ export const FormEditor = React.forwardRef<HTMLDivElement, FormEditorProps>(
                             onMount={handleEditorDidMount}
                         />
 
-                        {nullable(focused, () => (
+                        {nullable(focused && !disableAttaches, () => (
                             <StyledUploadButton>
                                 <StyledUploadInput onChange={onFileInputChange} type="file" multiple />
 
