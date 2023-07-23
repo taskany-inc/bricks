@@ -6,7 +6,7 @@ import { nullable } from '../utils/nullable';
 
 import { Dot } from './Dot';
 
-interface MenuItemProps {
+export interface MenuItemProps {
     selected?: boolean;
     focused?: boolean;
     disabled?: boolean;
