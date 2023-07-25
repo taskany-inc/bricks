@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { gray2, gray3, gray7, radiusS, textColor } from '@taskany/colors';
+import { fontDisplay, gray2, gray3, gray7, radiusS, textColor } from '@taskany/colors';
 
 import { formContext } from '../context/form';
 
@@ -41,6 +41,7 @@ const StyledFormTextarea = styled(
     border: 0;
     border-radius: ${radiusS};
     background-color: ${gray3};
+    font-family: ${fontDisplay};
     color: ${textColor};
     font-weight: 600;
     font-size: 16px;
