@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [1.25.0](https://github.com/taskany-inc/bricks/compare/v1.24.0...v1.25.0) (2023-07-26)
+
+
+### Features
+
+* **FormTextarea:** added font-family ([9f7eb71](https://github.com/taskany-inc/bricks/commit/9f7eb71edf299d053189eb31fa3bf2f0e98de277))
+
 ## [1.24.0](https://github.com/taskany-inc/bricks/compare/v1.23.4...v1.24.0) (2023-07-25)
 
 
