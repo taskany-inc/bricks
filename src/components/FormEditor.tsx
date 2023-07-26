@@ -400,6 +400,17 @@ export const FormEditor = React.forwardRef<HTMLDivElement, FormEditorProps>(
             [open],
         );
 
+        useEffect(() => {
+            if (!disabled) return;
+            onEditorBlur();
+
+            extraRef.current?.focus();
+            extraRef.current?.blur();
+            return () => {
+                monacoEditorRef.current?.focus();
+            };
+        }, [disabled]);
+
         return (
             <div tabIndex={0} ref={extraRef} style={{ outline: 'none' }} onPaste={onEditorPaste}>
                 <StyledEditor
