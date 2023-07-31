@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [1.27.0](https://github.com/taskany-inc/bricks/compare/v1.26.0...v1.27.0) (2023-07-31)
+
+
+### Features
+
+* useMarkdown hook ([75ef7ee](https://github.com/taskany-inc/bricks/commit/75ef7eefb1f79b26f43bcaba6553f4d52d7aebae))
+
 ## [1.26.0](https://github.com/taskany-inc/bricks/compare/v1.25.0...v1.26.0) (2023-07-31)
 
 
