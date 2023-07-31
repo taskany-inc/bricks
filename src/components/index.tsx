@@ -12,7 +12,7 @@ export { ComboBox } from './ComboBox';
 export { Dot } from './Dot';
 export { Dropdown } from './Dropdown';
 export { Fieldset } from './Fieldset';
-export { Footer } from './Footer';
+export * from './Footer';
 export { SheepLogo } from './SheepLogo';
 export { Input } from './Input';
 export { InputContainer } from './InputContainer';
