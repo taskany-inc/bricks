@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [1.26.0](https://github.com/taskany-inc/bricks/compare/v1.25.0...v1.26.0) (2023-07-31)
+
+
+### Features
+
+* **Table:** implements flexible table component ([3290605](https://github.com/taskany-inc/bricks/commit/3290605364241d0665672b5582de42cdb60e1afb))
+
 ## [1.25.0](https://github.com/taskany-inc/bricks/compare/v1.24.0...v1.25.0) (2023-07-26)
 
 
