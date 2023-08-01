@@ -59,6 +59,11 @@ interface ComboBoxProps {
 
 const StyledComboBox = styled.span`
     position: relative;
+    display: flex;
+`;
+
+const StyledComboBoxInputWrpper = styled.span`
+    flex: 1 0 0;
 `;
 
 const StyledErrorTrigger = styled.div`
@@ -181,7 +186,7 @@ export const ComboBox = forwardRef<HTMLDivElement, ComboBoxProps>(
                     </>
                 ))}
 
-                <span ref={popupRef} {...onESC}>
+                <StyledComboBoxInputWrpper ref={popupRef} {...onESC}>
                     {renderTrigger ? (
                         <>
                             {editMode
@@ -191,7 +196,7 @@ export const ComboBox = forwardRef<HTMLDivElement, ComboBoxProps>(
                     ) : (
                         renderInput({ value, disabled, ref: inputRef, ...onENTER })
                     )}
-                </span>
+                </StyledComboBoxInputWrpper>
 
                 <Popup
                     placement={placement}
