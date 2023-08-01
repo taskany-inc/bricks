@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [1.27.2](https://github.com/taskany-inc/bricks/compare/v1.27.1...v1.27.2) (2023-08-01)
+
+
+### Bug Fixes
+
+* **ComboBox:** make flexible container ([dea32ba](https://github.com/taskany-inc/bricks/commit/dea32ba838efb37cd1b0c30feb1b42e738c10859))
+* **Table:** add focused prop ([fd4a832](https://github.com/taskany-inc/bricks/commit/fd4a832d7474ca55e0529d7faed403b7eb35e171))
+
 ## [1.27.1](https://github.com/taskany-inc/bricks/compare/v1.27.0...v1.27.1) (2023-07-31)
 
 
