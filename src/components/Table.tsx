@@ -1,3 +1,4 @@
+import { gray4, gray6 } from '@taskany/colors';
 import styled, { css } from 'styled-components';
 
 const maxCols = 12;
@@ -17,35 +18,52 @@ interface JustifyProps {
     justify: 'start' | 'center' | 'end' | 'between' | 'around' | 'baseline';
 }
 
-export type TableCellProps =
-    | {
-          /** Size of column width in range from `1` to `12` */
-          col: number;
-          /** Minimum size column, use instead of `col` prop */
-          min?: never;
-          /** Absolute or relative width, ex. `10ch` or `100` */
-          width?: never;
-      }
-    | {
-          col?: never;
-          min: boolean;
-          width?: never;
-      }
-    | {
-          col?: never;
-          min?: never;
-          width: number | string;
-      }
-    | {
-          col?: never;
-          min?: never;
-          width?: never;
-      };
+export type TableCellProps = Partial<JustifyProps & AlignProps> &
+    (
+        | {
+              /** Size of column width in range from `1` to `12` */
+              col: number;
+              min?: never;
+              width?: never;
+          }
+        | {
+              col?: never;
+              /** Minimum size column, use instead of `col` prop */
+              min: true;
+              width?: never;
+          }
+        | {
+              col?: never;
+              min?: never;
+              /** Absolute or relative width, ex. `10ch` or `100` */
+              width: number | string;
+          }
+        | {
+              col?: never;
+              min?: never;
+              width?: never;
+          }
+    );
 
 export interface TableProps extends GapProps {
     /** Container width */
     width?: number;
 }
+
+export type TableRowProps = GapProps &
+    Partial<AlignProps & JustifyProps> &
+    (
+        | {
+              interactive?: false | never;
+              focused?: never;
+          }
+        | {
+              /** Apply interactive styles: hover */
+              interactive: true;
+              /** Prop that mark current row as focused, ex. for keyboard navigation */
+              focused: boolean;
+          }
+    );
 
 const mapRuleSet: { [key in AlignProps['align'] | JustifyProps['justify']]: string } = {
     baseline: 'baseline',
@@ -73,7 +91,7 @@ export const Table = styled.div<TableProps>`
         `}
 `;
 
-export const TableRow = styled.div<Partial<AlignProps & JustifyProps> & GapProps>`
+export const TableRow = styled.div<TableRowProps>`
     display: flex;
     flex-basis: 100%;
     align-items: flex-start;
@@ -96,9 +114,24 @@ export const TableRow = styled.div<Partial<AlignProps & JustifyProps> & GapProps
         css`
             gap: ${gap}px;
         `}
+
+    ${({ interactive }) =>
+        interactive &&
+        css`
+            &:hover {
+                background-color: ${gray6};
+            }
+        `}
+
+    ${({ focused, interactive }) =>
+        interactive &&
+        focused &&
+        css`
+            background-color: ${gray4};
+        `}
 `;
 
-export const TableCell = styled.div<TableCellProps & Partial<JustifyProps & AlignProps>>`
+export const TableCell = styled.div<TableCellProps>`
     display: inline-flex;
     align-items: baseline;
     flex-wrap: wrap;
