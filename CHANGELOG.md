@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [1.27.3](https://github.com/taskany-inc/bricks/compare/v1.27.2...v1.27.3) (2023-08-02)
+
+
+### Bug Fixes
+
+* **useMarkdown:** revert useMarkdown hook ([704c3b1](https://github.com/taskany-inc/bricks/commit/704c3b11d488f76a949572511ae001612899df78))
+
+
+### Reverts
+
+* Revert "Revert "feat: useMarkdown hook"" ([38b93d5](https://github.com/taskany-inc/bricks/commit/38b93d57e621b32db2acaef072d49629ddfba971))
+* Revert "feat: useMarkdown hook" ([ef511dd](https://github.com/taskany-inc/bricks/commit/ef511dd82955becdfebacf3519bff6ccf5cf8cea))
+
 ## [1.27.2](https://github.com/taskany-inc/bricks/compare/v1.27.1...v1.27.2) (2023-08-01)
 
 
