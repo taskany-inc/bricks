@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [1.28.0](https://github.com/taskany-inc/bricks/compare/v1.27.3...v1.28.0) (2023-08-02)
+
+
+### Features
+
+* add UserGroup component ([2af1874](https://github.com/taskany-inc/bricks/commit/2af187400f5934ef89dccafd04e8c2f8b696a8ab))
+
 ## [1.27.3](https://github.com/taskany-inc/bricks/compare/v1.27.2...v1.27.3) (2023-08-02)
 
 
