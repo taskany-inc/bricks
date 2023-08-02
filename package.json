@@ -83,6 +83,9 @@
     "color-layer": "1.0.3",
     "md5": "2.3.0",
     "react-dropzone": "14.2.3",
+    "react-remark": "2.1.0",
+    "remark-emoji": "3.1.2",
+    "remark-gfm": "3.0.1",
     "teenyicons": "0.4.1"
   },
   "sideEffects": false
