@@ -28,6 +28,7 @@ interface FormEditorProps {
         message?: string;
     };
     disableAttaches?: boolean;
+    uploadLink?: string;
 
     messages?: {
         attachmentsButton: string;
@@ -268,6 +269,7 @@ export const FormEditor = React.forwardRef<HTMLDivElement, FormEditorProps>(
             onCancel,
             messages = {},
             disableAttaches,
+            uploadLink,
         },
         ref,
     ) => {
@@ -279,7 +281,7 @@ export const FormEditor = React.forwardRef<HTMLDivElement, FormEditorProps>(
         const [viewValue, setViewValue] = useState<string | undefined>('');
         const [popupVisible, setPopupVisibility] = useState(false);
         const mounted = useMounted();
-        const { loading, files, uploadFiles } = useUpload();
+        const { loading, files, uploadFiles } = useUpload(uploadLink);
         // @ts-ignore
         const { getRootProps, getInputProps, isDragActive, open } = useDropzone({ onDrop: uploadFiles });
         const formCtx = useContext(formContext);
