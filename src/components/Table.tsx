@@ -51,19 +51,12 @@ export interface TableProps extends GapProps {
 }
 
 export type TableRowProps = GapProps &
-    Partial<AlignProps & JustifyProps> &
-    (
-        | {
-              interactive?: false | never;
-              focused?: never;
-          }
-        | {
-              /** Apply interactive styles: hover */
-              interactive: true;
-              /** Prop that mark current row as focused, ex. for keyboard navigation */
-              focused: boolean;
-          }
-    );
+    Partial<AlignProps & JustifyProps> & {
+        /** Apply interactive styles: hover */
+        interactive?: boolean;
+        /** Prop that mark current row as focused, ex. for keyboard navigation */
+        focused?: boolean;
+    };
 
 const mapRuleSet: { [key in AlignProps['align'] | JustifyProps['justify']]: string } = {
     baseline: 'baseline',
