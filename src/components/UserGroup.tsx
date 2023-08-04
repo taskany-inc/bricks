@@ -57,6 +57,7 @@ const StyledCounter = styled.div`
         ${hoverCss};
     }
 `;
+
 const StyledSmallCircle = styled.div`
     width: 0.7rem;
     height: 0.7rem;

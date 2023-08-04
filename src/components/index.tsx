@@ -49,3 +49,4 @@ export * from './FiltersCounter';
 export * from './FiltersDropdown';
 export * from './UserMenuItem';
 export * from './Table';
+export * from './UserGroup';
