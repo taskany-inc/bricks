@@ -40,6 +40,8 @@ interface FormEditorProps {
     onBlur?: () => void;
     onFocus?: () => void;
     onCancel?: () => void;
+    onUploadSuccess?: () => void;
+    onUploadFail?: (message?: string) => void;
 }
 
 const defaultAttachmentsButtonMessage = 'Attach files';
@@ -270,6 +272,8 @@ export const FormEditor = React.forwardRef<HTMLDivElement, FormEditorProps>(
             messages = {},
             disableAttaches,
             uploadLink,
+            onUploadSuccess,
+            onUploadFail,
         },
         ref,
     ) => {
@@ -281,7 +285,7 @@ export const FormEditor = React.forwardRef<HTMLDivElement, FormEditorProps>(
         const [viewValue, setViewValue] = useState<string | undefined>('');
         const [popupVisible, setPopupVisibility] = useState(false);
         const mounted = useMounted();
-        const { loading, files, uploadFiles } = useUpload(uploadLink);
+        const { loading, files, uploadFiles } = useUpload(onUploadSuccess, onUploadFail, uploadLink);
         // @ts-ignore
         const { getRootProps, getInputProps, isDragActive, open } = useDropzone({ onDrop: uploadFiles });
         const formCtx = useContext(formContext);

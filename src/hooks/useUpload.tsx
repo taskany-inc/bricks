@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { formFieldName } from '../utils/upload';
 
-export const useUpload = (uploadLink = '/api/upload') => {
+export const useUpload = (onSuccess?: () => void, onFail?: (message?: string) => void, uploadLink = '/api/upload') => {
     const [loading, setLoading] = useState(false);
     const [files, setFiles] = useState<string[]>();
 
@@ -20,9 +20,13 @@ export const useUpload = (uploadLink = '/api/upload') => {
         setLoading(false);
 
         const res = await response.json();
-        setFiles(res);
-    };
+        if (res.succeeded.length > 0) {
+            onSuccess && onSuccess();
+            setFiles(res.succeeded);
+        }
 
+        res.failed.length > 0 && onFail && onFail(`Failed to load files ${res.failed.join(', ')}: ${res.errorMessage}`);
+    };
     return {
         files,
         loading,
