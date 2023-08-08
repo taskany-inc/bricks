@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [1.30.0](https://github.com/taskany-inc/bricks/compare/v1.29.0...v1.30.0) (2023-08-08)
+
+
+### Features
+
+* add more-horizontal icon ([32b2024](https://github.com/taskany-inc/bricks/commit/32b20243c26dbe95c32ec19f1216a9fa6a346c4f))
+
 ## [1.29.0](https://github.com/taskany-inc/bricks/compare/v1.28.0...v1.29.0) (2023-08-08)
 
 
