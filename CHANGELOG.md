@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [1.29.0](https://github.com/taskany-inc/bricks/compare/v1.28.0...v1.29.0) (2023-08-08)
+
+
+### Features
+
+* **useUpload:** added onSuccess and onFail ([9b0f717](https://github.com/taskany-inc/bricks/commit/9b0f717abf4bbd3dc1f49affa686082847ca9cca))
+
+
+### Bug Fixes
+
+* **UserGroup:** export from package root ([d7cf534](https://github.com/taskany-inc/bricks/commit/d7cf534665ce9e5d838dee6c01ffeed31afaf5db))
+
 ## [1.28.0](https://github.com/taskany-inc/bricks/compare/v1.27.3...v1.28.0) (2023-08-03)
 
 
