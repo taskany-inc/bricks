@@ -55,3 +55,4 @@ export * from './TelegramIcon';
 export * from './PinAltIcon';
 export * from './AddSmallIcon';
 export * from './DividerLineIcon';
+export * from './MoreHorizontalIcon';
