@@ -1,8 +1,9 @@
-import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, { FC, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import md5Hash from 'md5';
 import styled from 'styled-components';
 
 import { isRetina } from '../utils/isRetina';
+import { stringToColor } from '../utils/stringToColor';
 
 interface GravatarProps extends React.HTMLAttributes<HTMLImageElement> {
     email: string;
@@ -30,7 +31,20 @@ const StyledImage = styled.img<{ visible: boolean }>`
     `}
 `;
 
-export const Gravatar: React.FC<GravatarProps> = ({
+const Circle = styled.div<{ size: number; str: string }>`
+    border-radius: 100%;
+    ${({ size, str }) => {
+        return {
+            width: `${size}px`,
+            height: `${size}px`,
+            background: `linear-gradient(90deg,${stringToColor(str.toLowerCase())},${stringToColor(
+                str.toUpperCase(),
+            )})`,
+        };
+    }};
+`;
+
+export const Gravatar: FC<GravatarProps> = ({
     size = 50,
     rating = 'g',
     def = 'retro',
@@ -42,6 +56,7 @@ export const Gravatar: React.FC<GravatarProps> = ({
     const [modernBrowser, setModernBrowser] = useState(true);
     const [mounted, setMounted] = useState(false);
     const [visible, setVisible] = useState(false);
+    const [isError, setIsError] = useState(false);
     const imgRef = useRef<HTMLImageElement>(null);
 
     useLayoutEffect(() => {
@@ -68,6 +83,7 @@ export const Gravatar: React.FC<GravatarProps> = ({
     const onLoadError: React.ReactEventHandler<HTMLImageElement> = useCallback(({ currentTarget }) => {
         currentTarget.onerror = null;
         currentTarget.src = '/anonymous.png';
+        setIsError(true);
     }, []);
 
     let hash;
@@ -92,15 +108,21 @@ export const Gravatar: React.FC<GravatarProps> = ({
     }, [imgRef, mounted, modernBrowser, src, retinaSrc]);
 
     return (
-        <StyledImage
-            visible={visible}
-            ref={imgRef}
-            alt={`Gravatar for ${formattedEmail}`}
-            src="/anonymous.png"
-            height={size}
-            width={size}
-            onError={onLoadError}
-            {...props}
-        />
+        <>
+            {!isError ? (
+                <StyledImage
+                    visible={visible}
+                    ref={imgRef}
+                    alt={`Gravatar for ${formattedEmail}`}
+                    src="/anonymous.png"
+                    height={size}
+                    width={size}
+                    onError={onLoadError}
+                    {...props}
+                />
+            ) : (
+                <Circle size={size} str={email} />
+            )}
+        </>
     );
 };
