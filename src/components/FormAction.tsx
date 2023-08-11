@@ -39,5 +39,3 @@ export const FormAction = styled.div<{ left?: boolean; right?: boolean; columns?
             }
         `}
 `;
-
-export default FormAction;

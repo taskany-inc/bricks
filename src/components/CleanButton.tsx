@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { gray10, gray7, gray8 } from '@taskany/colors';
 
-interface CleanButtonProps {
+interface CleanButtonProps extends React.HTMLAttributes<HTMLDivElement> {
     className?: string;
 
     onClick?: (e: React.MouseEvent) => void;
@@ -35,10 +35,4 @@ const StyledCleanButton = styled.div`
     }
 `;
 
-export const CleanButton: React.FC<CleanButtonProps> = ({ className, onClick }) => (
-    <StyledCleanButton className={className} onClick={onClick}>
-        +
-    </StyledCleanButton>
-);
-
-export default CleanButton;
+export const CleanButton: React.FC<CleanButtonProps> = (props) => <StyledCleanButton {...props}>+</StyledCleanButton>;

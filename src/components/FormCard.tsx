@@ -9,5 +9,3 @@ export const FormCard = styled.div`
     border: 1px solid ${gray4};
     border-radius: ${radiusM};
 `;
-
-export default FormCard;

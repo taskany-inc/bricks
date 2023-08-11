@@ -2,8 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { gapM, gapS, gray5, gray6, gray9, radiusXl, textColor } from '@taskany/colors';
 
-import Text from './Text';
+import { Text } from './Text';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const FiltersPanelContainer = styled(({ loading, ...props }) => <div {...props} />)<{ loading?: boolean }>`
     margin: ${gapM} 0;
     padding: ${gapS} 0;

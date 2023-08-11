@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { backgroundColor, danger0, gapM, gapS, gray4, radiusM, warn0 } from '@taskany/colors';
 
 import { useKeyboard, KeyCode } from '../hooks/useKeyboard';
-import { nullable } from '../utils/nullable';
 
 import { Portal } from './Portal';
 import { CrossIcon } from './Icon';
@@ -16,7 +15,7 @@ const colorsMap: Record<ModalViewType, string> = {
     danger: danger0,
 };
 
-interface ModalProps {
+interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
     children: React.ReactNode;
     className?: string;
     visible?: boolean;
@@ -46,7 +45,8 @@ const StyledModalSurface = styled.div`
     background-color: rgba(0, 0, 0, 0.9);
 `;
 
-const StyledModal = styled.div<{ view?: ModalViewType }>`
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const StyledModal = styled(({ width, view, ...props }: ModalProps) => <div {...props} />)`
     box-sizing: border-box;
     position: absolute;
     z-index: 101;
@@ -60,6 +60,7 @@ const StyledModal = styled.div<{ view?: ModalViewType }>`
     background-color: ${backgroundColor};
 
     border: 1px solid ${({ view = 'default' }) => colorsMap[view]};
+    width: ${({ width }) => width}px;
 `;
 
 const StyledCross = styled.div`
@@ -83,8 +84,14 @@ const StyledCross = styled.div`
     }
 `;
 
-export const ModalCross: React.FC<{ onClick?: () => void; className?: string }> = ({ onClick, className }) => (
-    <StyledCross className={className} onClick={onClick}>
+interface ModalCrossProps extends React.HTMLAttributes<HTMLDivElement> {
+    className?: string;
+
+    onClick?: () => void;
+}
+
+export const ModalCross: React.FC<ModalCrossProps> = ({ onClick, className, ...attrs }) => (
+    <StyledCross className={className} onClick={onClick} {...attrs}>
         <CrossIcon size="s" />
     </StyledCross>
 );
@@ -106,16 +113,7 @@ export const ModalContent = styled.div`
     padding: ${gapM};
 `;
 
-export const Modal: React.FC<ModalProps> = ({
-    visible,
-    view,
-    children,
-    width = 800,
-    className,
-    cross = true,
-    onClose,
-    onShow,
-}) => {
+export const Modal: React.FC<ModalProps> = ({ visible, children, width = 800, onClose, onShow, ...props }) => {
     const [onESC] = useKeyboard([KeyCode.Escape], () => onClose?.(), {
         disableGlobalEvent: false,
     });
@@ -137,15 +135,10 @@ export const Modal: React.FC<ModalProps> = ({
     return visible ? (
         <Portal id="modal">
             <StyledModalSurface>
-                <StyledModal className={className} view={view} style={{ width: `${width}px` }} {...onESC}>
-                    {nullable(cross && onClose, () => (
-                        <ModalCross onClick={onClose} />
-                    ))}
+                <StyledModal width={width} {...onESC} {...props}>
                     {children}
                 </StyledModal>
             </StyledModalSurface>
         </Portal>
     ) : null;
 };
-
-export default Modal;

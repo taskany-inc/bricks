@@ -8,9 +8,9 @@ import { useKeyPress } from '../hooks/useKeyPress';
 import { useKeyboard, KeyCode } from '../hooks/useKeyboard';
 
 import { Popup } from './Popup';
-import Input from './Input';
+import { Input } from './Input';
 import { CrossIcon } from './Icon/CrossIcon';
-import MenuItem from './MenuItem';
+import { MenuItem } from './MenuItem';
 
 interface DropdownTriggerProps {
     ref: React.RefObject<HTMLButtonElement>;
@@ -30,7 +30,7 @@ export interface DropdownItemProps {
     onClick: (value?: any) => void;
 }
 
-export interface DropdownProps {
+export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
     renderItem: (props: DropdownItemProps) => React.ReactNode;
     renderTrigger: (props: DropdownTriggerProps) => React.ReactNode;
     text?: string;
@@ -88,6 +88,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
             placement = 'bottom-start',
             arrow = false,
             offset = [-4, 8],
+            ...attrs
         },
         ref,
     ) => {
@@ -195,6 +196,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
                     minWidth={100}
                     maxWidth={250}
                     offset={offset}
+                    {...attrs}
                 >
                     <div {...onESC}>
                         {nullable(onSearchChange, () => (

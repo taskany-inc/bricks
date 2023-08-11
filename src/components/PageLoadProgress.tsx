@@ -2,12 +2,12 @@ import React, { forwardRef, useCallback, useEffect, useImperativeHandle, useRedu
 import styled, { css, keyframes } from 'styled-components';
 import { brandColor, textColor } from '@taskany/colors';
 
-type PageLoadProgressCommonProps = {
+interface PageLoadProgressCommonProps extends React.HTMLAttributes<HTMLDivElement> {
     color?: string;
     start?: number;
     max?: number;
     height?: number;
-};
+}
 
 type StrippedProps =
     | {
@@ -29,7 +29,6 @@ export interface PageLoadProgressRef {
 }
 
 type StyledProgressBarInnerProps = Pick<PageLoadProgressProps, 'color' | 'height' | 'stripped' | 'size' | 'stopColor'>;
-
 type Action = { type: 'start' } | { type: 'tick'; payload?: number } | { type: 'stop' } | { type: 'reset' };
 type ProgressState = 'idle' | 'load' | 'finish';
 
@@ -47,7 +46,8 @@ const animatedLoadedBackground = (shift: number) => keyframes`
         background-position: ${shift}px 0;
 }`;
 
-const StyledProgressWrapper = styled.div<Pick<PageLoadProgressProps, 'height'>>`
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const StyledProgressWrapper = styled(({ height, ...props }: PageLoadProgressProps) => <div {...props} />)`
     position: absolute;
     top: 0;
     left: 0;
@@ -132,59 +132,60 @@ const reducer: React.Reducer<State, Action> = (state, action) => {
     }
 };
 
-export const PageLoadProgress = forwardRef<PageLoadProgressRef, PageLoadProgressProps>((props, ref) => {
-    const { color, start = 0.05, max = 0.995, height = 4, stripped = false, stopColor, size } = props;
-    const barRef = useRef<HTMLDivElement>(null);
-    const [{ state, progress }, dispatch] = useReducer(reducer, {
-        progress: start,
-        max,
-        state: 'idle',
-    });
+export const PageLoadProgress = forwardRef<PageLoadProgressRef, PageLoadProgressProps>(
+    ({ color, start = 0.05, max = 0.995, height = 4, stripped = false, stopColor, size, ...attrs }, ref) => {
+        const barRef = useRef<HTMLDivElement>(null);
+        const [{ state, progress }, dispatch] = useReducer(reducer, {
+            progress: start,
+            max,
+            state: 'idle',
+        });
 
-    useImperativeHandle(
-        ref,
-        () => ({
-            start: () => {
-                dispatch({ type: 'start' });
-            },
-            done: () => {
-                dispatch({ type: 'stop' });
-            },
-        }),
-        [],
-    );
+        useImperativeHandle(
+            ref,
+            () => ({
+                start: () => {
+                    dispatch({ type: 'start' });
+                },
+                done: () => {
+                    dispatch({ type: 'stop' });
+                },
+            }),
+            [],
+        );
 
-    useEffect(() => {
-        if (barRef.current) {
-            const node = barRef.current;
-            if (state !== 'idle') {
-                node.style.width = `${progress * 100}%`;
-            } else {
-                node.style.transition = 'none';
-                node.style.removeProperty('width');
+        useEffect(() => {
+            if (barRef.current) {
+                const node = barRef.current;
+                if (state !== 'idle') {
+                    node.style.width = `${progress * 100}%`;
+                } else {
+                    node.style.transition = 'none';
+                    node.style.removeProperty('width');
 
-                node.offsetHeight; // trigger reflow
+                    node.offsetHeight; // trigger reflow
 
-                node.style.removeProperty('transition');
+                    node.style.removeProperty('transition');
+                }
             }
-        }
-    }, [progress, state]);
+        }, [progress, state]);
 
-    const transitionEndHandle = useCallback(() => {
-        if (state === 'load') {
-            dispatch({ type: 'tick' });
-        }
+        const transitionEndHandle = useCallback(() => {
+            if (state === 'load') {
+                dispatch({ type: 'tick' });
+            }
 
-        if (state === 'finish') {
-            dispatch({ type: 'reset' });
-        }
-    }, [state]);
+            if (state === 'finish') {
+                dispatch({ type: 'reset' });
+            }
+        }, [state]);
 
-    return (
-        <StyledProgressWrapper height={height}>
-            <StyledProgressBar ref={barRef} onTransitionEnd={transitionEndHandle}>
-                <StyledProgressBarInner stripped={stripped} stopColor={stopColor} size={size} color={color} />
-            </StyledProgressBar>
-        </StyledProgressWrapper>
-    );
-});
+        return (
+            <StyledProgressWrapper height={height} {...attrs}>
+                <StyledProgressBar ref={barRef} onTransitionEnd={transitionEndHandle}>
+                    <StyledProgressBarInner stripped={stripped} stopColor={stopColor} size={size} color={color} />
+                </StyledProgressBar>
+            </StyledProgressWrapper>
+        );
+    },
+);

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { gapS, gray2 } from '@taskany/colors';
 
-interface InputContainerProps {
+interface InputContainerProps extends React.HTMLAttributes<HTMLDivElement> {
     brick?: 'left' | 'right' | 'center';
     focused?: boolean;
     hovered?: boolean;
@@ -45,5 +45,3 @@ export const InputContainer = styled.div<InputContainerProps>`
             background-color: ${gray2};
         `}
 `;
-
-export default InputContainer;

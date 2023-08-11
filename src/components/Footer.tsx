@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { gray0 } from '@taskany/colors';
 
 import { SheepLogo } from './SheepLogo';
-import Text from './Text';
+import { Text } from './Text';
 
 const StyledFooter = styled.footer`
     display: grid;
@@ -19,19 +19,17 @@ const StyledFooterMenu = styled.div`
 export const FooterItem = styled(Text)`
     padding: 0px 10px;
 `;
-interface FooterProps {
-    className?: string;
+interface FooterProps extends React.HTMLAttributes<HTMLDivElement> {
     children: React.ReactNode;
+    className?: string;
 }
 
-export const Footer: React.FC<FooterProps> = ({ className, children }) => {
+export const Footer: React.FC<FooterProps> = ({ className, children, ...attrs }) => {
     return (
-        <StyledFooter className={className}>
+        <StyledFooter className={className} {...attrs}>
             <Text color={gray0}>{`© ${new Date().getFullYear()} Taskany, Inc.`}</Text>
             <StyledFooterMenu>{children}</StyledFooterMenu>
             <SheepLogo />
         </StyledFooter>
     );
 };
-
-export default Footer;

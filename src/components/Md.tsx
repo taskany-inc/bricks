@@ -22,5 +22,3 @@ export const Md = styled.div`
         border-radius: ${radiusS};
     }
 `;
-
-export default Md;

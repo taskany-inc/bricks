@@ -8,5 +8,3 @@ interface PortalProps {
 }
 
 export const Portal: React.FC<PortalProps> = ({ id, children }) => createPortal(children, usePortal(id));
-
-export default Portal;

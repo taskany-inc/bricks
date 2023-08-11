@@ -4,7 +4,7 @@ import { gray4, gray6, radiusM, textColor } from '@taskany/colors';
 
 import { UserPic } from './UserPic';
 
-interface UserMenuItemProps {
+interface UserMenuItemProps extends React.HTMLAttributes<HTMLDivElement> {
     name?: string;
     email?: string;
     image?: string;
@@ -68,21 +68,13 @@ const StyledUserEmail = styled.div`
     color: ${textColor};
 `;
 
-const StyledUserPick = styled(UserPic)`
+const StyledUserPic = styled(UserPic)`
     justify-self: center;
 `;
 
-export const UserMenuItem: React.FC<UserMenuItemProps> = ({
-    className,
-    name,
-    email,
-    image,
-    focused,
-    checked,
-    onClick,
-}) => (
-    <StyledUserCard onClick={onClick} focused={focused} checked={checked} className={className}>
-        <StyledUserPick src={image} email={email} size={24} />
+export const UserMenuItem: React.FC<UserMenuItemProps> = ({ name, email, image, ...props }) => (
+    <StyledUserCard {...props}>
+        <StyledUserPic src={image} email={email} size={24} />
 
         <StyledUserInfo>
             <StyledUserName>{name}</StyledUserName>
@@ -90,5 +82,3 @@ export const UserMenuItem: React.FC<UserMenuItemProps> = ({
         </StyledUserInfo>
     </StyledUserCard>
 );
-
-export default UserMenuItem;

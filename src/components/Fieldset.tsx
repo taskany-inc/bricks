@@ -6,7 +6,7 @@ import { Text } from './Text';
 
 type FieldsetViewType = 'default' | 'warning' | 'danger';
 
-interface FieldsetProps {
+interface FieldsetProps extends React.HTMLAttributes<HTMLFieldSetElement> {
     title?: string;
     view?: FieldsetViewType;
     children: React.ReactNode;
@@ -30,9 +30,9 @@ const colorsMap: Record<FieldsetViewType, string> = {
     danger: danger0,
 };
 
-export const Fieldset: React.FC<FieldsetProps> = ({ view = 'default', title, children, className }) => {
+export const Fieldset: React.FC<FieldsetProps> = ({ view = 'default', title, children, ...props }) => {
     return (
-        <StyledFieldset className={className}>
+        <StyledFieldset {...props}>
             <StyledLegend as="legend" size="m" weight="bold" color={colorsMap[view]}>
                 {title}
             </StyledLegend>
@@ -41,5 +41,3 @@ export const Fieldset: React.FC<FieldsetProps> = ({ view = 'default', title, chi
         </StyledFieldset>
     );
 };
-
-export default Fieldset;

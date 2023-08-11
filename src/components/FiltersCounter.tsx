@@ -1,11 +1,16 @@
 import React, { FC } from 'react';
 import { textColor } from '@taskany/colors';
 
-import Badge from './Badge';
-import Text from './Text';
+import { Badge } from './Badge';
+import { Text } from './Text';
 
-export const FiltersCounter: FC<{ counter?: number; total: number }> = ({ counter, total }) => (
-    <Badge size="m">
+interface FiltersCounterProps extends React.HTMLAttributes<HTMLDivElement> {
+    counter?: number;
+    total: number;
+}
+
+export const FiltersCounter: FC<FiltersCounterProps> = ({ counter, total, ...attrs }) => (
+    <Badge size="m" {...attrs}>
         {counter === undefined || total === counter ? (
             total
         ) : (

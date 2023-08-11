@@ -2,9 +2,9 @@ import React from 'react';
 import { brandColor, gray5 } from '@taskany/colors';
 import styled from 'styled-components';
 
-import Text from './Text';
+import { Text } from './Text';
 
-interface CircleProgressBarProps {
+interface CircleProgressBarProps extends React.HTMLAttributes<HTMLSpanElement> {
     value: number;
     size?: 's' | 'm' | 'l';
     className?: string;
@@ -41,7 +41,7 @@ const StyledCircle = styled.circle`
     transition: stroke-dasharray, stroke-dashoffset 100ms ease-in-out;
 `;
 
-export const CircleProgressBar: React.FC<CircleProgressBarProps> = ({ value, size = 'm', className }) => {
+export const CircleProgressBar: React.FC<CircleProgressBarProps> = ({ value, size = 'm', ...props }) => {
     const diameter = sizeMap[size];
     const strokeWidth = size === 's' ? 2 : 3;
     const radius = diameter / 2;
@@ -51,7 +51,7 @@ export const CircleProgressBar: React.FC<CircleProgressBarProps> = ({ value, siz
     const offset = circumReference - (value / 100) * circumReference;
 
     return (
-        <StyledCircleProgressBar className={className}>
+        <StyledCircleProgressBar {...props}>
             <StyledCircleProgressBarAligner>
                 <StyledCircleProgressBarValue>
                     <Text weight="bold" color={brandColor} size={size === 'l' ? 'xs' : 'xxs'} as="span">
@@ -82,5 +82,3 @@ export const CircleProgressBar: React.FC<CircleProgressBarProps> = ({ value, siz
         </StyledCircleProgressBar>
     );
 };
-
-export default CircleProgressBar;

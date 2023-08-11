@@ -9,7 +9,7 @@ import { formContext } from '../context/form';
 import { Text } from './Text';
 import { Popup } from './Popup';
 
-interface FormInputProps {
+interface FormInputProps extends React.HTMLAttributes<HTMLInputElement> {
     id?: string;
     name?: string;
     label?: string;
@@ -25,14 +25,6 @@ interface FormInputProps {
         message?: string;
     };
     brick?: 'left' | 'right' | 'center';
-
-    onMouseLeave?: React.MouseEventHandler<HTMLInputElement>;
-    onMouseEnter?: React.MouseEventHandler<HTMLInputElement>;
-    onChange?: React.ChangeEventHandler<HTMLInputElement>;
-    onInput?: React.ChangeEventHandler<HTMLInputElement>;
-    onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
-    onBlur?: React.FocusEventHandler<HTMLInputElement>;
-    onFocus?: React.FocusEventHandler<HTMLInputElement>;
 }
 
 const StyledFormInputContainer = styled.div<{ flat: FormInputProps['flat'] }>`
@@ -255,5 +247,3 @@ export const FormInput = React.forwardRef<HTMLInputElement, FormInputProps>((pro
         </StyledFormInputContainer>
     );
 });
-
-export default FormInput;

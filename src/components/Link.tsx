@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { link10 } from '@taskany/colors';
 
-interface LinkProps {
+interface LinkProps extends React.HTMLAttributes<HTMLAnchorElement> {
     inline?: boolean;
     className?: string;
     children?: React.ReactNode;
@@ -46,5 +46,3 @@ const StyledLink = styled(
 export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(({ ...props }, ref) => {
     return <StyledLink {...props} forwardRef={ref} />;
 });
-
-export default Link;

@@ -33,7 +33,7 @@ interface ComboBoxItemProps {
     onClick: (value?: any) => void;
 }
 
-interface ComboBoxProps {
+interface ComboBoxProps extends React.HTMLAttributes<HTMLDivElement> {
     renderInput: (props: ComboBoxInputProps) => React.ReactNode;
     renderItem: (props: ComboBoxItemProps) => React.ReactNode | Record<any, any>;
     renderTrigger?: (props: ComboBoxTriggerProps) => React.ReactNode;
@@ -98,6 +98,7 @@ export const ComboBox = forwardRef<HTMLDivElement, ComboBoxProps>(
             onChange,
             onClose,
             onClickOutside,
+            ...attrs
         },
         ref,
     ) => {
@@ -207,6 +208,7 @@ export const ComboBox = forwardRef<HTMLDivElement, ComboBoxProps>(
                     minWidth={minWidth}
                     maxWidth={maxWidth}
                     offset={offset}
+                    {...attrs}
                 >
                     <div ref={popupContentRef} {...onESC}>
                         {renderItems ? renderItems(children as React.ReactNode) : (children as React.ReactNode)}
@@ -216,5 +218,3 @@ export const ComboBox = forwardRef<HTMLDivElement, ComboBoxProps>(
         );
     },
 );
-
-export default ComboBox;

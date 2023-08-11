@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { Gravatar } from './Gravatar';
 
-interface UserPicProps {
+interface UserPicProps extends React.HTMLAttributes<HTMLImageElement> {
     src?: string | null;
     size?: number;
     email?: string | null;
@@ -17,7 +17,7 @@ const StyledImage = styled.img`
     border-radius: 100%;
 `;
 
-export const UserPic: React.FC<UserPicProps> = ({ src, email, size = 32, className, onClick }) => {
+export const UserPic: React.FC<UserPicProps> = ({ src, email, size = 32, ...props }) => {
     const sizePx = `${size}px`;
 
     const onLoadError: React.ReactEventHandler<HTMLImageElement> = useCallback(({ currentTarget }) => {
@@ -26,24 +26,13 @@ export const UserPic: React.FC<UserPicProps> = ({ src, email, size = 32, classNa
     }, []);
 
     if (src) {
-        return (
-            <StyledImage
-                className={className}
-                src={src}
-                height={sizePx}
-                width={sizePx}
-                onClick={onClick}
-                onError={onLoadError}
-            />
-        );
+        return <StyledImage src={src} height={sizePx} width={sizePx} onError={onLoadError} {...props} />;
     }
 
     if (email) {
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        return <Gravatar className={className} email={email} size={Number(sizePx.split('px')[0])} onClick={onClick} />;
+        return <Gravatar email={email} size={Number(sizePx.split('px')[0])} {...props} />;
     }
 
-    return <StyledImage className={className} src="/anonymous.png" height={sizePx} width={sizePx} onClick={onClick} />;
+    return <StyledImage src="/anonymous.png" height={sizePx} width={sizePx} {...props} />;
 };
-
-export default UserPic;

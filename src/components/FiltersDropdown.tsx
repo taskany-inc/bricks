@@ -2,7 +2,7 @@
 import React, { useCallback, useMemo, useState, ReactNode } from 'react';
 
 import { Dropdown, DropdownItemProps, DropdownProps } from './Dropdown';
-import MenuItem from './MenuItem';
+import { MenuItem } from './MenuItem';
 import { FiltersMenuItem } from './FiltersContainers';
 
 export type FilterDropdownItem<T> = {

@@ -4,7 +4,17 @@ import { gapS, gapXs, gray3, radiusM } from '@taskany/colors';
 
 import { Text } from './Text';
 
-const StyledItemCard = styled.div<{ focused?: boolean; checked?: boolean; hoverColor?: string }>`
+interface MarkedListItemProps extends React.HTMLAttributes<HTMLDivElement> {
+    children?: React.ReactNode;
+    mark?: React.ReactNode;
+    hoverColor?: string;
+    focused?: boolean;
+    checked?: boolean;
+
+    onClick?: () => void;
+}
+
+const StyledItemCard = styled.div<Omit<MarkedListItemProps, 'mark' | 'onClick' | 'children'>>`
     display: flex;
     align-items: center;
 
@@ -58,15 +68,8 @@ const StyledItemInfo = styled(Text)`
     padding-left: ${gapS};
 `;
 
-export const MarkedListItem: React.FC<{
-    children?: React.ReactNode;
-    mark?: React.ReactNode;
-    hoverColor?: string;
-    focused?: boolean;
-    checked?: boolean;
-    onClick?: () => void;
-}> = ({ mark, hoverColor, children, focused, checked, onClick }) => (
-    <StyledItemCard hoverColor={hoverColor} focused={focused} checked={checked} onClick={onClick}>
+export const MarkedListItem: React.FC<MarkedListItemProps> = ({ mark, children, ...props }) => (
+    <StyledItemCard {...props}>
         {mark}
         <StyledItemInfo size="s" weight="bold">
             {children}

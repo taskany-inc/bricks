@@ -6,7 +6,7 @@ import { nullable } from '../utils/nullable';
 
 import { UserPic } from './UserPic';
 
-interface UserMenuProps {
+interface UserMenuProps extends React.HTMLAttributes<HTMLDivElement> {
     notifications?: boolean;
     avatar?: string | null;
     email?: string | null;
@@ -38,9 +38,9 @@ const StyledNotifier = styled.div`
     }
 `;
 
-export const UserMenu = ({ notifications, avatar, email, onClick }: UserMenuProps) => {
+export const UserMenu: React.FC<UserMenuProps> = ({ notifications, avatar, email, onClick, ...attrs }) => {
     return (
-        <StyledMenuWrapper>
+        <StyledMenuWrapper {...attrs}>
             {nullable(notifications, () => (
                 <StyledNotifier />
             ))}
@@ -49,5 +49,3 @@ export const UserMenu = ({ notifications, avatar, email, onClick }: UserMenuProp
         </StyledMenuWrapper>
     );
 };
-
-export default UserMenu;

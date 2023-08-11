@@ -6,11 +6,9 @@ import Tippy from '@tippyjs/react/headless';
 /**
  * @see all props https://atomiks.github.io/tippyjs/v6/all-props/
  */
-interface PopupProps {
-    placement?: ComponentProps<typeof Tippy>['placement'];
-    interactive?: ComponentProps<typeof Tippy>['interactive'];
-    hideOnClick?: ComponentProps<typeof Tippy>['hideOnClick'];
-    reference?: ComponentProps<typeof Tippy>['reference'];
+interface PopupProps
+    extends Omit<ComponentProps<typeof Tippy>, 'role' | 'content' | 'children' | 'offset' | 'ref'>,
+        React.HTMLAttributes<HTMLDivElement> {
     visible?: boolean;
     target?: React.ReactElement;
     arrow?: boolean;
@@ -21,14 +19,6 @@ interface PopupProps {
     view?: 'warning' | 'danger' | 'primary';
     offset?: number[];
     children: React.ReactNode;
-
-    onTrigger?: ComponentProps<typeof Tippy>['onTrigger'];
-    onShow?: ComponentProps<typeof Tippy>['onShow'];
-    onShown?: ComponentProps<typeof Tippy>['onShown'];
-    onMount?: ComponentProps<typeof Tippy>['onMount'];
-    onHide?: ComponentProps<typeof Tippy>['onHide'];
-    onHidden?: ComponentProps<typeof Tippy>['onHidden'];
-    onClickOutside?: ComponentProps<typeof Tippy>['onClickOutside'];
 }
 
 const colorsMap = {
@@ -170,30 +160,38 @@ const StyledPopupContainer = styled.div<{
  */
 export const Popup: React.FC<PopupProps> = ({
     placement = 'auto',
+    interactive,
+    reference,
     children,
     target,
-    overflow,
-    minWidth,
-    maxWidth,
-    tooltip,
-    view,
     arrow = true,
     offset,
+    visible,
+    onTrigger,
+    onShow,
+    onShown,
+    onMount,
+    onHide,
+    onHidden,
+    onClickOutside,
+    hideOnClick,
     ...props
 }) => (
     <Tippy
-        {...props}
+        onTrigger={onTrigger}
+        onShow={onShow}
+        onShown={onShown}
+        onMount={onMount}
+        onHide={onHide}
+        onHidden={onHidden}
+        onClickOutside={onClickOutside}
+        hideOnClick={hideOnClick}
+        reference={reference}
+        interactive={interactive}
         placement={placement}
-        render={(attrs) => (
-            <StyledPopupContainer
-                minWidth={minWidth}
-                maxWidth={maxWidth}
-                overflow={overflow}
-                tooltip={tooltip}
-                view={view}
-                tabIndex={-1}
-                {...attrs}
-            >
+        visible={visible}
+        render={(tippyProps) => (
+            <StyledPopupContainer tabIndex={-1} {...tippyProps} {...props}>
                 <StyledPopupContent>{children}</StyledPopupContent>
 
                 {arrow && <StyledPopupArrow data-popper-arrow />}
@@ -214,5 +212,3 @@ export const Popup: React.FC<PopupProps> = ({
         {target}
     </Tippy>
 );
-
-export default Popup;

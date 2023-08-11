@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { isRetina } from '../utils/isRetina';
 
-interface GravatarProps {
+interface GravatarProps extends React.HTMLAttributes<HTMLImageElement> {
     email: string;
     md5?: string;
     size: number;
@@ -30,16 +30,15 @@ const StyledImage = styled.img<{ visible: boolean }>`
     `}
 `;
 
-export const Gravatar = ({
+export const Gravatar: React.FC<GravatarProps> = ({
     size = 50,
     rating = 'g',
     def = 'retro',
     domain = process.env.NEXT_PUBLIC_GRAVATAR_HOST || 'www.gravatar.com',
     email,
     md5,
-    className,
-    onClick,
-}: GravatarProps) => {
+    ...props
+}) => {
     const [modernBrowser, setModernBrowser] = useState(true);
     const [mounted, setMounted] = useState(false);
     const [visible, setVisible] = useState(false);
@@ -100,11 +99,8 @@ export const Gravatar = ({
             src="/anonymous.png"
             height={size}
             width={size}
-            className={className}
-            onClick={onClick}
             onError={onLoadError}
+            {...props}
         />
     );
 };
-
-export default Gravatar;

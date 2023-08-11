@@ -15,16 +15,14 @@ const StyledCardInfo = styled(Text)`
     border-top-right-radius: ${radiusM};
 `;
 
-interface CardInfoProps {
+interface CardInfoProps extends React.HTMLAttributes<HTMLDivElement> {
     className?: string;
     children?: React.ReactNode;
     onClick?: (e?: React.MouseEvent<HTMLDivElement>) => void;
 }
 
-export const CardInfo: React.FC<CardInfoProps> = ({ className, children, onClick }) => (
-    <StyledCardInfo className={className} size="xs" weight="bold" color={gray8} onClick={onClick}>
+export const CardInfo: React.FC<CardInfoProps> = ({ children, ...props }) => (
+    <StyledCardInfo size="xs" weight="bold" color={gray8} {...props}>
         {children}
     </StyledCardInfo>
 );
-
-export default CardInfo;

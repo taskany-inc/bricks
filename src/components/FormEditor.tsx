@@ -15,7 +15,7 @@ import { Popup } from './Popup';
 import { Link } from './Link';
 import { AttachIcon } from './Icon';
 
-interface FormEditorProps {
+interface FormEditorBaseProps {
     id?: string;
     name?: string;
     value?: string;
@@ -43,6 +43,8 @@ interface FormEditorProps {
     onUploadSuccess?: () => void;
     onUploadFail?: (message?: string) => void;
 }
+
+type FormEditorProps = FormEditorBaseProps & React.HTMLAttributes<HTMLDivElement>;
 
 const defaultAttachmentsButtonMessage = 'Attach files';
 const defaultAttachmentsDescriptionMesssage = "drag'n'drop or pasting also supported";
@@ -274,6 +276,7 @@ export const FormEditor = React.forwardRef<HTMLDivElement, FormEditorProps>(
             uploadLink,
             onUploadSuccess,
             onUploadFail,
+            ...attrs
         },
         ref,
     ) => {
@@ -429,6 +432,7 @@ export const FormEditor = React.forwardRef<HTMLDivElement, FormEditorProps>(
                     ref={ref}
                     {...onESC}
                     onClick={disabled ? undefined : () => {}}
+                    {...attrs}
                 >
                     {nullable(isDragActive && !disableAttaches, () => (
                         <StyledDropZone>
@@ -502,5 +506,3 @@ export const FormEditor = React.forwardRef<HTMLDivElement, FormEditorProps>(
         );
     },
 );
-
-export default FormEditor;

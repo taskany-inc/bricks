@@ -7,6 +7,18 @@ import { radioContext } from '../context/radio';
 
 import { Text } from './Text';
 
+interface FormRadioBaseProps {
+    name?: string;
+    label?: string;
+    value?: string;
+    flat?: 'top' | 'bottom' | 'both';
+    children?: React.ReactNode;
+
+    onChange?: (v: FormRadioBaseProps['value']) => void;
+}
+
+type FormRadioProps = FormRadioBaseProps & React.HTMLAttributes<HTMLDivElement>;
+
 export const StyledFormRadioInputContainer = styled.div`
     padding: 8px 16px;
 
@@ -18,16 +30,6 @@ export const StyledFormRadioInput = styled.input``;
 export const StyledFormRadioInputLabel = styled(Text)`
     padding-left: ${gapS};
 `;
-
-interface FormRadioProps {
-    name?: string;
-    label?: string;
-    value?: string;
-    flat?: 'top' | 'bottom' | 'both';
-    children?: React.ReactNode;
-
-    onChange?: (v: FormRadioProps['value']) => void;
-}
 
 const StyledFormRadio = styled.div<{ flat: FormRadioProps['flat'] }>`
     box-sizing: border-box;
@@ -66,10 +68,10 @@ const StyledFormRadioLabel = styled(Text)`
     background-color: transparent;
 `;
 
-export const FormRadio: React.FC<FormRadioProps> = ({ name, label, value, flat, children, onChange }) => {
+export const FormRadio: React.FC<FormRadioProps> = ({ name, label, value, flat, children, onChange, ...attrs }) => {
     return (
         <radioContext.Provider value={{ name, value, onChange }}>
-            <StyledFormRadio flat={flat}>
+            <StyledFormRadio flat={flat} {...attrs}>
                 {nullable(label, (l) => (
                     <StyledFormRadioLabel as="label" size="m" color={gray8} weight="bold">
                         {l}:
@@ -81,5 +83,3 @@ export const FormRadio: React.FC<FormRadioProps> = ({ name, label, value, flat, 
         </radioContext.Provider>
     );
 };
-
-export default FormRadio;

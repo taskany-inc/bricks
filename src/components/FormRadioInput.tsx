@@ -6,7 +6,7 @@ import { formContext } from '../context/form';
 
 import { StyledFormRadioInput, StyledFormRadioInputContainer, StyledFormRadioInputLabel } from './FormRadio';
 
-interface FormRadioInputProps {
+interface FormRadioInputProps extends React.HTMLAttributes<HTMLInputElement> {
     name?: string;
     label?: string;
     value: string;
@@ -15,10 +15,15 @@ interface FormRadioInputProps {
     disabled?: boolean;
 }
 
-export const FormRadioInput: React.FC<FormRadioInputProps> = (props) => {
+export const FormRadioInput: React.FC<FormRadioInputProps> = ({
+    disabled: innerDisabled,
+    value: innerValue,
+    label,
+    ...attrs
+}) => {
     const { name, value, onChange } = useContext(radioContext);
     const formCtx = useContext(formContext);
-    const disabled = formCtx.disabled || props.disabled;
+    const disabled = formCtx.disabled || innerDisabled;
 
     const onRadioInputChange = useCallback(
         (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,20 +36,18 @@ export const FormRadioInput: React.FC<FormRadioInputProps> = (props) => {
         <StyledFormRadioInputContainer>
             <StyledFormRadioInput
                 type="radio"
-                checked={props.value === value}
+                checked={innerValue === value}
                 name={name}
                 onChange={onRadioInputChange}
-                id={props.value}
-                {...props}
+                id={innerValue}
+                {...attrs}
                 disabled={disabled}
             />
-            {nullable(props.label, (l) => (
-                <StyledFormRadioInputLabel as="label" htmlFor={props.value}>
+            {nullable(label, (l) => (
+                <StyledFormRadioInputLabel as="label" htmlFor={innerValue}>
                     {l}
                 </StyledFormRadioInputLabel>
             ))}
         </StyledFormRadioInputContainer>
     );
 };
-
-export default FormRadioInput;
