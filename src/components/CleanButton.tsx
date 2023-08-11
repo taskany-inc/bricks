@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { gray10, gray7, gray8 } from '@taskany/colors';
 
-interface CleanButtonProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface CleanButtonProps extends React.HTMLAttributes<HTMLDivElement> {
     className?: string;
 
     onClick?: (e: React.MouseEvent) => void;
