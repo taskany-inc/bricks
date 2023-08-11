@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [2.0.0](https://github.com/taskany-inc/bricks/compare/v1.30.0...v2.0.0) (2023-08-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* **Tag:** move out clean button
+* support spread attributes
+
+### Features
+
+* support spread attributes ([f99253c](https://github.com/taskany-inc/bricks/commit/f99253ca066b2a7811b378e0be8d48def5196da9))
+
+
+### Code Refactoring
+
+* **Tag:** move out clean button ([549ee3d](https://github.com/taskany-inc/bricks/commit/549ee3d2b968f8617d62a4658bb96f34b23c881b))
+
 ## [1.30.0](https://github.com/taskany-inc/bricks/compare/v1.29.0...v1.30.0) (2023-08-08)
 
 
