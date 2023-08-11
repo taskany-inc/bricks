@@ -21,7 +21,6 @@ interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
     visible?: boolean;
     width?: number;
     view?: ModalViewType;
-    cross?: boolean;
 
     onClose?: () => void;
     onShow?: () => void;
