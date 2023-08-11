@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [2.0.1](https://github.com/taskany-inc/bricks/compare/v2.0.0...v2.0.1) (2023-08-11)
+
+
+### Bug Fixes
+
+* export * from components ([e977ee8](https://github.com/taskany-inc/bricks/commit/e977ee892de040d0a707b08df24f817f1d26590a))
+
 ## [2.0.0](https://github.com/taskany-inc/bricks/compare/v1.30.0...v2.0.0) (2023-08-11)
 
 
