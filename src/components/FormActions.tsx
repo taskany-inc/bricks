@@ -42,5 +42,3 @@ export const FormActions = styled(({ flat, focused, ...props }: FormActionsProps
             border-bottom-right-radius: 0;
         `}
 `;
-
-export default FormActions;

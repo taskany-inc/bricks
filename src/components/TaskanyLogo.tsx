@@ -38,5 +38,3 @@ export const TaskanyLogo: React.FC<TaskanyLogoProps> = ({ size = 's' }) => {
         </svg>
     );
 };
-
-export default TaskanyLogo;

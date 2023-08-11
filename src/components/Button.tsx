@@ -331,5 +331,3 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         );
     },
 );
-
-export default Button;

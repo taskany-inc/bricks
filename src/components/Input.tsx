@@ -88,7 +88,7 @@ const StyledInput = styled(({ forwardRef, size, view, brick, iconLeft, iconRight
         `
             border-radius: 0;
         `}
-    
+
     ${({ size }) =>
         size === 'm' &&
         `
@@ -134,5 +134,3 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             <StyledInput forwardRef={ref} view={view} size={size} brick={brick} {...props} />
         ),
 );
-
-export default Input;

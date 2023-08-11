@@ -11,7 +11,6 @@ import { Portal } from './Portal';
 interface ModalPreviewProps {
     children: React.ReactNode;
     className?: string;
-
     visible?: boolean;
     width?: number;
 
@@ -89,5 +88,3 @@ export const ModalPreview: React.FC<ModalPreviewProps> = ({ visible, children, o
         </>
     );
 };
-
-export default ModalPreview;

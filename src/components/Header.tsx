@@ -5,6 +5,13 @@ import { textColor, gray7, colorPrimary, gray3 } from '@taskany/colors';
 import { Link } from './Link';
 import { TaskanyLogo } from './TaskanyLogo';
 
+interface HeaderProps extends React.HTMLAttributes<HTMLDivElement> {
+    logo?: React.ReactNode;
+    nav?: React.ReactNode;
+    children?: React.ReactNode;
+    menu?: React.ReactNode;
+}
+
 const HeaderContainer = styled.header`
     display: grid;
     grid-template-columns: 20px 1fr minmax(150px, auto) 55px;
@@ -75,18 +82,11 @@ const DefaultLogo: React.FC = () => (
     </HeaderLogo>
 );
 
-export const Header: React.FC<{
-    logo?: React.ReactNode;
-    nav?: React.ReactNode;
-    children?: React.ReactNode;
-    menu?: React.ReactNode;
-}> = ({ menu, logo = <DefaultLogo />, nav, children }) => (
-    <HeaderContainer>
+export const Header: React.FC<HeaderProps> = ({ menu, logo = <DefaultLogo />, nav, children, ...attrs }) => (
+    <HeaderContainer {...attrs}>
         {logo}
         {nav}
         {children}
         {menu}
     </HeaderContainer>
 );
-
-export default Header;

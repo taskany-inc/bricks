@@ -5,7 +5,7 @@ import { gray3 } from '@taskany/colors';
 import { KeyCode, KeyMod, useKeyboard } from '../hooks/useKeyboard';
 import { formContext } from '../context/form';
 
-interface FormProps {
+interface FormProps extends React.HTMLAttributes<HTMLFormElement> {
     children: React.ReactNode;
     disabled?: boolean;
     submitHotkey?: Array<number>;
@@ -19,7 +19,7 @@ const StyledForm = styled.form`
     background-color: ${gray3};
 `;
 
-export const Form: React.FC<FormProps> = ({ children, disabled, submitHotkey = submitKeys, onSubmit }) => {
+export const Form: React.FC<FormProps> = ({ children, disabled, submitHotkey = submitKeys, onSubmit, ...attrs }) => {
     const handleSubmit = (e?: React.SyntheticEvent) => {
         e?.preventDefault();
 
@@ -33,11 +33,9 @@ export const Form: React.FC<FormProps> = ({ children, disabled, submitHotkey = s
 
     return (
         <formContext.Provider value={{ disabled }}>
-            <StyledForm {...keyboard} onSubmit={handleSubmit}>
+            <StyledForm {...keyboard} onSubmit={handleSubmit} {...attrs}>
                 {children}
             </StyledForm>
         </formContext.Provider>
     );
 };
-
-export default Form;

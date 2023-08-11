@@ -4,11 +4,11 @@ import { gapSm, gray4, gray9, gray6, radiusL, radiusXl } from '@taskany/colors';
 
 import { Nullish } from '../types/void';
 
-import UserPic from './UserPic';
-import Text from './Text';
-import Popup from './Popup';
+import { UserPic } from './UserPic';
+import { Text } from './Text';
+import { Popup } from './Popup';
 
-interface UserGroupProps {
+interface UserGroupProps extends React.HTMLAttributes<HTMLDivElement> {
     users: Nullish<{ name: string; email: string; image: string }>[];
     className?: string;
     size?: number;
@@ -37,7 +37,7 @@ const UserContainer = styled.div`
     }
 `;
 
-const UserImage = styled(UserPic)`
+const StyledUserPic = styled(UserPic)`
     display: block;
 `;
 
@@ -71,7 +71,7 @@ const StyledSmallCircle = styled.div`
     transform: translateY(8px);
 `;
 
-export const UserGroup: FC<UserGroupProps> = ({ users, className, size = 24, limit = 3 }) => {
+export const UserGroup: FC<UserGroupProps> = ({ users, size = 24, limit = 3, ...props }) => {
     const showCounter = users.length > limit;
     const items = users.slice(0, showCounter ? limit : users.length);
 
@@ -83,13 +83,13 @@ export const UserGroup: FC<UserGroupProps> = ({ users, className, size = 24, lim
     }, [limit, users]);
 
     return (
-        <UserGroupContainer className={className}>
+        <UserGroupContainer {...props}>
             {items.map((user, i) => (
                 <Popup
                     key={i}
                     target={
                         <UserContainer>
-                            <UserImage src={user.image} email={user.email} size={size} />
+                            <StyledUserPic src={user.image} email={user.email} size={size} />
                         </UserContainer>
                     }
                     tooltip

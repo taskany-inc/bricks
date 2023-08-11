@@ -69,5 +69,3 @@ export const SheepLogo: React.FC = () => {
         </svg>
     );
 };
-
-export default SheepLogo;

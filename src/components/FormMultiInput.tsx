@@ -13,7 +13,7 @@ import { Input } from './Input';
 import { MenuItem } from './MenuItem';
 import { ComboBox } from './ComboBox';
 
-interface FormMultiInputProps {
+interface FormMultiInputBaseProps {
     items?: Array<{ title: string; id: any }>;
     id?: string;
     name?: string;
@@ -29,6 +29,8 @@ interface FormMultiInputProps {
     onInput?: (query: string) => void;
     onClick?: (item: { title: string; id: any }) => void;
 }
+
+type FormMultiInputProps = FormMultiInputBaseProps & React.HTMLAttributes<HTMLDivElement>;
 
 const StyledFormInputContainer = styled.div`
     box-sizing: border-box;
@@ -73,7 +75,7 @@ export const FormMultiInput = React.forwardRef<HTMLDivElement, FormMultiInputPro
             placeholder,
             onChange,
             onInput,
-            className,
+            ...props
         },
         ref,
     ) => {
@@ -101,7 +103,7 @@ export const FormMultiInput = React.forwardRef<HTMLDivElement, FormMultiInputPro
         );
 
         return (
-            <StyledFormInputContainer className={className}>
+            <StyledFormInputContainer {...props}>
                 {nullable(label, (l) => (
                     <StyledLabel as="label" htmlFor={id || name} size="m" color={gray8} weight="bold">
                         {l}:
@@ -148,5 +150,3 @@ export const FormMultiInput = React.forwardRef<HTMLDivElement, FormMultiInputPro
         );
     },
 );
-
-export default FormMultiInput;

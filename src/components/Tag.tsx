@@ -6,7 +6,7 @@ import { nullable } from '../utils/nullable';
 
 import { CleanButton } from './CleanButton';
 
-interface TagProps {
+interface TagProps extends React.HTMLAttributes<HTMLDivElement> {
     title: string;
     description?: string;
     size?: 's' | 'm';
@@ -86,7 +86,16 @@ const StyledTag = styled(({ onHide, ...props }: Partial<TagProps> & { children?:
         `}
 `;
 
-export const Tag: React.FC<TagProps> = ({ title, description, size = 'm', onClick, onHide, className, checked }) => {
+export const Tag: React.FC<TagProps> = ({
+    title,
+    description,
+    size = 'm',
+    onClick,
+    onHide,
+    className,
+    checked,
+    ...attrs
+}) => {
     const onHideClick = useCallback(
         (e: React.MouseEvent) => {
             e.preventDefault();
@@ -105,6 +114,7 @@ export const Tag: React.FC<TagProps> = ({ title, description, size = 'm', onClic
             title={description}
             className={className}
             checked={checked}
+            {...attrs}
         >
             {nullable(onHide, () => (
                 <StyledCleanButton onClick={onHideClick} />
@@ -113,5 +123,3 @@ export const Tag: React.FC<TagProps> = ({ title, description, size = 'm', onClic
         </StyledTag>
     );
 };
-
-export default Tag;

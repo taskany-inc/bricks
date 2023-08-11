@@ -4,7 +4,7 @@ import { fontDisplay, gray2, gray3, gray7, radiusS, textColor } from '@taskany/c
 
 import { formContext } from '../context/form';
 
-interface FormTextareaProps {
+interface FormTextareaProps extends React.HTMLAttributes<HTMLTextAreaElement> {
     id?: string;
     name?: string;
     value?: string | number;
@@ -19,11 +19,6 @@ interface FormTextareaProps {
     error?: {
         message?: string;
     };
-
-    onChange?: React.ChangeEventHandler<HTMLTextAreaElement>;
-    onInput?: React.ChangeEventHandler<HTMLTextAreaElement>;
-    onBlur?: React.FocusEventHandler<HTMLTextAreaElement>;
-    onFocus?: React.FocusEventHandler<HTMLTextAreaElement>;
 }
 
 const StyledFormTextarea = styled(
@@ -93,5 +88,3 @@ export const FormTextarea = React.forwardRef<HTMLTextAreaElement, FormTextareaPr
 
     return <StyledFormTextarea forwardRef={ref} {...props} disabled={disabled} />;
 });
-
-export default FormTextarea;

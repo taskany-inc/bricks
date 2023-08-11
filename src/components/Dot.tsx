@@ -3,7 +3,7 @@ import { colorPrimary, danger9, gray5, warn0 } from '@taskany/colors';
 
 type ViewType = 'default' | 'primary' | 'warning' | 'danger';
 
-interface DotProps {
+interface DotProps extends React.HTMLAttributes<HTMLSpanElement> {
     size?: 's' | 'm';
     view?: ViewType;
 }
@@ -37,5 +37,3 @@ export const Dot = styled.span<DotProps>`
             `,
         }[size])}
 `;
-
-export default Dot;

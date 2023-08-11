@@ -36,7 +36,7 @@ const calcTextSize = (size: keyof typeof textSizes, weight: keyof typeof textWei
         font-weight: ${textWeight[weight]};
     `;
 
-export interface TextProps {
+export interface TextProps extends React.HTMLAttributes<HTMLDivElement> {
     size?: keyof typeof textSizes;
     weight?: keyof typeof textWeight;
     color?: string;
@@ -154,5 +154,3 @@ export const TextStyle = createGlobalStyle`
         font-weight: ${textWeight.bolder};
     }
 `;
-
-export default Text;

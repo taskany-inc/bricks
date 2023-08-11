@@ -9,7 +9,7 @@ export const iconSizesMap = {
     l: 48,
 };
 
-export interface BaseIconProps {
+export interface BaseIconProps extends React.HTMLAttributes<HTMLSpanElement> {
     size: keyof typeof iconSizesMap | number;
     value: React.FunctionComponent<React.SVGAttributes<SVGElement>>;
     color?: string;
@@ -35,20 +35,16 @@ const StyledIcon = styled.span<{ onClick?: BaseIconProps['onClick']; color?: Bas
 `;
 
 export const BaseIcon = React.forwardRef<HTMLSpanElement, BaseIconProps>(
-    ({ size, value: Component, color = 'inherit', stroke = 1, className, onClick, noWrap }, ref) => {
+    ({ size, value: Component, color = 'inherit', stroke = 1, onClick, noWrap, ...props }, ref) => {
         const sizePx = `${typeof size === 'string' ? iconSizesMap[size] : size}px`;
-        const content = <Component width={sizePx} height={sizePx} strokeWidth={stroke} onClick={onClick} />;
+        const content = (
+            <Component width={sizePx} height={sizePx} strokeWidth={stroke} onClick={noWrap ? onClick : undefined} />
+        );
 
         return noWrap ? (
             content
         ) : (
-            <StyledIcon
-                ref={ref}
-                className={className}
-                style={{ lineHeight: 'initial' }}
-                color={color}
-                onClick={onClick}
-            >
+            <StyledIcon ref={ref} style={{ lineHeight: 'initial' }} color={color} onClick={onClick} {...props}>
                 {content}
             </StyledIcon>
         );

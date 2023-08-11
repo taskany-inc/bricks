@@ -6,7 +6,7 @@ import { nullable } from '../utils/nullable';
 
 import { Dot } from './Dot';
 
-interface MenuItemProps {
+interface MenuItemProps extends React.HTMLAttributes<HTMLDivElement> {
     selected?: boolean;
     focused?: boolean;
     disabled?: boolean;
@@ -67,26 +67,8 @@ const StyledIcon = styled.span`
     padding-right: ${gapS};
 `;
 
-export const MenuItem: React.FC<MenuItemProps> = ({
-    icon,
-    color,
-    ghost,
-    children,
-    selected,
-    focused,
-    disabled,
-    view,
-    onClick,
-    className,
-}) => (
-    <StyledMenuItem
-        className={className}
-        focused={focused}
-        disabled={disabled}
-        color={color}
-        ghost={ghost}
-        onClick={onClick}
-    >
+export const MenuItem: React.FC<MenuItemProps> = ({ icon, children, selected, view, ...props }) => (
+    <StyledMenuItem {...props}>
         {nullable(icon, () => (
             <StyledIcon>{icon}</StyledIcon>
         ))}
@@ -96,5 +78,3 @@ export const MenuItem: React.FC<MenuItemProps> = ({
         ))}
     </StyledMenuItem>
 );
-
-export default MenuItem;

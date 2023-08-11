@@ -5,5 +5,3 @@ export const CardContent = styled.div`
     box-sizing: border-box;
     padding: 12px 14px;
 `;
-
-export default CardContent;

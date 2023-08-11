@@ -11,5 +11,3 @@ export const CardActions = styled.div`
     left: 0;
     padding: 20px 12px 10px;
 `;
-
-export default CardActions;

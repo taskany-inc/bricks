@@ -2,11 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import { gray7, gray9, radiusL } from '@taskany/colors';
 
-interface BadgeProps {
+interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
+    children: React.ReactNode;
     size?: 's' | 'm';
     color?: string;
-    children: React.ReactNode;
     className?: string;
+
     onClick?: React.MouseEventHandler<HTMLDivElement>;
 }
 
@@ -38,10 +39,8 @@ const StyledBadge = styled.div<{ size: BadgeProps['size']; color?: BadgeProps['c
     }
 `;
 
-export const Badge: React.FC<BadgeProps> = ({ size = 's', children, className, onClick }) => (
-    <StyledBadge className={className} size={size} onClick={onClick}>
+export const Badge: React.FC<BadgeProps> = ({ size = 's', children, ...props }) => (
+    <StyledBadge size={size} {...props}>
         {children}
     </StyledBadge>
 );
-
-export default Badge;

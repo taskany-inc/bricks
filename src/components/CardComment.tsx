@@ -6,5 +6,3 @@ export const CardComment = styled.div`
     padding: 12px 14px 12px;
     user-select: auto;
 `;
-
-export default CardComment;
