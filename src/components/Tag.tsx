@@ -1,28 +1,23 @@
-import React, { MouseEventHandler, useCallback } from 'react';
+import React, { MouseEventHandler } from 'react';
 import styled from 'styled-components';
 import { colorPrimary, gapXs, gray10, gray5, gray6, gray9, radiusL, textColorPrimary } from '@taskany/colors';
-
-import { nullable } from '../utils/nullable';
 
 import { CleanButton } from './CleanButton';
 
 interface TagProps extends React.HTMLAttributes<HTMLDivElement> {
-    title: string;
+    children: React.ReactNode;
     description?: string;
     size?: 's' | 'm';
     className?: string;
     checked?: boolean;
 
     onClick?: MouseEventHandler<HTMLDivElement>;
-    onHide?: () => void;
 }
 
-const StyledCleanButton = styled(CleanButton)``;
+export const TagCleanButton = styled(CleanButton)``;
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const StyledTag = styled(({ onHide, ...props }: Partial<TagProps> & { children?: React.ReactNode }) => (
-    <div {...props} />
-))`
+const StyledTag = styled(({ size, ...props }: TagProps) => <div {...props} />)`
     display: inline-block;
     position: relative;
     padding: 4px 12px 5px;
@@ -45,8 +40,7 @@ const StyledTag = styled(({ onHide, ...props }: Partial<TagProps> & { children?:
         margin-left: ${gapXs};
     }
 
-    ${({ onHide, checked }) =>
-        !onHide &&
+    ${({ checked }) =>
         !checked &&
         `
             &:hover {
@@ -57,7 +51,7 @@ const StyledTag = styled(({ onHide, ...props }: Partial<TagProps> & { children?:
         `}
 
     &:hover {
-        ${StyledCleanButton} {
+        ${TagCleanButton} {
             visibility: visible;
 
             cursor: pointer;
@@ -86,40 +80,10 @@ const StyledTag = styled(({ onHide, ...props }: Partial<TagProps> & { children?:
         `}
 `;
 
-export const Tag: React.FC<TagProps> = ({
-    title,
-    description,
-    size = 'm',
-    onClick,
-    onHide,
-    className,
-    checked,
-    ...attrs
-}) => {
-    const onHideClick = useCallback(
-        (e: React.MouseEvent) => {
-            e.preventDefault();
-            e.stopPropagation();
-
-            onHide?.();
-        },
-        [onHide],
-    );
-
+export const Tag: React.FC<TagProps> = ({ children, description, size = 'm', ...props }) => {
     return (
-        <StyledTag
-            size={size}
-            onClick={onClick}
-            onHide={onHide}
-            title={description}
-            className={className}
-            checked={checked}
-            {...attrs}
-        >
-            {nullable(onHide, () => (
-                <StyledCleanButton onClick={onHideClick} />
-            ))}
-            {title}
+        <StyledTag size={size} title={description} {...props}>
+            {children}
         </StyledTag>
     );
 };

@@ -8,7 +8,7 @@ import { formContext } from '../context/form';
 
 import { PlusIcon } from './Icon/PlusIcon';
 import { Text } from './Text';
-import { Tag } from './Tag';
+import { Tag, TagCleanButton } from './Tag';
 import { Input } from './Input';
 import { MenuItem } from './MenuItem';
 import { ComboBox } from './ComboBox';
@@ -111,7 +111,10 @@ export const FormMultiInput = React.forwardRef<HTMLDivElement, FormMultiInputPro
                 ))}
 
                 {value.map((item) => (
-                    <Tag key={item.id} title={item.title} onHide={onValueDelete(item)} />
+                    <Tag key={item.id}>
+                        <TagCleanButton onClick={onValueDelete(item)} />
+                        {item.title}
+                    </Tag>
                 ))}
 
                 <StyledComboBox
