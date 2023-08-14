@@ -15,7 +15,7 @@ import { Popup } from './Popup';
 import { Link } from './Link';
 import { AttachIcon } from './Icon';
 
-interface FormEditorBaseProps {
+interface FormEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'onBlur' | 'onFocus'> {
     id?: string;
     name?: string;
     value?: string;
@@ -43,8 +43,6 @@ interface FormEditorBaseProps {
     onUploadSuccess?: () => void;
     onUploadFail?: (message?: string) => void;
 }
-
-type FormEditorProps = FormEditorBaseProps & React.HTMLAttributes<HTMLDivElement>;
 
 const defaultAttachmentsButtonMessage = 'Attach files';
 const defaultAttachmentsDescriptionMesssage = "drag'n'drop or pasting also supported";
