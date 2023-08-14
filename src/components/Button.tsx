@@ -68,7 +68,7 @@ const StyledButton = styled(
         outline,
         ...props
     }: ButtonProps & { forwardRef?: React.Ref<HTMLButtonElement> }) => <button ref={forwardRef} {...props} />,
-)<ButtonProps>`
+)`
     position: relative;
     box-sizing: border-box;
 

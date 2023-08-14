@@ -1,5 +1,6 @@
-import { gray4, gray6 } from '@taskany/colors';
+import React from 'react';
 import styled, { css } from 'styled-components';
+import { gray4, gray6 } from '@taskany/colors';
 
 const maxCols = 12;
 
@@ -67,7 +68,8 @@ const mapRuleSet: { [key in AlignProps['align'] | JustifyProps['justify']]: stri
     between: 'space-between',
 };
 
-export const Table = styled.div<TableProps>`
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const Table = styled(({ gap, width, ...props }: TableProps) => <div {...props} />)`
     display: flex;
     flex-direction: column;
 
@@ -84,7 +86,10 @@ export const Table = styled.div<TableProps>`
         `}
 `;
 
-export const TableRow = styled.div<TableRowProps>`
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const TableRow = styled(({ gap, interactive, focused, justify, align, ...props }: TableRowProps) => (
+    <div {...props} />
+))`
     display: flex;
     flex-basis: 100%;
     align-items: flex-start;
@@ -124,7 +129,8 @@ export const TableRow = styled.div<TableRowProps>`
         `}
 `;
 
-export const TableCell = styled.div<TableCellProps>`
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const TableCell = styled(({ col, min, justify, align, width, ...props }: TableCellProps) => <div {...props} />)`
     display: inline-flex;
     align-items: baseline;
     flex-wrap: wrap;
