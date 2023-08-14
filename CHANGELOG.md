@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [2.0.3](https://github.com/taskany-inc/bricks/compare/v2.0.2...v2.0.3) (2023-08-14)
+
+
+### Bug Fixes
+
+* **Table:** do not set props to DOM nodes ([62107b3](https://github.com/taskany-inc/bricks/commit/62107b312da5f4cce403f826f8546c2c01eec42e))
+
 ## [2.0.2](https://github.com/taskany-inc/bricks/compare/v2.0.1...v2.0.2) (2023-08-14)
 
 
