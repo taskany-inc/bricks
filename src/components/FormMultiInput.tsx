@@ -13,7 +13,7 @@ import { Input } from './Input';
 import { MenuItem } from './MenuItem';
 import { ComboBox } from './ComboBox';
 
-interface FormMultiInputBaseProps {
+interface FormMultiInputProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'onInput' | 'onClick'> {
     items?: Array<{ title: string; id: any }>;
     id?: string;
     name?: string;
@@ -27,10 +27,7 @@ interface FormMultiInputBaseProps {
 
     onChange?: (value: Array<{ title: string; id: any }>) => void;
     onInput?: (query: string) => void;
-    onClick?: (item: { title: string; id: any }) => void;
 }
-
-type FormMultiInputProps = FormMultiInputBaseProps & React.HTMLAttributes<HTMLDivElement>;
 
 const StyledFormInputContainer = styled.div`
     box-sizing: border-box;

@@ -7,17 +7,15 @@ import { radioContext } from '../context/radio';
 
 import { Text } from './Text';
 
-interface FormRadioBaseProps {
+interface FormRadioProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
     name?: string;
     label?: string;
     value?: string;
     flat?: 'top' | 'bottom' | 'both';
     children?: React.ReactNode;
 
-    onChange?: (v: FormRadioBaseProps['value']) => void;
+    onChange?: (v: FormRadioProps['value']) => void;
 }
-
-type FormRadioProps = FormRadioBaseProps & React.HTMLAttributes<HTMLDivElement>;
 
 export const StyledFormRadioInputContainer = styled.div`
     padding: 8px 16px;
