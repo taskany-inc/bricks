@@ -21,6 +21,7 @@ interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
     visible?: boolean;
     width?: number;
     view?: ModalViewType;
+    closeOutsideClick?: boolean;
 
     onClose?: () => void;
     onShow?: () => void;
@@ -112,7 +113,15 @@ export const ModalContent = styled.div`
     padding: ${gapM};
 `;
 
-export const Modal: React.FC<ModalProps> = ({ visible, children, width = 800, onClose, onShow, ...props }) => {
+export const Modal: React.FC<ModalProps> = ({
+    visible,
+    children,
+    width = 800,
+    onClose,
+    onShow,
+    closeOutsideClick = false,
+    ...props
+}) => {
     const [onESC] = useKeyboard([KeyCode.Escape], () => onClose?.(), {
         disableGlobalEvent: false,
     });
@@ -133,7 +142,7 @@ export const Modal: React.FC<ModalProps> = ({ visible, children, width = 800, on
 
     return visible ? (
         <Portal id="modal">
-            <StyledModalSurface>
+            <StyledModalSurface onClick={closeOutsideClick ? onClose : undefined}>
                 <StyledModal width={width} {...onESC} {...props}>
                     {children}
                 </StyledModal>
