@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [2.0.4](https://github.com/taskany-inc/bricks/compare/v2.0.3...v2.0.4) (2023-08-14)
+
+
+### Bug Fixes
+
+* **Table:** set children prop type ([0c90f84](https://github.com/taskany-inc/bricks/commit/0c90f84bee4eec46d87c838f52ff6132fb4b30bb))
+
 ## [2.0.3](https://github.com/taskany-inc/bricks/compare/v2.0.2...v2.0.3) (2023-08-14)
 
 
