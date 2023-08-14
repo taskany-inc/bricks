@@ -19,8 +19,7 @@ interface JustifyProps {
     justify: 'start' | 'center' | 'end' | 'between' | 'around' | 'baseline';
 }
 
-export type TableCellProps = Partial<JustifyProps & AlignProps> &
-    (
+export type TableCellProps = Partial<JustifyProps & AlignProps> & { children?: React.ReactNode } & (
         | {
               /** Size of column width in range from `1` to `12` */
               col: number;
@@ -49,6 +48,7 @@ export type TableCellProps = Partial<JustifyProps & AlignProps> &
 export interface TableProps extends GapProps {
     /** Container width */
     width?: number;
+    children?: React.ReactNode;
 }
 
 export type TableRowProps = GapProps &
@@ -57,6 +57,7 @@ export type TableRowProps = GapProps &
         interactive?: boolean;
         /** Prop that mark current row as focused, ex. for keyboard navigation */
         focused?: boolean;
+        children?: React.ReactNode;
     };
 
 const mapRuleSet: { [key in AlignProps['align'] | JustifyProps['justify']]: string } = {
