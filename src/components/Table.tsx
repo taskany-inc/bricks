@@ -51,14 +51,15 @@ export interface TableProps extends GapProps {
     children?: React.ReactNode;
 }
 
-export type TableRowProps = GapProps &
-    Partial<AlignProps & JustifyProps> & {
-        /** Apply interactive styles: hover */
-        interactive?: boolean;
-        /** Prop that mark current row as focused, ex. for keyboard navigation */
-        focused?: boolean;
-        children?: React.ReactNode;
-    };
+interface TableRowBaseProps extends React.HTMLAttributes<HTMLDivElement> {
+    /** Apply interactive styles: hover */
+    interactive?: boolean;
+    /** Prop that mark current row as focused, ex. for keyboard navigation */
+    focused?: boolean;
+    children?: React.ReactNode;
+}
+
+export type TableRowProps = GapProps & Partial<AlignProps & JustifyProps> & TableRowBaseProps;
 
 const mapRuleSet: { [key in AlignProps['align'] | JustifyProps['justify']]: string } = {
     baseline: 'baseline',
