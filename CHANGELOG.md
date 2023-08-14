@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [2.0.5](https://github.com/taskany-inc/bricks/compare/v2.0.4...v2.0.5) (2023-08-14)
+
+
+### Bug Fixes
+
+* **TableRow:** html attributes ([f01f375](https://github.com/taskany-inc/bricks/commit/f01f375fe1d045702aead68d474ee9dc6eb7aa0f))
+
 ## [2.0.4](https://github.com/taskany-inc/bricks/compare/v2.0.3...v2.0.4) (2023-08-14)
 
 
