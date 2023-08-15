@@ -3,18 +3,17 @@ import md5Hash from 'md5';
 import styled from 'styled-components';
 
 import { isRetina } from '../utils/isRetina';
-import { isColorDark, stringToColor } from '../utils/stringToColor';
 
 interface GravatarProps extends React.HTMLAttributes<HTMLImageElement> {
     email?: string | null;
     md5?: string;
     size: number;
     rating?: string;
-    name?: string | null;
     def?: string;
     className?: string;
     domain?: string;
 
+    onLoadError?: () => void;
     onClick?: () => void;
 }
 
@@ -23,35 +22,6 @@ const StyledImage = styled.img`
     border-radius: 100%;
 `;
 
-const Circle = styled.div<{ size: number; str: string }>`
-    border-radius: 100%;
-
-    ${({ size, str }) => {
-        const mainColor = stringToColor(str);
-        return {
-            width: `${size}px`,
-            height: `${size}px`,
-            background: `linear-gradient(90deg,${mainColor},${stringToColor(str.toUpperCase())})`,
-            color: `${isColorDark(mainColor) ? 'white' : 'black'}`,
-            fontSize: `calc(${size / 2}px - 2px)`,
-        };
-    }};
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    letter-spacing: -1.5px;
-    font-weight: 600;
-    user-select: none;
-`;
-
-const getInitials = (fullName?: string | null) => {
-    if (!fullName) return '';
-    const arr = fullName.split(' ');
-    return `${arr[0]?.[0] || ''} ${arr[1]?.[0] || ''}`;
-};
-
 export const Gravatar: FC<GravatarProps> = ({
     size = 50,
     rating = 'g',
@@ -59,12 +29,11 @@ export const Gravatar: FC<GravatarProps> = ({
     domain = process.env.NEXT_PUBLIC_GRAVATAR_HOST || 'www.gravatar.com',
     email,
     md5,
-    name,
+    onLoadError,
     ...props
 }) => {
     const [modernBrowser, setModernBrowser] = useState(true);
     const [mounted, setMounted] = useState(false);
-    const [isError, setIsError] = useState(false);
     const imgRef = useRef<HTMLImageElement>(null);
 
     useLayoutEffect(() => {
@@ -88,10 +57,13 @@ export const Gravatar: FC<GravatarProps> = ({
 
     const formattedEmail = email?.trim().toLowerCase() || '';
 
-    const onLoadError: React.ReactEventHandler<HTMLImageElement> = useCallback(({ currentTarget }) => {
-        currentTarget.onerror = null;
-        setIsError(true);
-    }, []);
+    const onError: React.ReactEventHandler<HTMLImageElement> = useCallback(
+        ({ currentTarget }) => {
+            currentTarget.onerror = null;
+            onLoadError?.();
+        },
+        [onLoadError],
+    );
 
     let hash;
     if (md5) {
@@ -113,17 +85,5 @@ export const Gravatar: FC<GravatarProps> = ({
         }
     }, [imgRef, mounted, modernBrowser, src, retinaSrc]);
 
-    const initials = getInitials(name);
-
-    return (
-        <>
-            {!isError ? (
-                <StyledImage ref={imgRef} height={size} width={size} onError={onLoadError} {...props} />
-            ) : (
-                <Circle size={size} str={formattedEmail} {...props}>
-                    {initials}
-                </Circle>
-            )}
-        </>
-    );
+    return <StyledImage ref={imgRef} height={size} width={size} onError={onError} {...props} />;
 };
