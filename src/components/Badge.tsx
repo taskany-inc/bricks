@@ -4,7 +4,7 @@ import { gray7, gray9, radiusL } from '@taskany/colors';
 
 interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
     children: React.ReactNode;
-    size?: 's' | 'm';
+    size?: 's' | 'm' | 'l' | 'xl';
     color?: string;
     className?: string;
 
@@ -31,6 +31,12 @@ const StyledBadge = styled.div<{ size: BadgeProps['size']; color?: BadgeProps['c
         `,
             m: `
             padding: 2px 8px;
+        `,
+            l: `
+            padding: 3px 12px;
+        `,
+            xl: `
+            padding: 4px 16px;
         `,
         }[size]}
 
