@@ -37,10 +37,6 @@ const UserContainer = styled.div`
     }
 `;
 
-const StyledUserPic = styled(UserPic)`
-    display: block;
-`;
-
 const StyledCounter = styled.div`
     min-width: 0.75rem;
     padding: 0px 5px;
@@ -89,7 +85,7 @@ export const UserGroup: FC<UserGroupProps> = ({ users, size = 24, limit = 3, ...
                     key={i}
                     target={
                         <UserContainer>
-                            <StyledUserPic src={user.image} email={user.email} size={size} />
+                            <UserPic name={user.name} src={user.image} email={user.email} size={size} />
                         </UserContainer>
                     }
                     tooltip

@@ -74,7 +74,7 @@ const StyledUserPic = styled(UserPic)`
 
 export const UserMenuItem: React.FC<UserMenuItemProps> = ({ name, email, image, ...props }) => (
     <StyledUserCard {...props}>
-        <StyledUserPic src={image} email={email} size={24} />
+        <StyledUserPic src={image} email={email} size={24} name={name} />
 
         <StyledUserInfo>
             <StyledUserName>{name}</StyledUserName>

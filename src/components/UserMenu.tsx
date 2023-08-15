@@ -10,6 +10,7 @@ interface UserMenuProps extends React.HTMLAttributes<HTMLDivElement> {
     notifications?: boolean;
     avatar?: string | null;
     email?: string | null;
+    name?: string | null;
     onClick?: () => void;
 }
 
@@ -38,14 +39,14 @@ const StyledNotifier = styled.div`
     }
 `;
 
-export const UserMenu: React.FC<UserMenuProps> = ({ notifications, avatar, email, onClick, ...attrs }) => {
+export const UserMenu: React.FC<UserMenuProps> = ({ name, notifications, avatar, email, onClick, ...attrs }) => {
     return (
         <StyledMenuWrapper {...attrs}>
             {nullable(notifications, () => (
                 <StyledNotifier />
             ))}
 
-            <UserPic src={avatar} email={email} onClick={onClick} size={32} />
+            <UserPic name={name} src={avatar} email={email} onClick={onClick} size={32} />
         </StyledMenuWrapper>
     );
 };
