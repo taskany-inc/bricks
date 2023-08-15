@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [2.1.0](https://github.com/taskany-inc/bricks/compare/v2.0.5...v2.1.0) (2023-08-15)
+
+
+### Features
+
+* add size and color to the badge ([1b16a21](https://github.com/taskany-inc/bricks/commit/1b16a21659ab4e1242aab340221d24395f00ff07))
+
 ## [2.0.5](https://github.com/taskany-inc/bricks/compare/v2.0.4...v2.0.5) (2023-08-14)
 
 
