@@ -33,10 +33,10 @@ const StyledBadge = styled.div<{ size: BadgeProps['size']; color?: BadgeProps['c
             padding: 2px 8px;
         `,
             l: `
-            padding: 3px 12px;
+            padding: 6px 12px;
         `,
             xl: `
-            padding: 4px 16px;
+            padding: 7px 16px;
         `,
         }[size]}
 
