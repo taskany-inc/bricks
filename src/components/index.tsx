@@ -51,3 +51,4 @@ export * from './UserMenuItem';
 export * from './Table';
 export * from './UserGroup';
 export * from './Popup';
+export * from './CollapsableItem';
