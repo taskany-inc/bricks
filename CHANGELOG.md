@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [2.1.4](https://github.com/taskany-inc/bricks/compare/v2.1.3...v2.1.4) (2023-08-17)
+
+
+### Bug Fixes
+
+* **Table:** passing `ref` as prop ([aa215d7](https://github.com/taskany-inc/bricks/commit/aa215d70f00d816c7b9ea9fe801328554cb76a9a))
+
 ## [2.1.3](https://github.com/taskany-inc/bricks/compare/v2.1.2...v2.1.3) (2023-08-17)
 
 
