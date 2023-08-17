@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [2.1.3](https://github.com/taskany-inc/bricks/compare/v2.1.2...v2.1.3) (2023-08-17)
+
+
+### Bug Fixes
+
+* **Gravatar:** remove useLayoutEffect ([e073060](https://github.com/taskany-inc/bricks/commit/e07306055fe498feb596a2664b9daad0f3a9a676))
+
 ## [2.1.2](https://github.com/taskany-inc/bricks/compare/v2.1.1...v2.1.2) (2023-08-16)
 
 
