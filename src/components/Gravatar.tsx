@@ -1,8 +1,9 @@
-import React, { FC, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, { FC, useCallback, useEffect, useRef } from 'react';
 import md5Hash from 'md5';
 import styled from 'styled-components';
 
 import { isRetina } from '../utils/isRetina';
+import { useMounted } from '../hooks';
 
 interface GravatarProps extends React.HTMLAttributes<HTMLImageElement> {
     email?: string | null;
@@ -32,14 +33,8 @@ export const Gravatar: FC<GravatarProps> = ({
     onLoadError,
     ...props
 }) => {
-    const [modernBrowser, setModernBrowser] = useState(true);
-    const [mounted, setMounted] = useState(false);
+    const mounted = useMounted();
     const imgRef = useRef<HTMLImageElement>(null);
-
-    useLayoutEffect(() => {
-        setModernBrowser('srcset' in document.createElement('img'));
-        setMounted(true);
-    }, []);
 
     const base = `//${domain}/avatar/`;
 
@@ -81,9 +76,9 @@ export const Gravatar: FC<GravatarProps> = ({
 
     useEffect(() => {
         if (imgRef.current && mounted) {
-            imgRef.current.src = modernBrowser && isRetina() ? retinaSrc : src;
+            imgRef.current.src = isRetina() ? retinaSrc : src;
         }
-    }, [imgRef, mounted, modernBrowser, src, retinaSrc]);
+    }, [imgRef, mounted, src, retinaSrc]);
 
     return <StyledImage ref={imgRef} height={size} width={size} onError={onError} {...props} />;
 };
