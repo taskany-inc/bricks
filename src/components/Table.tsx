@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styled, { css } from 'styled-components';
 import { gray4, gray6 } from '@taskany/colors';
 
@@ -19,7 +19,9 @@ interface JustifyProps {
     justify: 'start' | 'center' | 'end' | 'between' | 'around' | 'baseline';
 }
 
-export type TableCellProps = Partial<JustifyProps & AlignProps> & { children?: React.ReactNode } & (
+export type TableCellProps = Partial<JustifyProps & AlignProps> &
+    React.HTMLAttributes<HTMLDivElement> &
+    (
         | {
               /** Size of column width in range from `1` to `12` */
               col: number;
@@ -45,21 +47,22 @@ export type TableCellProps = Partial<JustifyProps & AlignProps> & { children?: R
           }
     );
 
-export interface TableProps extends GapProps {
+export interface TableProps extends GapProps, React.HTMLAttributes<HTMLDivElement> {
     /** Container width */
     width?: number;
-    children?: React.ReactNode;
 }
 
-interface TableRowBaseProps extends React.HTMLAttributes<HTMLDivElement> {
-    /** Apply interactive styles: hover */
-    interactive?: boolean;
-    /** Prop that mark current row as focused, ex. for keyboard navigation */
-    focused?: boolean;
-    children?: React.ReactNode;
-}
-
-export type TableRowProps = GapProps & Partial<AlignProps & JustifyProps> & TableRowBaseProps;
+export type TableRowProps<T extends HTMLElement = HTMLElement> = Omit<
+    React.HTMLAttributes<T>,
+    keyof AlignProps & keyof JustifyProps & keyof GapProps
+> &
+    GapProps &
+    Partial<AlignProps & JustifyProps> & {
+        /** Apply interactive styles: hover */
+        interactive?: boolean;
+        /** Prop that mark current row as focused, ex. for keyboard navigation */
+        focused?: boolean;
+    };
 
 const mapRuleSet: { [key in AlignProps['align'] | JustifyProps['justify']]: string } = {
     baseline: 'baseline',
@@ -70,8 +73,12 @@ const mapRuleSet: { [key in AlignProps['align'] | JustifyProps['justify']]: stri
     between: 'space-between',
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const Table = styled(({ gap, width, ...props }: TableProps) => <div {...props} />)`
+export const Table = styled(
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    forwardRef<HTMLDivElement, React.PropsWithChildren<TableProps>>(({ gap, width, ...props }, ref) => (
+        <div {...props} ref={ref} />
+    )),
+)`
     display: flex;
     flex-direction: column;
 
@@ -88,10 +95,14 @@ export const Table = styled(({ gap, width, ...props }: TableProps) => <div {...p
         `}
 `;
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const TableRow = styled(({ gap, interactive, focused, justify, align, ...props }: TableRowProps) => (
-    <div {...props} />
-))`
+export const TableRow = styled(
+    forwardRef<HTMLElement, React.PropsWithChildren<TableRowProps<HTMLElement>>>(
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        ({ gap, interactive, focused, justify, align, ...props }, ref) => (
+            <div {...props} ref={ref as React.ForwardedRef<HTMLDivElement>} />
+        ),
+    ),
+)`
     display: flex;
     flex-basis: 100%;
     align-items: flex-start;
@@ -131,8 +142,12 @@ export const TableRow = styled(({ gap, interactive, focused, justify, align, ...
         `}
 `;
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const TableCell = styled(({ col, min, justify, align, width, ...props }: TableCellProps) => <div {...props} />)`
+export const TableCell = styled(
+    forwardRef<HTMLDivElement, React.PropsWithChildren<TableCellProps>>(
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        ({ col, min, justify, align, width, ...props }, ref) => <div {...props} ref={ref} />,
+    ),
+)`
     display: inline-flex;
     align-items: baseline;
     flex-wrap: wrap;

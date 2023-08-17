@@ -98,7 +98,7 @@ export const Default: Story = () => {
                     </TableCell>
                     <TableCell justify="end">
                         {tags.map((t) => (
-                            <Tag size="s" title={t} />
+                            <Tag size="s">{t}</Tag>
                         ))}
                     </TableCell>
                     <TableCell min justify="center">
@@ -202,7 +202,7 @@ export const FocusAndHover: Story = () => {
                     </TableCell>
                     <TableCell justify="end">
                         {tags.map((t) => (
-                            <Tag size="s" title={t} />
+                            <Tag size="s">{t}</Tag>
                         ))}
                     </TableCell>
                     <TableCell min justify="center">
