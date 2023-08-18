@@ -1,7 +1,19 @@
 import React, { ComponentPropsWithoutRef, useState } from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 
-import { CollapsableItem, CollapsableContentItem, Text } from '../components';
+import {
+    CollapsableItem,
+    CollapsableContentItem,
+    Text,
+    Table,
+    TableRow,
+    TableCell,
+    GoalIcon,
+    UserPic,
+    Dot,
+    Tag,
+    CircleProgressBar,
+} from '../components';
 
 const meta: Meta<typeof CollapsableItem> = {
     title: 'CollapsableItem',
@@ -15,15 +27,45 @@ type ItemProps = Omit<ComponentPropsWithoutRef<typeof CollapsableItem>, 'onClick
 
 const Item = ({ header, ...restProps }: ItemProps) => {
     const [isOpen, setIsOpen] = useState(false);
+
+    const handleOpen = () => {
+        setTimeout(
+            () => {
+                setIsOpen((prev) => !prev);
+            },
+            Math.random() > 0.5 ? 300 : 0,
+        );
+    };
+
     return (
         <CollapsableItem
             isOpen={isOpen}
             header={<Text style={{ padding: 10 }}>{header}</Text>}
-            onClick={restProps.children ? () => setIsOpen((prev) => !prev) : undefined}
+            onClick={restProps.children ? () => handleOpen() : undefined}
             {...restProps}
         />
     );
 };
+
+const data = Array.from({ length: 4 }, (_, i) => ({
+    title: `Title ${i + 1}`,
+    projectId: (Math.random() * 10).toString(16).slice(2, 8).padEnd(6, 'AB').toUpperCase(),
+    tags: Array.from({ length: Math.ceil(Math.random() * 5) }, (_, i) => `Tag ${i + 1}`),
+    progress: Math.round(Math.random() * 100),
+    children: Array.from({ length: 3 }, (_, i) => ({
+        title: `Title ${i + 1}`,
+        projectId: (Math.random() * 10).toString(16).slice(2, 8).padEnd(6, 'AB').toUpperCase(),
+        tags: Array.from({ length: Math.ceil(Math.random() * 5) }, (_, i) => `Tag ${i + 1}`),
+        progress: Math.round(Math.random() * 100),
+        children: Array.from({ length: 3 }, (_, i) => ({
+            title: `Title ${i + 1}`,
+            projectId: (Math.random() * 10).toString(16).slice(2, 8).padEnd(6, 'AB').toUpperCase(),
+            tags: Array.from({ length: Math.ceil(Math.random() * 5) }, (_, i) => `Tag ${i + 1}`),
+            progress: Math.round(Math.random() * 100),
+            children: undefined,
+        })),
+    })),
+}));
 
 export const Default: Story = () => {
     return (
@@ -44,7 +86,39 @@ export const Default: Story = () => {
                 <Item header="Level A-A-C" />
                 <Item header="Level A-A-D" hasChild>
                     <Item header="Level A-A-D-A" hasChild>
-                        <Item header="Level A-A-D-A-A" />
+                        <Item header="Level A-A-D-A-A">
+                            <Table width={600}>
+                                {data.map(({ title, projectId, tags, progress }) => (
+                                    <TableRow key={title} align="center" gap={10}>
+                                        <TableCell min>
+                                            <GoalIcon size="xxs" noWrap />
+                                        </TableCell>
+                                        <TableCell col={5}>
+                                            <Text size="s" weight="bold">
+                                                <Dot size="m" view="primary" />
+                                                {title}
+                                            </Text>
+                                        </TableCell>
+                                        <TableCell min>
+                                            <CircleProgressBar value={progress} size="s" />
+                                        </TableCell>
+                                        <TableCell width="6ch">
+                                            <Text size="s" weight="thin">
+                                                {projectId}
+                                            </Text>
+                                        </TableCell>
+                                        <TableCell justify="end">
+                                            {tags.map((t) => (
+                                                <Tag size="s" title={t} />
+                                            ))}
+                                        </TableCell>
+                                        <TableCell min justify="center">
+                                            <UserPic size={14} email="admin@taskany.org" />
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+                            </Table>
+                        </Item>
                     </Item>
                 </Item>
             </Item>
