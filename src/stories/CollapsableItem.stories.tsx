@@ -69,11 +69,11 @@ const data = Array.from({ length: 4 }, (_, i) => ({
 
 export const Default: Story = () => {
     return (
-        <Item header="Level A" hasChild isRoot>
-            <Item header="Level A-A" hasChild>
-                <Item header="Level A-A-A" hasChild>
+        <Item header="Level A" hasNestedCollapsableItems isRoot>
+            <Item header="Level A-A" hasNestedCollapsableItems>
+                <Item header="Level A-A-A" hasNestedCollapsableItems>
                     <Item header="Level A-A-A-A" />
-                    <Item header="Level A-A-A-B" hasChild>
+                    <Item header="Level A-A-A-B" hasNestedCollapsableItems>
                         <Item header="Level A-A-A-B-A">
                             <CollapsableContentItem>Hi</CollapsableContentItem>
                             <CollapsableContentItem>Every</CollapsableContentItem>
@@ -84,8 +84,8 @@ export const Default: Story = () => {
                 </Item>
                 <Item header="Level A-A-B" />
                 <Item header="Level A-A-C" />
-                <Item header="Level A-A-D" hasChild>
-                    <Item header="Level A-A-D-A" hasChild>
+                <Item header="Level A-A-D" hasNestedCollapsableItems>
+                    <Item header="Level A-A-D-A" hasNestedCollapsableItems>
                         <Item header="Level A-A-D-A-A">
                             <Table width={600}>
                                 {data.map(({ title, projectId, tags, progress }) => (
@@ -122,9 +122,9 @@ export const Default: Story = () => {
                     </Item>
                 </Item>
             </Item>
-            <Item header="Level A-B" hasChild>
+            <Item header="Level A-B" hasNestedCollapsableItems>
                 <Item header="Level A-B-A" />
-                <Item header="Level A-B-B" hasChild>
+                <Item header="Level A-B-B" hasNestedCollapsableItems>
                     <Item header="Level A-B-B-A" />
                 </Item>
             </Item>

@@ -17,11 +17,11 @@ const dot = css`
 
 const StyledCollapsableHeader = styled.div<{
     isRoot?: boolean;
-    hasChild?: boolean;
+    hasNestedCollapsableItems?: boolean;
     isOpen: boolean;
     hasContent: boolean;
 }>`
-    ${({ isOpen, hasChild, isRoot, hasContent }) =>
+    ${({ isOpen, hasNestedCollapsableItems, isRoot, hasContent }) =>
         !isRoot &&
         hasContent &&
         css`
@@ -31,7 +31,7 @@ const StyledCollapsableHeader = styled.div<{
 
                 position: absolute;
                 top: 16px;
-                left: ${hasChild && isOpen
+                left: ${hasNestedCollapsableItems && isOpen
                     ? `calc(-${doubleDotSize}px - ${collapseOffset}px)`
                     : `calc(-${doubleDotSize}px)`};
                 z-index: 1;
@@ -39,7 +39,7 @@ const StyledCollapsableHeader = styled.div<{
         `};
 `;
 
-const StyledHeaderContent = styled.div<{ highlighted: boolean; hasChild?: boolean; isOpen: boolean }>`
+const StyledHeaderContent = styled.div<{ highlighted: boolean; hasNestedCollapsableItems?: boolean; isOpen: boolean }>`
     position: relative;
 
     border-radius: ${radiusM};
@@ -49,8 +49,8 @@ const StyledHeaderContent = styled.div<{ highlighted: boolean; hasChild?: boolea
         background: ${gray4};
     `}
 
-    ${({ hasChild, isOpen }) =>
-        hasChild &&
+    ${({ hasNestedCollapsableItems, isOpen }) =>
+        hasNestedCollapsableItems &&
         isOpen &&
         css`
             &::after {
@@ -66,22 +66,22 @@ const StyledHeaderContent = styled.div<{ highlighted: boolean; hasChild?: boolea
 `;
 
 const StyledCollapsableContainer = styled.div<{
-    hasChild?: boolean;
+    hasNestedCollapsableItems?: boolean;
     isOpen: boolean;
     hasContent: boolean;
     isRoot?: boolean;
 }>`
     position: relative;
 
-    ${({ isRoot, isOpen, hasChild }) =>
+    ${({ isRoot, isOpen, hasNestedCollapsableItems }) =>
         !isRoot &&
         isOpen &&
-        hasChild && {
+        hasNestedCollapsableItems && {
             marginLeft: `${collapseOffset}px`,
         }};
 
-    ${({ hasChild }) =>
-        hasChild &&
+    ${({ hasNestedCollapsableItems }) =>
+        hasNestedCollapsableItems &&
         css`
             &::before {
                 content: '';
@@ -94,7 +94,7 @@ const StyledCollapsableContainer = styled.div<{
             }
         `};
 
-    ${({ hasChild, isOpen, isRoot, hasContent }) =>
+    ${({ hasNestedCollapsableItems, isOpen, isRoot, hasContent }) =>
         !isRoot && hasContent
             ? css`
                   &:last-child::after {
@@ -107,7 +107,7 @@ const StyledCollapsableContainer = styled.div<{
 
                       top: ${doubleDotSize}px;
                       left: ${`calc(-${halfDotSize}px - ${dotSize}px - ${
-                          (isOpen && hasChild ? 1 : 0) * collapseOffset
+                          (isOpen && hasNestedCollapsableItems ? 1 : 0) * collapseOffset
                       }px)`};
                   }
               `
@@ -134,21 +134,30 @@ export const CollapsableItem: FC<{
     header: ReactNode;
     isRoot?: boolean;
     isOpen: boolean;
-    hasChild?: boolean;
+    hasNestedCollapsableItems?: boolean;
     onClick?: () => void;
-}> = ({ children, header, isOpen, isRoot, hasChild, onClick }) => {
+}> = ({ children, header, isOpen, isRoot, hasNestedCollapsableItems, onClick }) => {
     const hasContent = Boolean(children);
 
     return (
-        <StyledCollapsableContainer isOpen={isOpen} hasChild={hasChild} isRoot={isRoot} hasContent={hasContent}>
+        <StyledCollapsableContainer
+            isOpen={isOpen}
+            hasNestedCollapsableItems={hasNestedCollapsableItems}
+            isRoot={isRoot}
+            hasContent={hasContent}
+        >
             <StyledCollapsableHeader
                 isOpen={isOpen}
-                hasChild={hasChild}
+                hasNestedCollapsableItems={hasNestedCollapsableItems}
                 isRoot={isRoot}
                 hasContent={hasContent}
                 onClick={onClick}
             >
-                <StyledHeaderContent isOpen={isOpen} hasChild={hasChild} highlighted={!!onClick && !isOpen}>
+                <StyledHeaderContent
+                    isOpen={isOpen}
+                    hasNestedCollapsableItems={hasNestedCollapsableItems}
+                    highlighted={!!onClick && !isOpen}
+                >
                     {header}
                 </StyledHeaderContent>
             </StyledCollapsableHeader>
