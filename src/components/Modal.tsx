@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { backgroundColor, danger0, gapM, gapS, gray4, radiusM, warn0 } from '@taskany/colors';
+import { IconXOutline } from '@taskany/icons';
 
 import { useKeyboard, KeyCode } from '../hooks/useKeyboard';
 
 import { Portal } from './Portal';
-import { CrossIcon } from './Icon';
 
 type ModalViewType = 'default' | 'warn' | 'danger';
 
@@ -91,7 +91,7 @@ interface ModalCrossProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export const ModalCross: React.FC<ModalCrossProps> = ({ onClick, className, ...attrs }) => (
     <StyledCross className={className} onClick={onClick} {...attrs}>
-        <CrossIcon size="s" />
+        <IconXOutline size="s" />
     </StyledCross>
 );
 

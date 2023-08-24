@@ -2,11 +2,11 @@
 import React, { useCallback, useState, ChangeEvent, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import { gapS, gray3, gray8, radiusS, textColor } from '@taskany/colors';
+import { IconPlusCircleOutline } from '@taskany/icons';
 
 import { nullable } from '../utils/nullable';
 import { formContext } from '../context/form';
 
-import { PlusIcon } from './Icon/PlusIcon';
 import { Text } from './Text';
 import { Tag, TagCleanButton } from './Tag';
 import { Input } from './Input';
@@ -122,7 +122,7 @@ export const FormMultiInput = React.forwardRef<HTMLDivElement, FormMultiInputPro
                     disabled={disabled}
                     onChange={onValueAdd}
                     items={items}
-                    renderTrigger={(props) => <PlusIcon size="xs" onClick={props.onClick} />}
+                    renderTrigger={(props) => <IconPlusCircleOutline size="xs" onClick={props.onClick} />}
                     renderInput={(props) => (
                         <StyledInput
                             autoFocus

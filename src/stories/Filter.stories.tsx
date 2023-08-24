@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import styled from 'styled-components';
+import { IconStarOutline, IconStarSolid } from '@taskany/icons';
 
 import {
     FiltersCounterContainer,
@@ -13,8 +14,6 @@ import {
 } from '../components/FiltersContainers';
 import { FiltersCounter } from '../components/FiltersCounter';
 import { FiltersDropdown } from '../components/FiltersDropdown';
-import { StarIcon } from '../components/Icon/StarIcon';
-import { StarFilledIcon } from '../components/Icon/StarFilledIcon';
 import { Button } from '../components/Button';
 import { Input } from '../components/Input';
 
@@ -92,7 +91,7 @@ export const FilterPanel: Story = ({ loading = false }) => {
                             onChange={setFilterB}
                         />
                         <FiltersAction onClick={onFilterStar}>
-                            {star ? <StarFilledIcon size="s" noWrap /> : <StarIcon size="s" noWrap />}
+                            {star ? <IconStarSolid size="s" noWrap /> : <IconStarOutline size="s" noWrap />}
                         </FiltersAction>
                     </FiltersMenuContainer>
                     <Button text="Clear" onClick={onClear} />
