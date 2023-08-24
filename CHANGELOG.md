@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [3.0.0](https://github.com/taskany-inc/bricks/compare/v2.2.1...v3.0.0) (2023-08-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* use icons from @taskany/icons
+
+### Features
+
+* use icons from @taskany/icons ([0f82f60](https://github.com/taskany-inc/bricks/commit/0f82f6060f207acf774c759412ff70b27e38d08f))
+
+
+### Bug Fixes
+
+* **ListView:** typedef of component handlers ([3fa8c24](https://github.com/taskany-inc/bricks/commit/3fa8c248e4ae42b501b1fb7477bd195b25ea6b26))
+
 ## [2.2.1](https://github.com/taskany-inc/bricks/compare/v2.2.0...v2.2.1) (2023-08-24)
 
 
