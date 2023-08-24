@@ -15,8 +15,8 @@ import { useMounted } from '../hooks/useMounted';
 import { useKeyPress } from '../hooks';
 
 interface ListViewProps {
-    onClick?: <T>(value: T) => void;
-    onKeyboardClick?: <T>(value: T) => void;
+    onClick?: (value: unknown) => void;
+    onKeyboardClick?: (value: unknown) => void;
     children: React.ReactNode;
 }
 
