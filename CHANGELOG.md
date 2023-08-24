@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [2.2.0](https://github.com/taskany-inc/bricks/compare/v2.1.4...v2.2.0) (2023-08-24)
+
+
+### Features
+
+* **ListView:** add a new component ([b73b833](https://github.com/taskany-inc/bricks/commit/b73b833c97182550ee7b921b9c6d54aba7738bc8))
+
 ## [2.1.4](https://github.com/taskany-inc/bricks/compare/v2.1.3...v2.1.4) (2023-08-17)
 
 
