@@ -16,7 +16,7 @@ const data = Array.from({ length: 10 }, (_, i) => ({
 
 export const Default: StoryFn = () => {
     return (
-        <ListView>
+        <ListView onClick={(item) => console.log(item)} onKeyboardClick={(item) => console.log(item)}>
             <Table width={200} gap={10}>
                 {data.slice(0, 5).map((item) => (
                     <ListViewItem
