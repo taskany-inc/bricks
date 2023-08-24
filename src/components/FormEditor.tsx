@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { useDropzone } from 'react-dropzone';
 import Editor from '@monaco-editor/react';
 import { danger10, gapS, gapXs, gray2, gray3, gray4, gray6, gray8, radiusS, textColor } from '@taskany/colors';
+import { IconAttachOutline } from '@taskany/icons';
 
 import { nullable } from '../utils/nullable';
 import { useKeyboard, KeyCode } from '../hooks/useKeyboard';
@@ -13,7 +14,6 @@ import { formContext } from '../context/form';
 
 import { Popup } from './Popup';
 import { Link } from './Link';
-import { AttachIcon } from './Icon';
 
 interface FormEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'onBlur' | 'onFocus'> {
     id?: string;
@@ -244,7 +244,7 @@ const StyledUploadLink = styled(Link)`
     margin-right: ${gapXs};
 `;
 
-const StyledUploadIcon = styled(AttachIcon)`
+const StyledUploadIcon = styled(IconAttachOutline)`
     position: relative;
     top: 2px;
     padding-right: ${gapXs};

@@ -79,11 +79,11 @@
   "dependencies": {
     "@monaco-editor/react": "4.5.1",
     "@taskany/colors": "1.1.0",
+    "@taskany/icons": "1.1.0",
     "@tippyjs/react": "4.2.6",
     "color-layer": "1.0.3",
     "md5": "2.3.0",
-    "react-dropzone": "14.2.3",
-    "teenyicons": "0.4.1"
+    "react-dropzone": "14.2.3"
   },
   "sideEffects": false
 }

@@ -23,7 +23,6 @@ export * from './FormActions';
 export * from './FormCard';
 export * from './FormEditor';
 export * from './FormInput';
-export * from './Icon';
 export * from './FormMultiInput';
 export * from './MenuItem';
 export * from './Modal';

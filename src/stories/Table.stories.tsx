@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
 import { gray5, gray3, gapS, radiusM } from '@taskany/colors';
 import styled, { css } from 'styled-components';
+import { IconTargetOutline } from '@taskany/icons';
 
 import { Table, TableRow, TableCell } from '../components/Table';
-import { GoalIcon } from '../components/Icon/GoalIcon';
 import { Text } from '../components/Text';
 import { UserPic } from '../components/UserPic';
 import { Dot } from '../components/Dot';
@@ -80,7 +80,7 @@ export const Default: Story = () => {
             {data.map(({ title, projectId, tags, progress }) => (
                 <StyledTableRow key={title} align="center" gap={10}>
                     <TableCell min>
-                        <GoalIcon size="xxs" noWrap />
+                        <IconTargetOutline size="xxs" noWrap />
                     </TableCell>
                     <TableCell col={5}>
                         <Text size="s" weight="bold">
@@ -184,7 +184,7 @@ export const FocusAndHover: Story = () => {
             {data.map(({ title, projectId, tags, progress }, index) => (
                 <StyledTableRow key={title} align="center" gap={10} interactive focused={activeIndex === index}>
                     <TableCell min>
-                        <GoalIcon size="xxs" noWrap />
+                        <IconTargetOutline size="xxs" noWrap />
                     </TableCell>
                     <TableCell col={5}>
                         <Text size="s" weight="bold">

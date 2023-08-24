@@ -2,6 +2,7 @@
 import React, { useCallback, useEffect, useRef, useState, ComponentProps } from 'react';
 import styled from 'styled-components';
 import { danger10 } from '@taskany/colors';
+import { IconXOutline } from '@taskany/icons';
 
 import { nullable } from '../utils/nullable';
 import { useKeyPress } from '../hooks/useKeyPress';
@@ -9,7 +10,6 @@ import { useKeyboard, KeyCode } from '../hooks/useKeyboard';
 
 import { Popup } from './Popup';
 import { Input } from './Input';
-import { CrossIcon } from './Icon/CrossIcon';
 import { MenuItem } from './MenuItem';
 
 interface DropdownTriggerProps {
@@ -210,7 +210,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
                                     onSearchChange && onSearchChange(value);
                                 }}
                                 iconRight={
-                                    <CrossIcon
+                                    <IconXOutline
                                         size="xxs"
                                         onClick={() => {
                                             setQuery('');

@@ -1,13 +1,13 @@
 import React, { FC, useCallback } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import styled from 'styled-components';
+import { IconDownSmallSolid, IconUpSmallSolid } from '@taskany/icons';
 
 import { Header, HeaderContent, HeaderMenu, HeaderNav, HeaderNavLink } from '../components/Header';
-import Button from '../components/Button';
-import UserMenu from '../components/UserMenu';
+import { Button } from '../components/Button';
+import { UserMenu } from '../components/UserMenu';
 import { Dropdown } from '../components/Dropdown';
-import { ArrowDownSmallIcon, ArrowUpSmallIcon } from '../components/Icon';
-import MenuItem from '../components/MenuItem';
+import { MenuItem } from '../components/MenuItem';
 
 const meta: Meta<typeof Header> = {
     title: 'Header',
@@ -52,9 +52,9 @@ const CreateDropdown: FC = () => {
                         brick="left"
                         iconRight={
                             props.visible ? (
-                                <ArrowUpSmallIcon size="s" noWrap />
+                                <IconUpSmallSolid size="s" noWrap />
                             ) : (
-                                <ArrowDownSmallIcon size="s" noWrap />
+                                <IconDownSmallSolid size="s" noWrap />
                             )
                         }
                         ref={props.ref}
