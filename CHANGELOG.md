@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [2.2.1](https://github.com/taskany-inc/bricks/compare/v2.2.0...v2.2.1) (2023-08-24)
+
+
+### Bug Fixes
+
+* **ListView:** add reexport path ([3c4bf6e](https://github.com/taskany-inc/bricks/commit/3c4bf6e1cb08c2b1aad46d40ee3e4412d495e6d8))
+
 ## [2.2.0](https://github.com/taskany-inc/bricks/compare/v2.1.4...v2.2.0) (2023-08-24)
 
 
