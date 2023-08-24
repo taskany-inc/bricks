@@ -15,8 +15,10 @@ import { useMounted } from '../hooks/useMounted';
 import { useKeyPress } from '../hooks';
 
 interface ListViewProps {
-    onClick?: (value: unknown) => void;
-    onKeyboardClick?: (value: unknown) => void;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    onClick?: (value: any) => void;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    onKeyboardClick?: (value: any) => void;
     children: React.ReactNode;
 }
 
