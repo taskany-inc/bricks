@@ -24,9 +24,10 @@ const UserGroupContainer = styled.div`
     display: inline-flex;
 `;
 
-const UserContainer = styled.div`
+const UserContainer = styled.div<{ size: number }>`
     border-radius: 100%;
     border: 1px solid ${gray4};
+    height: ${({ size }) => `${size}px`};
 
     & + & {
         margin-left: calc(${gapSm} * -1);
@@ -84,7 +85,7 @@ export const UserGroup: FC<UserGroupProps> = ({ users, size = 24, limit = 3, ...
                 <Popup
                     key={i}
                     target={
-                        <UserContainer>
+                        <UserContainer size={size}>
                             <UserPic name={user.name} src={user.image} email={user.email} size={size} />
                         </UserContainer>
                     }
