@@ -37,6 +37,7 @@ export const FormRadioInput: React.FC<FormRadioInputProps> = ({
             <StyledFormRadioInput
                 type="radio"
                 checked={innerValue === value}
+                value={innerValue}
                 name={name}
                 onChange={onRadioInputChange}
                 id={innerValue}
