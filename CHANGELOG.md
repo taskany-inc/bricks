@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [3.0.1](https://github.com/taskany-inc/bricks/compare/v3.0.0...v3.0.1) (2023-08-26)
+
+
+### Bug Fixes
+
+* **FormRadioInput:** pass value to native input ([a8eb4ad](https://github.com/taskany-inc/bricks/commit/a8eb4ad027bdd07d061a3b47ef6f698bcfbc7b28))
+* **UserGroup:** container of users images must be same height that UserPic height ([cccd14c](https://github.com/taskany-inc/bricks/commit/cccd14c81c62a0905b65072c8287c87c60dd7590))
+
 ## [3.0.0](https://github.com/taskany-inc/bricks/compare/v2.2.1...v3.0.0) (2023-08-24)
 
 
