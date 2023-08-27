@@ -1,6 +1,6 @@
 import React, { ComponentProps } from 'react';
-import styled from 'styled-components';
-import { backgroundColor, colorPrimary, danger0, gapXs, gray3, gray4, radiusS, warn0 } from '@taskany/colors';
+import styled, { css } from 'styled-components';
+import { backgroundColor, colorPrimary, danger0, gapXs, gray3, gray4, gray5, radiusS, warn0 } from '@taskany/colors';
 import Tippy from '@tippyjs/react/headless';
 
 /**
@@ -27,6 +27,25 @@ const colorsMap = {
     warning: warn0,
 };
 
+const arrowDirectionStyles = {
+    top: `
+        border-top: none;
+        border-left: none;
+    `,
+    bottom: `
+        border-bottom: none;
+        border-right: none;
+    `,
+    left: `
+        border-bottom: none;
+        border-left: none;
+    `,
+    right: `
+        border-top: none;
+        border-right: none;
+    `,
+};
+
 const StyledPopupArrow = styled.div`
     visibility: hidden;
     position: absolute;
@@ -46,10 +65,21 @@ const StyledPopupArrow = styled.div`
         height: 8px;
 
         background: inherit;
+        border: 1px solid ${gray5};
 
         content: '';
 
         transform: rotate(45deg);
+    }
+`;
+
+const getArrowStyles = (direction: keyof typeof arrowDirectionStyles) => css`
+    &[data-placement|='${direction}'] {
+        ${StyledPopupArrow} {
+            &::before {
+                ${arrowDirectionStyles[direction]}
+            }
+        }
     }
 `;
 
@@ -68,6 +98,7 @@ const StyledPopupContainer = styled.div<{
     position: relative;
 
     background: ${backgroundColor};
+    border: 1px solid ${gray5};
 
     border-radius: ${radiusS};
 
@@ -152,6 +183,11 @@ const StyledPopupContainer = styled.div<{
         background: inherit;
         border-radius: inherit;
     }
+
+    ${getArrowStyles('bottom')}
+    ${getArrowStyles('left')}
+    ${getArrowStyles('right')}
+    ${getArrowStyles('top')}
 `;
 
 /**
