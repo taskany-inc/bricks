@@ -16,4 +16,6 @@ import { Text } from '@taskany/bricks';
 const App = () => <Text>Taskany Text Component</Text>;
 ```
 
-## Docs
+## Demo
+
+[Storybook](https://taskany-inc.github.io/bricks/)
