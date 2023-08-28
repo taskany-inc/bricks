@@ -1,9 +1,12 @@
-import React, { FC, useCallback, useEffect, useRef } from 'react';
+import React, { FC, useState } from 'react';
 import md5Hash from 'md5';
 import styled from 'styled-components';
 
 import { isRetina } from '../utils/isRetina';
-import { useMounted } from '../hooks';
+import { preloadImage } from '../utils/preloadImage';
+import { getInitials } from '../utils/getInitials';
+
+import { Circle } from './Circle';
 
 interface GravatarProps extends React.HTMLAttributes<HTMLImageElement> {
     email?: string | null;
@@ -13,8 +16,8 @@ interface GravatarProps extends React.HTMLAttributes<HTMLImageElement> {
     def?: string;
     className?: string;
     domain?: string;
+    name?: string | null;
 
-    onLoadError?: () => void;
     onClick?: () => void;
 }
 
@@ -30,13 +33,11 @@ export const Gravatar: FC<GravatarProps> = ({
     domain = process.env.NEXT_PUBLIC_GRAVATAR_HOST || 'www.gravatar.com',
     email,
     md5,
-    onLoadError,
+    name,
     ...props
 }) => {
-    const mounted = useMounted();
-    const imgRef = useRef<HTMLImageElement>(null);
-
-    const base = `//${domain}/avatar/`;
+    const [isError, setIsError] = useState(false);
+    const [isLoad, setIsLoad] = useState(false);
 
     const query = new URLSearchParams({
         s: String(size),
@@ -52,14 +53,6 @@ export const Gravatar: FC<GravatarProps> = ({
 
     const formattedEmail = email?.trim().toLowerCase() || '';
 
-    const onError: React.ReactEventHandler<HTMLImageElement> = useCallback(
-        ({ currentTarget }) => {
-            currentTarget.onerror = null;
-            onLoadError?.();
-        },
-        [onLoadError],
-    );
-
     let hash;
     if (md5) {
         hash = md5;
@@ -71,14 +64,20 @@ export const Gravatar: FC<GravatarProps> = ({
         return <script />;
     }
 
+    const base = `//${domain}/avatar/`;
     const src = `${base}${hash}?${query}`;
     const retinaSrc = `${base}${hash}?${retinaQuery}`;
+    const img = isRetina() ? retinaSrc : src;
 
-    useEffect(() => {
-        if (imgRef.current && mounted) {
-            imgRef.current.src = isRetina() ? retinaSrc : src;
-        }
-    }, [imgRef, mounted, src, retinaSrc]);
+    preloadImage(img)
+        .then(() => setIsLoad?.(true))
+        .catch(() => setIsError?.(true));
 
-    return <StyledImage ref={imgRef} height={size} width={size} onError={onError} {...props} />;
+    return !isLoad || isError ? (
+        <Circle size={size} str={`${email}`} {...props}>
+            {getInitials(name)}
+        </Circle>
+    ) : (
+        <StyledImage src={img} height={size} width={size} {...props} />
+    );
 };
