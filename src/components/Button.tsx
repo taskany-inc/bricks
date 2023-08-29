@@ -46,6 +46,8 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     iconLeft?: React.ReactNode;
     iconRight?: React.ReactNode;
     brick?: 'left' | 'right' | 'center';
+    /** This property is applicable only when the 'view' prop is set to 'default'. */
+    checked?: boolean;
     hue?: [number, number];
     children?: React.ReactNode;
 }
@@ -112,12 +114,12 @@ const StyledButton = styled(
             }
         `}
 
-    ${({ view }) =>
+    ${({ view, checked }) =>
         view === 'default' &&
         `
             color: ${gray10};
             border-color: ${gray7};
-            background-color: ${gray4};
+            background-color: ${checked ? gray6 : gray4};
 
             --color: ${gray9};
             --color-hover: ${gray10};
