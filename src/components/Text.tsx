@@ -40,6 +40,8 @@ export interface TextProps extends React.HTMLAttributes<HTMLDivElement> {
     size?: keyof typeof textSizes;
     weight?: keyof typeof textWeight;
     color?: string;
+    ellipsis?: boolean;
+    lines?: number;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -66,6 +68,22 @@ export const Text = styled.div<TextProps>`
         color &&
         css`
             color: ${color};
+        `}
+
+    ${({ ellipsis }) =>
+        ellipsis &&
+        css`
+            text-overflow: ellipsis;
+            overflow: hidden;
+        `}
+
+    ${({ ellipsis, lines }) =>
+        ellipsis &&
+        lines &&
+        css`
+            display: -webkit-box;
+            -webkit-line-clamp: ${lines};
+            -webkit-box-orient: vertical;
         `}
 `;
 
