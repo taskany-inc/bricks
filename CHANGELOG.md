@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [3.1.0](https://github.com/taskany-inc/bricks/compare/v3.0.1...v3.1.0) (2023-08-29)
+
+
+### Features
+
+* ellipsis component ([2fe9e31](https://github.com/taskany-inc/bricks/commit/2fe9e310001501ddaf52f5f450536c981595710a))
+* **nullable:** support array types ([03cac5d](https://github.com/taskany-inc/bricks/commit/03cac5d16790b1eec049125117aa41c26def347a))
+* **storybook:** upgrade + deploy wf ([478951b](https://github.com/taskany-inc/bricks/commit/478951bca97d3d9fca485e45eab8bdd907fd527c))
+
+
+### Bug Fixes
+
+* **ci:** change default branch name ([3a3179e](https://github.com/taskany-inc/bricks/commit/3a3179e866ffcc60dcf695bdd9cc84eba9ea531b))
+* **UserPic:** show colored circle by default ([39d2bc1](https://github.com/taskany-inc/bricks/commit/39d2bc1699a6c9dcabfd192b43c4df27c16cd5c2))
+
 ## [3.0.1](https://github.com/taskany-inc/bricks/compare/v3.0.0...v3.0.1) (2023-08-26)
 
 
