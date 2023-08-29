@@ -54,3 +54,4 @@ export * from './ListView';
 export * from './ErrorPopup';
 export * from './Spinner';
 export * from './Tabs';
+export * from './Checkbox';
