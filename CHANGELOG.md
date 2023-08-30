@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [3.1.1](https://github.com/taskany-inc/bricks/compare/v3.1.0...v3.1.1) (2023-08-30)
+
+
+### Bug Fixes
+
+* **Dropdown:** separate visibity for error popup ([fc7e467](https://github.com/taskany-inc/bricks/commit/fc7e46794ca3b7e6e818ab59eb734feb341e84e6))
+
 ## [3.1.0](https://github.com/taskany-inc/bricks/compare/v3.0.1...v3.1.0) (2023-08-29)
 
 
