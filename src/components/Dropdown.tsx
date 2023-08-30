@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useCallback, useEffect, useRef, useState, ComponentProps } from 'react';
 import styled from 'styled-components';
-import { danger10 } from '@taskany/colors';
 import { IconXOutline } from '@taskany/icons';
 
 import { nullable } from '../utils/nullable';
@@ -11,6 +10,7 @@ import { useKeyboard, KeyCode } from '../hooks/useKeyboard';
 import { Popup } from './Popup';
 import { Input } from './Input';
 import { MenuItem } from './MenuItem';
+import { ErrorPopup } from './ErrorPopup';
 
 interface DropdownTriggerProps {
     ref: React.RefObject<HTMLButtonElement>;
@@ -41,6 +41,7 @@ export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
     disabled?: boolean;
     className?: string;
     placement?: ComponentProps<typeof Popup>['placement'];
+    errorMessagePlacement?: ComponentProps<typeof Popup>['placement'];
     arrow?: ComponentProps<typeof Popup>['arrow'];
     offset?: ComponentProps<typeof Popup>['offset'];
     searchPlaceholder?: string;
@@ -56,17 +57,6 @@ export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
 const StyledDropdown = styled.span`
     position: relative;
     display: inline-block;
-`;
-
-const StyledErrorTrigger = styled.div`
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    border-radius: 100%;
-    background-color: ${danger10};
-    top: 11px;
-    left: -2px;
-    z-index: 1;
 `;
 
 export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
@@ -86,6 +76,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
             searchPlaceholder = 'Search',
             emptyText = 'No items found',
             placement = 'bottom-start',
+            errorMessagePlacement = 'bottom-start',
             arrow = false,
             offset = [-4, 8],
             ...attrs
@@ -154,23 +145,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
             <StyledDropdown className={className} ref={ref}>
                 {!disabled &&
                     nullable(error, (err) => (
-                        <>
-                            <StyledErrorTrigger
-                                ref={popupRef}
-                                onMouseEnter={() => setPopupVisibility(true)}
-                                onMouseLeave={() => setPopupVisibility(false)}
-                            />
-                            <Popup
-                                tooltip
-                                view="danger"
-                                placement={placement}
-                                visible={popupVisible}
-                                onClickOutside={onClickOutside}
-                                reference={popupRef}
-                            >
-                                {err.message}
-                            </Popup>
-                        </>
+                        <ErrorPopup err={err} visible={popupVisible} placement={errorMessagePlacement} />
                     ))}
 
                 <span ref={popupRef} {...onESC}>
