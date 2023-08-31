@@ -52,3 +52,4 @@ export * from './UserGroup';
 export * from './Popup';
 export * from './ListView';
 export * from './ErrorPopup';
+export * from './Spinner';
