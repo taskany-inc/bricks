@@ -56,3 +56,4 @@ export * from './Spinner';
 export * from './Tabs';
 export * from './Checkbox';
 export * from './AutoComplete';
+export * from './InlineForm';

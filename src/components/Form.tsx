@@ -15,6 +15,7 @@ interface FormProps extends React.HTMLAttributes<HTMLFormElement> {
 
 const submitKeys = [KeyMod.CtrlCmd, KeyCode.Enter];
 
+// TODO: https://github.com/taskany-inc/bricks/issues/448
 const StyledForm = styled.form`
     background-color: ${gray3};
 `;
