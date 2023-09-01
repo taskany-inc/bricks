@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { IconSearchOutline } from '@taskany/icons';
 
@@ -12,7 +12,6 @@ type Props = React.ComponentProps<Component>;
 export default {
     title: 'AutoComplete',
     component: AutoComplete,
-    subcomponents: { AutoCompleteList, AutoCompleteRadioGroup, AutoCompleteInput },
     argTypes: {
         onChange: { action: 'onChange' },
     },
@@ -51,6 +50,7 @@ export const Single: StoryFn<Props> = (args) => {
             mode="single"
             items={list}
             onChange={args.onChange}
+            keyGetter={(item) => item.id}
             renderItem={(props) => <div onClick={props.onItemClick}>{`${props.item.id}: ${props.item.title}`}</div>}
         >
             <AutoCompleteInput
@@ -82,15 +82,17 @@ export const Multiple: StoryFn<Props> = (args) => {
             mode="multiple"
             items={list}
             onChange={args.onChange}
+            keyGetter={(item) => item.id}
             renderItem={(props) => (
-                <Checkbox
-                    key={props.item.id}
-                    onClick={props.onItemClick}
-                    label={`${props.item.id}: ${props.item.title}`}
-                    name="item"
-                    checked={props.checked}
-                    value={props.item.id}
-                />
+                <div style={{ backgroundColor: props.active || props.hovered ? 'lightgrey' : 'transparent' }}>
+                    <Checkbox
+                        onClick={props.onItemClick}
+                        label={`${props.item.id}: ${props.item.title}`}
+                        name="item"
+                        checked={props.checked}
+                        value={props.item.id}
+                    />
+                </div>
             )}
         >
             <AutoCompleteInput
@@ -101,7 +103,7 @@ export const Multiple: StoryFn<Props> = (args) => {
                 placeholder="Search..."
             />
             <AutoCompleteList title="Your choise" selected />
-            <AutoCompleteList title="Suggesstions" />
+            <AutoCompleteList title="Suggesstions" filterSelected />
         </AutoComplete>
     );
 };
@@ -133,6 +135,7 @@ export const WithRadio: StoryFn<Props> = (args) => {
             mode="single"
             items={list}
             onChange={args.onChange}
+            keyGetter={(item) => item.id}
             renderItem={(props) => (
                 <div key={props.item.id}>
                     <label onClick={props.onItemClick}>
@@ -160,6 +163,8 @@ export const WithRadio: StoryFn<Props> = (args) => {
     );
 };
 
+const Wrapper = ({ children }: React.PropsWithChildren) => <Table gap={10}>{children}</Table>;
+
 export const MultipleWithTable: StoryFn<Props> = (args) => {
     const [value, setValue] = useState('');
     const [list, setList] = useState<Items>([]);
@@ -177,9 +182,16 @@ export const MultipleWithTable: StoryFn<Props> = (args) => {
             mode="multiple"
             items={list}
             onChange={args.onChange}
-            renderItems={({ children }) => <Table gap={10}>{children}</Table>}
+            keyGetter={(item) => item.id}
+            renderItems={Wrapper}
             renderItem={(props) => (
-                <TableRow gap={5} key={props.item.id}>
+                <TableRow
+                    gap={5}
+                    key={props.item.id}
+                    interactive
+                    focused={props.active || props.hovered}
+                    style={{ borderRadius: '5px' }}
+                >
                     <TableCell min>
                         <Checkbox
                             value={props.item.id}
@@ -202,7 +214,8 @@ export const MultipleWithTable: StoryFn<Props> = (args) => {
                 iconLeft={<IconSearchOutline size="s" />}
                 placeholder="Search..."
             />
-            <AutoCompleteList title="Suggesstions" />
+            <AutoCompleteList selected />
+            <AutoCompleteList filterSelected title="Sugesstions" />
         </AutoComplete>
     );
 };
@@ -219,6 +232,7 @@ export const MultipleFiniteList: StoryFn<Props> = (args) => (
     <AutoComplete
         mode="multiple"
         onChange={args.onChange}
+        keyGetter={(item) => item.id}
         items={finiteList}
         value={finiteList.slice(2, 4)}
         renderItem={(props) => (

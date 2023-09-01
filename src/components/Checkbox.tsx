@@ -40,7 +40,6 @@ export const Checkbox = forwardRef<HTMLInputElement, React.PropsWithChildren<Che
                     name={name}
                     value={value}
                     defaultChecked={checked}
-                    checked={checked}
                     ref={ref}
                     onChange={handleOnChange}
                     {...attrs}

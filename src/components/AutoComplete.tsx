@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useCallback, useMemo, useEffect, useState, useRef } from 'react';
+import React, { createContext, useContext, useCallback, useMemo, useEffect, useState, useRef, memo } from 'react';
 import styled from 'styled-components';
 import { gapS, gapXs, gray4, gray7 } from '@taskany/colors';
 
@@ -6,10 +6,12 @@ import { nullable } from '../utils';
 
 import { Text } from './Text';
 import { Input } from './Input';
+import { ListView, ListViewItem } from './ListView';
 
 type InputProps = React.ComponentProps<typeof Input>;
 type AutoCompleteMode = 'single' | 'multiple';
 type AutoCompleteSelectedMap<T> = Set<T>;
+type ListItemProps = Parameters<React.ComponentProps<typeof ListViewItem>['renderItem']>[0];
 
 interface AutoCompleteRenderItemProps<T> {
     item: T;
@@ -19,18 +21,15 @@ interface AutoCompleteRenderItemProps<T> {
 }
 
 interface AutoCompleteRenderItem<T> {
-    (props: AutoCompleteRenderItemProps<T>): React.ReactNode;
+    (props: AutoCompleteRenderItemProps<T> & ListItemProps): React.ReactNode;
 }
 
 interface AutoCompleteContext<T> {
     items: T[];
     value: T[];
+    keyGetter: (item: T) => string;
     renderItem: AutoCompleteRenderItem<T>;
-    renderItems: (props: React.PropsWithChildren) => React.ReactNode;
-    renderState: 'combine' | 'split';
-    switchType: () => void;
-    popItem: (item: T) => void;
-    pushItem: (item: T) => void;
+    onChange: (item: T) => void;
     map: React.MutableRefObject<AutoCompleteSelectedMap<T>>;
 }
 
@@ -38,6 +37,7 @@ interface AutoCompleteProps<T> {
     mode: AutoCompleteMode;
     items: T[];
     renderItem: AutoCompleteRenderItem<T>;
+    keyGetter: (item: T) => string;
     renderItems?: (props: React.PropsWithChildren) => React.ReactNode;
     value?: T[];
     onChange: (items: T[]) => void;
@@ -45,7 +45,14 @@ interface AutoCompleteProps<T> {
 
 interface AutoCompleteListProps {
     title?: string;
+    /**
+     * Render only selected items
+     */
     selected?: boolean;
+    /**
+     * Render filtered items by value
+     */
+    filterSelected?: boolean;
 }
 
 interface AutoCompleteInputProps extends Omit<InputProps, 'onChange'> {
@@ -146,68 +153,54 @@ function getItemCreator<T>(onChange: (item: T) => void, map: React.MutableRefObj
     };
 }
 
-export function AutoCompleteList({ title, selected }: AutoCompleteListProps) {
-    const {
-        items,
-        value,
-        renderItem,
-        renderItems: Component,
-        renderState,
-        switchType,
-        popItem,
-        pushItem,
-        map,
-    } = useAutoCompleteContext();
+function getRenderItemWithKey<T>(
+    renderItem: AutoCompleteRenderItem<T>,
+    keyGetter: (item: T) => string,
+): React.FC<AutoCompleteRenderItemProps<T>> {
+    return function AutoCompleteListItem(props) {
+        return (
+            <ListViewItem
+                key={keyGetter(props.item)}
+                value={props.item}
+                renderItem={(viewProps) => renderItem({ ...props, ...viewProps })}
+            />
+        );
+    };
+}
 
-    useEffect(() => {
-        if (selected) {
-            switchType();
-        }
-    }, [selected, switchType]);
+export const AutoCompleteList: React.FC<AutoCompleteListProps> = memo(({ title, selected, filterSelected }) => {
+    const { items, value, renderItem, onChange, map, keyGetter } = useAutoCompleteContext();
 
-    const onChange = useCallback(
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        (item: any) => {
-            const itemInMap = map.current.has(item);
-
-            if (itemInMap) {
-                popItem(item);
-            } else {
-                pushItem(item);
-            }
-        },
-        [map, popItem, pushItem],
-    );
+    const renderer = getRenderItemWithKey(renderItem, keyGetter);
 
     const createRenderItem = getItemCreator(onChange, map);
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const itemsToRender: AutoCompleteRenderItemProps<any>[] = useMemo(() => {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        let target: Array<any>;
+    let target: Array<any>;
 
-        if (renderState === 'split') {
-            if (selected) {
-                target = value;
-            } else {
-                target = items.filter((item) => !map.current.has(item));
-            }
-        } else {
+    switch (true) {
+        case selected:
+            target = value;
+            break;
+        case filterSelected:
+            target = items.filter((item) => !map.current.has(item));
+            break;
+        default:
             target = items;
-        }
+            break;
+    }
 
-        return target.map(createRenderItem);
-    }, [renderState, items, value, selected, createRenderItem, map]);
+    const itemsToRender = target.map(createRenderItem);
 
     return nullable(itemsToRender, (toRender) => (
         <>
             {nullable(title, (t) => (
                 <StyledText>{t}</StyledText>
             ))}
-            <Component>{toRender.map(renderItem)}</Component>
+            {toRender.map(renderer)}
         </>
     ));
-}
+});
 
 export const AutoCompleteInput: React.FC<AutoCompleteInputProps> = ({ onChange, ...props }) => {
     const handleInputChange = useCallback<React.ChangeEventHandler<HTMLInputElement>>((event) => {
@@ -225,63 +218,71 @@ export function AutoComplete<T>({
     value = [],
     onChange,
     children,
+    keyGetter,
     renderItem,
-    renderItems = defaultRenderItems,
+    renderItems: Component = defaultRenderItems,
 }: React.PropsWithChildren<AutoCompleteProps<T>>) {
-    const [type, setType] = useState<AutoCompleteContext<T>['renderState']>('combine');
     const [selected, setSelected] = useState<T[]>(() => value);
-
     const currentMap = useRef<Set<T>>(new Set(selected));
-
-    const switchType = useCallback(() => {
-        setType('split');
-    }, []);
+    const selectedLengthRef = useRef(selected.length);
 
     useEffect(() => {
-        onChange(selected);
+        if (selectedLengthRef.current !== selected.length) {
+            onChange(selected);
+
+            selectedLengthRef.current = selected.length;
+        }
     }, [selected, onChange]);
 
     const pushItem = useCallback(
         (item: T) => {
-            if (mode === 'multiple') {
-                currentMap.current.add(item);
-                setSelected((prev) => {
-                    return prev.concat(item);
-                });
-
+            if (mode === 'single') {
+                setSelected([item]);
                 return;
             }
 
-            setSelected([item]);
+            currentMap.current.add(item);
+
+            setSelected((prev) => {
+                return prev.concat(item);
+            });
         },
         [mode, onChange],
     );
 
-    const popItem = useCallback((item: T) => {
-        currentMap.current.delete(item);
-        setSelected(() => {
-            const next: T[] = [];
-            currentMap.current.forEach((val) => next.push(val));
+    const popItem = useCallback(
+        (item: T) => {
+            currentMap.current.delete(item);
 
-            return next;
-        });
-    }, []);
+            setSelected((prev) => {
+                const itemKey = keyGetter(item);
+                return prev.filter((val) => keyGetter(val) !== itemKey);
+            });
+        },
+        [keyGetter],
+    );
+
+    const handleChange = useCallback(
+        (item: T) => {
+            currentMap.current.has(item) ? popItem(item) : pushItem(item);
+        },
+        [pushItem, popItem],
+    );
 
     return (
         <AutoCompleteContextProvider.Provider
             value={{
                 value: selected,
-                renderState: type,
-                switchType,
-                items,
-                renderItem,
-                renderItems,
-                popItem,
-                pushItem,
                 map: currentMap,
+                onChange: handleChange,
+                items,
+                keyGetter,
+                renderItem,
             }}
         >
-            {children}
+            <ListView onKeyboardClick={handleChange}>
+                <Component>{children}</Component>
+            </ListView>
         </AutoCompleteContextProvider.Provider>
     );
 }
