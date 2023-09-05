@@ -21,4 +21,8 @@ export const Md = styled.div`
         max-width: 100%;
         border-radius: ${radiusS};
     }
+
+    p {
+        hyphens: auto;
+    }
 `;
