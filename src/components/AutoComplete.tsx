@@ -4,13 +4,13 @@ import { gapS, gapXs, gray4, gray7 } from '@taskany/colors';
 
 import { nullable } from '../utils';
 
-import { Text } from './Text';
 import { Input } from './Input';
-import { ListView, ListViewItem } from './ListView';
+import { Text } from './Text';
+import { ListViewItem, ListView } from './ListView';
 
 type InputProps = React.ComponentProps<typeof Input>;
 type AutoCompleteMode = 'single' | 'multiple';
-type AutoCompleteSelectedMap<T> = Set<T>;
+type AutoCompleteSelectedMap = Set<string>;
 type ListItemProps = Parameters<React.ComponentProps<typeof ListViewItem>['renderItem']>[0];
 
 interface AutoCompleteRenderItemProps<T> {
@@ -30,7 +30,7 @@ interface AutoCompleteContext<T> {
     keyGetter: (item: T) => string;
     renderItem: AutoCompleteRenderItem<T>;
     onChange: (item: T) => void;
-    map: React.MutableRefObject<AutoCompleteSelectedMap<T>>;
+    map: React.MutableRefObject<AutoCompleteSelectedMap>;
 }
 
 interface AutoCompleteProps<T> {
@@ -142,12 +142,16 @@ export function AutoCompleteRadioGroup<T extends { title: string; value: string 
     );
 }
 
-function getItemCreator<T>(onChange: (item: T) => void, map: React.MutableRefObject<AutoCompleteSelectedMap<T>>) {
+function getItemCreator<T>(
+    onChange: (item: T) => void,
+    map: React.MutableRefObject<AutoCompleteSelectedMap>,
+    keyGetter: (item: T) => string,
+) {
     return function createRenderItem<T1 extends T>(item: T1, index: number): AutoCompleteRenderItemProps<T> {
         return {
             item,
             index,
-            checked: map.current.has(item),
+            checked: map.current.has(keyGetter(item)),
             onItemClick: () => onChange(item),
         };
     };
@@ -172,8 +176,7 @@ export const AutoCompleteList: React.FC<AutoCompleteListProps> = memo(({ title, 
     const { items, value, renderItem, onChange, map, keyGetter } = useAutoCompleteContext();
 
     const renderer = getRenderItemWithKey(renderItem, keyGetter);
-
-    const createRenderItem = getItemCreator(onChange, map);
+    const createRenderItem = getItemCreator(onChange, map, keyGetter);
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let target: Array<any>;
@@ -183,7 +186,7 @@ export const AutoCompleteList: React.FC<AutoCompleteListProps> = memo(({ title, 
             target = value;
             break;
         case filterSelected:
-            target = items.filter((item) => !map.current.has(item));
+            target = items.filter((item) => !map.current.has(keyGetter(item)));
             break;
         default:
             target = items;
@@ -203,9 +206,12 @@ export const AutoCompleteList: React.FC<AutoCompleteListProps> = memo(({ title, 
 });
 
 export const AutoCompleteInput: React.FC<AutoCompleteInputProps> = ({ onChange, ...props }) => {
-    const handleInputChange = useCallback<React.ChangeEventHandler<HTMLInputElement>>((event) => {
-        onChange(event.target.value);
-    }, []);
+    const handleInputChange = useCallback<React.ChangeEventHandler<HTMLInputElement>>(
+        (event) => {
+            onChange(event.target.value);
+        },
+        [onChange],
+    );
 
     return <Input {...props} onChange={handleInputChange} />;
 };
@@ -223,7 +229,7 @@ export function AutoComplete<T>({
     renderItems: Component = defaultRenderItems,
 }: React.PropsWithChildren<AutoCompleteProps<T>>) {
     const [selected, setSelected] = useState<T[]>(() => value);
-    const currentMap = useRef<Set<T>>(new Set(selected));
+    const currentMap = useRef<AutoCompleteSelectedMap>(new Set(selected.map((item) => keyGetter(item))));
     const selectedLengthRef = useRef(selected.length);
 
     useEffect(() => {
@@ -241,18 +247,18 @@ export function AutoComplete<T>({
                 return;
             }
 
-            currentMap.current.add(item);
+            currentMap.current.add(keyGetter(item));
 
             setSelected((prev) => {
                 return prev.concat(item);
             });
         },
-        [mode, onChange],
+        [mode, keyGetter],
     );
 
     const popItem = useCallback(
         (item: T) => {
-            currentMap.current.delete(item);
+            currentMap.current.delete(keyGetter(item));
 
             setSelected((prev) => {
                 const itemKey = keyGetter(item);
@@ -264,9 +270,9 @@ export function AutoComplete<T>({
 
     const handleChange = useCallback(
         (item: T) => {
-            currentMap.current.has(item) ? popItem(item) : pushItem(item);
+            currentMap.current.has(keyGetter(item)) ? popItem(item) : pushItem(item);
         },
-        [pushItem, popItem],
+        [keyGetter, popItem, pushItem],
     );
 
     return (
