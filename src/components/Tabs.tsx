@@ -4,14 +4,15 @@ import { gray7 } from '@taskany/colors';
 
 import { nullable } from '../utils';
 
-import { TabsMenu, TabsMenuDefault } from './TabsMenu';
 import { ListView, ListViewItem } from './ListView';
+import { TabsMenuDefault, TabsMenu } from './TabsMenu';
 
 interface TabsProps {
     layout: 'horizontal' | 'vertical';
     onChangeActiveTab?: (nextTab: string) => void;
     className?: string;
 }
+type RegisterTabs = Map<string, React.ReactNode>;
 
 interface TabProps {
     name: string;
@@ -27,6 +28,7 @@ interface TabContextValue {
 
 interface TabsContextValue {
     register: (props: TabContextValue) => void;
+    setTabProps: (name: string, content: React.ReactNode) => void;
     switchTab: (name: string) => void;
     active: string | null;
 }
@@ -77,6 +79,9 @@ const TabsContext = createContext<TabsContextValue>({
     switchTab: () => {
         throw new Error('Context in not initialized');
     },
+    setTabProps: () => {
+        throw new Error('Context in not initialized');
+    },
     active: null,
 });
 
@@ -90,19 +95,24 @@ export const Tabs: React.FC<React.PropsWithChildren<TabsProps>> = ({
     children,
     className,
 }) => {
-    const [tabItems, setTabItems] = useState<Record<string, TabContextValue>>({});
+    const tabsContentRef = useRef<RegisterTabs>(new Map());
     const [activeTabName, setActiveTabName] = useState('');
 
-    const register = useCallback((props: TabContextValue) => {
-        if (props.selected) {
-            setActiveTabName(props.name);
-        }
+    const setTabProps = useCallback(
+        (name: string, content: React.ReactNode) => tabsContentRef.current.set(name, content),
+        [],
+    );
 
-        setTabItems((prev) => ({
-            ...prev,
-            [props.name]: props,
-        }));
-    }, []);
+    const register = useCallback(
+        (props: TabContextValue) => {
+            if (props.selected) {
+                setActiveTabName(props.name);
+            }
+
+            setTabProps(props.name, props.content);
+        },
+        [setTabProps],
+    );
 
     const switchTab = useCallback(
         (name: string) => {
@@ -112,15 +122,15 @@ export const Tabs: React.FC<React.PropsWithChildren<TabsProps>> = ({
         [onChangeActiveTab],
     );
 
-    const activeTab = tabItems[activeTabName];
+    const activeTab = tabsContentRef.current.get(activeTabName);
 
     return (
-        <TabsContext.Provider value={{ register, switchTab, active: activeTabName }}>
+        <TabsContext.Provider value={{ register, setTabProps, switchTab, active: activeTabName }}>
             <StyledTabs layout={layout} className={className}>
                 <StyledTabsMenu layout={layout}>
                     <ListView onKeyboardClick={switchTab}>{children}</ListView>
                 </StyledTabsMenu>
-                {nullable(activeTab?.content, (content) => (
+                {nullable(activeTab, (content) => (
                     <StyledTabContent>{content}</StyledTabContent>
                 ))}
             </StyledTabs>
@@ -129,8 +139,9 @@ export const Tabs: React.FC<React.PropsWithChildren<TabsProps>> = ({
 };
 
 export const Tab: React.FC<React.PropsWithChildren<TabProps>> = ({ name, label, children, selected }) => {
-    const { switchTab, register, active: activeTab } = useContext(TabsContext);
+    const { switchTab, register, setTabProps, active: activeTab } = useContext(TabsContext);
     const registerRef = useRef(false);
+    const prevChildRef = useRef<React.ReactNode>();
 
     useEffect(() => {
         if (registerRef.current) {
@@ -145,6 +156,13 @@ export const Tab: React.FC<React.PropsWithChildren<TabProps>> = ({ name, label, 
 
         registerRef.current = true;
     }, [register, name, label, selected, children]);
+
+    useEffect(() => {
+        if (prevChildRef.current !== children) {
+            setTabProps(name, children);
+            prevChildRef.current = children;
+        }
+    }, [children, setTabProps, name]);
 
     return (
         <ListViewItem
