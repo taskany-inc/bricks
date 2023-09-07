@@ -1,20 +1,33 @@
-import React, { MouseEventHandler } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { colorPrimary, gapXs, gray10, gray5, gray6, gray9, radiusL, textColorPrimary } from '@taskany/colors';
-
-import { CleanButton } from './CleanButton';
+import { gapXs, gray5, gray6, gray8, gray9, radiusL } from '@taskany/colors';
+import { IconXCircleSolid } from '@taskany/icons';
 
 interface TagProps extends React.HTMLAttributes<HTMLDivElement> {
     children: React.ReactNode;
-    description?: string;
     size?: 's' | 'm';
     className?: string;
-    checked?: boolean;
-
-    onClick?: MouseEventHandler<HTMLDivElement>;
 }
 
-export const TagCleanButton = styled(CleanButton)``;
+// FIXME: clicking on this element triggers click on Tag.
+// Must be solved in base icon component.
+export const TagCleanButton = styled(IconXCircleSolid).attrs({
+    size: 'xs',
+})`
+    visibility: hidden;
+
+    position: absolute;
+    top: -4px;
+    right: -4px;
+
+    color: ${gray8};
+
+    transition: color 100ms ease-in-out;
+
+    &:hover {
+        color: ${gray9};
+    }
+`;
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const StyledTag = styled(({ size, ...props }: TagProps) => <div {...props} />)`
@@ -34,21 +47,11 @@ const StyledTag = styled(({ size, ...props }: TagProps) => <div {...props} />)`
 
     background-color: ${gray5};
 
-    transition: background-color, color 300ms ease-in-out;
+    transition: background-color 100ms ease-in-out;
 
     & + & {
         margin-left: ${gapXs};
     }
-
-    ${({ checked }) =>
-        !checked &&
-        `
-            &:hover {
-                color: ${gray10};
-
-                background-color: ${gray6};
-            }
-        `}
 
     &:hover {
         ${TagCleanButton} {
@@ -62,6 +65,10 @@ const StyledTag = styled(({ size, ...props }: TagProps) => <div {...props} />)`
         onClick &&
         `
             cursor: pointer;
+
+            &:hover {
+                background-color: ${gray6};
+            }
         `}
 
     ${({ size }) =>
@@ -70,19 +77,11 @@ const StyledTag = styled(({ size, ...props }: TagProps) => <div {...props} />)`
             padding: 3px 10px;
             font-size: 11px;
         `}
-
-    ${({ checked }) =>
-        checked &&
-        `
-            color: ${textColorPrimary};
-
-            background-color: ${colorPrimary};
-        `}
 `;
 
-export const Tag: React.FC<TagProps> = ({ children, description, size = 'm', ...props }) => {
+export const Tag: React.FC<TagProps> = ({ children, size = 'm', ...props }) => {
     return (
-        <StyledTag size={size} title={description} {...props}>
+        <StyledTag size={size} {...props}>
             {children}
         </StyledTag>
     );

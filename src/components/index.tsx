@@ -7,7 +7,6 @@ export * from './CardContent';
 export * from './CardComment';
 export * from './CardActions';
 export * from './CardInfo';
-export * from './CleanButton';
 export * from './ComboBox';
 export * from './Dot';
 export * from './Dropdown';
