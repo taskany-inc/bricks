@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [3.3.0](https://github.com/taskany-inc/bricks/compare/v3.2.1...v3.3.0) (2023-09-07)
+
+
+### Features
+
+* inlineForm component ([f4a5047](https://github.com/taskany-inc/bricks/commit/f4a504710d130f0824b33e1af12cd1d409565bdc))
+
 ## [3.2.1](https://github.com/taskany-inc/bricks/compare/v3.2.0...v3.2.1) (2023-09-06)
 
 
