@@ -7,28 +7,20 @@ import { nullable } from '../utils';
 
 import { Form } from './Form';
 
-interface RenderTriggerProps {
-    onClick: () => void;
-}
-
-interface InlineFormProps {
-    renderTrigger: (props: RenderTriggerProps) => React.ReactNode;
-    onSubmit: () => Promise<void>;
+interface InlineFormProps extends React.HTMLAttributes<HTMLDivElement> {
     children: React.ReactNode;
-    onReset: () => void;
     className?: string;
-}
 
-const StyledForm = styled(Form)`
-    background-color: transparent;
-`;
+    renderTrigger: (props: { onClick: () => void }) => React.ReactNode;
+    onSubmit: () => Promise<void>;
+    onReset: () => void;
+}
 
 const StyledWrapper = styled.div`
     display: contents;
-}
 `;
 
-export const InlineForm: React.FC<InlineFormProps> = ({ renderTrigger, onSubmit, onReset, children, className }) => {
+export const InlineForm: React.FC<InlineFormProps> = ({ renderTrigger, onSubmit, onReset, children, ...attrs }) => {
     const wrapperRef = useRef<HTMLDivElement>(null);
     const [visible, toggleVisible] = useReducer((state) => !state, !renderTrigger);
 
@@ -63,10 +55,10 @@ export const InlineForm: React.FC<InlineFormProps> = ({ renderTrigger, onSubmit,
     }, [visible, onReset]);
 
     return (
-        <StyledWrapper ref={wrapperRef} className={className} {...onESC}>
+        <StyledWrapper ref={wrapperRef} {...onESC} {...attrs}>
             {nullable(!visible, () => renderTrigger({ onClick: toggleVisible }))}
             {nullable(visible, () => (
-                <StyledForm onSubmit={handleSubmit}>{children}</StyledForm>
+                <Form onSubmit={handleSubmit}>{children}</Form>
             ))}
         </StyledWrapper>
     );
