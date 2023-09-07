@@ -1,56 +1,75 @@
-import React, { forwardRef, useCallback } from 'react';
-import { gapS, gray7 } from '@taskany/colors';
+import React, { createContext, forwardRef, useCallback, useId } from 'react';
 import styled from 'styled-components';
 
-import { nullable } from '../utils';
-
-import { Text } from './Text';
-
-interface CheckboxProps extends React.HTMLAttributes<HTMLInputElement> {
-    checked: boolean;
-    value: string;
+interface CheckboxProps extends React.HTMLAttributes<HTMLDivElement> {
     name: string;
-    disabled?: boolean;
-    tabIndex?: number;
-    label?: string;
     className?: string;
     onClick: (value: unknown) => void;
 }
 
-const StyledLabel = styled.label`
+const StyledWrapper = styled.div`
     display: flex;
     flex-wrap: nowrap;
     flex-basis: auto;
+    align-items: center;
 `;
 
-const StyledInput = styled.input`
-    padding-right: ${gapS};
-`;
+const CheckboxContext = createContext<{
+    id: string;
+    name: string;
+    onClick: React.ChangeEventHandler<HTMLInputElement>;
+}>({
+    id: 'unknown',
+    name: 'unknown',
+    onClick: () => {},
+});
 
-export const Checkbox = forwardRef<HTMLInputElement, React.PropsWithChildren<CheckboxProps>>(
-    ({ onClick, checked, value, name, label, className, children, ...attrs }, ref) => {
+export const CheckboxLabel: React.FC<React.PropsWithChildren<{ className?: string }>> = ({ className, children }) => (
+    <CheckboxContext.Consumer>
+        {({ id }) => (
+            <label htmlFor={id} className={className}>
+                {children}
+            </label>
+        )}
+    </CheckboxContext.Consumer>
+);
+
+interface CheckboxInputProps extends React.HTMLAttributes<HTMLInputElement> {
+    value: string;
+    checked: boolean;
+}
+
+export const CheckboxInput = forwardRef<HTMLInputElement, CheckboxInputProps>(({ value, checked, ...attrs }, ref) => (
+    <CheckboxContext.Consumer>
+        {({ id, onClick, name }) => (
+            <input
+                id={id}
+                type="checkbox"
+                name={name}
+                value={value}
+                defaultChecked={checked}
+                ref={ref}
+                onChange={onClick}
+                {...attrs}
+            />
+        )}
+    </CheckboxContext.Consumer>
+));
+
+export const Checkbox = forwardRef<HTMLDivElement, React.PropsWithChildren<CheckboxProps>>(
+    ({ onClick, name, className, children }, ref) => {
         const handleOnChange = useCallback<React.ChangeEventHandler<HTMLInputElement>>((event) => {
             onClick(event.target.value);
         }, []);
 
+        const id = useId();
+
         return (
-            <StyledLabel className={className}>
-                <StyledInput
-                    type="checkbox"
-                    name={name}
-                    value={value}
-                    defaultChecked={checked}
-                    ref={ref}
-                    onChange={handleOnChange}
-                    {...attrs}
-                />
-                {nullable(label, (l) => (
-                    <Text size="s" color={gray7}>
-                        {l}
-                    </Text>
-                ))}
-                {children}
-            </StyledLabel>
+            <CheckboxContext.Provider value={{ id: `${name}-${id}`, onClick: handleOnChange, name }}>
+                <StyledWrapper className={className} ref={ref}>
+                    {children}
+                </StyledWrapper>
+            </CheckboxContext.Provider>
         );
     },
 );
