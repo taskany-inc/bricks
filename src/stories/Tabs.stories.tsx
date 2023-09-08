@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 
-import { Tab, Tabs, TabContent } from '../components/Tabs';
+import { Tab, Tabs } from '../components/Tabs';
 import { TabsMenu, TabsMenuItem } from '../components/TabsMenu';
 import { Text } from '../components/Text';
 
@@ -30,35 +30,23 @@ export const Default: StoryFn<TabsProps> = (args) => {
     return (
         <div style={{ width: args.layout === 'vertical' ? '300px' : '500px', height: '200px' }}>
             <Tabs {...args}>
-                <Tab name="tab one" label={<TabLabel label="First" />} selected>
-                    <TabContentWrapper>
-                        <TabContent>content for first</TabContent>
-                    </TabContentWrapper>
+                <Tab name="1" label={<TabLabel label="First" />}>
+                    <TabContentWrapper>content for first</TabContentWrapper>
                 </Tab>
-                <Tab name="tab two" label={<TabLabel label="Second" />}>
-                    <TabContentWrapper>
-                        <TabContent>content for second</TabContent>
-                    </TabContentWrapper>
+                <Tab name="2" label={<TabLabel label="Second" />}>
+                    <TabContentWrapper>content for second</TabContentWrapper>
                 </Tab>
-                <Tab name="tab three" label={<TabLabel label="Third" />}>
-                    <TabContentWrapper>
-                        <TabContent>content for third</TabContent>
-                    </TabContentWrapper>
+                <Tab name="3" label={<TabLabel label="Third" />}>
+                    <TabContentWrapper>content for third</TabContentWrapper>
                 </Tab>
-                <Tab name="tab four" label={<TabLabel label="Fourth" />}>
-                    <TabContentWrapper>
-                        <TabContent>content for fourth</TabContent>
-                    </TabContentWrapper>
+                <Tab name="4" label={<TabLabel label="Fourth" />}>
+                    <TabContentWrapper>content for fourth</TabContentWrapper>
                 </Tab>
-                <Tab name="tab five" label={<TabLabel label="Fifth" />}>
-                    <TabContentWrapper>
-                        <TabContent>content for fifth</TabContent>
-                    </TabContentWrapper>
+                <Tab name="5" label={<TabLabel label="Fifth" />}>
+                    <TabContentWrapper>content for fifth</TabContentWrapper>
                 </Tab>
-                <Tab name="tab six" label={<TabLabel label="Sixth" />}>
-                    <TabContentWrapper>
-                        <TabContent>content for sixth</TabContent>
-                    </TabContentWrapper>
+                <Tab name="6" label={<TabLabel label="Sixth" />}>
+                    <TabContentWrapper>content for sixth</TabContentWrapper>
                 </Tab>
             </Tabs>
         </div>
@@ -67,10 +55,11 @@ export const Default: StoryFn<TabsProps> = (args) => {
 
 Default.args = {
     layout: 'vertical',
+    active: '2',
 };
 
 Default.argTypes = {
-    onChangeActiveTab: { action: 'tab change' },
+    onChange: { action: 'tab change' },
 };
 
 export const AsMenu: StoryFn = () => (
@@ -96,4 +85,6 @@ export const TabsWithoutContent: StoryFn<TabsProps> = (args) => (
 );
 
 TabsWithoutContent.argTypes = Default.argTypes;
-TabsWithoutContent.args = Default.args;
+TabsWithoutContent.args = {
+    layout: 'horizontal',
+};

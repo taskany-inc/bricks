@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react';
+import React, { createContext, memo, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { gray7 } from '@taskany/colors';
 
@@ -9,28 +9,20 @@ import { TabsMenuDefault, TabsMenu } from './TabsMenu';
 
 interface TabsProps {
     layout: 'horizontal' | 'vertical';
-    onChangeActiveTab?: (nextTab: string) => void;
+    onChange?: (nextTab: string) => void;
+    active?: string;
     className?: string;
 }
-type RegisterTabs = Map<string, React.ReactNode>;
 
 interface TabProps {
     name: string;
     label: React.ReactNode;
-    selected?: boolean;
-}
-
-interface TabContextValue {
-    name: string;
-    content: React.ReactNode;
-    selected?: boolean;
 }
 
 interface TabsContextValue {
-    register: (props: TabContextValue) => void;
-    setTabProps: (name: string, content: React.ReactNode) => void;
-    switchTab: (name: string) => void;
-    active: string | null;
+    switchTab: (nextState: TabActiveState) => void;
+    active: string;
+    content: React.ReactNode;
 }
 
 const layoutMap: Record<TabsProps['layout'], string> = {
@@ -73,104 +65,80 @@ const StyledTabsMenu = styled(TabsMenu)<TabsProps>`
 `;
 
 const TabsContext = createContext<TabsContextValue>({
-    register: () => {
-        throw new Error('Context in not initialized');
-    },
     switchTab: () => {
         throw new Error('Context in not initialized');
     },
-    setTabProps: () => {
-        throw new Error('Context in not initialized');
-    },
-    active: null,
+    active: 'unknown',
+    content: null,
 });
 
 const StyledTabContent = styled.div`
     overflow: auto;
 `;
 
+const TabInnerContent = () => (
+    <TabsContext.Consumer>
+        {({ content }) => nullable(content, (c) => <StyledTabContent>{c}</StyledTabContent>)}
+    </TabsContext.Consumer>
+);
+
+interface TabActiveState {
+    name: string;
+    content: React.ReactNode;
+}
+
 export const Tabs: React.FC<React.PropsWithChildren<TabsProps>> = ({
     layout,
-    onChangeActiveTab,
+    active = 'unknown',
+    onChange,
     children,
     className,
 }) => {
-    const tabsContentRef = useRef<RegisterTabs>(new Map());
-    const [activeTabName, setActiveTabName] = useState('');
+    const [{ name, content }, setActiveTab] = useState<TabActiveState>(() => ({ name: active, content: null }));
+    const prevActiveTabName = useRef(name);
 
-    const setTabProps = useCallback(
-        (name: string, content: React.ReactNode) => tabsContentRef.current.set(name, content),
-        [],
-    );
-
-    const register = useCallback(
-        (props: TabContextValue) => {
-            if (props.selected) {
-                setActiveTabName(props.name);
-            }
-
-            setTabProps(props.name, props.content);
-        },
-        [setTabProps],
-    );
-
-    const switchTab = useCallback(
-        (name: string) => {
-            setActiveTabName(name);
-            onChangeActiveTab?.(name);
-        },
-        [onChangeActiveTab],
-    );
-
-    const activeTab = tabsContentRef.current.get(activeTabName);
+    useEffect(() => {
+        if (prevActiveTabName.current !== name) {
+            onChange?.(name);
+        }
+    }, [name, onChange]);
 
     return (
-        <TabsContext.Provider value={{ register, setTabProps, switchTab, active: activeTabName }}>
+        <TabsContext.Provider value={{ switchTab: setActiveTab, active: name, content }}>
             <StyledTabs layout={layout} className={className}>
                 <StyledTabsMenu layout={layout}>
-                    <ListView onKeyboardClick={switchTab}>{children}</ListView>
+                    <ListView onKeyboardClick={setActiveTab}>{children}</ListView>
                 </StyledTabsMenu>
-                {nullable(activeTab, (content) => (
-                    <StyledTabContent>{content}</StyledTabContent>
-                ))}
+                <TabInnerContent />
             </StyledTabs>
         </TabsContext.Provider>
     );
 };
 
-export const Tab: React.FC<React.PropsWithChildren<TabProps>> = ({ name, label, children, selected }) => {
-    const { switchTab, register, setTabProps, active: activeTab } = useContext(TabsContext);
-    const registerRef = useRef(false);
+export const Tab: React.FC<React.PropsWithChildren<TabProps>> = memo(({ name, label, children }) => {
+    const { switchTab, active } = useContext(TabsContext);
     const prevChildRef = useRef<React.ReactNode>();
 
-    useEffect(() => {
-        if (registerRef.current) {
-            return;
-        }
+    const currentTab = active === name;
 
-        register({
-            name,
-            selected,
-            content: children,
-        });
+    const value: TabActiveState = useMemo(() => ({ name, content: children }), [name, children]);
 
-        registerRef.current = true;
-    }, [register, name, label, selected, children]);
+    const handleTabChange = useCallback(() => switchTab(value), [switchTab, value]);
 
     useEffect(() => {
-        if (prevChildRef.current !== children) {
-            setTabProps(name, children);
-            prevChildRef.current = children;
+        if (currentTab && prevChildRef.current !== value.content) {
+            handleTabChange();
+            prevChildRef.current = value.content;
         }
-    }, [children, setTabProps, name]);
+    }, [currentTab, value, handleTabChange]);
 
     return (
         <ListViewItem
-            value={name}
+            value={value}
             renderItem={({ active, hovered, onMouseLeave, onMouseMove }) => (
                 <StyledTabItem
-                    onClick={() => switchTab(name)}
-                    active={activeTab === name}
+                    onClick={handleTabChange}
+                    active={currentTab}
                     focused={active || hovered}
                     onMouseMove={onMouseMove}
                     onMouseLeave={onMouseLeave}
@@ -180,6 +148,6 @@ export const Tab: React.FC<React.PropsWithChildren<TabProps>> = ({ name, label, 
             )}
         />
     );
-};
+});
 
 export const TabContent = StyledTabContent;
