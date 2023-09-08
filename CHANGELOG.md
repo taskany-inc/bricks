@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [3.4.0](https://github.com/taskany-inc/bricks/compare/v3.3.0...v3.4.0) (2023-09-08)
+
+
+### Features
+
+* **Checkbox:** renew component API ([e8fec5e](https://github.com/taskany-inc/bricks/commit/e8fec5ef99140f8ae52979ef99a5cb4876fb1994))
+
 ## [3.3.0](https://github.com/taskany-inc/bricks/compare/v3.2.1...v3.3.0) (2023-09-07)
 
 
