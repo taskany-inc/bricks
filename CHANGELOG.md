@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [4.0.0](https://github.com/taskany-inc/bricks/compare/v3.4.0...v4.0.0) (2023-09-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove CleanButton component
+
+### Bug Fixes
+
+* **Tabs:** replace tabs map via state object ([138f934](https://github.com/taskany-inc/bricks/commit/138f934d075f4af01366e69343210c3b31585ca4))
+
+
+### Code Refactoring
+
+* remove CleanButton component ([59a569f](https://github.com/taskany-inc/bricks/commit/59a569ff72530d160f6f324ca5f35de3901a701b))
+
 ## [3.4.0](https://github.com/taskany-inc/bricks/compare/v3.3.0...v3.4.0) (2023-09-08)
 
 
