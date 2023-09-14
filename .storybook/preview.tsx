@@ -2,7 +2,7 @@ import React from 'react';
 import type { Preview } from '@storybook/react';
 import { LightTheme } from '@taskany/colors';
 
-import { TextStyle } from '../src/components/Text';
+import { TextStyle } from '../src/components/Text/Text';
 
 const preview: Preview = {
     parameters: {

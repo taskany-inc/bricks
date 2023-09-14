@@ -7,9 +7,9 @@ import { IconPlusCircleOutline } from '@taskany/icons';
 import { nullable } from '../utils/nullable';
 import { formContext } from '../context/form';
 
-import { Text } from './Text';
-import { Tag, TagCleanButton } from './Tag';
-import { Input } from './Input';
+import { Text } from './Text/Text';
+import { Tag, TagCleanButton } from './Tag/Tag';
+import { Input } from './Input/Input';
 import { MenuItem } from './MenuItem';
 import { ComboBox } from './ComboBox';
 

@@ -13,7 +13,7 @@ import { useUpload } from '../hooks/useUpload';
 import { formContext } from '../context/form';
 
 import { Popup } from './Popup';
-import { Link } from './Link';
+import { Link } from './Link/Link';
 
 interface FormEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'onBlur' | 'onFocus'> {
     id?: string;

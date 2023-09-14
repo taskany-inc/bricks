@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { gray0 } from '@taskany/colors';
 
-import { SheepLogo } from './SheepLogo';
-import { Text } from './Text';
+import { SheepLogo } from './SheepLogo/SheepLogo';
+import { Text } from './Text/Text';
 
 const StyledFooter = styled.footer`
     display: grid;

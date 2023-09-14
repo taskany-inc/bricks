@@ -4,7 +4,7 @@ import { gapS, gray4, gray7, gray8, radiusM } from '@taskany/colors';
 
 import { nullable } from '../utils/nullable';
 
-import { Dot } from './Dot';
+import { Dot } from './Dot/Dot';
 
 interface MenuItemProps extends React.HTMLAttributes<HTMLDivElement> {
     selected?: boolean;
