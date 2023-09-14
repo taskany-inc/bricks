@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { gapM, gapS } from '@taskany/colors';
 
-import { Text } from './Text';
+import { Text } from './Text/Text';
 
 export const FormTitle = styled(Text)`
     padding: ${gapS} 0 ${gapM};

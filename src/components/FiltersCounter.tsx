@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { textColor } from '@taskany/colors';
 
-import { Badge } from './Badge';
-import { Text } from './Text';
+import { Badge } from './Badge/Badge';
+import { Text } from './Text/Text';
 
 interface FiltersCounterProps extends React.HTMLAttributes<HTMLDivElement> {
     counter?: number;

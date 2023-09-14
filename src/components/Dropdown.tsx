@@ -8,7 +8,7 @@ import { useKeyPress } from '../hooks/useKeyPress';
 import { useKeyboard, KeyCode } from '../hooks/useKeyboard';
 
 import { Popup } from './Popup';
-import { Input } from './Input';
+import { Input } from './Input/Input';
 import { MenuItem } from './MenuItem';
 import { ErrorPopup } from './ErrorPopup';
 

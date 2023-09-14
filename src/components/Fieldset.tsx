@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { danger0, gapM, gapS, gray9, warn0 } from '@taskany/colors';
 
-import { Text } from './Text';
+import { Text } from './Text/Text';
 
 type FieldsetViewType = 'default' | 'warning' | 'danger';
 

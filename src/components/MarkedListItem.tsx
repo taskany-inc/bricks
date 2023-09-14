@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { gapS, gapXs, gray3, radiusM } from '@taskany/colors';
 
-import { Text } from './Text';
+import { Text } from './Text/Text';
 
 interface MarkedListItemProps extends React.HTMLAttributes<HTMLDivElement> {
     children?: React.ReactNode;
