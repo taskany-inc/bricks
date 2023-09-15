@@ -12,6 +12,7 @@ export const TabsMenuDefault = styled.div<{ active?: boolean }>`
     color: ${gray7};
     border-radius: ${radiusS};
     padding: ${gapXs} ${gapS};
+    user-select: none;
 
     cursor: pointer;
 
@@ -21,7 +22,6 @@ export const TabsMenuDefault = styled.div<{ active?: boolean }>`
             cursor: default;
             color: ${textColor};
             background-color: ${gray4};
-            pointer-events: none;
         `}
 `;
 
