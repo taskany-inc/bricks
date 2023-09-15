@@ -229,15 +229,17 @@ export function AutoComplete<T>({
 }: React.PropsWithChildren<AutoCompleteProps<T>>) {
     const [selected, setSelected] = useState<T[]>(() => value);
     const currentMap = useRef<AutoCompleteSelectedMap>(new Set(selected.map((item) => keyGetter(item))));
-    const selectedLengthRef = useRef(selected.length);
+    const selectedLengthRef = useRef(mode === 'multiple' ? selected.length : 0);
 
     useEffect(() => {
         if (selectedLengthRef.current !== selected.length) {
             onChange(selected);
 
-            selectedLengthRef.current = selected.length;
+            if (mode === 'multiple') {
+                selectedLengthRef.current = selected.length;
+            }
         }
-    }, [selected, onChange]);
+    }, [selected, onChange, mode]);
 
     const pushItem = useCallback(
         (item: T) => {
