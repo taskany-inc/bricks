@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [4.0.1](https://github.com/taskany-inc/bricks/compare/v4.0.0...v4.0.1) (2023-09-15)
+
+
+### Bug Fixes
+
+* **AutoComplete:** fix call `onChange` for single mode ([39cd2b0](https://github.com/taskany-inc/bricks/commit/39cd2b082900c2137f9d104247b0241ae0af7174))
+* move a stories closely to their components ([228a858](https://github.com/taskany-inc/bricks/commit/228a8584f2b44ca1e7190639672d77e634d8d540))
+
 ## [4.0.0](https://github.com/taskany-inc/bricks/compare/v3.4.0...v4.0.0) (2023-09-11)
 
 
