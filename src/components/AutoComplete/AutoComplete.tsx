@@ -6,6 +6,7 @@ import { nullable } from '../../utils';
 import { Input } from '../Input/Input';
 import { Text } from '../Text/Text';
 import { ListViewItem, ListView } from '../ListView/ListView';
+import { Radio, RadioGroup, RadioGroupLabel, RadioLabel } from '../Radio/Radio';
 
 type InputProps = React.ComponentProps<typeof Input>;
 type AutoCompleteMode = 'single' | 'multiple';
@@ -80,16 +81,18 @@ function useAutoCompleteContext<T extends { id: string }>(): AutoCompleteContext
     return useMemo(() => ctx, [ctx]);
 }
 
-const StyledText = styled(Text).attrs({
+const StyledText = styled(RadioGroupLabel).attrs({
     size: 's',
     color: gray7,
+    weight: 'regular',
 })`
+    display: block;
     width: 100%;
     border-bottom: 1px solid ${gray4};
     margin: ${gapS} 0;
 `;
 
-const StyledLabel = styled.label`
+const StyledRadio = styled(Radio)`
     display: inline-flex;
     flex-wrap: nowrap;
     align-items: baseline;
@@ -101,7 +104,7 @@ const StyledLabel = styled.label`
     }
 `;
 
-const StyledRadioGroup = styled.div`
+const StyledRadioGroup = styled(RadioGroup)`
     display: flex;
     align-items: center;
     gap: ${gapS};
@@ -115,26 +118,30 @@ export function AutoCompleteRadioGroup<T extends { title: string; value: string 
     value,
     className,
 }: AutoCompleteRadioGroupProps<T>) {
+    const handleChange = useCallback(
+        (value: T['value']) => {
+            const item = items.find((it) => it.value === value);
+
+            if (item) {
+                onChange(item);
+            }
+        },
+        [onChange, items],
+    );
     return (
         <>
             {nullable(title, (t) => (
                 <StyledText>{t}</StyledText>
             ))}
-            <StyledRadioGroup className={className}>
+            <StyledRadioGroup className={className} name={name} onChange={handleChange} value={value}>
                 {items.map((item) => (
-                    <StyledLabel key={item.title}>
-                        <input
-                            type="radio"
-                            name={name}
-                            id={item.title}
-                            value={item.value}
-                            onChange={() => onChange(item)}
-                            defaultChecked={item.value === value}
-                        />
-                        <Text size="s" color={gray7} as="span">
-                            {item.title}
-                        </Text>
-                    </StyledLabel>
+                    <StyledRadio value={item.value}>
+                        <RadioLabel>
+                            <Text size="s" color={gray7} as="span">
+                                {item.title}
+                            </Text>
+                        </RadioLabel>
+                    </StyledRadio>
                 ))}
             </StyledRadioGroup>
         </>
