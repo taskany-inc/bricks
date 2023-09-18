@@ -1,19 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
-import { gapS, gray3, gray8, radiusS } from '@taskany/colors';
+import { gapS, gray3, radiusS } from '@taskany/colors';
 
-import { nullable } from '../../utils/nullable';
-import { radioContext } from '../../context/radio';
 import { Text } from '../Text/Text';
+import { RadioGroup, RadioGroupLabel } from '../Radio/Radio';
+import { nullable } from '../../utils';
 
 interface FormRadioProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
-    name?: string;
+    name: string;
     label?: string;
     value?: string;
     flat?: 'top' | 'bottom' | 'both';
     children?: React.ReactNode;
 
-    onChange?: (v: FormRadioProps['value']) => void;
+    onChange: (v: string) => void;
 }
 
 export const StyledFormRadioInputContainer = styled.div`
@@ -28,7 +28,7 @@ export const StyledFormRadioInputLabel = styled(Text)`
     padding-left: ${gapS};
 `;
 
-const StyledFormRadio = styled.div<{ flat: FormRadioProps['flat'] }>`
+const StyledFormRadio = styled(RadioGroup)<{ flat: FormRadioProps['flat'] }>`
     box-sizing: border-box;
     display: flex;
     align-items: center;
@@ -59,24 +59,17 @@ const StyledFormRadio = styled.div<{ flat: FormRadioProps['flat'] }>`
         `}
 `;
 
-const StyledFormRadioLabel = styled(Text)`
+const StyledRadioGroupLabel = styled(RadioGroupLabel)`
     padding: 8px 8px 8px 16px;
-
-    background-color: transparent;
 `;
 
 export const FormRadio: React.FC<FormRadioProps> = ({ name, label, value, flat, children, onChange, ...attrs }) => {
     return (
-        <radioContext.Provider value={{ name, value, onChange }}>
-            <StyledFormRadio flat={flat} {...attrs}>
-                {nullable(label, (l) => (
-                    <StyledFormRadioLabel as="label" size="m" color={gray8} weight="bold">
-                        {l}:
-                    </StyledFormRadioLabel>
-                ))}
-
-                {children}
-            </StyledFormRadio>
-        </radioContext.Provider>
+        <StyledFormRadio flat={flat} name={name} value={value} onChange={onChange} {...attrs}>
+            {nullable(label, (l) => (
+                <StyledRadioGroupLabel size="m">{l}:</StyledRadioGroupLabel>
+            ))}
+            {children}
+        </StyledFormRadio>
     );
 };

@@ -1,10 +1,23 @@
-import React, { useContext, useCallback } from 'react';
+import React, { useContext } from 'react';
+import styled from 'styled-components';
+import { gapS } from '@taskany/colors';
 
-import { nullable } from '../../utils/nullable';
-import { radioContext } from '../../context/radio';
 import { formContext } from '../../context/form';
+import { Radio, RadioLabel } from '../Radio/Radio';
+import { Text } from '../Text/Text';
 
-import { StyledFormRadioInput, StyledFormRadioInputContainer, StyledFormRadioInputLabel } from './FormRadio';
+const StyledRadio = styled(Radio)`
+    align-items: baseline;
+    padding: 8px 16px;
+
+    & + & {
+        padding-left: 0;
+    }
+`;
+
+const StyledFormRadioInputLabel = styled(Text)`
+    padding-left: ${gapS};
+`;
 
 interface FormRadioInputProps extends React.HTMLAttributes<HTMLInputElement> {
     name?: string;
@@ -21,34 +34,14 @@ export const FormRadioInput: React.FC<FormRadioInputProps> = ({
     label,
     ...attrs
 }) => {
-    const { name, value, onChange } = useContext(radioContext);
     const formCtx = useContext(formContext);
     const disabled = formCtx.disabled || innerDisabled;
 
-    const onRadioInputChange = useCallback(
-        (e: React.ChangeEvent<HTMLInputElement>) => {
-            onChange && onChange(e.target.value);
-        },
-        [onChange],
-    );
-
     return (
-        <StyledFormRadioInputContainer>
-            <StyledFormRadioInput
-                type="radio"
-                checked={innerValue === value}
-                value={innerValue}
-                name={name}
-                onChange={onRadioInputChange}
-                id={innerValue}
-                {...attrs}
-                disabled={disabled}
-            />
-            {nullable(label, (l) => (
-                <StyledFormRadioInputLabel as="label" htmlFor={innerValue}>
-                    {l}
-                </StyledFormRadioInputLabel>
-            ))}
-        </StyledFormRadioInputContainer>
+        <StyledRadio value={innerValue} disabled={disabled} {...attrs}>
+            <RadioLabel>
+                <StyledFormRadioInputLabel>{label}</StyledFormRadioInputLabel>
+            </RadioLabel>
+        </StyledRadio>
     );
 };
