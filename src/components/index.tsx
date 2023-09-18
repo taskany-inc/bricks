@@ -56,3 +56,4 @@ export * from './Tabs/Tabs';
 export * from './Checkbox/Checkbox';
 export * from './AutoComplete/AutoComplete';
 export * from './InlineForm/InlineForm';
+export * from './Radio/Radio';
