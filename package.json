@@ -83,7 +83,8 @@
     "@tippyjs/react": "4.2.6",
     "color-layer": "1.0.3",
     "md5": "2.3.0",
-    "react-dropzone": "14.2.3"
+    "react-dropzone": "14.2.3",
+    "tinykeys": "2.1.0"
   },
   "sideEffects": false
 }
