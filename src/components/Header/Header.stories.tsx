@@ -1,12 +1,17 @@
-import React, { FC, useCallback } from 'react';
+import React, { FC, useCallback, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import styled from 'styled-components';
 import { IconDownSmallSolid, IconUpSmallSolid } from '@taskany/icons';
+import { gapS, gapXs, gray4 } from '@taskany/colors';
 
 import { Button } from '../Button/Button';
 import { UserMenu } from '../UserMenu';
 import { Dropdown } from '../Dropdown';
 import { MenuItem } from '../MenuItem';
+import { GlobalSearch } from '../GlobalSearch';
+import { Text } from '../Text/Text';
+import { Table } from '../Table/Table';
+import { ListView, ListViewItem } from '../ListView/ListView';
 
 import { Header, HeaderContent, HeaderMenu, HeaderNav, HeaderNavLink } from './Header';
 
@@ -104,3 +109,101 @@ export const PageHeader: Story = () => (
 );
 
 PageHeader.args = {};
+
+const StyledGroupHeader = styled(Text)`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    box-sizing: border-box;
+
+    padding-top: ${gapS};
+    padding-bottom: ${gapXs};
+    margin: 0 ${gapS};
+
+    max-width: 392px;
+
+    border-bottom: 1px solid ${gray4};
+`;
+
+const StyledHeaderNav = styled(HeaderNav)`
+    display: flex;
+    align-items: center;
+`;
+
+const HeaderGlobalSearch = styled.div`
+    padding-left: 40px;
+`;
+
+const fruits = ['Apple', 'Peach', 'Pineapple', 'Banana', 'Tomato'];
+
+const StyledMenuItem = styled(MenuItem)`
+    border: none;
+`;
+
+export const PageHeaderWithSearch: Story = () => {
+    const [query, setQuery] = useState('');
+
+    const onKyeboardNavigate = useCallback((food: string) => {
+        setQuery('');
+
+        console.log(food);
+    }, []);
+
+    const resultsExists = Boolean(query && fruits.filter((fruit) => fruit.includes(query)).length);
+
+    return (
+        <HeaderWrapper style={{ width: 1000 }}>
+            <Header
+                menu={
+                    <HeaderMenu>
+                        <UserMenu email="storybook@taskany.com" />
+                    </HeaderMenu>
+                }
+                nav={
+                    <StyledHeaderNav>
+                        {navItems.map((title) => (
+                            <HeaderNavLink key={title} href="#">
+                                {title}
+                            </HeaderNavLink>
+                        ))}
+                        <HeaderGlobalSearch>
+                            <GlobalSearch searchResultExists={resultsExists} query={query} setQuery={setQuery}>
+                                <ListView onKeyboardClick={onKyeboardNavigate}>
+                                    <StyledGroupHeader size="m" weight="bolder">
+                                        Fruits
+                                    </StyledGroupHeader>
+                                    <Table width={700}>
+                                        {fruits
+                                            .filter((fruit) => fruit.toLowerCase().includes(query.toLowerCase()))
+                                            .map((fruit) => (
+                                                <ListViewItem
+                                                    value={fruit}
+                                                    key={fruit}
+                                                    renderItem={({ active, ...props }) => (
+                                                        <StyledMenuItem
+                                                            {...props}
+                                                            onClick={() => onKyeboardNavigate(fruit)}
+                                                            focused={active}
+                                                        >
+                                                            {fruit}
+                                                        </StyledMenuItem>
+                                                    )}
+                                                />
+                                            ))}
+                                    </Table>
+                                </ListView>
+                            </GlobalSearch>
+                        </HeaderGlobalSearch>
+                    </StyledHeaderNav>
+                }
+            >
+                <HeaderContent>
+                    <CreateDropdown />
+                </HeaderContent>
+            </Header>
+        </HeaderWrapper>
+    );
+};
+
+PageHeaderWithSearch.args = {};

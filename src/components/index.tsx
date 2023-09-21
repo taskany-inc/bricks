@@ -57,3 +57,5 @@ export * from './Checkbox/Checkbox';
 export * from './AutoComplete/AutoComplete';
 export * from './InlineForm/InlineForm';
 export * from './Radio/Radio';
+export * from './GlobalSearch';
+export * from './Keyboard';
