@@ -13,20 +13,24 @@ import { Input } from './Input/Input';
 import { MenuItem } from './MenuItem';
 import { ComboBox } from './ComboBox';
 
+type Item = { title: string; id: any };
+
 interface FormMultiInputProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'onInput' | 'onClick'> {
-    items?: Array<{ title: string; id: any }>;
+    items?: Item[];
     id?: string;
     name?: string;
     label?: string;
     query?: string;
-    value?: Array<{ title: string; id: any }>;
+    value?: Item[];
     disabled?: boolean;
     placeholder?: string;
     error?: React.ComponentProps<typeof ComboBox>['error'];
     className?: string;
 
-    onChange?: (value: Array<{ title: string; id: any }>) => void;
+    onChange?: (value: Item[]) => void;
     onInput?: (query: string) => void;
+    renderItem?: (item: Item & { onClick: () => void }) => React.ReactNode;
+    renderTrigger?: React.ComponentProps<typeof ComboBox>['renderTrigger'];
 }
 
 const StyledFormInputContainer = styled.div`
@@ -72,6 +76,13 @@ export const FormMultiInput = React.forwardRef<HTMLDivElement, FormMultiInputPro
             placeholder,
             onChange,
             onInput,
+            renderItem = (item) => (
+                <Tag key={item.id}>
+                    <TagCleanButton onClick={item.onClick} />
+                    {item.title}
+                </Tag>
+            ),
+            renderTrigger = (props) => <IconPlusCircleOutline size="xs" onClick={props.onClick} />,
             ...props
         },
         ref,
@@ -86,14 +97,14 @@ export const FormMultiInput = React.forwardRef<HTMLDivElement, FormMultiInputPro
         }, [inputState, onInput]);
 
         const onValueDelete = useCallback(
-            (deleted: { title: string; id: any }) => () => {
+            (deleted: Item) => () => {
                 onChange?.(value.filter((item) => item.id !== deleted.id));
             },
             [onChange, value],
         );
 
         const onValueAdd = useCallback(
-            (added: { title: string; id: any }) => {
+            (added: Item) => {
                 onChange?.([...value, added]);
             },
             [onChange, value],
@@ -107,12 +118,7 @@ export const FormMultiInput = React.forwardRef<HTMLDivElement, FormMultiInputPro
                     </StyledLabel>
                 ))}
 
-                {value.map((item) => (
-                    <Tag key={item.id}>
-                        <TagCleanButton onClick={onValueDelete(item)} />
-                        {item.title}
-                    </Tag>
-                ))}
+                {value.map((item) => renderItem({ ...item, onClick: onValueDelete(item) }))}
 
                 <StyledComboBox
                     ref={ref}
@@ -122,7 +128,7 @@ export const FormMultiInput = React.forwardRef<HTMLDivElement, FormMultiInputPro
                     disabled={disabled}
                     onChange={onValueAdd}
                     items={items}
-                    renderTrigger={(props) => <IconPlusCircleOutline size="xs" onClick={props.onClick} />}
+                    renderTrigger={renderTrigger}
                     renderInput={(props) => (
                         <StyledInput
                             autoFocus
