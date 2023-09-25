@@ -89,6 +89,7 @@ export const UserGroup: FC<UserGroupProps> = ({ users, size = 24, limit = 3, ...
                         </UserContainer>
                     }
                     tooltip
+                    offset={[0, 8]}
                     placement="top"
                 >
                     {user.name}
@@ -105,6 +106,7 @@ export const UserGroup: FC<UserGroupProps> = ({ users, size = 24, limit = 3, ...
                             </StyledCounter>
                         }
                         tooltip
+                        offset={[0, 8]}
                         maxWidth={420}
                         placement="top"
                     >
