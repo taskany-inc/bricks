@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [4.1.1](https://github.com/taskany-inc/bricks/compare/v4.1.0...v4.1.1) (2023-09-25)
+
+
+### Bug Fixes
+
+* **Icons:** add story ([efaf703](https://github.com/taskany-inc/bricks/commit/efaf703bc51ba5971479c209e3772a605cbf765f))
+
 ## [4.1.0](https://github.com/taskany-inc/bricks/compare/v4.0.1...v4.1.0) (2023-09-21)
 
 
