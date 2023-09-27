@@ -1,3 +1,4 @@
+import React from 'react';
 import styled, { css, createGlobalStyle } from 'styled-components';
 import { fontDisplay, gapL, gapM, gapS, gapSm, gapXl, gapXs, textColor } from '@taskany/colors';
 
@@ -44,10 +45,15 @@ export interface TextProps extends React.HTMLAttributes<HTMLDivElement> {
     lines?: number;
     wordWrap?: React.CSSProperties['wordWrap'];
     wordBreak?: React.CSSProperties['wordBreak'];
+    as?: string;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const Text = styled.div<TextProps>`
+export const Text = styled(
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    ({ color, as: Tag = 'div', size, weight, ellipsis, lines, wordBreak, wordWrap, ...props }: TextProps) => (
+        <Tag {...props} />
+    ),
+)<TextProps>`
     font-size: 16px;
     font-family: ${fontDisplay};
     color: ${textColor};
