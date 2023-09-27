@@ -31,6 +31,7 @@ const StyledFormTextarea = styled(
         ...props
     }: FormTextareaProps & { forwardRef?: React.Ref<HTMLTextAreaElement> }) => <textarea ref={forwardRef} {...props} />,
 )`
+    display: block;
     box-sizing: border-box;
     outline: none;
     border: 0;
