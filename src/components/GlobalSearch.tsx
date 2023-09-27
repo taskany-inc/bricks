@@ -36,9 +36,6 @@ const StyledResults = styled.div`
 `;
 
 const StyledSearchIcon = styled(IconSearchOutline)<{ focused?: boolean }>`
-    position: relative;
-    top: 2px;
-
     ${({ focused }) =>
         focused &&
         `

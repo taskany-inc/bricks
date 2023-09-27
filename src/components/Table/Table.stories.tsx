@@ -81,7 +81,7 @@ export const Default: Story = () => {
             {data.map(({ title, projectId, tags, progress }) => (
                 <StyledTableRow key={title} align="center" gap={10}>
                     <TableCell min>
-                        <IconTargetOutline size="xxs" noWrap />
+                        <IconTargetOutline size="xxs" />
                     </TableCell>
                     <TableCell col={5}>
                         <Text size="s" weight="bold">
@@ -185,7 +185,7 @@ export const FocusAndHover: Story = () => {
             {data.map(({ title, projectId, tags, progress }, index) => (
                 <StyledTableRow key={title} align="center" gap={10} interactive focused={activeIndex === index}>
                     <TableCell min>
-                        <IconTargetOutline size="xxs" noWrap />
+                        <IconTargetOutline size="xxs" />
                     </TableCell>
                     <TableCell col={5}>
                         <Text size="s" weight="bold">

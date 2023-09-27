@@ -245,8 +245,6 @@ const StyledUploadLink = styled(Link)`
 `;
 
 const StyledUploadIcon = styled(IconAttachOutline)`
-    position: relative;
-    top: 2px;
     padding-right: ${gapXs};
 `;
 
