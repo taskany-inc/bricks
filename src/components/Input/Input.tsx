@@ -22,6 +22,12 @@ const StyledInputContainer = styled.div`
 const StyledIconContainer = styled.div<{ size: InputProps['size']; position: 'left' | 'right' }>`
     position: absolute;
 
+    ${({ size }) =>
+        size === 'm' &&
+        `
+            top: 5px;
+        `}
+
     ${({ size, position }) =>
         size === 'm' &&
         position === 'left' &&
@@ -95,10 +101,6 @@ const StyledInput = styled(({ forwardRef, size, view, brick, iconLeft, iconRight
             padding: 5px 8px;
 
             font-size: 13px;
-
-            & ${StyledIconContainer} {
-                top: 5px;
-            }
         `}
 
     ${({ size, iconLeft }) =>
