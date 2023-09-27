@@ -7,7 +7,6 @@ interface LinkProps extends React.HTMLAttributes<HTMLAnchorElement> {
     className?: string;
     children?: React.ReactNode;
     href?: string;
-    title?: string;
     target?: '_self' | '_blank' | '_parent' | '_top';
 
     onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
@@ -44,5 +43,12 @@ const StyledLink = styled(
 `;
 
 export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(({ ...props }, ref) => {
-    return <StyledLink {...props} forwardRef={ref} />;
+    const onClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        if (e.metaKey || e.ctrlKey || !props.onClick) return;
+
+        e.preventDefault();
+        props.onClick(e);
+    };
+
+    return <StyledLink {...props} onClick={onClick} forwardRef={ref} />;
 });
