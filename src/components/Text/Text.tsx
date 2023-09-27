@@ -42,6 +42,8 @@ export interface TextProps extends React.HTMLAttributes<HTMLDivElement> {
     color?: string;
     ellipsis?: boolean;
     lines?: number;
+    wordWrap?: React.CSSProperties['wordWrap'];
+    wordBreak?: React.CSSProperties['wordBreak'];
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -85,6 +87,18 @@ export const Text = styled.div<TextProps>`
             -webkit-line-clamp: ${lines};
             -webkit-box-orient: vertical;
         `}
+
+    ${({ wordWrap }) =>
+        wordWrap &&
+        `
+        word-wrap: ${wordWrap};
+    `}
+
+    ${({ wordBreak }) =>
+        wordBreak &&
+        `
+        word-break: ${wordBreak};
+    `}
 `;
 
 export const TextStyle = createGlobalStyle`
