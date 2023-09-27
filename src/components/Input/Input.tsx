@@ -95,6 +95,10 @@ const StyledInput = styled(({ forwardRef, size, view, brick, iconLeft, iconRight
             padding: 5px 8px;
 
             font-size: 13px;
+
+            & ${StyledIconContainer} {
+                top: 5px;
+            }
         `}
 
     ${({ size, iconLeft }) =>
