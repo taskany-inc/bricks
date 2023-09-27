@@ -9,7 +9,7 @@ import { useHotkey } from '../hooks/useHotkeys';
 import { KeyCode, useKeyboard } from '../hooks/useKeyboard';
 
 import { Popup } from './Popup';
-import { Keyboard } from './Keyboard';
+import { Keyboard } from './Keyboard/Keyboard';
 import { Input } from './Input/Input';
 import { Text } from './Text/Text';
 
