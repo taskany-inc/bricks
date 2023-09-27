@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [4.2.0](https://github.com/taskany-inc/bricks/compare/v4.1.1...v4.2.0) (2023-09-27)
+
+
+### Features
+
+* introduce Tip component ([0ea562a](https://github.com/taskany-inc/bricks/commit/0ea562af7a6850347a09f1615321f82949482400))
+* **Link:** support simultaneous href and onClick ([dbb57f1](https://github.com/taskany-inc/bricks/commit/dbb57f1caee54dad40111c850967a05204f81177))
+* **Text:** wordBreak and wordWrap props ([31856b6](https://github.com/taskany-inc/bricks/commit/31856b66d6f957e5bd803080784c5464a51b1942))
+
+
+### Bug Fixes
+
+* **FormTextarea:** changed display view to reset a small gap ([9f325b0](https://github.com/taskany-inc/bricks/commit/9f325b0e468cd43c7c0aec307d85def4d88bbd0b))
+* **UserGroup:** added offset ([3076033](https://github.com/taskany-inc/bricks/commit/3076033854d2a37109546231d670ecd08b56a0ed))
+
 ## [4.1.1](https://github.com/taskany-inc/bricks/compare/v4.1.0...v4.1.1) (2023-09-25)
 
 
