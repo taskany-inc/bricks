@@ -59,3 +59,4 @@ export * from './InlineForm/InlineForm';
 export * from './Radio/Radio';
 export * from './GlobalSearch';
 export * from './Keyboard';
+export * from './Tip/Tip';
