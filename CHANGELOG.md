@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [4.2.1](https://github.com/taskany-inc/bricks/compare/v4.2.0...v4.2.1) (2023-09-27)
+
+
+### Bug Fixes
+
+* remove extra attrs from GlobalSearch and Text ([c08aa64](https://github.com/taskany-inc/bricks/commit/c08aa641d366a23dbb9091966f297376a87c3ae8))
+
 ## [4.2.0](https://github.com/taskany-inc/bricks/compare/v4.1.1...v4.2.0) (2023-09-27)
 
 
