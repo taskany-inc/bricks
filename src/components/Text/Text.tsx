@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import styled, { css, createGlobalStyle } from 'styled-components';
 import { fontDisplay, gapL, gapM, gapS, gapSm, gapXl, gapXs, textColor } from '@taskany/colors';
@@ -46,13 +47,24 @@ export interface TextProps extends React.HTMLAttributes<HTMLDivElement> {
     wordWrap?: React.CSSProperties['wordWrap'];
     wordBreak?: React.CSSProperties['wordBreak'];
     as?: string;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    forwardRef?: any;
+    children?: React.ReactNode;
 }
 
 export const Text = styled(
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    ({ color, as: Tag = 'div', size, weight, ellipsis, lines, wordBreak, wordWrap, ...props }: TextProps) => (
-        <Tag {...props} />
-    ),
+    ({
+        color,
+        as: Tag = 'div',
+        size,
+        weight,
+        ellipsis,
+        lines,
+        wordBreak,
+        wordWrap,
+        forwardRef,
+        ...props
+    }: TextProps) => <Tag {...props} />,
 )<TextProps>`
     font-size: 16px;
     font-family: ${fontDisplay};

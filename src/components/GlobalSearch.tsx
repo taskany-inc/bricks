@@ -37,6 +37,8 @@ const StyledResults = styled.div`
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const StyledSearchIcon = styled(({ focused, ...props }) => <IconSearchOutline {...props} />)<{ focused?: boolean }>`
+    position: relative;
+
     ${({ focused }) =>
         focused &&
         `
