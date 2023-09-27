@@ -14,7 +14,6 @@ export const Default: Story = {
     args: {
         color: 'gray',
         size: 'm',
-        noWrap: true,
         animationDuration: 2,
     },
 };
