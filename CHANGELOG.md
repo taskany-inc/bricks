@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [4.2.3](https://github.com/taskany-inc/bricks/compare/v4.2.2...v4.2.3) (2023-10-06)
+
+
+### Bug Fixes
+
+* **GlobalSearch:** removed unnecessary absolute position ([fb056d6](https://github.com/taskany-inc/bricks/commit/fb056d67ed01cb6a1f798971eaa930b6fff115dc))
+
 ## [4.2.2](https://github.com/taskany-inc/bricks/compare/v4.2.1...v4.2.2) (2023-09-27)
 
 
