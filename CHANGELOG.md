@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [4.2.4](https://github.com/taskany-inc/bricks/compare/v4.2.3...v4.2.4) (2023-10-06)
+
+
+### Bug Fixes
+
+* **InlineForm:** renderTrigger is optionality prop ([ba19565](https://github.com/taskany-inc/bricks/commit/ba19565261ca81f9743491f4914b75d1ec9a8c63))
+
 ## [4.2.3](https://github.com/taskany-inc/bricks/compare/v4.2.2...v4.2.3) (2023-10-06)
 
 
