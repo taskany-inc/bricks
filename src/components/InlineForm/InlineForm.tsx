@@ -10,7 +10,7 @@ interface InlineFormProps extends React.HTMLAttributes<HTMLDivElement> {
     children: React.ReactNode;
     className?: string;
 
-    renderTrigger: (props: { onClick: () => void }) => React.ReactNode;
+    renderTrigger?: (props: { onClick: () => void }) => React.ReactNode;
     onSubmit: () => Promise<void>;
     onReset: () => void;
 }
@@ -55,7 +55,7 @@ export const InlineForm: React.FC<InlineFormProps> = ({ renderTrigger, onSubmit,
 
     return (
         <StyledWrapper ref={wrapperRef} {...onESC} {...attrs}>
-            {nullable(!visible, () => renderTrigger({ onClick: toggleVisible }))}
+            {nullable(!visible && renderTrigger, (render) => render({ onClick: toggleVisible }))}
             {nullable(visible, () => (
                 <Form onSubmit={handleSubmit}>{children}</Form>
             ))}
