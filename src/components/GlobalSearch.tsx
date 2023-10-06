@@ -23,11 +23,10 @@ const StyledInput = styled(({ focused, ...props }) => <Input {...props} />)<{ fo
     ${({ focused }) =>
         focused &&
         `
-        position: absolute;
-        z-index: 99991; // 9999 — Popup z-index
+            z-index: 10000; // 9999 — Popup z-index
 
-        width: 400px;
-    `}
+            width: 400px;
+        `}
 `;
 
 const StyledResults = styled.div`
