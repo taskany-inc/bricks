@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [4.2.5](https://github.com/taskany-inc/bricks/compare/v4.2.4...v4.2.5) (2023-10-09)
+
+
+### Bug Fixes
+
+* **Link:** support component substitution with as ([d449414](https://github.com/taskany-inc/bricks/commit/d4494144bad1dc30d051515601b35b88ac12f5ab))
+
 ## [4.2.4](https://github.com/taskany-inc/bricks/compare/v4.2.3...v4.2.4) (2023-10-06)
 
 
