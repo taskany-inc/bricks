@@ -8,6 +8,8 @@ interface LinkProps extends React.HTMLAttributes<HTMLAnchorElement> {
     children?: React.ReactNode;
     href?: string;
     target?: '_self' | '_blank' | '_parent' | '_top';
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    as?: string | React.ComponentType<any>;
 
     onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
 }
