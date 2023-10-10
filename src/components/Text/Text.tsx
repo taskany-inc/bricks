@@ -43,6 +43,7 @@ export interface TextProps extends React.HTMLAttributes<HTMLDivElement> {
     weight?: keyof typeof textWeight;
     color?: string;
     ellipsis?: boolean;
+    strike?: boolean;
     lines?: number;
     wordWrap?: React.CSSProperties['wordWrap'];
     wordBreak?: React.CSSProperties['wordBreak'];
@@ -59,6 +60,7 @@ export const Text = styled(
         size,
         weight,
         ellipsis,
+        strike,
         lines,
         wordBreak,
         wordWrap,
@@ -117,6 +119,12 @@ export const Text = styled(
         `
         word-break: ${wordBreak};
     `}
+
+    ${({ strike }) =>
+        strike &&
+        css`
+            text-decoration: line-through;
+        `}
 `;
 
 export const TextStyle = createGlobalStyle`
