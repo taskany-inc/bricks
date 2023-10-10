@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [4.3.0](https://github.com/taskany-inc/bricks/compare/v4.2.5...v4.3.0) (2023-10-10)
+
+
+### Features
+
+* **nullable:** fallback support ([c9587da](https://github.com/taskany-inc/bricks/commit/c9587da30f4a8e7e26cc8bf2b3b673c2474c7493))
+
 ## [4.2.5](https://github.com/taskany-inc/bricks/compare/v4.2.4...v4.2.5) (2023-10-09)
 
 
