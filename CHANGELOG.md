@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [4.4.1](https://github.com/taskany-inc/bricks/compare/v4.4.0...v4.4.1) (2023-10-11)
+
+
+### Bug Fixes
+
+* **GlobalSearch:** align icons inside component + ref ([4a1bf8a](https://github.com/taskany-inc/bricks/commit/4a1bf8a00f47fcc1edf2cec50c2547d1fd689787))
+* **Input:** remake component with correct align ([aa32a92](https://github.com/taskany-inc/bricks/commit/aa32a92d405dab0eb1dacf1c1ee8c79aba4a9ccd))
+* **Spinner:** rotation by center point of icon ([520708c](https://github.com/taskany-inc/bricks/commit/520708c84af8e92423e5a8e3f75cc9d806f97e5d))
+
 ## [4.4.0](https://github.com/taskany-inc/bricks/compare/v4.3.0...v4.4.0) (2023-10-11)
 
 
