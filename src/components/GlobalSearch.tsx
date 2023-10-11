@@ -14,8 +14,7 @@ import { Input } from './Input/Input';
 import { Text } from './Text/Text';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const StyledInput = styled(({ focused, ...props }) => <Input {...props} />)<{ focused?: boolean }>`
-    display: inline-block;
+const StyledInput = styled(Input)<{ focused?: boolean }>`
     width: 200px;
 
     transition: width 100ms ease-in-out;
@@ -23,7 +22,8 @@ const StyledInput = styled(({ focused, ...props }) => <Input {...props} />)<{ fo
     ${({ focused }) =>
         focused &&
         `
-            z-index: 10000; // 9999 — Popup z-index
+        position: relative;
+        z-index: 10001; // 9999 — Popup z-index
 
             width: 400px;
         `}
@@ -32,17 +32,6 @@ const StyledInput = styled(({ focused, ...props }) => <Input {...props} />)<{ fo
 const StyledResults = styled.div`
     padding-top: 36px; // Popup default offset + Input height 28px
     padding-bottom: ${gapS};
-`;
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const StyledSearchIcon = styled(({ focused, ...props }) => <IconSearchOutline {...props} />)<{ focused?: boolean }>`
-    position: relative;
-
-    ${({ focused }) =>
-        focused &&
-        `
-            z-index: 99992; // 99991 — Input z-index
-        `}
 `;
 
 const StyledGlobalSearch = styled.div`
@@ -75,6 +64,12 @@ const StyledPopupSurface = styled.div<{ visible?: boolean }>`
     `}
 `;
 
+const StyledText = styled(Text)`
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+`;
 export interface GlobalSearchProps extends HTMLAttributes<HTMLDivElement> {
     query: string;
     setQuery: (agr: string) => void;
@@ -93,21 +88,20 @@ export const GlobalSearch = ({
     ...attrs
 }: GlobalSearchProps) => {
     const popupContentRef = useRef<HTMLDivElement>(null);
-    const inputRef = useRef<HTMLInputElement | null>(null);
+    const popupTargetRef = useRef<HTMLDivElement>(null);
+    const inputRef = useRef<HTMLInputElement>(null);
     const surfaceVisible = useRef(false);
 
     const [editMode, setEditMode] = useState(false);
     const [popupVisible, setPopupVisible] = useState(false);
 
     const inputHardFocus = useCallback(() => {
-        setTimeout(() => {
-            inputRef.current?.focus();
-            setQuery('');
-        }, 0);
+        inputRef.current?.focus();
+        setQuery('');
     }, []);
 
     useHotkey('/', inputHardFocus);
-    useClickOutside(inputRef, (e) => {
+    useClickOutside(popupTargetRef, (e) => {
         if (!popupContentRef.current?.contains(e.target as Node)) {
             setEditMode(false);
             setQuery('');
@@ -148,16 +142,16 @@ export const GlobalSearch = ({
             {nullable(editMode, () => (
                 <StyledPopupSurface visible={surfaceVisible.current} />
             ))}
-            <StyledGlobalSearch>
+            <StyledGlobalSearch ref={popupTargetRef}>
                 <StyledInput
-                    forwardRef={inputRef}
+                    ref={inputRef}
                     focused={editMode}
                     placeholder={placeholder}
-                    iconLeft={<StyledSearchIcon focused={editMode} size="s" color={textColor} />}
+                    iconLeft={<IconSearchOutline size="s" color={textColor} />}
                     iconRight={nullable(!editMode, () => (
-                        <Text size="xs" onClick={inputHardFocus}>
+                        <StyledText size="xs" onClick={inputHardFocus}>
                             <Keyboard size="s">/</Keyboard>
-                        </Text>
+                        </StyledText>
                     ))}
                     value={query}
                     onChange={onQueryChange}
@@ -165,23 +159,22 @@ export const GlobalSearch = ({
                     disabled={disabled}
                     {...onESC}
                 />
-
-                <Popup
-                    placement="bottom-start"
-                    arrow={false}
-                    visible={popupVisible}
-                    reference={inputRef}
-                    interactive
-                    minWidth={400}
-                    maxWidth={800}
-                    offset={[-4, -36]}
-                    {...attrs}
-                >
-                    <StyledResults ref={popupContentRef} {...onESC}>
-                        {children}
-                    </StyledResults>
-                </Popup>
             </StyledGlobalSearch>
+            <Popup
+                placement="bottom-start"
+                arrow={false}
+                visible={popupVisible}
+                reference={popupTargetRef}
+                interactive
+                minWidth={400}
+                maxWidth={800}
+                offset={[-8, -36]}
+                {...attrs}
+            >
+                <StyledResults ref={popupContentRef} {...onESC}>
+                    {children}
+                </StyledResults>
+            </Popup>
         </>
     );
 };
