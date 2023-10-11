@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [4.4.0](https://github.com/taskany-inc/bricks/compare/v4.3.0...v4.4.0) (2023-10-11)
+
+
+### Features
+
+* **Text:** support strike style ([4d3dcdb](https://github.com/taskany-inc/bricks/commit/4d3dcdb0d337889d3e10471562ea4484c5a96bbe))
+
 ## [4.3.0](https://github.com/taskany-inc/bricks/compare/v4.2.5...v4.3.0) (2023-10-10)
 
 
