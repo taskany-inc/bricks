@@ -13,6 +13,15 @@ const StyledSpinner = styled.div<{ animationDuration: number }>`
         css`
             ${rotate} ${animationDuration}s linear infinite
         `};
+
+    position: relative;
+`;
+
+const StyledLoaderIcon = styled(IconLoaderOutline)`
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
 `;
 
 export interface SpinnerProps extends BaseIconProps {
@@ -22,7 +31,7 @@ export interface SpinnerProps extends BaseIconProps {
 export const Spinner = ({ size = 'm', animationDuration = 2, ...props }: SpinnerProps) => {
     return (
         <StyledSpinner animationDuration={animationDuration}>
-            <IconLoaderOutline size={size} {...props} />
+            <StyledLoaderIcon size={size} {...props} />
         </StyledSpinner>
     );
 };
