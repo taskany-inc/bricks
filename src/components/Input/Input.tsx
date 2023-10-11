@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
 import { gray10, gray3, gray4, gray6, gray7, radiusM, textColor } from '@taskany/colors';
 
@@ -13,49 +13,18 @@ interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, '
     iconRight?: React.ReactNode;
 }
 
-const StyledInputContainer = styled.div`
+const StyledInputContainer = styled.div<Pick<InputProps, 'size' | 'view' | 'brick'> & { focused?: boolean }>`
     position: relative;
     display: flex;
     align-items: center;
-`;
-
-const StyledIconContainer = styled.div<{ size: InputProps['size']; position: 'left' | 'right' }>`
-    position: absolute;
-
-    ${({ size }) =>
-        size === 'm' &&
-        `
-            top: 5px;
-        `}
-
-    ${({ size, position }) =>
-        size === 'm' &&
-        position === 'left' &&
-        `
-            left: 9px; // 8 + 1
-        `}
-
-    ${({ size, position }) =>
-        size === 'm' &&
-        position === 'right' &&
-        `
-            right: 9px; // 8 + 1
-        `}
-`;
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const StyledInput = styled(({ forwardRef, size, view, brick, iconLeft, iconRight, ...props }: InputProps) => (
-    <input ref={forwardRef} {...props} />
-))`
     box-sizing: border-box;
-    width: 100%;
 
-    font-weight: 500;
+    gap: 9px;
 
-    outline: none;
     border: 1px solid;
 
     border-radius: ${radiusM};
+    ${({ size }) => size === 'm' && 'padding: 5px 8px;'}
 
     transition: 200ms cubic-bezier(0.3, 0, 0.5, 1);
     transition-property: color, background-color, border-color;
@@ -67,13 +36,21 @@ const StyledInput = styled(({ forwardRef, size, view, brick, iconLeft, iconRight
             border-color: ${gray6};
             background-color: ${gray4};
 
-            :hover:not([disabled]),
-            :focus:not([disabled]) {
+            :hover {
                 color: ${textColor};
                 border-color: ${gray7};
                 background-color: ${gray3};
             }
         `}
+
+    ${({ view, focused }) =>
+        view === 'default' &&
+        focused &&
+        `
+            color: ${textColor};
+            border-color: ${gray7};
+            background-color: ${gray3};
+    `}
 
     ${({ brick }) =>
         brick === 'left' &&
@@ -94,49 +71,64 @@ const StyledInput = styled(({ forwardRef, size, view, brick, iconLeft, iconRight
         `
             border-radius: 0;
         `}
+`;
 
-    ${({ size }) =>
-        size === 'm' &&
-        `
-            padding: 5px 8px;
+const StyledIconContainer = styled.div<{ size: InputProps['size'] }>`
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    max-width: 24px;
+    min-width: 15px;
+`;
 
-            font-size: 13px;
-        `}
-
-    ${({ size, iconLeft }) =>
-        size === 'm' &&
-        iconLeft &&
-        `
-            padding-left: 30px; // 8 + 8 + 15 - 1
-        `}
-
-    ${({ size, iconRight }) =>
-        size === 'm' &&
-        iconRight &&
-        `
-            padding-right: 30px; // 8 + 8 + 15 - 1
-        `}
+const StyledInput = styled(
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    React.forwardRef<HTMLInputElement, InputProps>(({ size, view, brick, iconLeft, iconRight, ...props }, ref) => (
+        <input ref={ref} {...props} />
+    )),
+)`
+    flex: 1;
+    font-weight: 500;
+    outline: none;
+    ${({ size }) => size === 'm' && 'font-size: 13px;'}
+    border: 0;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
 `;
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
-    ({ view = 'default', size = 'm', brick, iconLeft, iconRight, ...props }, ref) =>
-        iconLeft || iconRight ? (
-            <StyledInputContainer>
+    ({ view = 'default', size = 'm', brick, iconLeft, iconRight, className, onFocus, onBlur, ...props }, ref) => {
+        const [focused, setFocused] = useState(props.autoFocus);
+
+        const handleFocus = useCallback<React.FocusEventHandler<HTMLInputElement>>(
+            (event) => {
+                setFocused(true);
+                onFocus?.(event);
+            },
+            [onFocus],
+        );
+        const handleBlur = useCallback<React.FocusEventHandler<HTMLInputElement>>(
+            (event) => {
+                setFocused(false);
+                onBlur?.(event);
+            },
+            [onBlur],
+        );
+
+        return (
+            <StyledInputContainer size={size} brick={brick} view={view} focused={focused} className={className}>
                 {nullable(iconLeft, () => (
-                    <StyledIconContainer size={size} position="left">
-                        {iconLeft}
-                    </StyledIconContainer>
+                    <StyledIconContainer size={size}>{iconLeft}</StyledIconContainer>
                 ))}
 
-                <StyledInput forwardRef={ref} view={view} size={size} brick={brick} iconLeft={iconLeft} {...props} />
+                <StyledInput ref={ref} size={size} {...props} onFocus={handleFocus} onBlur={handleBlur} />
 
                 {nullable(iconRight, () => (
-                    <StyledIconContainer size={size} position="right">
-                        {iconRight}
-                    </StyledIconContainer>
+                    <StyledIconContainer size={size}>{iconRight}</StyledIconContainer>
                 ))}
             </StyledInputContainer>
-        ) : (
-            <StyledInput forwardRef={ref} view={view} size={size} brick={brick} {...props} />
-        ),
+        );
+    },
 );
