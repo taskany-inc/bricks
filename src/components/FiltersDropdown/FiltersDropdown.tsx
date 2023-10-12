@@ -20,6 +20,7 @@ export type FilterDropdownBaseProps<T> = {
     disabled?: boolean;
     items: FilterDropdownItem<T>[];
     value: string[];
+    maxHeight?: number;
     type?: 'single' | 'multiselect';
     onChange: (value: string[]) => void;
     renderItem: (props: FiltersDropdownItemProps<T>) => ReactNode;
@@ -27,7 +28,7 @@ export type FilterDropdownBaseProps<T> = {
 };
 
 export const FiltersDropdownBase = React.forwardRef<HTMLDivElement, FilterDropdownBaseProps<any>>(
-    ({ text, type = 'multiselect', disabled, items, value, onChange, renderItem, onSearchChange }, ref) => {
+    ({ text, type = 'multiselect', disabled, items, value, onChange, renderItem, onSearchChange, maxHeight }, ref) => {
         const onChangeHandler = useCallback(
             (item: FilterDropdownItem<any>) => {
                 const existedIndex = value.indexOf(item.id);
@@ -52,6 +53,7 @@ export const FiltersDropdownBase = React.forwardRef<HTMLDivElement, FilterDropdo
                 value={value}
                 onChange={onChangeHandler}
                 items={items}
+                maxHeight={maxHeight}
                 disabled={disabled}
                 onSearchChange={onSearchChange}
                 renderTrigger={(props) => (

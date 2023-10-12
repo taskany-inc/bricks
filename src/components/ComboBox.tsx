@@ -48,6 +48,7 @@ interface ComboBoxProps extends React.HTMLAttributes<HTMLDivElement> {
     };
     maxWidth?: React.ComponentProps<typeof Popup>['maxWidth'];
     minWidth?: React.ComponentProps<typeof Popup>['minWidth'];
+    maxHeight?: React.ComponentProps<typeof Popup>['maxHeight'];
     className?: string;
     placement?: React.ComponentProps<typeof Popup>['placement'];
     offset?: React.ComponentProps<typeof Popup>['offset'];
@@ -98,6 +99,7 @@ export const ComboBox = forwardRef<HTMLDivElement, ComboBoxProps>(
             onChange,
             onClose,
             onClickOutside,
+            maxHeight,
             ...attrs
         },
         ref,
@@ -207,6 +209,7 @@ export const ComboBox = forwardRef<HTMLDivElement, ComboBoxProps>(
                     arrow={false}
                     minWidth={minWidth}
                     maxWidth={maxWidth}
+                    maxHeight={maxHeight}
                     offset={offset}
                     {...attrs}
                 >
