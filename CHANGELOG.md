@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [4.5.0](https://github.com/taskany-inc/bricks/compare/v4.4.1...v4.5.0) (2023-10-12)
+
+
+### Features
+
+* **Popup, Dropdown, FiltersDropdown, ComboBox:** added max-height and overflow-y scroll ([2fd71ce](https://github.com/taskany-inc/bricks/commit/2fd71ce268be5e27f931fa7151cdeaf5d56742cb))
+
 ## [4.4.1](https://github.com/taskany-inc/bricks/compare/v4.4.0...v4.4.1) (2023-10-11)
 
 
