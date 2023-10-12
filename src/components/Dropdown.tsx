@@ -46,6 +46,7 @@ export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
     offset?: ComponentProps<typeof Popup>['offset'];
     searchPlaceholder?: string;
     emptyText?: string;
+    maxHeight?: number;
 
     error?: {
         message?: string;
@@ -79,6 +80,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
             errorMessagePlacement = 'bottom-start',
             arrow = false,
             offset = [-4, 8],
+            maxHeight,
             ...attrs
         },
         ref,
@@ -168,6 +170,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
                     reference={popupRef}
                     interactive
                     arrow={arrow}
+                    maxHeight={maxHeight}
                     minWidth={100}
                     maxWidth={250}
                     offset={offset}

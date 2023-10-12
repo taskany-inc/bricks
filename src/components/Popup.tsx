@@ -15,6 +15,7 @@ interface PopupProps
     overflow?: 'hidden';
     minWidth?: number;
     maxWidth?: number;
+    maxHeight?: number;
     tooltip?: boolean;
     view?: 'warning' | 'danger' | 'primary';
     offset?: number[];
@@ -92,6 +93,7 @@ const StyledPopupContainer = styled.div<{
     overflow?: PopupProps['overflow'];
     minWidth?: PopupProps['minWidth'];
     maxWidth?: PopupProps['maxWidth'];
+    maxHeight?: PopupProps['maxHeight'];
     tooltip?: PopupProps['tooltip'];
     view?: PopupProps['view'];
 }>`
@@ -134,6 +136,13 @@ const StyledPopupContainer = styled.div<{
         minWidth &&
         `
             min-width: ${minWidth}px;
+        `}
+
+    ${({ maxHeight }) =>
+        maxHeight &&
+        `
+            max-height: ${maxHeight}px;
+            overflow-y: scroll;
         `}
 
     &[data-placement^='top'] > ${StyledPopupArrow} {
