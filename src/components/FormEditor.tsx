@@ -12,7 +12,7 @@ import { useMounted } from '../hooks/useMounted';
 import { useUpload } from '../hooks/useUpload';
 import { formContext } from '../context/form';
 
-import { Popup } from './Popup';
+import { Popup } from './Popup/Popup';
 import { Link } from './Link/Link';
 
 interface FormEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'onBlur' | 'onFocus'> {

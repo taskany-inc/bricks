@@ -2,7 +2,7 @@ import React, { ComponentProps, useCallback, useEffect, useRef, useState } from 
 import { danger10 } from '@taskany/colors';
 import styled from 'styled-components';
 
-import { Popup } from './Popup';
+import { Popup } from './Popup/Popup';
 
 const StyledErrorTrigger = styled.div`
     position: absolute;

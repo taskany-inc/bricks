@@ -48,7 +48,7 @@ export * from './FiltersDropdown/FiltersDropdown';
 export * from './UserMenuItem';
 export * from './Table/Table';
 export * from './UserGroup/UserGroup';
-export * from './Popup';
+export * from './Popup/Popup';
 export * from './ListView/ListView';
 export * from './ErrorPopup';
 export * from './Spinner/Spinner';

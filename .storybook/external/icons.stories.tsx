@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 import { Text } from '../../src/components/Text/Text';
 import { Input } from '../../src/components/Input/Input';
-import { Popup } from '../../src/components/Popup'
+import { Popup } from '../../src/components/Popup/Popup'
 
 type IconStory = React.ComponentType<{ type: 'solid' | 'outline' } & Omit<BaseIconProps, 'value'>>
 
@@ -149,7 +149,7 @@ const Item: React.FC<
             >
                 <code>{`import { ${originalName} } from '@taskany/icons';`}</code>
             </Popup>
-            
+
             <Popup visible={showTooltip} reference={nodeRef} placement="top">
                 <Text size="xs" onClick={hide}>Copied!</Text>
             </Popup>
