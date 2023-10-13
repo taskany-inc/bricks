@@ -5,7 +5,7 @@ import { gapSm, gray4, gray9, gray6, radiusL, radiusXl } from '@taskany/colors';
 import { Nullish } from '../../types/void';
 import { UserPic } from '../UserPic';
 import { Text } from '../Text/Text';
-import { Popup } from '../Popup';
+import { Popup } from '../Popup/Popup';
 
 interface UserGroupProps extends React.HTMLAttributes<HTMLDivElement> {
     users: Nullish<{ name: string; email: string; image: string }>[];

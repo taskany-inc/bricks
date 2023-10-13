@@ -5,7 +5,7 @@ import { IconQuestionCircleOutline } from '@taskany/icons';
 
 import { Button } from '../Button/Button';
 import { Form } from '../Form';
-import { Popup } from '../Popup';
+import { Popup } from '../Popup/Popup';
 import { FormInput } from '../FormInput/FormInput';
 
 import { InlineForm } from './InlineForm';

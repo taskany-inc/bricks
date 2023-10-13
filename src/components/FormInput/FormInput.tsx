@@ -6,7 +6,7 @@ import { danger10, gray2, gray3, gray8, radiusS, textColor } from '@taskany/colo
 import { nullable } from '../../utils/nullable';
 import { formContext } from '../../context/form';
 import { Text } from '../Text/Text';
-import { Popup } from '../Popup';
+import { Popup } from '../Popup/Popup';
 
 interface FormInputProps extends React.HTMLAttributes<HTMLInputElement> {
     id?: string;

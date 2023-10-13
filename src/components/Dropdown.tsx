@@ -7,7 +7,7 @@ import { nullable } from '../utils/nullable';
 import { useKeyPress } from '../hooks/useKeyPress';
 import { useKeyboard, KeyCode } from '../hooks/useKeyboard';
 
-import { Popup } from './Popup';
+import { Popup } from './Popup/Popup';
 import { Input } from './Input/Input';
 import { MenuItem } from './MenuItem';
 import { ErrorPopup } from './ErrorPopup';

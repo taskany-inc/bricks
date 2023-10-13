@@ -9,7 +9,7 @@ import { useKeyboard, KeyCode, KeyboardEvents } from '../hooks/useKeyboard';
 import { nullable } from '../utils/nullable';
 import { flatten } from '../utils/flatten';
 
-import { Popup } from './Popup';
+import { Popup } from './Popup/Popup';
 
 interface ComboBoxTriggerProps {
     text: ComboBoxProps['text'];
