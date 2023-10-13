@@ -84,9 +84,16 @@ const getArrowStyles = (direction: keyof typeof arrowDirectionStyles) => css`
     }
 `;
 
-const StyledPopupContent = styled.div`
+const StyledPopupContent = styled.div<{ maxWidth?: PopupProps['maxWidth'] }>`
     position: relative;
     z-index: 1;
+    width: max-content;
+    min-width: 100%;
+    ${({ maxWidth }) =>
+        maxWidth &&
+        `
+            max-width: ${maxWidth}px;
+        `}
 `;
 
 const StyledPopupContainer = styled.div<{
@@ -237,7 +244,7 @@ export const Popup: React.FC<PopupProps> = ({
         visible={visible}
         render={(tippyProps) => (
             <StyledPopupContainer tabIndex={-1} {...tippyProps} {...props}>
-                <StyledPopupContent>{children}</StyledPopupContent>
+                <StyledPopupContent maxWidth={props.maxWidth}>{children}</StyledPopupContent>
 
                 {arrow && <StyledPopupArrow data-popper-arrow />}
             </StyledPopupContainer>
