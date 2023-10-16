@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [4.5.1](https://github.com/taskany-inc/bricks/compare/v4.5.0...v4.5.1) (2023-10-16)
+
+
+### Bug Fixes
+
+* **Popup:** content container should expand to content ([e59bf92](https://github.com/taskany-inc/bricks/commit/e59bf92ab9f88990df768a4567822ffcbfd617d4))
+
 ## [4.5.0](https://github.com/taskany-inc/bricks/compare/v4.4.1...v4.5.0) (2023-10-12)
 
 
