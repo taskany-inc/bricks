@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [4.5.2](https://github.com/taskany-inc/bricks/compare/v4.5.1...v4.5.2) (2023-10-17)
+
+
+### Bug Fixes
+
+* **Spinner:** drop useless prop ([b707175](https://github.com/taskany-inc/bricks/commit/b707175b5c9b2d6a7bb026d0ebf802ff8dde4dd7))
+
 ## [4.5.1](https://github.com/taskany-inc/bricks/compare/v4.5.0...v4.5.1) (2023-10-16)
 
 
