@@ -24,7 +24,7 @@ const StyledLoaderIcon = styled(IconLoaderOutline)`
     transform: translate3d(-50%, -50%, 0);
 `;
 
-export interface SpinnerProps extends BaseIconProps {
+export interface SpinnerProps extends Omit<BaseIconProps, 'value'> {
     animationDuration?: number; // in seconds
 }
 
