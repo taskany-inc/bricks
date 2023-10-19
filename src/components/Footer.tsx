@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { gray0 } from '@taskany/colors';
+import { gray0, gray9 } from '@taskany/colors';
 
 import { SheepLogo } from './SheepLogo/SheepLogo';
 import { Text } from './Text/Text';
@@ -14,9 +14,10 @@ const StyledFooter = styled.footer`
 
 const StyledFooterMenu = styled.div`
     display: flex;
+    color: ${gray9};
 `;
 
-export const FooterItem = styled(Text)`
+export const FooterItem = styled(Text).attrs({ color: 'inherit' })`
     padding: 0px 10px;
 `;
 interface FooterProps extends React.HTMLAttributes<HTMLDivElement> {
