@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [4.5.3](https://github.com/taskany-inc/bricks/compare/v4.5.2...v4.5.3) (2023-10-19)
+
+
+### Bug Fixes
+
+* **Footer:** items inherit outside colors ([95ff755](https://github.com/taskany-inc/bricks/commit/95ff755ac959790daa8756fe0d2ff0abdf24d736))
+
 ## [4.5.2](https://github.com/taskany-inc/bricks/compare/v4.5.1...v4.5.2) (2023-10-17)
 
 
