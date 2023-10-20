@@ -11,6 +11,7 @@
     "index.d.js.map",
     "components",
     "context",
+    "types",
     "utils",
     "hooks",
     "es"
