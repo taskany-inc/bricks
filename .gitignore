@@ -19,6 +19,7 @@
 /es
 /index.js*
 /index.d.ts*
+/types
 node_modules/
 npm-debug.log
 tsconfig.tsbuildinfo
