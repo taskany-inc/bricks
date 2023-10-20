@@ -1,4 +1,8 @@
-const plugins = ['inline-react-svg'];
+const plugins = ['inline-react-svg', ["styled-components", {
+    namespace: process.env.SC_NAMESPACE,
+    displayName: false,
+}]];
+
 const ignore = ['**/*.d.ts', '**/*.stories.ts', '**/*.stories.tsx'];
 
 module.exports = {
