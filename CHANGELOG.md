@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [4.5.4](https://github.com/taskany-inc/bricks/compare/v4.5.3...v4.5.4) (2023-10-20)
+
+
+### Bug Fixes
+
+* **Nullish:** fix lost export ([b6a83c7](https://github.com/taskany-inc/bricks/commit/b6a83c7e68bcbc296035b72bf169ada5b5ab2ed7))
+
 ## [4.5.3](https://github.com/taskany-inc/bricks/compare/v4.5.2...v4.5.3) (2023-10-19)
 
 
