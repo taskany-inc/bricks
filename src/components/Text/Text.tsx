@@ -47,7 +47,8 @@ export interface TextProps extends React.HTMLAttributes<HTMLDivElement> {
     lines?: number;
     wordWrap?: React.CSSProperties['wordWrap'];
     wordBreak?: React.CSSProperties['wordBreak'];
-    as?: string;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    as?: string | React.ComponentType<any>;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     forwardRef?: any;
     children?: React.ReactNode;
@@ -66,7 +67,7 @@ export const Text = styled(
         wordWrap,
         forwardRef,
         ...props
-    }: TextProps) => <Tag {...props} />,
+    }: TextProps) => <Tag ref={forwardRef} {...props} />,
 )<TextProps>`
     font-size: 16px;
     font-family: ${fontDisplay};
