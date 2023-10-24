@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [4.6.0](https://github.com/taskany-inc/bricks/compare/v4.5.5...v4.6.0) (2023-10-24)
+
+
+### Features
+
+* monaco cdn path to env ([2e5fda8](https://github.com/taskany-inc/bricks/commit/2e5fda8072207b20ab8512fa926ba10a6a9874b7))
+
 ## [4.5.5](https://github.com/taskany-inc/bricks/compare/v4.5.4...v4.5.5) (2023-10-24)
 
 
