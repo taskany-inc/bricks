@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [4.5.5](https://github.com/taskany-inc/bricks/compare/v4.5.4...v4.5.5) (2023-10-24)
+
+
+### Bug Fixes
+
+* **Text:** component uses ref prop ([9aa189b](https://github.com/taskany-inc/bricks/commit/9aa189bc29907cd64e97fe2e5ac5c02422ada79a))
+
 ## [4.5.4](https://github.com/taskany-inc/bricks/compare/v4.5.3...v4.5.4) (2023-10-20)
 
 
