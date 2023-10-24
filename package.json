@@ -1,6 +1,6 @@
 {
   "name": "@taskany/bricks",
-  "version": "4.5.5",
+  "version": "4.6.0",
   "description": "Taskany Design System",
   "main": "index.js",
   "module": "es/index.js",
