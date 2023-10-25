@@ -2,7 +2,7 @@
 import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { useDropzone } from 'react-dropzone';
-import Editor, { loader } from '@monaco-editor/react';
+import Editor from '@monaco-editor/react';
 import { danger10, gapS, gapXs, gray2, gray3, gray4, gray6, gray8, radiusS, textColor } from '@taskany/colors';
 import { IconAttachOutline } from '@taskany/icons';
 
@@ -15,11 +15,7 @@ import { formContext } from '../context/form';
 import { Popup } from './Popup/Popup';
 import { Link } from './Link/Link';
 
-loader.config({
-    paths: {
-        vs: process.env.NEXT_PUBLIC_MONACO_CDN || 'https://cdn.jsdelivr.net/npm/monaco-editor@0.43.0/min/vs',
-    },
-});
+export { loader as editorLoader } from '@monaco-editor/react';
 
 interface FormEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'onBlur' | 'onFocus'> {
     id?: string;
