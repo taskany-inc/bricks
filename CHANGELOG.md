@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [4.7.0](https://github.com/taskany-inc/bricks/compare/v4.6.0...v4.7.0) (2023-10-25)
+
+
+### Features
+
+* monaco loader export ([eb063df](https://github.com/taskany-inc/bricks/commit/eb063df3e1d83ba1f977aad01782e89ae372e5bf))
+
 ## [4.6.0](https://github.com/taskany-inc/bricks/compare/v4.5.5...v4.6.0) (2023-10-24)
 
 
