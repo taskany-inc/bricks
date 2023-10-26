@@ -60,3 +60,4 @@ export * from './Radio/Radio';
 export * from './GlobalSearch';
 export * from './Keyboard/Keyboard';
 export * from './Tip/Tip';
+export * from './TreeView/TreeView';
