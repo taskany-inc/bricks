@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [4.7.1](https://github.com/taskany-inc/bricks/compare/v4.7.0...v4.7.1) (2023-10-26)
+
+
+### Bug Fixes
+
+* **Tag:** removed margin ([cddf745](https://github.com/taskany-inc/bricks/commit/cddf7458036b3c34fc0409d42b4506753169ce83))
+
 ## [4.7.0](https://github.com/taskany-inc/bricks/compare/v4.6.0...v4.7.0) (2023-10-25)
 
 
