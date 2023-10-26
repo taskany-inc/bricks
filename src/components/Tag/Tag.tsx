@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { gapXs, gray5, gray6, gray8, gray9, radiusL } from '@taskany/colors';
+import { gray5, gray6, gray8, gray9, radiusL } from '@taskany/colors';
 import { IconXCircleSolid } from '@taskany/icons';
 
 interface TagProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -48,10 +48,6 @@ const StyledTag = styled(({ size, ...props }: TagProps) => <div {...props} />)`
     background-color: ${gray5};
 
     transition: background-color 100ms ease-in-out;
-
-    & + & {
-        margin-left: ${gapXs};
-    }
 
     &:hover {
         ${TagCleanButton} {
