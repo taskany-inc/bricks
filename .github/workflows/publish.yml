@@ -5,15 +5,9 @@ on:
   pull_request_target:
     types:
       - closed
-    paths:
-      - .release_notes/**
       
 jobs:
   npm_publish:
     if: github.event.pull_request.merged == true
     uses: taskany-inc/release/.github/workflows/npm_publish.yml@main
-    secrets: inherit
-  gh_release:
-    if: github.event.pull_request.merged == true
-    uses: taskany-inc/release/.github/workflows/gh_release.yml@main
     secrets: inherit
