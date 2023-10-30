@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [4.8.0](https://github.com/taskany-inc/bricks/compare/v4.7.1...v4.8.0) (2023-10-30)
+
+
+### Features
+
+* add TreeView component ([72d25c5](https://github.com/taskany-inc/bricks/commit/72d25c5adebc79182b3c9ac96def31b81bc88db2))
+* **workflows:** npm fast track ([79b076d](https://github.com/taskany-inc/bricks/commit/79b076dc3cc57d2d57af98dd798633a3784aaf90))
+
 ## [4.7.1](https://github.com/taskany-inc/bricks/compare/v4.7.0...v4.7.1) (2023-10-26)
 
 
