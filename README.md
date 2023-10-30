@@ -1,6 +1,6 @@
 # Taskany Bricks
 
-This is a package with components, which we use in our projects.
+Taskany Design System.
 
 ## Install
 
