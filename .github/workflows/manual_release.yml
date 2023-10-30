@@ -1,7 +1,0 @@
-name: Manual Release
-
-on: workflow_dispatch
-
-jobs:
-  manual_release:
-    uses: taskany-inc/release/.github/workflows/release_pr.yml@main
