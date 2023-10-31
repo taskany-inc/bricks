@@ -24,7 +24,7 @@ jobs:
           reactions: heart
       - uses: actions/checkout@v3
         with: 
-          ref: ${{ github.event.issue.pull_request.head.ref }}
+          ref: ${{ github.event.pull_request.head.ref }}
       - id: commit
         uses: prompt/actions-commit-hash@v3
       - uses: actions/setup-node@v3
@@ -43,7 +43,7 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          echo "Publishing from PR: ${{ github.event.issue.number }}. On branch: ${{ github.event.issue.pull_request.head.ref }}" 
+          echo "Publishing from PR: ${{ github.event.issue.number }}. On branch: ${{ github.event.pull_request.head.ref }}" 
           npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
           npm version 0.0.0-${{ steps.commit.outputs.short }} --git-tag-version false
           npm publish --tag canary
