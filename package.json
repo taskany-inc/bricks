@@ -18,7 +18,8 @@
   ],
   "scripts": {
     "clean": "rm -rf ./components ./context ./es ./hooks ./utils index.d.ts index.js index.js.map",
-    "build": "npm run clean && npm run build:cjm && npm run build:esm && npm run build:types",
+    "build": "npm run clean && npm run build:css && npm run build:cjm && npm run build:esm && npm run build:types",
+    "build:css": "find src/components -name \"*.module.css\" | cpio -pdm ./styles && mv ./styles/src/components .",
     "build:cjm": "BABEL_ENV=cjs SC_NAMESPACE=b babel ./src --out-dir . --extensions .ts,.tsx",
     "build:esm": "BABEL_ENV=esm SC_NAMESPACE=b babel ./src --out-dir ./es --extensions .ts,.tsx",
     "build:types": "tsc --outDir . --emitDeclarationOnly",
