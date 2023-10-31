@@ -6,4 +6,7 @@ jobs:
   npm_publish:
     uses: taskany-inc/release/.github/workflows/npm_publish.yml@main
     secrets: inherit
+  gh_release:
+    uses: taskany-inc/release/.github/workflows/gh_release.yml@main
+    secrets: inherit
 
