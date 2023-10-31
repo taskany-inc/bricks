@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [4.8.1](https://github.com/taskany-inc/bricks/compare/v4.8.0...v4.8.1) (2023-10-31)
+
+
+### Bug Fixes
+
+* **readme:** update description ([d45bc46](https://github.com/taskany-inc/bricks/commit/d45bc46c1ff954bc2623c87dc8f228d04fde8b33))
+
 ## [4.8.0](https://github.com/taskany-inc/bricks/compare/v4.7.1...v4.8.0) (2023-10-30)
 
 
