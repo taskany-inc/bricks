@@ -46,6 +46,7 @@ jobs:
           echo "version=0.0.0-$SHA" >> "$GITHUB_OUTPUT"
       - name: Comment version to PR
         env:
+          GH_TOKEN: ${{ steps.auth.outputs.token }}
           PR_NUMBER: ${{ github.event.issue.number }}
           VERSION: ${{ steps.canary.outputs.version }}
         run: |
