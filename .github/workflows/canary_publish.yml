@@ -5,14 +5,12 @@ on: issue_comment
 jobs:
   pr_commented:
     name: PR commented
-    if: ${{ github.event.issue.pull_request }}
+    if: ${{ github.event.issue.pull_request && startsWith(github.event.comment.body, '/canary') }}
     runs-on: ubuntu-latest
+    env:
+      PR_NUMBER: ${{ github.event.issue.number }}
     steps:
-      - name: PR check
-        id: pr
-        env:
-          PR_NUMBER: ${{ github.event.issue.number }}
-        if: ${{ startsWith(github.event.comment.body, '/canary') }}
+      - name: PR accepted  
         run: |
           echo canary request on PR $PR_NUMBER
       - name: Auth
