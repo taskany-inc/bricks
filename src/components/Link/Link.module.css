@@ -1,0 +1,19 @@
+.Link {
+    color: var(--link10);
+
+    transition: 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+    transition-property: color;
+    transition-duration: 0.1s;
+
+    cursor: pointer;
+}
+
+.LinkInline {
+    color: inherit;
+    text-decoration: none;
+}
+
+.LinkInline:hover {
+    color: var(--link10);
+    text-decoration: underline;
+}
