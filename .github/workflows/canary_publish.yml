@@ -16,15 +16,17 @@ jobs:
         with: 
           app-id: ${{ vars.APP_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
-      - name: PR accepted
+      - name: Comment accepted
         uses: peter-evans/create-or-update-comment@v3
         with:
           token: ${{ steps.auth.outputs.token }}
           comment-id: ${{ github.event.comment.id }}
           reactions: heart
+      - id: branch
+        uses: xt0rted/pull-request-comment-branch@v2
       - uses: actions/checkout@v3
         with: 
-          ref: ${{ github.head_ref }}
+          ref: ${{ steps.branch.outputs.head_ref }}
       - id: commit
         uses: prompt/actions-commit-hash@v3
       - uses: actions/setup-node@v3
@@ -43,7 +45,7 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          echo "Publishing from PR: ${{ github.event.issue.number }}. On branch: ${{ github.head_ref }}" 
+          echo "Publishing from PR: ${{ github.event.issue.number }}. On branch: ${{ steps.branch.outputs.head_ref }}" 
           npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
           npm version 0.0.0-${{ steps.commit.outputs.short }} --git-tag-version false
           npm publish --tag canary
