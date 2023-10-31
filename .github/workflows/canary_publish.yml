@@ -10,15 +10,18 @@ jobs:
     env:
       PR_NUMBER: ${{ github.event.issue.number }}
     steps:
-      - name: PR accepted  
-        run: |
-          echo canary request on PR $PR_NUMBER
       - name: Auth
         uses: actions/create-github-app-token@v1
         id: auth
         with: 
           app-id: ${{ vars.APP_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
+      - name: PR accepted
+        uses: peter-evans/create-or-update-comment@v3
+        with:
+          token: ${{ steps.auth.outputs.token }}
+          comment-id: ${{ github.event.comment.id }}
+          reactions: heart
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
@@ -42,10 +45,14 @@ jobs:
           echo publish 0.0.0-$(date +'%Y-%m-%d-%H-%M-%S')
           echo "version=0.0.0-$(date +'%Y-%m-%d-%H-%M-%S')" >> "$GITHUB_OUTPUT"
       - name: Comment version to PR
+        uses: peter-evans/create-or-update-comment@v3
         env:
-          GH_TOKEN: ${{ steps.auth.outputs.token }}
-          PR_NUMBER: ${{ github.event.issue.number }}
           VERSION: ${{ steps.canary.outputs.version }}
-        run: |
-          gh pr comment $PR_NUMBER --body "Canary available: \`@taskany/bricks@$VERSION\`"
+        with:
+          token: ${{ steps.auth.outputs.token }}
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            Canary available: `@taskany/bricks@$VERSION`
+          reactions: hooray
+      
         
