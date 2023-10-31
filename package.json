@@ -70,7 +70,8 @@
     "react-dom": "18.2.0",
     "storybook": "7.4.5",
     "styled-components": "5.3.11",
-    "typescript": "5.2.2"
+    "typescript": "5.2.2",
+    "typescript-plugin-css-modules": "5.0.2"
   },
   "peerDependencies": {
     "react": "^18.2.0",
@@ -79,9 +80,10 @@
   },
   "dependencies": {
     "@monaco-editor/react": "4.6.0",
-    "@taskany/colors": "1.1.0",
+    "@taskany/colors": "1.2.1",
     "@taskany/icons": "2.0.1",
     "@tippyjs/react": "4.2.6",
+    "classnames": "2.3.2",
     "color-layer": "1.0.3",
     "md5": "2.3.0",
     "react-dropzone": "14.2.3",
