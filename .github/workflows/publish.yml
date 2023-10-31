@@ -1,9 +1,10 @@
 name: Publish Release
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+  pull_request_target:
+    types:
+      - closed
       
 jobs:
   npm_publish:
