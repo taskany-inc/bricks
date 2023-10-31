@@ -37,18 +37,17 @@ jobs:
         id: canary
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          SHA: ${{ github.event.pull_request.head.sha }}
         run: |
           # save version
           # npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
           # npm publish 
-          echo publish 0.0.0-$SHA
-          echo "version=0.0.0-$SHA" >> "$GITHUB_OUTPUT"
+          echo publish 0.0.0-$(date +'%Y-%m-%d-%H-%M-%S')
+          echo "version=0.0.0-$(date +'%Y-%m-%d-%H-%M-%S')" >> "$GITHUB_OUTPUT"
       - name: Comment version to PR
         env:
           GH_TOKEN: ${{ steps.auth.outputs.token }}
           PR_NUMBER: ${{ github.event.issue.number }}
           VERSION: ${{ steps.canary.outputs.version }}
         run: |
-          gh pr comment $PR_NUMBER --body "Canary available: `@taskany/bricks@$VERSION`"
+          gh pr comment $PR_NUMBER --body "Canary available: \`@taskany/bricks@$VERSION\`"
         
