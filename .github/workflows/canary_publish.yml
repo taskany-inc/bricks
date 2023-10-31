@@ -39,20 +39,16 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          # save version
-          # npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
-          # npm publish 
-          echo publish 0.0.0-$(date +'%Y-%m-%d-%H-%M-%S')
+          npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
+          npm version 0.0.0-$(date +'%Y-%m-%d-%H-%M-%S') --git-tag-version false
+          npm publish --tag canary
           echo "version=0.0.0-$(date +'%Y-%m-%d-%H-%M-%S')" >> "$GITHUB_OUTPUT"
       - name: Comment version to PR
         uses: peter-evans/create-or-update-comment@v3
-        env:
-          VERSION: ${{ steps.canary.outputs.version }}
         with:
           token: ${{ steps.auth.outputs.token }}
           issue-number: ${{ github.event.issue.number }}
           body: |
-            Canary available: `@taskany/bricks@$VERSION`
-          reactions: hooray
+            Canary available: `@taskany/bricks@${{ steps.canary.outputs.version }}`
       
         
