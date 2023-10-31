@@ -16,46 +16,55 @@ jobs:
         with: 
           app-id: ${{ vars.APP_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          
       - name: Comment accepted
         uses: peter-evans/create-or-update-comment@v3
         with:
           token: ${{ steps.auth.outputs.token }}
           comment-id: ${{ github.event.comment.id }}
           reactions: heart
+          
       - id: branch
         uses: xt0rted/pull-request-comment-branch@v2
-      - uses: actions/checkout@v3
-        with: 
-          ref: ${{ steps.commit.outputs.short }}
+        
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.branch.outputs.head_ref }}
+      
       - id: commit
         uses: prompt/actions-commit-hash@v3
+        
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ vars.NODE_VERSION }}
+          
       - uses: actions/cache@v3
         with:
           path: node_modules
           key: npm-deps-${{ hashFiles('package-lock.json') }}
           restore-keys: |
             npm-deps-${{ hashFiles('package-lock.json') }}
+            
       - name: Setup packages
         run: npm ci
+        
       - name: Publish canary to NPM
         id: canary
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           echo "Publishing from PR: ${{ github.event.issue.number }}. On branch: ${{ steps.branch.outputs.head_ref }}" 
+          echo "Last commit: $(git log -1 --format='%H')"
           npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
           npm version 0.0.0-${{ steps.commit.outputs.short }} --git-tag-version false
           npm publish --tag canary
-          echo "version=0.0.0-${{ steps.commit.outputs.short }}" >> "$GITHUB_OUTPUT"
+          
       - name: Comment version to PR
         uses: peter-evans/create-or-update-comment@v3
         with:
           token: ${{ steps.auth.outputs.token }}
           issue-number: ${{ github.event.issue.number }}
           body: |
-            Canary available: `@taskany/bricks@${{ steps.canary.outputs.version }}`
+            Canary available: `@taskany/bricks@$0.0.0-${{ steps.commit.outputs.short }}`
       
         
