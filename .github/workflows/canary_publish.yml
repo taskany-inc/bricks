@@ -1,0 +1,16 @@
+name: Publish canary
+
+on: issue_comment
+
+jobs:
+  pr_commented:
+    name: PR commented
+    if: ${{ github.event.issue.pull_request }}
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          PR_NUMBER: ${{ github.event.issue.number }}
+        if: ${{ startsWith(github.event.comment.body, '/canary') }}
+        run: |
+          echo canary request on PR $NUMBER
+        
