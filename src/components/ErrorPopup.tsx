@@ -1,29 +1,57 @@
 import React, { ComponentProps, useCallback, useEffect, useRef, useState } from 'react';
 import { danger10 } from '@taskany/colors';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+import { nullable } from '../utils';
 
 import { Popup } from './Popup/Popup';
 
-const StyledErrorTrigger = styled.div`
+type DotOffset = { placement?: 'center' | 'top' };
+export interface ErrorPopupProps extends React.HTMLAttributes<HTMLSpanElement> {
+    err?: {
+        message?: string;
+    };
+    visible?: boolean;
+    placement?: ComponentProps<typeof Popup>['placement'];
+    dotPlacement?: DotOffset['placement'];
+}
+
+const dotPlacementMixin = css<DotOffset>`
+    ${({ placement }) => {
+        if (!placement || placement === 'center') {
+            return {
+                top: '50%',
+                transform: 'translateY(-50%)',
+            };
+        }
+
+        return {
+            top: '11px',
+        };
+    }}
+    left: -3px;
+`;
+
+const StyledErrorTrigger = styled.span<DotOffset>`
     position: absolute;
     width: 6px;
     height: 6px;
     border-radius: 100%;
     background-color: ${danger10};
-    top: 11px;
-    left: -2px;
+
     z-index: 1;
+
+    ${dotPlacementMixin}
 `;
 
-export type ErrorPopupProps = {
-    err: {
-        message?: string;
-    };
-    visible?: boolean;
-    placement?: ComponentProps<typeof Popup>['placement'];
-};
-
-export const ErrorPopup = ({ err, visible, placement }: ErrorPopupProps) => {
+export const ErrorPopup: React.FC<React.PropsWithChildren<ErrorPopupProps>> = ({
+    err,
+    visible,
+    placement = 'top-start',
+    dotPlacement = 'center',
+    children,
+    ...attrs
+}) => {
     const popupRef = useRef<HTMLDivElement>(null);
     const [popupVisible, setPopupVisibility] = useState(visible);
 
@@ -41,6 +69,8 @@ export const ErrorPopup = ({ err, visible, placement }: ErrorPopupProps) => {
                 ref={popupRef}
                 onMouseEnter={() => setPopupVisibility(true)}
                 onMouseLeave={() => setPopupVisibility(false)}
+                placement={dotPlacement}
+                {...attrs}
             />
             <Popup
                 onClickOutside={onClickOutside}
@@ -50,7 +80,7 @@ export const ErrorPopup = ({ err, visible, placement }: ErrorPopupProps) => {
                 visible={popupVisible}
                 reference={popupRef}
             >
-                {err.message}
+                {children || nullable(err, ({ message }) => message)}
             </Popup>
         </>
     );
