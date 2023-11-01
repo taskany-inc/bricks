@@ -66,3 +66,4 @@ export * from './FilterCheckbox';
 export * from './FilterTabLabel';
 export * from './FilterBase';
 export * from './FilterPopup/FilterPopup';
+export * from './FormControl/FormControl';
