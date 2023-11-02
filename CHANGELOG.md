@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [4.8.3](https://github.com/taskany-inc/bricks/compare/v4.8.2...v4.8.3) (2023-11-02)
+
+
+### Bug Fixes
+
+* **nullable:** does not provide an empty string in the render callback ([5aa4243](https://github.com/taskany-inc/bricks/commit/5aa4243b8258931649fdeb90858ba848eb0a296c))
+* **workflows:** pass gh token ([20a23f9](https://github.com/taskany-inc/bricks/commit/20a23f9ad8d7f14d05ec3a8a34aece1658fd914e))
+
 ## [4.8.2](https://github.com/taskany-inc/bricks/compare/v4.8.0...v4.8.2) (2023-10-31)
 
 
