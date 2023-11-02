@@ -149,8 +149,6 @@ export const TableCell = styled(
     ),
 )`
     display: inline-flex;
-    align-items: baseline;
-    flex-wrap: wrap;
 
     ${({ col }) => {
         if (!col) {
