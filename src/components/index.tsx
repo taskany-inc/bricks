@@ -61,3 +61,8 @@ export * from './GlobalSearch';
 export * from './Keyboard/Keyboard';
 export * from './Tip/Tip';
 export * from './TreeView/TreeView';
+export * from './FilterAutoCompleteInput';
+export * from './FilterCheckbox';
+export * from './FilterTabLabel';
+export * from './FilterBase';
+export * from './FilterPopup/FilterPopup';
