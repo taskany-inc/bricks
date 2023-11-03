@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [4.9.0](https://github.com/taskany-inc/bricks/compare/v4.8.3...v4.9.0) (2023-11-03)
+
+
+### Features
+
+* compontnt FilterPopup and components for it ([4ad78e0](https://github.com/taskany-inc/bricks/commit/4ad78e0042015f84a5f6fe35faa783c12f9e3a27))
+
+
+### Bug Fixes
+
+* **TreeViewNode:** relax restrictions on children ([ac6ee05](https://github.com/taskany-inc/bricks/commit/ac6ee05bd36651cca9e004696c2248827df34b81))
+
 ## [4.8.3](https://github.com/taskany-inc/bricks/compare/v4.8.2...v4.8.3) (2023-11-02)
 
 
