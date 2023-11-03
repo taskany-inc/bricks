@@ -5,11 +5,9 @@ import { IconRightSmallOutline } from '@taskany/icons';
 
 import { nullable } from '../../utils';
 
-type ValidChild = React.ReactElement<typeof TreeViewNode | typeof TreeViewElement>;
-
 interface TreeViewNodeProps {
     title: React.ReactNode;
-    children?: ValidChild[] | ValidChild;
+    children?: React.ReactNode;
     visible?: boolean;
     interactive?: boolean;
     className?: string;
