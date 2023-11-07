@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [4.9.2](https://github.com/taskany-inc/bricks/compare/v4.9.1...v4.9.2) (2023-11-07)
+
+
+### Bug Fixes
+
+* **TreeViewNode:** display contents for title container ([bf4aa7f](https://github.com/taskany-inc/bricks/commit/bf4aa7fc68a280d30acdcc72a5bc150eb57f766c))
+
 ## [4.9.1](https://github.com/taskany-inc/bricks/compare/v4.9.0...v4.9.1) (2023-11-07)
 
 
