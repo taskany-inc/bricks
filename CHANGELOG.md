@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [4.9.1](https://github.com/taskany-inc/bricks/compare/v4.9.0...v4.9.1) (2023-11-07)
+
+
+### Bug Fixes
+
+* **Table:** removed excessive styles ([397fafc](https://github.com/taskany-inc/bricks/commit/397fafcb3d504cac4cfa09de45eecc6c1994e5c0))
+
 ## [4.9.0](https://github.com/taskany-inc/bricks/compare/v4.8.3...v4.9.0) (2023-11-03)
 
 
