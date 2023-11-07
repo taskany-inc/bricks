@@ -28,7 +28,9 @@ const StyledIconRightSmallOutline = styled(IconRightSmallOutline)<{ visible?: bo
     `}
 `;
 
-const StyledTreeViewNodeTitleContent = styled.div``;
+const StyledTreeViewNodeTitleContent = styled.div`
+    display: contents;
+`;
 
 const StyledTreeViewNodeTitle = styled.div`
     display: flex;
