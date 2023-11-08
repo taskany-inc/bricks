@@ -65,6 +65,7 @@ const defaultOptions: React.ComponentProps<typeof Editor>['options'] = {
     },
     overviewRulerBorder: false,
     scrollBeyondLastLine: false,
+    scrollbar: { alwaysConsumeMouseWheel: false },
 };
 
 const StyledEditor = styled.div<{ flat: FormEditorProps['flat']; value: boolean; disabled: boolean }>`
