@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [4.10.0](https://github.com/taskany-inc/bricks/compare/v4.9.2...v4.10.0) (2023-11-09)
+
+
+### Features
+
+* **FormControl:** a brand new component ([a70b53e](https://github.com/taskany-inc/bricks/commit/a70b53e70a7e23ab066069ae843af75df62e948f))
+
+
+### Bug Fixes
+
+* **FormEditor:** scroll page when cursor on editor ([68ac33d](https://github.com/taskany-inc/bricks/commit/68ac33d024393d0caeeab257e8c1aa06cb4d5586))
+
 ## [4.9.2](https://github.com/taskany-inc/bricks/compare/v4.9.1...v4.9.2) (2023-11-07)
 
 
