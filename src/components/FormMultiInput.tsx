@@ -1,5 +1,4 @@
-/* eslint-disable no-nested-ternary */
-import React, { useCallback, useState, ChangeEvent, useEffect, useContext } from 'react';
+import React, { useCallback, useState, ChangeEvent, useEffect, useContext, ReactNode } from 'react';
 import styled from 'styled-components';
 import { gapS, gray3, gray8, radiusS, textColor } from '@taskany/colors';
 import { IconPlusCircleOutline } from '@taskany/icons';
@@ -9,12 +8,12 @@ import { formContext } from '../context/form';
 
 import { Text } from './Text/Text';
 import { Tag, TagCleanButton } from './Tag/Tag';
-import { Input } from './Input/Input';
 import { MenuItem } from './MenuItem';
 import { ComboBox } from './ComboBox';
 
 type Item = { title: string; id: any };
 
+type ComboBoxInputProps = Parameters<React.ComponentProps<typeof ComboBox>['renderInput']>['0'];
 interface FormMultiInputProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'onInput' | 'onClick'> {
     items?: Item[];
     id?: string;
@@ -23,14 +22,13 @@ interface FormMultiInputProps extends Omit<React.HTMLAttributes<HTMLDivElement>,
     query?: string;
     value?: Item[];
     disabled?: boolean;
-    placeholder?: string;
-    error?: React.ComponentProps<typeof ComboBox>['error'];
     className?: string;
 
     onChange?: (value: Item[]) => void;
     onInput?: (query: string) => void;
     renderItem?: (item: Item & { onClick: () => void }) => React.ReactNode;
     renderTrigger?: React.ComponentProps<typeof ComboBox>['renderTrigger'];
+    renderInput: (props: ComboBoxInputProps & { onChange: (e: ChangeEvent<HTMLInputElement>) => void }) => ReactNode;
 }
 
 const StyledFormInputContainer = styled.div`
@@ -54,10 +52,6 @@ const StyledLabel = styled(Text)`
     background-color: transparent;
 `;
 
-const StyledInput = styled(Input)`
-    min-width: 100px;
-`;
-
 const StyledComboBox = styled(ComboBox)`
     margin-left: ${gapS};
 `;
@@ -71,9 +65,7 @@ export const FormMultiInput = React.forwardRef<HTMLDivElement, FormMultiInputPro
             label,
             value = [],
             query = '',
-            error,
             disabled: internalDisabled,
-            placeholder,
             onChange,
             onInput,
             renderItem = (item) => (
@@ -83,6 +75,7 @@ export const FormMultiInput = React.forwardRef<HTMLDivElement, FormMultiInputPro
                 </Tag>
             ),
             renderTrigger = (props) => <IconPlusCircleOutline size="xs" onClick={props.onClick} />,
+            renderInput,
             ...props
         },
         ref,
@@ -124,23 +117,19 @@ export const FormMultiInput = React.forwardRef<HTMLDivElement, FormMultiInputPro
                     ref={ref}
                     value={inputState}
                     visible={completionVisible}
-                    error={error}
                     disabled={disabled}
                     onChange={onValueAdd}
                     items={items}
                     renderTrigger={renderTrigger}
-                    renderInput={(props) => (
-                        <StyledInput
-                            autoFocus
-                            disabled={props.disabled}
-                            placeholder={placeholder}
-                            onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                    renderInput={(props) =>
+                        renderInput({
+                            onChange: (e: ChangeEvent<HTMLInputElement>) => {
                                 setInputState(e.currentTarget.value);
                                 setCompletionVisibility(true);
-                            }}
-                            {...props}
-                        />
-                    )}
+                            },
+                            ...props,
+                        })
+                    }
                     renderItem={(props) => (
                         <MenuItem
                             ghost
