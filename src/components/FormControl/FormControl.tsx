@@ -18,6 +18,7 @@ import {
     danger7,
     danger8,
     danger9,
+    gapM,
     gapS,
     gapSm,
     gapXs,
@@ -77,7 +78,13 @@ const FormControlContext = createContext<FormControlContext | void>(undefined);
 const fontSizeMap = {
     s: 11,
     m: 14,
-    l: 24,
+    l: 22,
+} as const;
+
+const fontWeightMap = {
+    s: 400,
+    m: 500,
+    l: 600,
 } as const;
 
 const gapSizeMap = {
@@ -91,7 +98,7 @@ const gapSizeMap = {
     },
     l: {
         gap: gapSm,
-        padding: [gapXs, gapSm],
+        padding: [gapS, gapM],
     },
 } as const;
 
@@ -162,7 +169,11 @@ const gapMixin = css<Pick<FormControlStylingProps, 'size'>>`
 `;
 
 const sizeMixin = css<Pick<FormControlStylingProps, 'size'>>`
-    ${({ size }) => ({ fontSize: `${fontSizeMap[size]}px`, [`${cssVariable.fns}`]: `${fontSizeMap[size]}px` })}
+    ${({ size }) => ({
+        fontSize: `${fontSizeMap[size]}px`,
+        fontWeight: fontWeightMap[size],
+        [`${cssVariable.fns}`]: `${fontSizeMap[size]}px`,
+    })}
 `;
 
 const calcColorLevel = (level: number, disabled = false) => (disabled ? level - 1 : level);
@@ -194,8 +205,8 @@ const applyCSSVarsMixin = css<Pick<FormControlStylingProps, 'view' | 'hue' | 'di
 `;
 
 const variantMixin = css<Pick<FormControlStylingProps, 'variant' | 'error' | 'disabled'>>`
-    border: 1px solid transparent;
-    background-color: transparent;
+    border: 1px solid ${gray3};
+    background-color: ${gray3};
     color: var(${cssVariable.c});
 
     &:hover:not([disabled]),
@@ -329,6 +340,7 @@ const StyledInput = styled.input`
     color: currentColor;
     font-size: inherit;
     background-color: inherit;
+    font-weight: inherit;
     border: 0;
     outline: none;
     caret-color: currentColor;
@@ -341,8 +353,10 @@ const StyledInput = styled.input`
     }
 `;
 
-const StyledFormInputWrapper = styled.span<
-    Pick<FormControlStylingProps, 'variant' | 'view' | 'flat' | 'brick' | 'error' | 'disabled'>
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const StyledFormInputWrapper = styled(({ variant, view, flat, brick, type, ...props }) => <span {...props} />)<
+    Pick<FormControlStylingProps, 'variant' | 'view' | 'flat' | 'brick' | 'error' | 'disabled'> &
+        Pick<FormInputProps, 'type'>
 >`
     display: flex;
     align-items: center;
@@ -353,6 +367,15 @@ const StyledFormInputWrapper = styled.span<
 
     ${variantMixin}
     ${brickAndFlatMixin}
+
+    ${({ type }) =>
+        type === 'checkbox' &&
+        `
+        flex: 0;
+        padding: 0;
+        border: 0;
+        background: transparent;
+    `}
 `;
 
 const StyledIconContainer = styled.div`
@@ -391,7 +414,15 @@ export const FormControlInput = forwardRef<HTMLInputElement, PropsWithChildren<F
         );
 
         return (
-            <StyledFormInputWrapper variant={variant} view={view} flat={flat} brick={brick} error={error}>
+            <StyledFormInputWrapper
+                variant={variant}
+                view={view}
+                flat={flat}
+                brick={brick}
+                error={error}
+                disabled={disabled}
+                type={type}
+            >
                 {nullable(iconLeft, (icon) => (
                     <StyledIconContainer>{icon}</StyledIconContainer>
                 ))}
@@ -424,14 +455,11 @@ export const FormControlError: React.FC<PropsWithChildren<FormControlErrorProps>
 };
 
 const StyledText = styled(Text)<{ error?: boolean }>`
-    font-size: var(${cssVariable.fns});
+    ${({ size }) => !size && `font-size: var(${cssVariable.fns});`}
     color: ${({ error, color }) => (error ? danger9 : color)};
 `;
 
-export const FormControlLabel: React.FC<Omit<React.ComponentProps<typeof Text>, 'size'>> = ({
-    color = textColor,
-    ...props
-}) => {
+export const FormControlLabel: React.FC<React.ComponentProps<typeof Text>> = ({ color = textColor, ...props }) => {
     const { id, error } = useFormControlContext();
 
     return <StyledText as="label" color={color} {...props} htmlFor={id} error={error} />;
