@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [4.10.1](https://github.com/taskany-inc/bricks/compare/v4.10.0...v4.10.1) (2023-11-15)
+
+
+### Bug Fixes
+
+* **FormControl:** brought to a single style with FormInput ([8250227](https://github.com/taskany-inc/bricks/commit/82502274516d9d133587aa0bc2b1559c2ee70d25))
+
 ## [4.10.0](https://github.com/taskany-inc/bricks/compare/v4.9.2...v4.10.0) (2023-11-09)
 
 
