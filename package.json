@@ -40,7 +40,7 @@
     "@commitlint/cli": "18.4.1",
     "@commitlint/config-conventional": "18.1.0",
     "@storybook/addon-essentials": "7.4.5",
-    "@storybook/addon-interactions": "7.4.5",
+    "@storybook/addon-interactions": "7.5.3",
     "@storybook/addon-links": "7.4.5",
     "@storybook/blocks": "7.4.5",
     "@storybook/react": "7.4.5",
