@@ -12,16 +12,9 @@
 *.sublime-workspace
 
 ##### BUILD
-/context
-/components
-/hooks
-/utils
-/es
-/index.js*
-/index.d.ts*
-/types
 node_modules/
 npm-debug.log
 tsconfig.tsbuildinfo
 .release_bot
 storybook-static
+/lib
