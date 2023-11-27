@@ -1,6 +1,8 @@
 import React from 'react';
 import type { Preview } from '@storybook/react';
 import { LightTheme } from '@taskany/colors';
+import '@taskany/colors/harmony/dark.css';
+import '@taskany/colors/harmony/light.css';
 
 import { TextStyle } from '../src/components/Text/Text';
 
