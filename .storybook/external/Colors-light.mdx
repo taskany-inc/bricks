@@ -1,0 +1,20 @@
+import { Meta } from '@storybook/blocks'
+import { ColorPalette, ColorItem } from '@storybook/blocks'
+import { getGroupedRootCSSVariables } from '../../src/utils/getGroupedCSSVariables'
+
+<Meta title="Design System/Colors LIGHT" />
+
+# Color palette for `LIGHT` theme
+
+<ColorPalette>
+    {
+        Object.entries({
+            ...getGroupedRootCSSVariables(':root'), // get base colors
+            ...getGroupedRootCSSVariables('[data-theme="light"]') // override dark theme colors
+        })
+        .map(([title, pallette]) => {
+            return <ColorItem key={title} title={title} colors={pallette} />
+        })
+    }
+</ColorPalette>
+
