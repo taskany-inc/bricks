@@ -1,23 +1,20 @@
 import React, { useEffect } from 'react';
 import type { Decorator, Preview } from '@storybook/react';
-import { DarkTheme, LightTheme, backgroundColor } from '@taskany/colors';
-import styled from 'styled-components';
+import { DarkTheme, LightTheme, backgroundColor, fontDisplay, textColor } from '@taskany/colors';
+import { createGlobalStyle } from 'styled-components';
 
 import '@taskany/colors/harmony/dark.css';
 import '@taskany/colors/harmony/light.css';
 
 import { TextStyle } from '../src/components/Text/Text';
 
-const ThemeBlock = styled.div`
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    overflow: auto;
-    padding: 1rem;
-    background: ${backgroundColor};
-`
+const GlobalStyle = createGlobalStyle`
+    html, body {
+        font-family: ${fontDisplay};
+        color: ${textColor};
+        background-color: ${backgroundColor};
+    }
+`;
 
 const withTheme: Decorator = (StoryFn, context) => {
     const { theme } = context.globals
@@ -30,10 +27,9 @@ const withTheme: Decorator = (StoryFn, context) => {
     return (
         <>
             <Theme />
+            <GlobalStyle />
             <TextStyle />
-            <ThemeBlock theme={theme}>
-                <StoryFn />
-            </ThemeBlock>
+            <StoryFn />
         </>
     )
 }
