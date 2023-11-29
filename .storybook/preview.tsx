@@ -21,7 +21,7 @@ const withTheme: Decorator = (StoryFn, context) => {
     const Theme = theme === 'dark' ? DarkTheme : LightTheme
 
     useEffect(() => {
-        document.body.setAttribute('data-theme', theme)
+        document.documentElement.setAttribute('data-theme', theme)
     }, [theme])
 
     return (
