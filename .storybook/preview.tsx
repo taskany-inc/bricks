@@ -17,12 +17,12 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const withTheme: Decorator = (StoryFn, context) => {
-    const { theme } = context.globals
-    const Theme = theme === 'dark' ? DarkTheme : LightTheme
+    const { theme } = context.globals;
+    const Theme = theme === 'dark' ? DarkTheme : LightTheme;
 
     useEffect(() => {
-        document.documentElement.setAttribute('data-theme', theme)
-    }, [theme])
+        document.documentElement.setAttribute('data-theme', theme);
+    }, [theme]);
 
     return (
         <>
@@ -31,8 +31,8 @@ const withTheme: Decorator = (StoryFn, context) => {
             <TextStyle />
             <StoryFn />
         </>
-    )
-}
+    );
+};
 
 const preview: Preview = {
     parameters: {
@@ -58,10 +58,10 @@ export const globalTypes = {
         toolbar: {
             icon: 'circlehollow',
             items: [
-            { value: 'light', icon: 'circlehollow', title: 'light' },
-            { value: 'dark', icon: 'circle', title: 'dark' },
+                { value: 'light', icon: 'circlehollow', title: 'light' },
+                { value: 'dark', icon: 'circle', title: 'dark' },
             ],
             showName: true,
         },
     },
-}
+};
