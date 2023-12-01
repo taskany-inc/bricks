@@ -3,13 +3,12 @@ import React, { useCallback, useEffect, useMemo, useRef, useState, forwardRef } 
 import styled from 'styled-components';
 import { danger10 } from '@taskany/colors';
 
-import { useKeyPress } from '../hooks/useKeyPress';
-import { useClickOutside } from '../hooks/useClickOutside';
-import { useKeyboard, KeyCode, KeyboardEvents } from '../hooks/useKeyboard';
-import { nullable } from '../utils/nullable';
-import { flatten } from '../utils/flatten';
-
-import { Popup } from './Popup/Popup';
+import { useKeyPress } from '../../hooks/useKeyPress';
+import { useClickOutside } from '../../hooks/useClickOutside';
+import { useKeyboard, KeyCode, KeyboardEvents } from '../../hooks/useKeyboard';
+import { nullable } from '../../utils/nullable';
+import { flatten } from '../../utils/flatten';
+import { Popup } from '../Popup/Popup';
 
 interface ComboBoxTriggerProps {
     text: ComboBoxProps['text'];

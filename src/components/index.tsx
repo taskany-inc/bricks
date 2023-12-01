@@ -7,7 +7,7 @@ export * from './Card/CardContent';
 export * from './Card/CardComment';
 export * from './Card/CardActions';
 export * from './Card/CardInfo';
-export * from './ComboBox';
+export * from './ComboBox/ComboBox';
 export * from './Dot/Dot';
 export * from './Dropdown';
 export * from './Fieldset';
