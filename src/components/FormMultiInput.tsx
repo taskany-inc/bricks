@@ -9,7 +9,7 @@ import { formContext } from '../context/form';
 import { Text } from './Text/Text';
 import { Tag, TagCleanButton } from './Tag/Tag';
 import { MenuItem } from './MenuItem';
-import { ComboBox } from './ComboBox';
+import { ComboBox } from './ComboBox/ComboBox';
 
 type Item = { title: string; id: any };
 
