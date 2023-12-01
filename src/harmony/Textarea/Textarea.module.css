@@ -1,0 +1,86 @@
+.Textarea {
+    border: none;
+    resize: none;
+    box-sizing: border-box;
+    width: 100%;
+    font-family: var(--font-display);
+    font-size: var(--font-size-s);
+    line-height: var(--line-height-s);
+
+    color: var(--text-primary);
+    border-radius: var(--radius-m);
+
+    padding: var(--gap-sm);
+    transition: 200ms ease-in;
+    transition-property: border, color, background;
+}
+
+.Textarea:focus {
+    outline: none;
+}
+
+.Textarea:focus-visible {
+    background: var(--input-fill-focused);
+}
+
+.Textarea:disabled {
+    border: none;
+    background: var(--input-disabled);
+    color: var(--text-disabled);
+}
+
+.Textarea:disabled::placeholder {
+    color: var(--text-disabled);
+}
+
+.Textarea_default {
+    background: var(--input-fill);
+}
+
+.Textarea_default::placeholder {
+    color: var(--text-ghost);
+}
+
+.Textarea_success {
+    border: 1px solid var(--primary-500);
+    background: var(--primary-900);
+    color: var(--primary-400);
+}
+
+.Textarea_success:focus-visible {
+    border: 1px solid var(--primary-500);
+    background: var(--primary-900);
+}
+
+.Textarea_success::placeholder {
+    color: var(--primary-400);
+}
+
+.Textarea_danger {
+    border: 1px solid var(--danger-500);
+    background: var(--danger-900);
+    color: var(--danger-400);
+}
+
+.Textarea_danger:focus-visible {
+    border: 1px solid var(--danger-500);
+    background: var(--danger-900);
+}
+
+.Textarea_danger::placeholder {
+    color: var(--danger-500);
+}
+
+.Textarea_brick_top {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.Textarea_brick_bottom {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.Textarea_brick_center {
+    border-radius: 0;
+}
