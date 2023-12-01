@@ -1,0 +1,133 @@
+.Input {
+    position: relative;
+    display: flex;
+    flex: 1;
+    font-size: var(--font-size-s);
+    line-height: var(--line-height-xl);
+
+    color: var(--text-primary);
+    border-radius: var(--radius-m);
+
+    padding: 6px var(--gap-sm);
+    transition: 200ms ease-in;
+    transition-property: border;
+}
+
+.Input:focus {
+    outline: none;
+}
+
+.Input:disabled {
+    border: 1px solid var(--input-border-disabled);
+    background: var(--input-disabled);
+    color: var(--text-disabled);
+}
+
+.Input:disabled::placeholder {
+    color: var(--text-disabled);
+}
+
+.Input_default {
+    border: 1px solid var(--input-border);
+    background: var(--input-fill);
+}
+
+.Input_default:focus-visible {
+    border: 1px solid var(--input-border-focused);
+    background: var(--input-fill-focused);
+}
+
+.Input_default:focus-visible ~ .icon {
+    color: var(--text-secondary);
+}
+
+.Input_default::placeholder {
+    color: var(--text-ghost);
+}
+
+.Input_success {
+    border: 1px solid var(--primary-500);
+    background: var(--primary-900);
+    color: var(--primary-400);
+}
+
+.Input_success:focus-visible {
+    border: 1px solid var(--primary-500);
+    background: var(--primary-900);
+}
+
+.Input_success::placeholder {
+    color: var(--primary-400);
+}
+
+.Input_danger {
+    border: 1px solid var(--danger-500);
+    background: var(--danger-900);
+    color: var(--danger-400);
+}
+
+.Input_danger:focus-visible {
+    border: 1px solid var(--danger-500);
+    background: var(--danger-900);
+}
+
+.Input_danger::placeholder {
+    color: var(--danger-400);
+}
+
+.Wrapper {
+    position: relative;
+    display: flex;
+    min-height: 32px;
+}
+
+.Wrapper_icon_left .Input {
+    padding-left: var(--gap-l);
+}
+
+.Wrapper_icon_right .Input {
+    padding-right: var(--gap-l);
+}
+
+.Icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    transform: translateY(-50%);
+
+    color: var(--text-ghost);
+    transition: color 200ms ease-in-out 0s;
+}
+
+.Icon_left {
+    left: var(--gap-s);
+    pointer-events: none;
+}
+
+.Icon_right {
+    right: var(--gap-s);
+}
+
+.InputWrapper_brick + .InputWrapper_brick {
+    margin-left: 1px;
+}
+
+.Input_brick_center {
+    border-radius: 0;
+}
+
+.Input_brick_left {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.Input_brick_right {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
