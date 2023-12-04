@@ -6,7 +6,7 @@ import { gapS, gapXs, gray4 } from '@taskany/colors';
 
 import { Button } from '../Button/Button';
 import { UserMenu } from '../UserMenu';
-import { Dropdown } from '../Dropdown';
+import { Dropdown } from '../Dropdown/Dropdown';
 import { MenuItem } from '../MenuItem';
 import { GlobalSearch } from '../GlobalSearch';
 import { Text } from '../Text/Text';

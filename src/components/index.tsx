@@ -9,7 +9,7 @@ export * from './Card/CardActions';
 export * from './Card/CardInfo';
 export * from './ComboBox/ComboBox';
 export * from './Dot/Dot';
-export * from './Dropdown';
+export * from './Dropdown/Dropdown';
 export * from './Fieldset';
 export * from './Footer';
 export * from './SheepLogo/SheepLogo';
