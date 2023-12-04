@@ -1,3 +1,237 @@
 .button {
-    background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-m);
+    border: none;
+
+    font-weight: 500;
+
+    cursor: pointer;
+    transition: background 200ms ease-in-out 0s;
+}
+
+.button:focus {
+    outline: none;
+}
+
+.button:disabled {
+    cursor: not-allowed;
+}
+
+.button:focus-visible {
+    outline-offset: 2px;
+    z-index: 1;
+}
+
+/* Default */
+
+.button__default {
+    color: var(--button-secondary-text);
+    background: var(--button-secondary);
+}
+
+.button__default:hover {
+    background: var(--button-secondary-hover);
+}
+
+.button__default:active {
+    background: var(--button-secondary-active);
+}
+
+.button__default:focus-visible {
+    outline: 2px solid var(--button-secondary-focus);
+}
+
+.button__default:disabled {
+    color: var(--button-disabled-text);
+    background: var(--button-disabled);
+}
+
+/* Primary */
+
+.button__primary {
+    color: var(--button-primary-text);
+    background: var(--button-primary);
+}
+
+.button__primary:hover {
+    background: var(--button-primary-hover);
+}
+
+.button__primary:active {
+    background: var(--button-primary-active);
+}
+
+.button__primary:focus-visible {
+    outline: 2px solid var(--button-primary-focus);
+}
+
+.button__primary:disabled {
+    color: var(--button-disabled-text);
+    background: var(--button-disabled);
+}
+
+/* Ghost */
+
+.button__ghost {
+    color: var(--button-secondary-text);
+    background: transparent;
+}
+
+.button__ghost:hover {
+    background: var(--button-secondary-hover);
+}
+
+.button__ghost:active {
+    background: var(--button-secondary-active);
+}
+
+.button__ghost:focus-visible {
+    outline: 2px solid var(--button-secondary-focus);
+}
+
+.button__ghost:disabled {
+    color: var(--button-disabled-text);
+    background: transparent;
+}
+
+/* Danger */
+
+.button__danger {
+    color: var(--button-danger-text);
+    background: var(--button-danger);
+}
+
+.button__danger:hover {
+    background: var(--button-danger-hover);
+}
+
+.button__danger:active {
+    background: var(--button-danger-active);
+}
+
+.button__danger:focus-visible {
+    outline: 2px solid var(--button-danger-focus);
+}
+
+.button__danger:disabled {
+    color: var(--button-disabled-text);
+    background: var(--button-disabled);
+}
+
+/* Warning */
+
+.button__warning {
+    color: var(--button-warn-text);
+    background: var(--button-warn);
+}
+
+.button__warning:hover {
+    background: var(--button-warn-hover);
+}
+
+.button__warning:active {
+    background: var(--button-warn-active);
+}
+
+.button__warning:focus-visible {
+    outline: 2px solid var(--button-warn-focus);
+}
+
+.button__warning:disabled {
+    color: var(--button-disabled-text);
+    background: var(--button-disabled);
+}
+
+/* Checked */
+
+.button__checked {
+    color: var(--blue-50);
+    background: var(--button-checked);
+}
+
+.button__checked:hover {
+    background: var(--button-checked-hover);
+}
+
+.button__checked:active {
+    background: var(--button-checked-active);
+}
+
+.button__checked:focus-visible {
+    outline: 2px solid var(--button-checked-focus);
+}
+
+.button__checked:disabled {
+    color: var(--button-disabled-text);
+    background: var(--button-disabled);
+}
+
+/* Brick */
+/* total margin between bricks = 1px */
+
+.brick__center {
+    border-radius: 0;
+    margin-left: 0.5px;
+    margin-right: 0.5px;
+}
+
+.brick__left {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    margin-left: 0.5px;
+}
+
+.brick__right {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    margin-right: 0.5px;
+}
+
+/* Size */
+
+.size__xs {
+    font-size: 13px;
+    line-height: 16px;
+    min-height: 24px;
+    padding: var(--gap-xs) var(--gap-sm);
+}
+
+.size__s {
+    font-size: 14px;
+    line-height: 16px;
+    min-height: 32px;
+    padding: var(--gap-s) var(--gap-m);
+}
+
+.size__m {
+    font-size: 16px;
+    line-height: 20px;
+    min-height: 40px;
+    padding: 10px var(--gap-m);
+}
+
+/* Icon */
+
+.icon {
+    display: flex;
+}
+
+.icon__left {
+    margin-left: calc(-1 * var(--gap-xs));
+    margin-right: var(--gap-s);
+}
+
+.icon__right {
+    margin-left: var(--gap-s);
+    margin-right: calc(-1 * var(--gap-xs));
+}
+
+.icon__single {
+    margin: 0 calc(-1 * var(--gap-s));
+}
+
+.size__m .icon__single {
+    margin: 0 calc(-1 * var(--gap-xs));
 }
