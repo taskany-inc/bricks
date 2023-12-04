@@ -3,14 +3,13 @@ import React, { useCallback, useEffect, useRef, useState, ComponentProps } from 
 import styled from 'styled-components';
 import { IconXOutline } from '@taskany/icons';
 
-import { nullable } from '../utils/nullable';
-import { useKeyPress } from '../hooks/useKeyPress';
-import { useKeyboard, KeyCode } from '../hooks/useKeyboard';
-
-import { Popup } from './Popup/Popup';
-import { Input } from './Input/Input';
-import { MenuItem } from './MenuItem';
-import { ErrorPopup } from './ErrorPopup';
+import { nullable } from '../../utils/nullable';
+import { useKeyPress } from '../../hooks/useKeyPress';
+import { useKeyboard, KeyCode } from '../../hooks/useKeyboard';
+import { Popup } from '../Popup/Popup';
+import { Input } from '../Input/Input';
+import { MenuItem } from '../MenuItem';
+import { ErrorPopup } from '../ErrorPopup';
 
 interface DropdownTriggerProps {
     ref: React.RefObject<HTMLButtonElement>;
@@ -33,6 +32,7 @@ export interface DropdownItemProps {
 export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
     renderItem: (props: DropdownItemProps) => React.ReactNode;
     renderTrigger: (props: DropdownTriggerProps) => React.ReactNode;
+    renderItems?: (children: React.ReactNode) => React.ReactNode;
     text?: string;
     value?: any;
     items?: any[];
@@ -60,6 +60,8 @@ const StyledDropdown = styled.span`
     display: inline-block;
 `;
 
+const defaultRenderItemsFunc = (children: React.ReactNode) => <>{children}</>;
+
 export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
     (
         {
@@ -72,6 +74,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
             error,
             renderItem,
             renderTrigger,
+            renderItems = defaultRenderItemsFunc,
             onChange,
             className,
             searchPlaceholder = 'Search',
@@ -144,7 +147,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
         }, [onSearchChange, popupVisible]);
 
         return (
-            <StyledDropdown className={className} ref={ref}>
+            <StyledDropdown className={className} ref={ref} {...attrs}>
                 {!disabled &&
                     nullable(error, (err) => (
                         <ErrorPopup err={err} visible={popupVisible} placement={errorMessagePlacement} />
@@ -174,7 +177,6 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
                     minWidth={100}
                     maxWidth={250}
                     offset={offset}
-                    {...attrs}
                 >
                     <div {...onESC}>
                         {nullable(onSearchChange, () => (
@@ -199,7 +201,11 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
                                 }
                             />
                         ))}
-                        {items?.map((item, index) => renderItem({ item, index, cursor, onClick: onItemClick(item) }))}
+                        {renderItems(
+                            items?.map((item, index) =>
+                                renderItem({ item, index, cursor, onClick: onItemClick(item) }),
+                            ),
+                        )}
                         {nullable(!items.length, () => (
                             <MenuItem ghost disabled>
                                 {emptyText}

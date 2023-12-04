@@ -34,9 +34,9 @@ interface ComboBoxItemProps {
 
 interface ComboBoxProps extends React.HTMLAttributes<HTMLDivElement> {
     renderInput: (props: ComboBoxInputProps) => React.ReactNode;
-    renderItem: (props: ComboBoxItemProps) => React.ReactNode | Record<any, any>;
+    renderItem: (props: ComboBoxItemProps) => React.ReactNode;
     renderTrigger?: (props: ComboBoxTriggerProps) => React.ReactNode;
-    renderItems?: (children: React.ReactNode | Array<Record<any, any>> | undefined) => React.ReactNode;
+    renderItems?: (children: React.ReactNode) => React.ReactNode;
     text?: string;
     value?: any;
     items?: any[];
@@ -77,6 +77,8 @@ const StyledErrorTrigger = styled.div`
     z-index: 1;
 `;
 
+const defaultRenderItems = (children: React.ReactNode) => <>{children}</>;
+
 export const ComboBox = forwardRef<HTMLDivElement, ComboBoxProps>(
     (
         {
@@ -94,7 +96,7 @@ export const ComboBox = forwardRef<HTMLDivElement, ComboBoxProps>(
             renderItem,
             renderTrigger,
             renderInput,
-            renderItems,
+            renderItems = defaultRenderItems,
             onChange,
             onClose,
             onClickOutside,
@@ -174,7 +176,7 @@ export const ComboBox = forwardRef<HTMLDivElement, ComboBoxProps>(
         );
 
         return (
-            <StyledComboBox ref={ref} className={className}>
+            <StyledComboBox ref={ref} className={className} {...attrs}>
                 {nullable(error, (err) => (
                     <>
                         <StyledErrorTrigger
@@ -210,10 +212,9 @@ export const ComboBox = forwardRef<HTMLDivElement, ComboBoxProps>(
                     maxWidth={maxWidth}
                     maxHeight={maxHeight}
                     offset={offset}
-                    {...attrs}
                 >
                     <div ref={popupContentRef} {...onESC}>
-                        {renderItems ? renderItems(children as React.ReactNode) : (children as React.ReactNode)}
+                        {renderItems(children)}
                     </div>
                 </Popup>
             </StyledComboBox>

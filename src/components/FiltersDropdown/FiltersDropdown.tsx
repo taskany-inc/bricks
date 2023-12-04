@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unnecessary-type-constraint */
 import React, { useCallback, useMemo, useState, ReactNode } from 'react';
 
-import { Dropdown, DropdownItemProps, DropdownProps } from '../Dropdown';
+import { Dropdown, DropdownItemProps, DropdownProps } from '../Dropdown/Dropdown';
 import { MenuItem } from '../MenuItem';
 import { FiltersMenuItem } from '../FiltersContainers';
 
