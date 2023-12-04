@@ -1,0 +1,32 @@
+/* View */
+
+.link {
+    transition: color 200ms ease-in-out 0s;
+}
+
+.link__primary {
+    color: var(--text-primary);
+    text-decoration-line: none;
+}
+
+.link__primary:hover {
+    color: var(--blue-500);
+}
+
+.link__text {
+    color: inherit;
+    text-decoration-line: underline;
+}
+
+.link__text:hover {
+    color: var(--blue-500);
+}
+
+.link__secondary {
+    color: var(--text-secondary);
+    text-decoration-line: none;
+}
+
+.link__secondary:hover {
+    color: var(--text-primary);
+}
