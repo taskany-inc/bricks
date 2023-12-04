@@ -60,7 +60,7 @@
     "@vitejs/plugin-react": "4.2.0",
     "@yelo/rollup-node-external": "1.0.1",
     "babel-plugin-inline-react-svg": "2.0.2",
-    "eslint": "8.52.0",
+    "eslint": "8.55.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-prettier": "9.0.0",
     "eslint-plugin-import": "2.28.1",
