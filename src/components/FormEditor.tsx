@@ -17,6 +17,12 @@ import { Link } from './Link/Link';
 
 export { loader as editorLoader } from '@monaco-editor/react';
 
+interface File {
+    name: string;
+    type: string;
+    filePath: string;
+}
+
 interface FormEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'onBlur' | 'onFocus'> {
     id?: string;
     name?: string;
@@ -44,6 +50,7 @@ interface FormEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'on
     onCancel?: () => void;
     onUploadSuccess?: () => void;
     onUploadFail?: (message?: string) => void;
+    attachFormatter?: (files: File[]) => string;
 }
 
 const defaultAttachmentsButtonMessage = 'Attach files';
@@ -251,7 +258,18 @@ const StyledUploadIcon = styled(IconAttachOutline)`
     padding-right: ${gapXs};
 `;
 
-const mdImageLink = (url: string) => `![](${url})`;
+const fileToMD = (file: File) => {
+    switch (true) {
+        case file.type.includes('image/'):
+            return `![](${file.filePath})`;
+        default:
+            return `[${file.name}](${file.filePath})`;
+    }
+};
+
+const defaultAttachFormatter = (files: File[]) => {
+    return files.map(fileToMD).join('\n');
+};
 
 const maxEditorHeight = 450;
 
@@ -275,6 +293,7 @@ export const FormEditor = React.forwardRef<HTMLDivElement, FormEditorProps>(
             uploadLink,
             onUploadSuccess,
             onUploadFail,
+            attachFormatter = defaultAttachFormatter,
             ...attrs
         },
         ref,
@@ -378,10 +397,10 @@ export const FormEditor = React.forwardRef<HTMLDivElement, FormEditorProps>(
                         endLineNumber: p.lineNumber,
                         endColumn: p.column,
                     },
-                    text: files.map((url) => mdImageLink(url)).join(', '),
+                    text: attachFormatter(files),
                 },
             ]);
-        }, [files]);
+        }, [files, attachFormatter]);
 
         const onEditorPaste = useCallback(
             (e: React.ClipboardEvent<HTMLDivElement>) => {
