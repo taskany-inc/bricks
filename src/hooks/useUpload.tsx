@@ -4,7 +4,7 @@ import { formFieldName } from '../utils/upload';
 
 export const useUpload = (onSuccess?: () => void, onFail?: (message?: string) => void, uploadLink = '/api/upload') => {
     const [loading, setLoading] = useState(false);
-    const [files, setFiles] = useState<string[]>();
+    const [files, setFiles] = useState<{ type: string; filePath: string; name: string }[]>();
 
     const uploadFiles = async (files: FileList) => {
         setLoading(true);
