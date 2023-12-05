@@ -7,11 +7,18 @@ interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
     size?: 's' | 'm' | 'l' | 'xl';
     color?: string;
     className?: string;
+    ellipsis?: boolean;
+    width?: string;
 
     onClick?: React.MouseEventHandler<HTMLDivElement>;
 }
 
-const StyledBadge = styled.div<{ size: BadgeProps['size']; color?: BadgeProps['color'] }>`
+const StyledBadge = styled.div<{
+    size: BadgeProps['size'];
+    color?: BadgeProps['color'];
+    ellipsis?: BadgeProps['ellipsis'];
+    width?: BadgeProps['width'];
+}>`
     box-sizing: border-box;
 
     background-color: ${({ color }) => (color ? `${color}25` : gray7)};
@@ -22,6 +29,7 @@ const StyledBadge = styled.div<{ size: BadgeProps['size']; color?: BadgeProps['c
     color: ${({ color }) => color || gray9};
     font-size: 12px;
     cursor: ${({ onClick }) => (onClick ? 'pointer' : 'default')};
+    width: ${({ width }) => width};
 
     ${({ size }) =>
         size &&
@@ -43,6 +51,14 @@ const StyledBadge = styled.div<{ size: BadgeProps['size']; color?: BadgeProps['c
     &:hover {
         background-color: ${({ color }) => (color ? `${color}45` : gray7)};
     }
+
+    ${({ ellipsis }) =>
+        ellipsis &&
+        `
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;         
+        `},
 `;
 
 export const Badge: React.FC<BadgeProps> = ({ size = 's', children, ...props }) => (
