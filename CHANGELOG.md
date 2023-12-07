@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.0.0](https://github.com/taskany-inc/bricks/compare/v4.10.1...v5.0.0) (2023-12-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* use vite to build lib
+
+### Features
+
+* **Badge:** add optional ellipsis to Badge ([bde9386](https://github.com/taskany-inc/bricks/commit/bde938627ed2ea815f15705d0f1ef7ee85864484))
+* **ComboBox:** example in storybook ([04ef32b](https://github.com/taskany-inc/bricks/commit/04ef32bf7fe0de27cab6980000b9c00e311472ad))
+* **Storybook:** add theme support ([c9946ac](https://github.com/taskany-inc/bricks/commit/c9946ac825a9dd47ec99f9b83a270d10804496a1))
+* support non-image attaches ([91727eb](https://github.com/taskany-inc/bricks/commit/91727eb5c6162b17e4051682a9ef7b3f47569f64))
+* use vite to build lib ([6d6b71c](https://github.com/taskany-inc/bricks/commit/6d6b71c61b173a782630f383c280c0c33a5090f1))
+
+
+### Bug Fixes
+
+* add global styles for font-family / color / bg ([da6fc0e](https://github.com/taskany-inc/bricks/commit/da6fc0e5daaa2597ffcde349e68ffc3d37265b2b))
+* **Dropdown,Combobox:** provide html attributes for components ([8200306](https://github.com/taskany-inc/bricks/commit/8200306513aa2994fde42719e24ec286df4beef1))
+* specificity weight of theme ([69e87d4](https://github.com/taskany-inc/bricks/commit/69e87d40637e07bc6b30399cc553326cbab9776d))
+
 ## [4.10.1](https://github.com/taskany-inc/bricks/compare/v4.10.0...v4.10.1) (2023-11-15)
 
 
