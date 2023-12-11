@@ -1,3 +1,193 @@
-.button {
-    background-color: red;
+.Button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-m);
+    border: none;
+
+    font-weight: 500;
+
+    cursor: pointer;
+    transition: background 200ms ease-in;
+}
+
+.Button:focus {
+    outline: none;
+}
+
+.Button:disabled {
+    cursor: not-allowed;
+    color: var(--button-disabled-text);
+    background: var(--button-disabled);
+}
+
+.Button:focus-visible {
+    outline-offset: 2px;
+    z-index: 1;
+}
+
+.Button_default {
+    color: var(--button-secondary-text);
+    background: var(--button-secondary);
+}
+
+.Button_default:hover {
+    background: var(--button-secondary-hover);
+}
+
+.Button_default:active {
+    background: var(--button-secondary-active);
+}
+
+.Button_default:focus-visible {
+    outline: 2px solid var(--button-secondary-focus);
+}
+
+.Button_primary {
+    color: var(--button-primary-text);
+    background: var(--button-primary);
+}
+
+.Button_primary:hover {
+    background: var(--button-primary-hover);
+}
+
+.Button_primary:active {
+    background: var(--button-primary-active);
+}
+
+.Button_primary:focus-visible {
+    outline: 2px solid var(--button-primary-focus);
+}
+
+.Button_ghost {
+    color: var(--button-secondary-text);
+    background: transparent;
+}
+
+.Button_ghost:hover {
+    background: var(--button-secondary-hover);
+}
+
+.Button_ghost:active {
+    background: var(--button-secondary-active);
+}
+
+.Button_ghost:focus-visible {
+    outline: 2px solid var(--button-secondary-focus);
+}
+
+.Button_ghost:disabled {
+    background: transparent;
+}
+
+.Button_danger {
+    color: var(--button-danger-text);
+    background: var(--button-danger);
+}
+
+.Button_danger:hover {
+    background: var(--button-danger-hover);
+}
+
+.Button_danger:active {
+    background: var(--button-danger-active);
+}
+
+.Button_danger:focus-visible {
+    outline: 2px solid var(--button-danger-focus);
+}
+
+.Button_warning {
+    color: var(--button-warn-text);
+    background: var(--button-warn);
+}
+
+.Button_warning:hover {
+    background: var(--button-warn-hover);
+}
+
+.Button_warning:active {
+    background: var(--button-warn-active);
+}
+
+.Button_warning:focus-visible {
+    outline: 2px solid var(--button-warn-focus);
+}
+
+.Button_checked {
+    color: var(--blue-50);
+    background: var(--button-checked);
+}
+
+.Button_checked:hover {
+    background: var(--button-checked-hover);
+}
+
+.Button_checked:active {
+    background: var(--button-checked-active);
+}
+
+.Button_checked:focus-visible {
+    outline: 2px solid var(--button-checked-focus);
+}
+
+.Button_brick_center {
+    border-radius: 0;
+}
+
+.Button_brick_left {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.Button_brick_right {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.Button_brick + .Button_brick {
+    margin-left: 1px;
+}
+
+.Button_size_xs {
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-xxl);
+    min-height: 24px;
+    padding: var(--gap-xs);
+}
+
+.Button_size_s {
+    font-size: var(--font-size-s);
+    line-height: var(--line-height-xxl);
+    min-height: 32px;
+    padding: var(--gap-s);
+}
+
+.Button_size_m {
+    font-size: var(--font-size-m);
+    line-height: 20px;
+    line-height: var(--line-height-l);
+    min-height: 40px;
+    padding: 10px var(--gap-s);
+}
+
+.Text {
+    margin: 0 var(--gap-s);
+}
+
+.Icon {
+    display: flex;
+}
+
+.Icon_left {
+    margin-left: var(--gap-xs);
+}
+
+.Icon_right {
+    margin-right: var(--gap-xs);
+}
+
+.Button_size_m .Icon_center {
+    margin: 0 var(--gap-xs);
 }
