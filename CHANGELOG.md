@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.0.1](https://github.com/taskany-inc/bricks/compare/v5.0.0...v5.0.1) (2023-12-11)
+
+
+### Bug Fixes
+
+* **@monaco-editor/react:** downgrade package version ([7987375](https://github.com/taskany-inc/bricks/commit/79873752d4ce5966653b06197287e682df261337))
+
 ## [5.0.0](https://github.com/taskany-inc/bricks/compare/v4.10.1...v5.0.0) (2023-12-07)
 
 
