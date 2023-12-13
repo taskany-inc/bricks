@@ -117,6 +117,7 @@ export function AutoCompleteRadioGroup<T extends { title: string; value: string 
     title,
     value,
     className,
+    ...attrs
 }: AutoCompleteRadioGroupProps<T>) {
     const handleChange = useCallback(
         (value: T['value']) => {
@@ -133,7 +134,7 @@ export function AutoCompleteRadioGroup<T extends { title: string; value: string 
             {nullable(title, (t) => (
                 <StyledText>{t}</StyledText>
             ))}
-            <StyledRadioGroup className={className} name={name} onChange={handleChange} value={value}>
+            <StyledRadioGroup className={className} name={name} onChange={handleChange} value={value} {...attrs}>
                 {items.map((item) => (
                     <StyledRadio value={item.value}>
                         <RadioLabel>
