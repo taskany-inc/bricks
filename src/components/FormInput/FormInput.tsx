@@ -8,7 +8,7 @@ import { formContext } from '../../context/form';
 import { Text } from '../Text/Text';
 import { Popup } from '../Popup/Popup';
 
-interface FormInputProps extends React.HTMLAttributes<HTMLInputElement> {
+interface FormInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     id?: string;
     name?: string;
     label?: string;
