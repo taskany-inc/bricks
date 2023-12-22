@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.1.1](https://github.com/taskany-inc/bricks/compare/v5.1.0...v5.1.1) (2023-12-22)
+
+
+### Bug Fixes
+
+* **FormInput:** interface extends from input ([06f8fe7](https://github.com/taskany-inc/bricks/commit/06f8fe79aebdacd7353c74a8724baf24f06b593a))
+* **useUpload:** added catch block to uploadFiles ([6cfe8c3](https://github.com/taskany-inc/bricks/commit/6cfe8c3bf00336376f489e80dd0608e8449787e6))
+
 ## [5.1.0](https://github.com/taskany-inc/bricks/compare/v5.0.1...v5.1.0) (2023-12-18)
 
 
