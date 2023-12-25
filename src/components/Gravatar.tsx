@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import md5Hash from 'md5';
 import styled from 'styled-components';
 
@@ -69,9 +69,13 @@ export const Gravatar: FC<GravatarProps> = ({
     const retinaSrc = `${base}${hash}?${retinaQuery}`;
     const img = isRetina() ? retinaSrc : src;
 
-    preloadImage(img)
-        .then(() => setIsLoad?.(true))
-        .catch(() => setIsError?.(true));
+    useEffect(() => {
+        setIsLoad(false);
+        setIsError(false);
+        preloadImage(img)
+            .then(() => setIsLoad(true))
+            .catch(() => setIsError(true));
+    }, [hash]);
 
     return !isLoad || isError ? (
         <Circle size={size} str={`${email}`} {...props}>
