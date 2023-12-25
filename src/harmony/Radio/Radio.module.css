@@ -1,0 +1,75 @@
+.Radio {
+    position: relative;
+}
+
+.RadioInput {
+    appearance: none;
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid var(--check-default);
+    width: 0.875rem;
+    height: 0.875rem;
+    border-radius: 50%;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+
+    position: relative;
+
+    outline: none;
+    padding: 0;
+
+    color: var(--check-checked);
+}
+
+.RadioInput:not(:disabled):hover {
+    color: var(--check-checked-hover);
+}
+
+.RadioInput:disabled {
+    cursor: not-allowed;
+    border-color: var(--check-default-disabled);
+    color: var(--check-mark-disabled);
+}
+
+.RadioInput:not(:disabled):checked {
+    border-color: var(--check-checked);
+}
+
+.RadioInput:not(:disabled):hover {
+    border-color: var(--check-default-hover);
+}
+
+.RadioInput:checked:not(:disabled):hover {
+    border-color: var(--check-checked-hover);
+}
+
+.RadioInput:after {
+    content: '';
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    transition: opacity 0.2s ease;
+    background-color: currentColor;
+}
+
+.RadioInput:checked:after {
+    opacity: 1;
+    visibility: visible;
+}
+
+.RadioInput:checked:after {
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+
+    width: 0.375rem;
+    height: 0.375rem;
+
+    border-radius: 50%;
+}
+
+.RadioInput:not(:disabled):focus-visible {
+    outline-width: 2px;
+    outline-color: var(--check-outline);
+    outline-style: solid;
+    outline-offset: 2px;
+}
