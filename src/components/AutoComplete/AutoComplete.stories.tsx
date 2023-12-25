@@ -18,10 +18,10 @@ export default {
     },
 } as Meta<Component>;
 
-type Item = {
+interface Item {
     id: string;
     title: string;
-};
+}
 
 type Items = Array<Item>;
 

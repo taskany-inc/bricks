@@ -6,7 +6,9 @@ import { nullable } from '../utils';
 
 import { Popup } from './Popup/Popup';
 
-type DotOffset = { placement?: 'center' | 'top' };
+interface DotOffset {
+    placement?: 'center' | 'top';
+}
 export interface ErrorPopupProps extends React.HTMLAttributes<HTMLSpanElement> {
     err?: {
         message?: string;

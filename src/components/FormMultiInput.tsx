@@ -11,7 +11,10 @@ import { Tag, TagCleanButton } from './Tag/Tag';
 import { MenuItem } from './MenuItem';
 import { ComboBox } from './ComboBox/ComboBox';
 
-type Item = { title: string; id: any };
+interface Item {
+    title: string;
+    id: any;
+}
 
 type ComboBoxInputProps = Parameters<React.ComponentProps<typeof ComboBox>['renderInput']>['0'];
 interface FormMultiInputProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'onInput' | 'onClick'> {

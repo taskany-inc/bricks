@@ -38,11 +38,11 @@ export default {
     },
 } as Meta<IconStory>;
 
-type RenderIconProps = {
+interface RenderIconProps {
     name: string;
     originalName: string;
     icon: React.ComponentType<Omit<React.ComponentProps<typeof Icons.BaseIcon>, 'value'>>;
-};
+}
 
 const regex = /(?:(?:([a-z][A-Z]?\d?)([A-Z]))|(?:([a-z])(\d))|(?:(\d)([A-Z])))/g;
 
