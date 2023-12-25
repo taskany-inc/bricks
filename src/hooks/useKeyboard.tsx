@@ -115,13 +115,13 @@ const getActiveModMap = (bindings: number[]): Record<keyof typeof KeyMod, boolea
     return activeModMap;
 };
 
-export type KeyboardOptions = {
+export interface KeyboardOptions {
     disableGlobalEvent?: boolean;
     stopPropagation?: boolean;
     preventDefault?: boolean;
     capture?: boolean;
     event?: 'keydown' | 'keypress' | 'keyup';
-};
+}
 
 export type KeyboardEvents =
     | 'onKeyDown'

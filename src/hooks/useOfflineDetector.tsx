@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 
-export type UseOfflineDetectorParams = {
+export interface UseOfflineDetectorParams {
     setStatus: (online: boolean) => void;
     pollingDelay?: number;
     remoteServerUrl?: string;
-};
+}
 
 export const useOfflineDetector = ({
     setStatus,

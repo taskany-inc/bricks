@@ -6,8 +6,9 @@ module.exports = {
         'plugin:storybook/recommended',
     ],
     parser: '@typescript-eslint/parser',
-    plugins: ['import', 'prettier'],
+    plugins: ['import', 'prettier','@taskany/rules'],
     rules: {
+        '@taskany/rules/prefer-interface': 'error',
         '@typescript-eslint/no-empty-function': 'off',
         '@typescript-eslint/no-empty-interface': 'off',
         'no-restricted-syntax': 'off',
