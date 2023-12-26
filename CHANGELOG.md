@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.1.2](https://github.com/taskany-inc/bricks/compare/v5.1.1...v5.1.2) (2023-12-26)
+
+
+### Bug Fixes
+
+* **Gravatar:** reset state on email change ([88baaaa](https://github.com/taskany-inc/bricks/commit/88baaaa40304570aac6b58de36e321e562d61d9d))
+
 ## [5.1.1](https://github.com/taskany-inc/bricks/compare/v5.1.0...v5.1.1) (2023-12-22)
 
 
