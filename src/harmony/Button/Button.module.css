@@ -9,6 +9,8 @@
 
     cursor: pointer;
     transition: background 200ms ease-in;
+
+    position: relative;
 }
 
 .Button:focus {
@@ -174,10 +176,12 @@
 
 .Text {
     margin: 0 var(--gap-s);
+    pointer-events: fill;
 }
 
 .Icon {
     display: flex;
+    pointer-events: fill;
 }
 
 .Icon_left {
