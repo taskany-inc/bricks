@@ -38,6 +38,11 @@ interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'chi
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ({ className, iconLeft, iconRight, text, view = 'default', brick, size = 's', ...rest }, ref) => {
         const icons = [iconLeft, iconRight].filter(Boolean);
+
+        if (!text && icons.length === 2) {
+            throw new Error("Button can't have two icons without text");
+        }
+
         const classes = [
             s.Button,
             viewMap[view],
