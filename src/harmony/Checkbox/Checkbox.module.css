@@ -1,5 +1,6 @@
 .Checkbox {
     position: relative;
+    display: inline-flex;
 }
 
 .CheckboxInput {
