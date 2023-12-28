@@ -1,0 +1,21 @@
+.AutoCompleteHeading {
+    font-size: var(--font-size-s);
+    font-weight: 400;
+    color: var(--gray-500);
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid var(--gray-500);
+    margin: var(--gap-s) 0;
+}
+
+.AutoCompleteRadioGroup {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-m);
+}
+
+.AutoCompleteRadio {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    align-items: baseline;
+}
