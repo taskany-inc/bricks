@@ -7,3 +7,5 @@ export * from './Radio/Radio';
 export * from './Switch/Switch';
 export * from './Popup/Popup';
 export * from './Tooltip/Tooltip';
+export * from './AutoComplete/AutoComplete';
+export * from './RadioGroup/RadioGroup';
