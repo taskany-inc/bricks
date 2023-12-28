@@ -6,3 +6,4 @@ export * from './Checkbox/Checkbox';
 export * from './Radio/Radio';
 export * from './Switch/Switch';
 export * from './Popup/Popup';
+export * from './Tooltip/Tooltip';
