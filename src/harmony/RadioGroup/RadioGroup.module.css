@@ -1,0 +1,15 @@
+.RadioGroup {
+    position: relative;
+}
+
+.RadioGroupLabel {
+    color: var(--gray-600);
+    font-weight: 600;
+}
+
+.RadioControl {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-basis: auto;
+    align-items: center;
+}
