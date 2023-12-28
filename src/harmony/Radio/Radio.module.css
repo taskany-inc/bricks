@@ -1,5 +1,6 @@
 .Radio {
     position: relative;
+    display: inline-flex;
 }
 
 .RadioInput {
