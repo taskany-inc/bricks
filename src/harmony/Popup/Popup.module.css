@@ -1,0 +1,64 @@
+.Popup {
+    border-radius: var(--radius-l);
+    box-shadow: 0px 2px 20px 0px rgba(20, 20, 24, 0.08);
+    padding: var(--gap-s);
+    color: var(--text-primary);
+    border: 1px solid var(--layer-above);
+    background: var(--dropdown);
+}
+
+.PopupContent {
+    position: relative;
+    z-index: 1;
+    width: max-content;
+    min-width: 100%;
+}
+
+.PopupArrow::before {
+    content: '';
+    position: absolute;
+
+    width: 8px;
+    height: 8px;
+
+    background: var(--dropdown);
+    border: 1px solid var(--layer-above);
+
+    transform: rotate(45deg);
+}
+
+.Popup[data-placement|='top'] .PopupArrow {
+    bottom: 5px;
+}
+
+.Popup[data-placement|='bottom'] .PopupArrow {
+    top: -4px;
+}
+
+.Popup[data-placement|='left'] .PopupArrow {
+    right: 5px;
+}
+
+.Popup[data-placement|='right'] .PopupArrow {
+    left: -4px;
+}
+
+.Popup[data-placement|='top'] .PopupArrow::before {
+    border-top: none;
+    border-left: none;
+}
+
+.Popup[data-placement|='bottom'] .PopupArrow::before {
+    border-bottom: none;
+    border-right: none;
+}
+
+.Popup[data-placement|='left'] .PopupArrow::before {
+    border-bottom: none;
+    border-left: none;
+}
+
+.Popup[data-placement|='right'] .PopupArrow::before {
+    border-top: none;
+    border-right: none;
+}
