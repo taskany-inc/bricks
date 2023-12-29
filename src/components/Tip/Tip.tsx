@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { gapXs, gray7, gray8 } from '@taskany/colors';
+import { danger0, gapXs, gray7, gray8, warn0 } from '@taskany/colors';
 
 import { nullable } from '../../utils';
 import { Text } from '../Text/Text';
@@ -11,7 +11,14 @@ interface TipProps {
     icon?: React.ReactNode;
     size?: React.ComponentProps<typeof Text>['size'];
     className?: string;
+    view?: 'warning' | 'danger' | 'primary';
 }
+
+const colorsMap = {
+    primary: gray7,
+    danger: danger0,
+    warning: warn0,
+};
 
 const StyledTip = styled(Text)``;
 
@@ -25,9 +32,9 @@ const StyledTipTitle = styled(Text)`
     margin-right: ${gapXs};
 `;
 
-export const Tip: React.FC<TipProps> = ({ children, title, icon, size = 's', className }) => {
+export const Tip: React.FC<TipProps> = ({ children, title, icon, view = 'primary', size = 's', className }) => {
     return (
-        <StyledTip size={size} color={gray7} className={className}>
+        <StyledTip size={size} color={colorsMap[view]} className={className}>
             {nullable(icon, (i) => (
                 <StyledTipIcon>{i}</StyledTipIcon>
             ))}
