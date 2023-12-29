@@ -37,7 +37,7 @@
     background: var(--input-fill-focused);
 }
 
-.Input_default:focus-visible ~ .icon {
+.Input_default:focus-visible ~ .Icon {
     color: var(--text-secondary);
 }
 
