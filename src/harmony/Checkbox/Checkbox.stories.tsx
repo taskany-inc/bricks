@@ -22,3 +22,14 @@ export const Default: StoryFn<typeof Checkbox> = (args) => (
         <Checkbox {...args} disabled />
     </>
 );
+
+export const Labeled: StoryFn<typeof Checkbox> = (args) => {
+    return (
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <Checkbox {...args} label="Label 1" checked />
+            <Checkbox {...args} label="Label 2" />
+            <Checkbox {...args} label="Label 3" checked disabled />
+            <Checkbox {...args} label="Label 4" disabled />
+        </div>
+    );
+};

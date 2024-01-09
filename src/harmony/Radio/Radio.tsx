@@ -15,8 +15,12 @@ interface RadioProps extends React.HTMLAttributes<HTMLInputElement> {
 }
 
 export const Radio = forwardRef<HTMLInputElement, RadioProps>(
-    ({ checked, onChange, label, name, className, ...rest }, ref) => (
-        <span className={cn(classes.Radio, className)}>
+    ({ checked, onChange, label, name, className, disabled, ...rest }, ref) => (
+        <label
+            className={cn(classes.Radio, className, {
+                [classes.RadioDisabled]: disabled,
+            })}
+        >
             <input
                 className={cn(classes.RadioInput)}
                 type="radio"
@@ -24,9 +28,12 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
                 defaultChecked={checked}
                 onChange={onChange}
                 ref={ref}
+                disabled={disabled}
                 {...rest}
             />
-            {nullable(label, (labelComponent) => labelComponent)}
-        </span>
+            {nullable(label, (labelComponent) => (
+                <span className={cn(classes.RadioLabel)}>{labelComponent}</span>
+            ))}
+        </label>
     ),
 );

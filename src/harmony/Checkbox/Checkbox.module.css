@@ -1,6 +1,14 @@
 .Checkbox {
     position: relative;
     display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    color: var(--text-primary);
+}
+
+.CheckboxDisabled {
+    cursor: not-allowed;
+    color: var(--text-ghost);
 }
 
 .CheckboxInput {
@@ -8,6 +16,7 @@
     cursor: pointer;
     background-color: transparent;
     border: 1px solid var(--check-default);
+    flex-basis: 1rem;
     width: 1rem;
     height: 1rem;
     transition: background-color 0.2s ease, border-color 0.2s ease;
@@ -17,6 +26,7 @@
 
     outline: none;
     padding: 0;
+    margin: 0;
 
     color: var(--check-mark);
 }
@@ -92,4 +102,9 @@
     outline-color: var(--check-outline);
     outline-style: solid;
     outline-offset: 2px;
+}
+
+.CheckboxLabel {
+    color: currentColor;
+    margin-left: var(--gap-s);
 }

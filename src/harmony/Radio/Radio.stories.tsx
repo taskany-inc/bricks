@@ -19,3 +19,14 @@ export const Default: StoryFn<typeof Radio> = (args) => (
         <Radio {...args} name="radio4" disabled />
     </>
 );
+
+export const Labeled: StoryFn<typeof Radio> = (args) => {
+    return (
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <Radio {...args} name="radio1" label="Label 1" checked />
+            <Radio {...args} name="radio2" label="Label 2" />
+            <Radio {...args} name="radio3" label="Label 3" checked disabled />
+            <Radio {...args} name="radio4" label="Label 4" disabled />
+        </div>
+    );
+};
