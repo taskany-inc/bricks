@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.2.0](https://github.com/taskany-inc/bricks/compare/v5.1.2...v5.2.0) (2024-01-09)
+
+
+### Features
+
+* **harmony,Checkbox,Radio:** add simple components ([4aea023](https://github.com/taskany-inc/bricks/commit/4aea023406307a12364d3e920df49608eb0a4065))
+* **Harmony:** popup component ([4f8c546](https://github.com/taskany-inc/bricks/commit/4f8c546357fced192ce2c1cc0f89623ea4f9d3cc))
+* **Harmony:** tooltip component ([86d1f34](https://github.com/taskany-inc/bricks/commit/86d1f34a452f7021d0b093c0c653728de795bf35))
+* **Switch:** new harmony component ([5fc0cbe](https://github.com/taskany-inc/bricks/commit/5fc0cbeb4458cd9e18650ad7ac839e3789225c74))
+* **Tip:** added view prop ([2d48f42](https://github.com/taskany-inc/bricks/commit/2d48f423204d1aba71161c35581567c8297a0a30))
+
+
+### Bug Fixes
+
+* add error if button have 2 icons without text ([6c5e19e](https://github.com/taskany-inc/bricks/commit/6c5e19e507d4df6634f81745a761958bb6f8c1cb))
+* **Button:** capture click event on button element ([2a00e23](https://github.com/taskany-inc/bricks/commit/2a00e2328a407857fee93d6e207f240518200ae5))
+* **harmony:** icon class should starts with capital letter ([2b20c5b](https://github.com/taskany-inc/bricks/commit/2b20c5bbbd8f28cfa31a4e36c9518c60001378c8))
+* **Switch:** re-export component ([d35438a](https://github.com/taskany-inc/bricks/commit/d35438abae3c0ea7dac22a0f4c171704bf1922d4))
+
 ## [5.1.2](https://github.com/taskany-inc/bricks/compare/v5.1.1...v5.1.2) (2023-12-26)
 
 
