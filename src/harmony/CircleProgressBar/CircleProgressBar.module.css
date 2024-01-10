@@ -1,0 +1,34 @@
+.ProgressBar {
+    position: relative;
+    display: inline-flex;
+}
+
+.Circle_overlay {
+    transition: stroke-dasharray, stroke-dashoffset 100ms ease-in-out;
+    stroke: var(--primary-500);
+}
+
+.Circle_background {
+    stroke: var(--gray-900);
+}
+
+.Text {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+
+    font-weight: 700;
+    line-height: normal;
+
+    color: var(--primary-500);
+}
+
+.Text_size_m {
+    font-size: var(--font-size-xxs);
+}
+
+.Text_size_l {
+    font-size: var(--font-size-xs);
+}
