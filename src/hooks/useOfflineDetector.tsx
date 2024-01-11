@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
-export interface UseOfflineDetectorParams {
-    setStatus: (online: boolean) => void;
+interface UseOfflineDetectorProps {
+    setStatus?: ([global, remote]: [boolean, boolean]) => void;
     pollingDelay?: number;
     remoteServerUrl?: string;
 }
@@ -10,61 +10,47 @@ export const useOfflineDetector = ({
     setStatus,
     pollingDelay = 5000,
     remoteServerUrl = '/',
-}: UseOfflineDetectorParams) => {
-    const [globalOnlineStatus, setGlobalOnlineStatus] = useState(true);
+}: UseOfflineDetectorProps) => {
+    const [globalOnlineStatus, setGlobalOnlineStatus] = useState(navigator.onLine);
     const [remoteServerStatus, setRemoteServerStatus] = useState(true);
-    const remoteServerPollingInProgress = useRef(true);
+    let timeout: NodeJS.Timeout;
+
+    const toggleStatus = useCallback(
+        (global: boolean) => () => {
+            setGlobalOnlineStatus(global);
+            setStatus?.([global, remoteServerStatus]);
+        },
+        [setStatus, remoteServerStatus],
+    );
 
     useEffect(() => {
-        const goOnline = () => {
-            setGlobalOnlineStatus(true);
-            setRemoteServerStatus(true);
-            setStatus(true);
-        };
+        window.addEventListener('online', toggleStatus(true));
+        window.addEventListener('offline', toggleStatus(false));
 
-        const goOffline = () => {
-            setGlobalOnlineStatus(false);
-            setRemoteServerStatus(false);
-            setStatus(false);
-        };
+        if (!timeout) {
+            setTimeout(() => {
+                if (globalOnlineStatus !== navigator.onLine) {
+                    setGlobalOnlineStatus(navigator.onLine);
+                }
 
-        if (typeof window === 'undefined') {
-            return;
+                fetch(remoteServerUrl, { method: 'HEAD' })
+                    .then((res) => {
+                        setRemoteServerStatus(res.status < 400);
+                        setStatus?.([globalOnlineStatus, true]);
+                    })
+                    .catch(() => {
+                        setRemoteServerStatus(false);
+                        setStatus?.([globalOnlineStatus, false]);
+                    });
+            }, pollingDelay);
         }
 
-        window.addEventListener('online', goOnline);
-        window.addEventListener('offline', goOffline);
-
-        const polling = () => {
-            if (!remoteServerPollingInProgress.current) return;
-
-            if (!globalOnlineStatus) {
-                setTimeout(polling, pollingDelay);
-
-                return;
-            }
-
-            fetch(remoteServerUrl)
-                .then((res) => {
-                    const newStatus = res.status < 400;
-                    setRemoteServerStatus(newStatus);
-                })
-                .catch(() => {
-                    setRemoteServerStatus(false);
-                })
-                .finally(() => {
-                    setTimeout(polling, pollingDelay);
-                });
-        };
-
-        polling();
-
         return () => {
-            window.removeEventListener('online', goOnline);
-            window.removeEventListener('offline', goOffline);
-            remoteServerPollingInProgress.current = false;
+            window.removeEventListener('online', toggleStatus(true));
+            window.removeEventListener('offline', toggleStatus(false));
+            clearTimeout(timeout);
         };
     }, []);
 
-    return globalOnlineStatus && remoteServerStatus;
+    return [globalOnlineStatus, remoteServerStatus];
 };
