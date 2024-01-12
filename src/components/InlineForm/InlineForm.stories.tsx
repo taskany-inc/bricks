@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import { Meta, StoryFn } from '@storybook/react';
 import { IconQuestionCircleOutline } from '@taskany/icons';
@@ -49,6 +49,41 @@ export const InlineFormStories: StoryFn = () => {
                     Hint
                 </Popup>
             </Form>
+        </>
+    );
+};
+
+export const InlineFormErrorHandler: StoryFn = () => {
+    const [error, setError] = useState<{ message: string } | undefined>();
+    const onError = useCallback((e: unknown) => {
+        if (e instanceof Error) {
+            setError({ message: e.message });
+        }
+    }, []);
+
+    return (
+        <>
+            <InlineForm
+                onSubmit={() => {
+                    throw new Error('Submit Error');
+                }}
+                onError={onError}
+                onReset={() => setError(undefined)}
+                renderTrigger={({ onClick }) => (
+                    <Button onClick={onClick} text={'Show Form'} view="primary" size="l" outline />
+                )}
+            >
+                <div style={{ backgroundColor: 'transparent', display: 'flex', alignItems: 'center' }}>
+                    <FormInput
+                        error={error}
+                        autoFocus
+                        brick="right"
+                        placeholder={'Enter text'}
+                        onChange={action('onChange')}
+                    />
+                    <Button text={'Add'} brick="left" type="submit" view="primary" size="l" outline />
+                </div>
+            </InlineForm>
         </>
     );
 };
