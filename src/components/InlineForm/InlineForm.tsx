@@ -13,13 +13,21 @@ interface InlineFormProps extends React.HTMLAttributes<HTMLDivElement> {
     renderTrigger?: (props: { onClick: () => void }) => React.ReactNode;
     onSubmit: () => Promise<void>;
     onReset: () => void;
+    onError?: (e: unknown) => void;
 }
 
 const StyledWrapper = styled.div`
     display: contents;
 `;
 
-export const InlineForm: React.FC<InlineFormProps> = ({ renderTrigger, onSubmit, onReset, children, ...attrs }) => {
+export const InlineForm: React.FC<InlineFormProps> = ({
+    renderTrigger,
+    onSubmit,
+    onReset,
+    onError,
+    children,
+    ...attrs
+}) => {
     const wrapperRef = useRef<HTMLDivElement>(null);
     const [visible, toggleVisible] = useReducer((state) => !state, !renderTrigger);
 
@@ -42,10 +50,14 @@ export const InlineForm: React.FC<InlineFormProps> = ({ renderTrigger, onSubmit,
     });
 
     const handleSubmit = useCallback(async () => {
-        await onSubmit();
-        toggleVisible();
-        onReset();
-    }, [onSubmit, onReset]);
+        try {
+            await onSubmit();
+            toggleVisible();
+            onReset();
+        } catch (e) {
+            onError?.(e);
+        }
+    }, [onSubmit, onReset, onError]);
 
     useEffect(() => {
         if (!visible) {
