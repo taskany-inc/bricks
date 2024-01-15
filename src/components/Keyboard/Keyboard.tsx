@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import styled from 'styled-components';
 import { gray4, gray8, gray9, radiusM, radiusS } from '@taskany/colors';
+
+import { nullable } from '../../utils';
+import { detectPlatform } from '../../utils/detectPlatform';
 
 interface KeyboardProps {
     command?: boolean;
@@ -72,9 +75,13 @@ export const Keyboard: React.FC<KeyboardProps> = ({
     size = 'm',
     children,
 }) => {
+    const commandKey = useMemo(() => {
+        return nullable(detectPlatform() === 'mac', () => <span>⌘</span>, <span>ctrl</span>);
+    }, []);
+
     return (
         <StyledKeyboard size={size}>
-            {command && <span>⌘</span>}
+            {command && commandKey}
             {shift && <span>⇧</span>}
             {option && <span>⌥</span>}
             {ctrl && <span>⌃</span>}
