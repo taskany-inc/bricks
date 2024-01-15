@@ -8,7 +8,6 @@ import React, {
     useEffect,
     useRef,
     useState,
-    RefObject,
 } from 'react';
 
 import { useMounted } from '../../hooks/useMounted';
@@ -24,7 +23,8 @@ interface ListViewProps {
 
 interface ListViewContext {
     registerItem: (value: unknown) => number;
-    items: RefObject<unknown[]>;
+    mountItem: (id: number, value: unknown) => void;
+    items: unknown[];
     cursor?: number;
     hovered?: number;
     setHovered?: Dispatch<SetStateAction<undefined | number>>;
@@ -48,16 +48,24 @@ export const ListView: React.FC<ListViewProps> = ({ children, onKeyboardClick })
     const enterPress = useKeyPress('Enter');
     const [cursor, setCursor] = useState<number | undefined>();
     const [hovered, setHovered] = useState<number | undefined>();
-    const items = useRef<unknown[]>([]);
+    const items = useRef<Map<number, unknown>>(new Map());
 
-    const registerItem = useCallback((value: unknown) => items.current.push(value) - 1, [items]);
+    const registerItem = useCallback(() => {
+        return items.current.size;
+    }, []);
+
+    const mountItem = useCallback((id: number, value: unknown) => {
+        items.current.set(id, value);
+    }, []);
 
     useEffect(() => {
         if (downPress) {
             setCursor((prevState) => {
-                if (prevState === undefined) return 0;
-                if (prevState < items.current.length - 1) return prevState + 1;
-                if (prevState === items.current.length - 1) return 0;
+                const ids = Array.from(items.current.keys());
+                const index = prevState !== undefined ? ids.indexOf(prevState) : 0;
+
+                if (prevState === undefined || index === ids.length - 1) return ids[0];
+                if (index < ids.length - 1) return ids[index + 1];
 
                 return prevState;
             });
@@ -67,11 +75,19 @@ export const ListView: React.FC<ListViewProps> = ({ children, onKeyboardClick })
     }, [downPress]);
 
     useEffect(() => {
+        return () => {
+            items.current = new Map();
+        };
+    });
+
+    useEffect(() => {
         if (upPress) {
             setCursor((prevState) => {
-                if (prevState === undefined) return items.current.length - 1;
-                if (prevState > 0) return prevState - 1;
-                if (prevState === 0) return items.current.length - 1;
+                const ids = Array.from(items.current.keys());
+                const index = prevState !== undefined ? ids.indexOf(prevState) : 0;
+
+                if (prevState === undefined || index === 0) return ids[ids.length - 1];
+                if (index > 0) return ids[index - 1];
 
                 return prevState;
             });
@@ -82,7 +98,7 @@ export const ListView: React.FC<ListViewProps> = ({ children, onKeyboardClick })
 
     useEffect(() => {
         if (cursor !== undefined && (spacePress || enterPress)) {
-            onKeyboardClick?.(items.current[cursor]);
+            onKeyboardClick?.(items.current.get(cursor));
         }
     }, [cursor, spacePress, enterPress, items, onKeyboardClick]);
 
@@ -93,7 +109,9 @@ export const ListView: React.FC<ListViewProps> = ({ children, onKeyboardClick })
     }, [items, hovered, cursor]);
 
     return (
-        <listViewContext.Provider value={{ items, cursor, hovered, registerItem, setHovered }}>
+        <listViewContext.Provider
+            value={{ items: Array.from(items.current.values()), cursor, hovered, registerItem, mountItem, setHovered }}
+        >
             {children}
         </listViewContext.Provider>
     );
@@ -112,7 +130,7 @@ interface ListViewItemProps {
 }
 
 export const ListViewItem: React.FC<ListViewItemProps> = memo(({ renderItem, value }) => {
-    const { cursor, registerItem, setHovered, hovered } = useListViewContext();
+    const { cursor, registerItem, mountItem, setHovered, hovered } = useListViewContext();
     const mounted = useMounted();
     const id = useRef<number | undefined>(undefined);
 
@@ -121,6 +139,12 @@ export const ListViewItem: React.FC<ListViewItemProps> = memo(({ renderItem, val
             id.current = registerItem(value);
         }
     }, [mounted, registerItem, value]);
+
+    useEffect(() => {
+        if (typeof id.current === 'number') {
+            mountItem(id.current, value);
+        }
+    });
 
     const onMouseLeave = useCallback<React.MouseEventHandler<HTMLElement>>(() => {
         setHovered?.(undefined);
