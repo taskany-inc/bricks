@@ -1,0 +1,3 @@
+.StateDot {
+    background-color: var(--state-color, var(--text-ghost));
+}
