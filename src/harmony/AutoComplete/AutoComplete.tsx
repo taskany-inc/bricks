@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { nullable } from '../../utils';
 import { Input } from '../Input/Input';
 import { ListViewItem, ListView } from '../../components/ListView/ListView';
-import { RadioControl as Radio, RadioGroup, RadioGroupLabel, RadioLabel } from '../RadioGroup/RadioGroup';
+import { RadioControl as Radio, RadioGroup, RadioGroupLabel } from '../RadioGroup/RadioGroup';
 
 import classes from './AutoComplete.module.css';
 
@@ -17,7 +17,7 @@ interface AutoCompleteRenderItemProps<T> {
     item: T;
     index: number;
     onItemClick: () => void;
-    checked: boolean;
+    checked?: boolean;
 }
 
 interface AutoCompleteRenderItem<T> {
@@ -75,7 +75,7 @@ function useAutoCompleteContext<T extends { id: string }>(): AutoCompleteContext
     const ctx = useContext(AutoCompleteContextProvider) as AutoCompleteContext<T> | null;
 
     if (!ctx) {
-        throw new Error("Don't use before initialization or outse of `AutoComplete` component");
+        throw new Error("Don't use before initialization or outside of `AutoComplete` component");
     }
 
     return useMemo(() => ctx, [ctx]);
@@ -84,9 +84,7 @@ function useAutoCompleteContext<T extends { id: string }>(): AutoCompleteContext
 export function AutoCompleteRadioGroup<T extends { title: string; value: string }>({
     items,
     onChange,
-    name,
     title,
-    value,
     className,
     ...attrs
 }: AutoCompleteRadioGroupProps<T>) {
@@ -108,9 +106,7 @@ export function AutoCompleteRadioGroup<T extends { title: string; value: string 
             ))}
             <RadioGroup
                 className={classNames(classes.AutoCompleteRadioGroup, className)}
-                name={name}
                 onChange={handleChange}
-                value={value}
                 {...attrs}
             >
                 {items.map((item) => (
