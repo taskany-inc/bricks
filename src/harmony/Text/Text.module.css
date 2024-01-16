@@ -1,0 +1,131 @@
+.Text {
+    font-size: 1rem;
+    color: var(--text-primary);
+}
+
+h1.Text,
+h2.Text,
+h3.Text,
+h4.Text,
+h5.Text,
+h6.Text,
+p.Text {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+h1.Text:first-child,
+h2.Text:first-child,
+h3.Text:first-child,
+h4.Text:first-child,
+h5.Text:first-child,
+h6.Text:first-child,
+p.Text:first-child {
+    padding-top: 0;
+}
+
+h1.Text:last-child,
+h2.Text:last-child,
+h3.Text:last-child,
+h4.Text:last-child,
+h5.Text:last-child,
+h6.Text:last-child,
+p.Text:last-child {
+    padding-bottom: 0;
+}
+
+h1.Text {
+    padding-bottom: var(--gap-sm);
+    padding-top: var(--gap-xl);
+}
+h2.Text {
+    padding-top: var(--gap-s);
+    padding-bottom: var(--gap-sm);
+}
+h3.Text {
+    padding-top: var(--gap-sm);
+    padding-bottom: var(--gap-s);
+}
+h4.Text,
+h5.Text {
+    padding-top: var(--gap-s);
+    padding-bottom: var(--gap-s);
+}
+
+p.Text {
+    padding-top: var(--gap-xs);
+    padding-bottom: var(--gap-sm);
+}
+
+.TextSizeXxs {
+    font-size: var(--font-size-xxs);
+    line-height: var(--line-height-xxs);
+}
+.TextSizeXs {
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-xs);
+}
+.TextSizeS {
+    font-size: var(--font-size-s);
+    line-height: var(--line-height-s);
+}
+.TextSizeM {
+    font-size: var(--font-size-m);
+    line-height: var(--line-height-m);
+}
+.TextSizeL {
+    font-size: var(--font-size-l);
+    line-height: var(--line-height-l);
+}
+.TextSizeXl {
+    font-size: var(--font-size-xl);
+    line-height: var(--line-height-xl);
+}
+.TextSizeXxl {
+    font-size: var(--font-size-xxl);
+    line-height: var(--line-height-xxl);
+    letter-spacing: -0.015em;
+}
+
+.TextThinner {
+    font-weight: 200;
+}
+.TextThin {
+    font-weight: 300;
+}
+.TextRegular {
+    font-weight: 400;
+}
+.TextBold {
+    font-weight: 600;
+}
+.TextBolder {
+    font-weight: 800;
+}
+
+.TextColored {
+    color: var(--text-custom-color);
+}
+
+.TextEllipsis {
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.TextClamped {
+    display: -webkit-box;
+    -webkit-line-clamp: var(--text-line-clamp);
+    -webkit-box-orient: vertical;
+}
+
+.TextWrapped {
+    word-wrap: var(--text-wrapped);
+}
+
+.TextBreaked {
+    word-break: var(--text-breaked);
+}
+
+.TextStrike {
+    text-decoration: line-through;
+}
