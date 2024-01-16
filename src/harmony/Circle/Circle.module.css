@@ -1,0 +1,23 @@
+.Circle {
+    border-radius: 100%;
+    display: inline-block;
+    text-align: center;
+
+    letter-spacing: -1.5px;
+    font-weight: 500;
+    font-size: 0.625rem;
+    line-height: 1.5rem;
+    user-select: none;
+    width: 1.5rem;
+    height: 1.5rem;
+
+    background-image: linear-gradient(to right, var(--circle-main-color), var(--circle-secondary-color));
+}
+
+.CircleDarken {
+    color: white;
+}
+
+.CircleLighten {
+    color: black;
+}
