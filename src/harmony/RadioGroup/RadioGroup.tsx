@@ -14,9 +14,8 @@ const RadioGroupContext = createContext<{
     onChange: () => {},
 });
 
-interface RadioControlProps extends React.HTMLAttributes<HTMLInputElement> {
+interface RadioControlProps extends React.InputHTMLAttributes<HTMLInputElement> {
     value: string;
-    disabled?: boolean;
 }
 
 interface RadioGroupProps {
