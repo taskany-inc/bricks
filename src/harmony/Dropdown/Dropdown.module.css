@@ -1,0 +1,48 @@
+.DropdownTrigger {
+    border: 1px solid transparent;
+    padding: var(--gap-xs) var(--gap-sm);
+    box-sizing: border-box;
+}
+
+.DropdownTriggerOutline {
+    border-radius: 10px;
+    border-color: var(--base-hover);
+}
+
+.DropdownTriggerLabel {
+    display: flex;
+    margin-bottom: 0.125rem;
+    color: var(--text-ghost);
+    font-size: var(--font-size-xs);
+    line-height: 1rem;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.DropdownTriggerControl {
+    display: flex;
+    width: 100%;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.DropdownTriggerValue {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: flex-start;
+    line-height: 1.5rem;
+}
+
+.DropdownTriggerIcon {
+    margin-left: auto;
+    display: inline-flex;
+}
+
+.DropdownTriggerLabel .DropdownTriggerIcon {
+    margin-left: unset;
+}
+
+.DropdownPanel {
+    box-sizing: border-box;
+}
