@@ -5,17 +5,12 @@ import { nullable } from '../../utils';
 
 import classes from './Radio.module.css';
 
-interface RadioProps extends React.HTMLAttributes<HTMLInputElement> {
-    checked?: boolean;
-    disabled?: boolean;
-    onChange: React.ChangeEventHandler<HTMLInputElement>;
+interface RadioProps extends React.InputHTMLAttributes<HTMLInputElement> {
     label?: React.ReactNode;
-    name: string;
-    value?: string;
 }
 
 export const Radio = forwardRef<HTMLInputElement, RadioProps>(
-    ({ checked, onChange, label, name, className, disabled, ...rest }, ref) => (
+    ({ label, className, disabled, checked, ...rest }, ref) => (
         <label
             className={cn(classes.Radio, className, {
                 [classes.RadioDisabled]: disabled,
@@ -24,12 +19,10 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
             <input
                 className={cn(classes.RadioInput)}
                 type="radio"
-                name={name}
-                defaultChecked={checked}
-                onChange={onChange}
                 ref={ref}
                 disabled={disabled}
                 {...rest}
+                defaultChecked={checked}
             />
             {nullable(label, (labelComponent) => (
                 <span className={cn(classes.RadioLabel)}>{labelComponent}</span>
