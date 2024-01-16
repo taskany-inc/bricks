@@ -1,0 +1,35 @@
+.Badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid transparent;
+    
+}
+
+.BadgeOutlined {
+    border-color: currentColor;
+    border-radius: var(--radius-xl);
+}
+
+.BadgeIconLeft {
+    margin-right: var(--gap-s);
+    display: inline-flex;
+}
+
+.BadgeIconRight {
+    margin-left: var(--gap-s);
+    display: inline-flex;
+}
+
+.BadgeSizeS {
+    padding: 1px 4px;
+}
+.BadgeSizeM {
+    padding: 2px 8px;
+}
+.BadgeSizeL {
+    padding: 3px 12px;
+}
+.BadgeSizeXl {
+    padding: 4px 16px;
+}

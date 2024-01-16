@@ -1,0 +1,20 @@
+.Dot {
+    display: inline-block;
+    border-radius: 50%;
+    background-color: var(--layer-above);
+}
+
+.DotSmall {
+    width: 0.375rem;
+    height: 0.375rem;
+}
+
+.DotMedium {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.DotLarge {
+    width: 0.625rem;
+    height: 0.625rem;
+}
