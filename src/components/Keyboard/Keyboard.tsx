@@ -76,7 +76,7 @@ export const Keyboard: React.FC<KeyboardProps> = ({
     children,
 }) => {
     const commandKey = useMemo(() => {
-        return nullable(detectPlatform() === 'mac', () => <span>⌘</span>, <span>ctrl</span>);
+        return nullable(detectPlatform() === 'windows', () => <span>ctrl</span>, <span>⌘</span>);
     }, []);
 
     return (

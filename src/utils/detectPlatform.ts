@@ -3,7 +3,7 @@ enum Platforms {
     windows = 'windows',
 }
 
-export const detectPlatform = () => {
+export const detectPlatform = (): keyof typeof Platforms => {
     if (typeof window === 'undefined') {
         return Platforms.mac;
     }
@@ -14,5 +14,5 @@ export const detectPlatform = () => {
         return Platforms.windows;
     }
 
-    return userAgent.includes(Platforms.mac);
+    return Platforms.mac;
 };
