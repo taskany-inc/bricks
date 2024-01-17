@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.3.0](https://github.com/taskany-inc/bricks/compare/v5.2.0...v5.3.0) (2024-01-17)
+
+
+### Features
+
+* **Harmony:** circleProgressBar component ([5d8a694](https://github.com/taskany-inc/bricks/commit/5d8a6944feff5b446384d8827bc00f67fc623c24))
+* **Keyboard:** show ctrl instead command on windows ([f35ead5](https://github.com/taskany-inc/bricks/commit/f35ead5001847ab4a511995c0a4878b3153fc4d8))
+* onError handler for Inline Form ([9b4000f](https://github.com/taskany-inc/bricks/commit/9b4000f02a6766834221afa46f8d8481cbe5801e))
+
+
+### Bug Fixes
+
+* **useOfflineDetector:** change hook ([a63b376](https://github.com/taskany-inc/bricks/commit/a63b3768f3c477378838142f6a79e3e6ecc124e7))
+
 ## [5.2.0](https://github.com/taskany-inc/bricks/compare/v5.1.2...v5.2.0) (2024-01-09)
 
 
