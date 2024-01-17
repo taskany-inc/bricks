@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.3.1](https://github.com/taskany-inc/bricks/compare/v5.3.0...v5.3.1) (2024-01-17)
+
+
+### Bug Fixes
+
+* detectPlatform ([54a7e88](https://github.com/taskany-inc/bricks/commit/54a7e88c372619cde7c3d9ee805279c841ba126e))
+
 ## [5.3.0](https://github.com/taskany-inc/bricks/compare/v5.2.0...v5.3.0) (2024-01-17)
 
 
