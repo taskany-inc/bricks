@@ -1,0 +1,27 @@
+.TreeViewTitle {
+    display: flex;
+    align-items: center;
+}
+
+.TreeViewTitleContent {
+    display: contents;
+}
+
+.TreeViewContent {
+    box-sizing: border-box;
+    border-left: 1px solid var(--gray-700);
+    margin-left: var(--gap-s);
+}
+
+.TreeViewElement {
+    padding-left: var(--gap-s);
+}
+
+.Icon {
+    display: block;
+    transition: transform 100ms ease-in-out;
+}
+
+.Icon_transform {
+    transform: rotate(90deg);
+}
