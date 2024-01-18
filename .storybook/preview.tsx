@@ -22,6 +22,11 @@ const withTheme: Decorator = (StoryFn, context) => {
 
     useEffect(() => {
         document.documentElement.setAttribute('data-theme', theme);
+        const existThemeLink = document.getElementById('harmony_theme');
+
+        if (existThemeLink) {
+            existThemeLink.setAttribute('href', `/public/${theme}.css`);
+        }
     }, [theme]);
 
     return (
@@ -54,7 +59,7 @@ export const globalTypes = {
     theme: {
         name: 'Theme',
         description: 'Global theme for components',
-        defaultValue: 'light',
+        defaultValue: 'dark',
         toolbar: {
             icon: 'circlehollow',
             items: [
