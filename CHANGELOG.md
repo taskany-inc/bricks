@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.4.0](https://github.com/taskany-inc/bricks/compare/v5.3.1...v5.4.0) (2024-01-22)
+
+
+### Features
+
+* **AutoComplete:** a new harmony component ([6735971](https://github.com/taskany-inc/bricks/commit/6735971cf4223b527576d17a756a7d8de4f153c9))
+* **Dropdown:** simpliest component ([74bb515](https://github.com/taskany-inc/bricks/commit/74bb5158dd9cb0ff0b2b855f1a4c46fa838ec179))
+* **RadioGroup:** a new component ([155d2d0](https://github.com/taskany-inc/bricks/commit/155d2d0ac6b4f319d6154ca10a0c054d07651b83))
+* **State:** implements a brand new component ([bc2b396](https://github.com/taskany-inc/bricks/commit/bc2b3969be14ccb0c9c8bb1a01dfb3277b283c90))
+* **Text,Badge,Dot:** base typography components ([a84ed8f](https://github.com/taskany-inc/bricks/commit/a84ed8fcee4cac18a3351af2b0118bbe1551ad2a))
+* **TreeView:** create component ([3cc7414](https://github.com/taskany-inc/bricks/commit/3cc7414954c59a3f6fa5802dd2dca2f003dee090))
+* **useCopyToClipboard:** add hook ([156b7af](https://github.com/taskany-inc/bricks/commit/156b7af4d040984996810bf2a14b614f11c0a8d1))
+* **UserGroup:** implements a brand new component ([ab32725](https://github.com/taskany-inc/bricks/commit/ab3272528e547072b4793ce9ce04a3a24d5274f3))
+* **User:** implements a brand new component ([2c9c5b2](https://github.com/taskany-inc/bricks/commit/2c9c5b2112c0dd23043d2541c4737306c74bed5b))
+
+
+### Bug Fixes
+
+* **AutoComplete:** drop unused imports ([85a5314](https://github.com/taskany-inc/bricks/commit/85a53146891be1ccf8263e242d91db1868c57ab5))
+* **Checkbox,Radio:** onChange handler ([1f67354](https://github.com/taskany-inc/bricks/commit/1f673542fad284ba60bea50758751d3c88cfc166))
+* **Checkbox,Radio:** wrapping label ([82aab7b](https://github.com/taskany-inc/bricks/commit/82aab7b25396c3cdcae1ae0649941094402f96ee))
+* component ListView should works with dynamic lists ([7e613f9](https://github.com/taskany-inc/bricks/commit/7e613f98c7f3b5add7464b78929722f83a22d59a))
+* **Radio,Checkbox:** simplify components interfaces ([7e69f8f](https://github.com/taskany-inc/bricks/commit/7e69f8fff7689883b6ff6343f52bfb6893716abf))
+* **RadioGroup:** simplify component interfaces ([0af29e6](https://github.com/taskany-inc/bricks/commit/0af29e626c9582f82e21160f323f79b25def92b8))
+* **storybook:** keep empty public dir ([80a8c77](https://github.com/taskany-inc/bricks/commit/80a8c77bf63fa3a18f715311fa05cb319be253a1))
+* **storybook:** switch harmony theme ([f5340c4](https://github.com/taskany-inc/bricks/commit/f5340c4ac790ffd22c65a14cc9b95878abb71b9c))
+
 ## [5.3.1](https://github.com/taskany-inc/bricks/compare/v5.3.0...v5.3.1) (2024-01-17)
 
 
