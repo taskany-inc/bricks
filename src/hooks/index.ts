@@ -7,3 +7,4 @@ export * from './useClickOutside';
 export * from './useOfflineDetector';
 export * from './useHotkeys';
 export * from './useEventCallback';
+export * from './useCopyToClipboard';
