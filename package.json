@@ -44,7 +44,7 @@
     "@babel/preset-typescript": "7.23.2",
     "@commitlint/cli": "18.4.1",
     "@commitlint/config-conventional": "18.4.4",
-    "@storybook/addon-essentials": "7.4.5",
+    "@storybook/addon-essentials": "7.6.10",
     "@storybook/addon-interactions": "7.4.5",
     "@storybook/addon-links": "7.4.5",
     "@storybook/blocks": "7.4.5",
