@@ -18,7 +18,7 @@ const config: StorybookConfig = {
     },
     previewHead: (head) => `
         ${head}
-        <link rel="stylesheet" href="/public/dark.css" id="harmony_theme"></link>
+        <link rel="stylesheet" href="public/dark.css" id="harmony_theme"></link>
     `,
     staticDirs: ['./public'],
     webpackFinal: async (config) => {
