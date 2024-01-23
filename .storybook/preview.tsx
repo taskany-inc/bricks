@@ -25,7 +25,7 @@ const withTheme: Decorator = (StoryFn, context) => {
         const existThemeLink = document.getElementById('harmony_theme');
 
         if (existThemeLink) {
-            existThemeLink.setAttribute('href', `/public/${theme}.css`);
+            existThemeLink.setAttribute('href', `public/${theme}.css`);
         }
     }, [theme]);
 
