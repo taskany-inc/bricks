@@ -6,7 +6,7 @@ import { nullable } from '../../utils';
 
 import classes from './Badge.module.css';
 
-type TextPropsKeys = Exclude<keyof React.ComponentProps<typeof Text>, 'as' | 'weight' | 'size'>;
+type TextPropsKeys = Exclude<keyof React.ComponentProps<typeof Text>, 'as' | 'size'>;
 
 type TextBadgeProps = Pick<
     React.ComponentProps<typeof Text>,
@@ -36,6 +36,7 @@ export const Badge: React.FC<BadgeProps> = ({
     className,
     view = 'default',
     size = 's',
+    weight = 'bold',
     ...rest
 }) => {
     return (
@@ -49,7 +50,7 @@ export const Badge: React.FC<BadgeProps> = ({
                 sizeMap[size],
             )}
             as="span"
-            weight="bold"
+            weight={weight}
             size={size}
             {...rest}
         >
