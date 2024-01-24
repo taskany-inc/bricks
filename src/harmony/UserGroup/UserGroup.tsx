@@ -6,21 +6,31 @@ import { Tooltip } from '../Tooltip/Tooltip';
 
 import classes from './UserGroup.module.css';
 
-type UserProps = Pick<React.ComponentProps<typeof User>, 'email' | 'name' | 'src'>;
+interface UserProps extends Pick<React.ComponentProps<typeof User>, 'email' | 'name'> {
+    image?: string | null;
+}
 
 interface UserGroupProps {
     users: Array<UserProps>;
     showCount?: number;
 }
 
-const WrappedUser: React.FC<UserProps> = (props) => {
+const WrappedUser: React.FC<UserProps> = ({ name, email, image, ...props }) => {
     const targetRef = useRef<HTMLDivElement>(null);
 
     return (
         <>
-            <User short className={classes.UserGroupItem} {...props} ref={targetRef} />
+            <User
+                short
+                className={classes.UserGroupItem}
+                name={name}
+                email={email}
+                src={image}
+                {...props}
+                ref={targetRef}
+            />
             <Tooltip placement="top" reference={targetRef}>
-                {props.name ?? props.email}
+                {name ?? email}
             </Tooltip>
         </>
     );
