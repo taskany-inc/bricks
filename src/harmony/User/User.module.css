@@ -18,6 +18,8 @@
     line-height: 1rem;
     margin-left: var(--gap-s);
     color: var(--text-primary);
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .UserNameColorInherit {

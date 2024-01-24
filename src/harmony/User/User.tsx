@@ -8,9 +8,9 @@ import { nullable } from '../../utils';
 import classes from './User.module.css';
 
 interface UserProps {
-    name?: string;
-    email?: string;
-    src?: string;
+    name?: string | null;
+    email?: string | null;
+    src?: string | null;
     short?: boolean;
     inheritColor?: boolean;
     className?: string;
