@@ -1,21 +1,27 @@
 import { useState, useEffect } from 'react';
 
-export const useKeyPress = (targetKey: string) => {
+const noop = () => {};
+
+export const useKeyPress = (targetKey: string | null) => {
     const [keyPressed, setKeyPressed] = useState(false);
 
-    const downHandler = ({ key }: KeyboardEvent) => {
-        if (key === targetKey) {
-            setKeyPressed(true);
-        }
-    };
+    const downHandler = targetKey
+        ? ({ key }: KeyboardEvent) => {
+              if (key === targetKey) {
+                  setKeyPressed(true);
+              }
+          }
+        : noop;
 
-    const upHandler = ({ key }: KeyboardEvent) => {
-        if (key === targetKey) {
-            setKeyPressed(false);
-        }
-    };
+    const upHandler = targetKey
+        ? ({ key }: KeyboardEvent) => {
+              if (key === targetKey) {
+                  setKeyPressed(false);
+              }
+          }
+        : noop;
 
-    useEffect(() => {
+    useEffect((): void | (() => void) => {
         window.addEventListener('keydown', downHandler);
         window.addEventListener('keyup', upHandler);
 

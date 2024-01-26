@@ -22,7 +22,7 @@ interface ListViewProps {
 }
 
 interface ListViewContext {
-    registerItem: (value: unknown) => number;
+    registerItem: () => number;
     mountItem: (id: number, value: unknown) => void;
     items: unknown[];
     cursor?: number;
@@ -41,18 +41,91 @@ const useListViewContext = () => {
     return ctx;
 };
 
+type List = Map<number, unknown>;
+
+const listNavigation = (() => {
+    const lists = new Set<List>();
+    const callbacks = new Set<(active: List) => void>();
+
+    const notifySubscriptions = () => {
+        const activeIndex = lists.size - 1;
+        const activeItem = Array.from(lists.values())[activeIndex];
+
+        callbacks.forEach((cb) => {
+            cb(activeItem);
+        });
+    };
+
+    const changeLists = (action: 'add' | 'delete', list: List) => {
+        const oldSize = lists.size;
+
+        lists[action](list);
+
+        if (oldSize !== lists.size) {
+            notifySubscriptions();
+        }
+    };
+
+    return {
+        mount: (list: List) => {
+            changeLists('add', list);
+        },
+        unmount: (list: List) => {
+            changeLists('delete', list);
+        },
+        subscribe: (cb: (active: List) => void) => {
+            callbacks.add(cb);
+
+            return () => callbacks.delete(cb);
+        },
+    };
+})();
+
+const useListNavigation = (initialList: List) => {
+    const [isActive, setIsActive] = useState(false);
+    const [list] = useState(initialList);
+
+    useEffect(() => {
+        const unsubscribe = listNavigation.subscribe((active) => {
+            setIsActive(active === list);
+        });
+
+        listNavigation.mount(list);
+
+        return () => {
+            unsubscribe();
+            listNavigation.unmount(list);
+        };
+    }, [list]);
+
+    const setActive = useCallback(() => {
+        listNavigation.unmount(list);
+        listNavigation.mount(list);
+    }, [list]);
+
+    return {
+        active: isActive,
+        setActive,
+    };
+};
+
+const registerItem = (() => {
+    let id = 0;
+
+    return () => id++;
+})();
+
 export const ListView: React.FC<ListViewProps> = ({ children, onKeyboardClick }) => {
-    const downPress = useKeyPress('ArrowDown');
-    const upPress = useKeyPress('ArrowUp');
-    const spacePress = useKeyPress(' ');
-    const enterPress = useKeyPress('Enter');
     const [cursor, setCursor] = useState<number | undefined>();
     const [hovered, setHovered] = useState<number | undefined>();
     const items = useRef<Map<number, unknown>>(new Map());
 
-    const registerItem = useCallback(() => {
-        return items.current.size;
-    }, []);
+    const { active, setActive } = useListNavigation(items.current);
+
+    const downPress = useKeyPress(active ? 'ArrowDown' : null);
+    const upPress = useKeyPress(active ? 'ArrowUp' : null);
+    const spacePress = useKeyPress(active ? ' ' : null);
+    const enterPress = useKeyPress(active ? 'Enter' : null);
 
     const mountItem = useCallback((id: number, value: unknown) => {
         items.current.set(id, value);
@@ -76,7 +149,7 @@ export const ListView: React.FC<ListViewProps> = ({ children, onKeyboardClick })
 
     useEffect(() => {
         return () => {
-            items.current = new Map();
+            items.current.clear();
         };
     });
 
@@ -108,6 +181,12 @@ export const ListView: React.FC<ListViewProps> = ({ children, onKeyboardClick })
         }
     }, [items, hovered, cursor]);
 
+    useEffect(() => {
+        if (hovered) {
+            setActive();
+        }
+    }, [hovered]);
+
     return (
         <listViewContext.Provider
             value={{ items: Array.from(items.current.values()), cursor, hovered, registerItem, mountItem, setHovered }}
@@ -136,7 +215,7 @@ export const ListViewItem: React.FC<ListViewItemProps> = memo(({ renderItem, val
 
     useEffect(() => {
         if (mounted) {
-            id.current = registerItem(value);
+            id.current = registerItem();
         }
     }, [mounted, registerItem, value]);
 
