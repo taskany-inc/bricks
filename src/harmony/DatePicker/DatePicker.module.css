@@ -1,0 +1,119 @@
+.DatePicker {}
+
+.DatePickerOption {
+    display: flex;
+    gap: var(--gap-s);
+
+    margin-bottom: var(--gap-sm);
+}
+
+.DatePickerOptionLabel {
+    width: 94px;
+    font-weight: 500;
+}
+
+.DatePickerOptionContent {
+    width: 252px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+.DatePicker input::-webkit-outer-spin-button,
+.DatePicker input::-webkit-inner-spin-button,
+.DatePicker input::-webkit-calendar-picker-indicator {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+  user-select: none;
+  pointer-events: none;
+  height: 0;
+  width: 0;
+  display: none;
+}
+
+.DatePicker input[type="date"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    font-family: inherit;
+}
+
+/* Firefox */
+.DatePicker input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.DatePickerFooter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.DatePickerHintIcon {
+    color: var(--gray-900);
+    background-color: var(--text-secondary);
+
+    border-radius: 100%;
+}
+
+.DatePickerResetControl {
+    font-size: var(--font-size-xs);
+    cursor: pointer;
+    border-bottom: 1px dotted currentColor;
+}
+
+.DatePickerInlineWrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.DatePickerInlineGap {
+    gap: var(--gap-xs);
+}
+
+.DatePickerQuarter {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.DatePickerQuarterAlias {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.DatePickerStrictDateInput {
+    width: 2ch;
+    text-align: center;
+}
+
+.DatePickerYearInput {
+    text-align: center;
+}
+
+.DatePickerYearInput, .DatePickerStrictDateInput[name=year] {
+    width: 4ch;
+}
+
+.DatePickerInlineWrapper + .DatePickerInlineWrapper,
+.DatePickerQuarter + .DatePickerQuarterAlias {
+    margin-top: var(--gap-xs);
+}
+
+.DatePickerStrictDateAdvice {
+    /* correct alignment by right column */
+    padding-left: calc(94px + var(--gap-s));
+    color: var(--text-secondary);
+    margin-bottom: var(--gap-sm);
+}
+
+.DatePickerWarningMessage {
+    box-sizing: border-box;
+    margin-top: var(--gap-sm);
+    padding: var(--gap-s);
+    width: 100%;
+    background-color: var(--gray-900);
+    display: inline-block;
+    vertical-align: middle;
+    text-align: left;
+    border-radius: var(--radius-m);
+}
