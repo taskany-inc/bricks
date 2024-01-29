@@ -1,0 +1,16 @@
+.Table {
+    display: grid;
+    gap: var(--gap-xs);
+}
+
+.Row {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-m);
+}
+
+.Cell {
+    display: flex;
+    flex-shrink: 0;
+    width: var(--table-cell-width, unset);
+}
