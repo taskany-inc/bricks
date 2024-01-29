@@ -4,6 +4,7 @@ import cn from 'classnames';
 import { Circle } from '../Circle/Circle';
 import { preloadImage } from '../../utils/preloadImage';
 import { nullable } from '../../utils';
+import { getInitials } from '../../utils/getInitials';
 
 import classes from './User.module.css';
 
@@ -17,20 +18,6 @@ interface UserProps {
 }
 
 type AvatarLoadState = 'success' | 'error' | 'loading';
-
-const pickFirstLetter = (val?: string) => {
-    return val?.length ? val[0] : '';
-};
-
-const getInitials = (name?: string) => {
-    if (name) {
-        const [first = '', second = ''] = name.toUpperCase().split(' ');
-
-        return `${pickFirstLetter(first)} ${pickFirstLetter(second)}`.trim();
-    }
-
-    return '';
-};
 
 export const User = forwardRef<HTMLDivElement, UserProps>(
     ({ email, name, src, short, inheritColor, className }, ref) => {
