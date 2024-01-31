@@ -10,3 +10,4 @@ export * from './Tooltip/Tooltip';
 export * from './AutoComplete/AutoComplete';
 export * from './RadioGroup/RadioGroup';
 export * from './DatePicker/DatePicker';
+export * from './Tag/Tag';
