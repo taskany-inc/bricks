@@ -36,28 +36,20 @@ export const CheckboxLabel: React.FC<React.PropsWithChildren<{ className?: strin
 
 interface CheckboxInputProps extends React.HTMLAttributes<HTMLInputElement> {
     value: string;
-    checked: boolean;
+    checked?: boolean;
+    defaultChecked?: boolean;
 }
 
-export const CheckboxInput = forwardRef<HTMLInputElement, CheckboxInputProps>(({ value, checked, ...attrs }, ref) => (
+export const CheckboxInput = forwardRef<HTMLInputElement, CheckboxInputProps>(({ value, ...attrs }, ref) => (
     <CheckboxContext.Consumer>
         {({ id, onClick, name }) => (
-            <input
-                id={id}
-                type="checkbox"
-                name={name}
-                value={value}
-                defaultChecked={checked}
-                ref={ref}
-                onChange={onClick}
-                {...attrs}
-            />
+            <input id={id} type="checkbox" name={name} value={value} ref={ref} onChange={onClick} {...attrs} />
         )}
     </CheckboxContext.Consumer>
 ));
 
 export const Checkbox = forwardRef<HTMLDivElement, React.PropsWithChildren<CheckboxProps>>(
-    ({ onClick, name, className, children }, ref) => {
+    ({ onClick, name, className, children, ...attr }, ref) => {
         const handleOnChange = useCallback<React.ChangeEventHandler<HTMLInputElement>>((event) => {
             onClick(event.target.value);
         }, []);
@@ -66,7 +58,7 @@ export const Checkbox = forwardRef<HTMLDivElement, React.PropsWithChildren<Check
 
         return (
             <CheckboxContext.Provider value={{ id: `${name}-${id}`, onClick: handleOnChange, name }}>
-                <StyledWrapper className={className} ref={ref}>
+                <StyledWrapper className={className} {...attr} ref={ref}>
                     {children}
                 </StyledWrapper>
             </CheckboxContext.Provider>

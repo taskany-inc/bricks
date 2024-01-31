@@ -32,7 +32,7 @@ interface FilterCheckboxProps extends CheckboxProps {
 
 export const FilterCheckbox: React.FC<FilterCheckboxProps> = ({ name, onClick, checked, value, label, iconLeft }) => (
     <StyledCheckbox name={name} onClick={onClick}>
-        <StyledChekboxInput checked={checked} value={value} />
+        <StyledChekboxInput defaultChecked={checked} value={value} />
         <StyledCheckboxLabel>
             {nullable(iconLeft, (icon) => icon)}
             <Text weight="bold" size="s">
