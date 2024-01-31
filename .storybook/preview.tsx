@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import type { Decorator, Preview } from '@storybook/react';
 import { DarkTheme, LightTheme, backgroundColor, fontDisplay, textColor } from '@taskany/colors';
 import { createGlobalStyle } from 'styled-components';
 
-import '@taskany/colors/harmony/dark.css';
-import '@taskany/colors/harmony/light.css';
-
 import { TextStyle } from '../src/components/Text/Text';
+
+import darkTheme from './dark.css?inline';
+import lightTheme from './light.css?inline';
 
 const GlobalStyle = createGlobalStyle`
     html, body {
@@ -16,18 +16,19 @@ const GlobalStyle = createGlobalStyle`
     }
 `;
 
+const CSSThemeMap = {
+    dark: darkTheme,
+    light: lightTheme,
+};
+
+const SCThemeMap = {
+    dark: DarkTheme,
+    light: LightTheme,
+};
+
 const withTheme: Decorator = (StoryFn, context) => {
     const { theme } = context.globals;
-    const Theme = theme === 'dark' ? DarkTheme : LightTheme;
-
-    useEffect(() => {
-        document.documentElement.setAttribute('data-theme', theme);
-        const existThemeLink = document.getElementById('harmony_theme');
-
-        if (existThemeLink) {
-            existThemeLink.setAttribute('href', `public/${theme}.css`);
-        }
-    }, [theme]);
+    const Theme = SCThemeMap[theme];
 
     return (
         <>
@@ -35,6 +36,7 @@ const withTheme: Decorator = (StoryFn, context) => {
             <GlobalStyle />
             <TextStyle />
             <StoryFn />
+            <style>{CSSThemeMap[theme]}</style>
         </>
     );
 };
