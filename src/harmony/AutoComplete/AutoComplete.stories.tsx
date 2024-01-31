@@ -33,6 +33,16 @@ const data: Items = Array.from({ length: 1000 }, (_, i) => {
     };
 });
 
+interface FocusableItemProps extends React.HTMLAttributes<HTMLDivElement> {
+    focused?: boolean;
+}
+
+const FocusableItem: React.FC<FocusableItemProps> = ({ focused, children, style = {}, ...attr }) => (
+    <div style={{ backgroundColor: focused ? 'lightgrey' : 'transparent', ...style }} {...attr}>
+        {children}
+    </div>
+);
+
 export const Single: StoryFn<Props> = (args) => {
     const [value, setValue] = useState('');
     const [list, setList] = useState<Items>([]);
@@ -51,7 +61,14 @@ export const Single: StoryFn<Props> = (args) => {
             items={list}
             onChange={args.onChange}
             keyGetter={(item) => item.id}
-            renderItem={(props) => <div onClick={props.onItemClick}>{`${props.item.id}: ${props.item.title}`}</div>}
+            renderItem={(props) => (
+                <FocusableItem
+                    focused={props.active}
+                    onClick={props.onItemClick}
+                    onMouseLeave={props.onMouseLeave}
+                    onMouseMove={props.onMouseMove}
+                >{`${props.item.id}: ${props.item.title}`}</FocusableItem>
+            )}
         >
             <AutoCompleteInput
                 type="text"
@@ -84,12 +101,14 @@ export const Multiple: StoryFn<Props> = (args) => {
             onChange={args.onChange}
             keyGetter={(item) => item.id}
             renderItem={(props) => (
-                <div
+                <FocusableItem
                     style={{
-                        backgroundColor: props.active || props.hovered ? 'lightgrey' : 'transparent',
                         display: 'flex',
                         alignItems: 'center',
                     }}
+                    focused={props.active}
+                    onMouseLeave={props.onMouseLeave}
+                    onMouseMove={props.onMouseMove}
                 >
                     <Checkbox
                         checked={props.checked}
@@ -98,7 +117,7 @@ export const Multiple: StoryFn<Props> = (args) => {
                         name="item"
                         label={`${props.item.id}: ${props.item.title}`}
                     />
-                </div>
+                </FocusableItem>
             )}
         >
             <AutoCompleteInput
@@ -143,11 +162,11 @@ export const WithRadio: StoryFn<Props> = (args) => {
             onChange={args.onChange}
             keyGetter={(item) => item.id}
             renderItem={(props) => (
-                <div key={props.item.id}>
+                <FocusableItem focused={props.active} onMouseLeave={props.onMouseLeave} onMouseMove={props.onMouseMove}>
                     <label onClick={props.onItemClick}>
                         <span>{`${props.item.id}: ${props.item.title}`}</span>
                     </label>
-                </div>
+                </FocusableItem>
             )}
         >
             <AutoCompleteInput
@@ -240,7 +259,7 @@ export const MultipleFiniteList: StoryFn<Props> = (args) => (
         items={finiteList}
         value={finiteList.slice(2, 4)}
         renderItem={(props) => (
-            <div>
+            <FocusableItem focused={props.active} onMouseLeave={props.onMouseLeave} onMouseMove={props.onMouseMove}>
                 <Checkbox
                     onChange={props.onItemClick}
                     name="item"
@@ -248,7 +267,7 @@ export const MultipleFiniteList: StoryFn<Props> = (args) => (
                     value={props.item.id}
                     label={props.item.title}
                 />
-            </div>
+            </FocusableItem>
         )}
     >
         <AutoCompleteList />

@@ -18,10 +18,10 @@ export const Default: StoryFn<typeof Checkbox> = (args) => (
     <>
         <Checkbox {...args}>
             <CheckboxLabel>Checkbox</CheckboxLabel>
-            <CheckboxInput value="value" checked={false} />
+            <CheckboxInput value="value" defaultChecked={false} />
         </Checkbox>
         <Checkbox {...args}>
-            <CheckboxInput value="value" checked={true} />
+            <CheckboxInput value="value" defaultChecked={true} />
             <CheckboxLabel>Checkbox</CheckboxLabel>
         </Checkbox>
     </>
