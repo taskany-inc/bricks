@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.5.0](https://github.com/taskany-inc/bricks/compare/v5.4.0...v5.5.0) (2024-02-01)
+
+
+### Features
+
+* **DatePicker:** new component ([8cb6919](https://github.com/taskany-inc/bricks/commit/8cb691957ea322c4fb31de6b9467bf80036b06c4))
+* **Harmony:** create Table component ([a22d4e2](https://github.com/taskany-inc/bricks/commit/a22d4e28eaeb0b9200f701b7c6c8725b093c1e9f))
+* **Harmony:** create Tag component ([36651c0](https://github.com/taskany-inc/bricks/commit/36651c018bf19812ab9e4684071d615244ce6d36))
+
+
+### Bug Fixes
+
+* **Badge:** add weight prop ([96ad843](https://github.com/taskany-inc/bricks/commit/96ad84316b0e95d5f9e8df38369b27312a91d6e7))
+* **Circle:** shouldnt shrink ([be83de0](https://github.com/taskany-inc/bricks/commit/be83de0d252f0da03b48bbad7bd9859c6e77df50))
+* **sb:** css imports ([9503261](https://github.com/taskany-inc/bricks/commit/9503261b287f40d5e0e1b9dcd1f82cc88cf68b16))
+* **storybook:** path to css-theme files ([a6b0e20](https://github.com/taskany-inc/bricks/commit/a6b0e207b0ebffc08fa288e33db6f9dd768320f7))
+* **UserGroup:** user model hasnt src field ([3d08259](https://github.com/taskany-inc/bricks/commit/3d08259a2d3190f6e1a811dea3d4f8df55b47668))
+* **User:** types ([704d827](https://github.com/taskany-inc/bricks/commit/704d8273b9aeba87adf024e5bc7de9a102042685))
+
 ## [5.4.0](https://github.com/taskany-inc/bricks/compare/v5.3.1...v5.4.0) (2024-01-22)
 
 
