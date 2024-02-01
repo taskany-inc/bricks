@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.5.2](https://github.com/taskany-inc/bricks/compare/v5.5.1...v5.5.2) (2024-02-01)
+
+
+### Bug Fixes
+
+* **ListView:** disable enter handler on empty cursor ([7395576](https://github.com/taskany-inc/bricks/commit/7395576ac3f567308fd97fe7c029a8413cdcd00a))
+
 ## [5.5.1](https://github.com/taskany-inc/bricks/compare/v5.5.0...v5.5.1) (2024-02-01)
 
 
