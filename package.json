@@ -83,6 +83,7 @@
     "styled-components": "5.3.11",
     "typescript": "5.3.3",
     "typescript-plugin-css-modules": "5.0.2",
+    "unplugin-auto-re-export": "0.2.1",
     "vite": "5.0.12",
     "vite-plugin-dts": "3.6.3"
   },
