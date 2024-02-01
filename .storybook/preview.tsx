@@ -2,11 +2,10 @@ import React from 'react';
 import type { Decorator, Preview } from '@storybook/react';
 import { DarkTheme, LightTheme, backgroundColor, fontDisplay, textColor } from '@taskany/colors';
 import { createGlobalStyle } from 'styled-components';
+import darkTheme from '@taskany/colors/harmony/dark.css?inline';
+import lightTheme from '@taskany/colors/harmony/light.css?inline';
 
 import { TextStyle } from '../src/components/Text/Text';
-
-import darkTheme from './dark.css?inline';
-import lightTheme from './light.css?inline';
 
 const GlobalStyle = createGlobalStyle`
     html, body {
