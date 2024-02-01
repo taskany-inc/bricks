@@ -2,6 +2,8 @@ import type { StorybookConfig } from '@storybook/react-vite';
 import { defineConfig } from 'vite';
 import { resolve } from 'node:path/posix';
 
+import { exitProcess } from '../.vite/plugins/exitProcess';
+
 const config: StorybookConfig = {
     stories: [
         '../src/**/*.mdx',
@@ -33,6 +35,12 @@ const config: StorybookConfig = {
                 },
             };
         }
+
+        const existingPlugins = config.build?.rollupOptions?.plugins as any[];
+        config.build?.rollupOptions &&
+            (config.build.rollupOptions.plugins = existingPlugins
+                ? [...existingPlugins, exitProcess()]
+                : [exitProcess()]);
 
         return defineConfig({
             ...config,
