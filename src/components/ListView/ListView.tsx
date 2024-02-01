@@ -171,7 +171,9 @@ export const ListView: React.FC<ListViewProps> = ({ children, onKeyboardClick })
 
     useEffect(() => {
         if (cursor !== undefined && (spacePress || enterPress)) {
-            onKeyboardClick?.(items.current.get(cursor));
+            if (items.current.has(cursor)) {
+                onKeyboardClick?.(items.current.get(cursor));
+            }
         }
     }, [cursor, spacePress, enterPress, items, onKeyboardClick]);
 
