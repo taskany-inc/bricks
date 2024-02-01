@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.5.1](https://github.com/taskany-inc/bricks/compare/v5.5.0...v5.5.1) (2024-02-01)
+
+
+### Bug Fixes
+
+* **ListView:** navigation between multiple lists ([db64ada](https://github.com/taskany-inc/bricks/commit/db64adaa241f2b8aa1df9b41f50de8b46d8952ba))
+
 ## [5.5.0](https://github.com/taskany-inc/bricks/compare/v5.4.0...v5.5.0) (2024-02-01)
 
 
