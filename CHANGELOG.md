@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.6.2](https://github.com/taskany-inc/bricks/compare/v5.6.1...v5.6.2) (2024-02-02)
+
+
+### Bug Fixes
+
+* harmony User gravatar fallback ([87f6a61](https://github.com/taskany-inc/bricks/commit/87f6a61b99bc77a130afdb184641dbdbd967e663))
+* **State:** use string type for color prop ([0463cf9](https://github.com/taskany-inc/bricks/commit/0463cf9ca120f65ff23939ce950c7bf0c85648fb))
+
 ## [5.6.1](https://github.com/taskany-inc/bricks/compare/v5.6.0...v5.6.1) (2024-02-02)
 
 
