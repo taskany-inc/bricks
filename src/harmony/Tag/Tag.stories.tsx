@@ -22,25 +22,30 @@ export const TagsList = () => {
             </div>
             <div style={{ display: 'flex', gap: 4 }}>
                 {tags.map((tag) => (
-                    <Tag key={tag}>
+                    <Tag key={tag} action={<TagCleanButton />}>
                         {tag}
-                        <TagCleanButton />
                     </Tag>
                 ))}
             </div>
             <div style={{ display: 'flex', gap: 4 }}>
                 {tags.map((tag) => (
-                    <Tag key={tag} onClick={tag.length <= 5 ? () => {} : undefined}>
+                    <Tag
+                        key={tag}
+                        onClick={tag.length <= 5 ? () => {} : undefined}
+                        action={tag.length <= 5 && <TagCleanButton />}
+                    >
                         {tag}
-                        {tag.length <= 5 && <TagCleanButton />}
                     </Tag>
                 ))}
             </div>
             <div style={{ display: 'flex', gap: 4, maxWidth: 200, flexWrap: 'wrap' }}>
                 {tags.map((tag) => (
-                    <Tag key={tag} onClick={tag.length <= 5 ? () => {} : undefined}>
+                    <Tag
+                        key={tag}
+                        onClick={tag.length <= 5 ? () => {} : undefined}
+                        action={tag.length <= 5 && <TagCleanButton />}
+                    >
                         {tag}
-                        {tag.length <= 5 && <TagCleanButton />}
                     </Tag>
                 ))}
             </div>
