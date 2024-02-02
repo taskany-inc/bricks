@@ -85,7 +85,8 @@
     "typescript-plugin-css-modules": "5.0.2",
     "unplugin-auto-re-export": "0.2.1",
     "vite": "5.0.12",
-    "vite-plugin-dts": "3.6.3"
+    "vite-plugin-dts": "3.6.3",
+    "cron-parser": "4.9.0"
   },
   "peerDependencies": {
     "react": "^18.2.0",
