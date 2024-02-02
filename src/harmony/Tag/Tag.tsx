@@ -1,4 +1,4 @@
-import React, { ComponentProps, HTMLAttributes, MouseEvent, useCallback } from 'react';
+import React, { ComponentProps, HTMLAttributes, MouseEvent, ReactNode, useCallback } from 'react';
 import cn from 'classnames';
 import { IconXSmallOutline } from '@taskany/icons';
 
@@ -33,12 +33,18 @@ export const TagCleanButton = ({
     );
 };
 
-interface TagProps extends HTMLAttributes<HTMLDivElement> {}
+interface TagProps extends HTMLAttributes<HTMLDivElement> {
+    action?: ReactNode;
+}
 
-export const Tag = ({ className, children, ...props }: TagProps) => {
+export const Tag = ({ className, children, action, ...props }: TagProps) => {
     return (
-        <div className={cn(s.Tag, { [s.Tag_hovered]: Boolean(props.onClick) }, className)} {...props}>
+        <div
+            className={cn(s.Tag, { [s.Tag_hovered]: !!props.onClick, [s.Tag_interactive]: !action }, className)}
+            {...props}
+        >
             {children}
+            {action}
         </div>
     );
 };
