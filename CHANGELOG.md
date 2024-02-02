@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.6.1](https://github.com/taskany-inc/bricks/compare/v5.6.0...v5.6.1) (2024-02-02)
+
+
+### Bug Fixes
+
+* add new class instead has selector ([b5e8579](https://github.com/taskany-inc/bricks/commit/b5e85791cb70b214d6dd2091cf72e112c5819b4d))
+* process exit after storybook build ([ea3bea3](https://github.com/taskany-inc/bricks/commit/ea3bea3ba3bcd5ab319286fec8409ce7e3a0bf9c))
+
 ## [5.6.0](https://github.com/taskany-inc/bricks/compare/v5.5.2...v5.6.0) (2024-02-02)
 
 
