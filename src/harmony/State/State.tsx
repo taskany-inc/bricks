@@ -7,7 +7,7 @@ import classes from './State.module.css';
 
 interface StateProps {
     title?: string;
-    color?: `var(--${string})`;
+    color?: string;
     short?: boolean;
 }
 
