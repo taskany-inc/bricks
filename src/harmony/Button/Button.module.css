@@ -4,6 +4,7 @@
     justify-content: center;
     border-radius: var(--radius-m);
     border: none;
+    white-space: nowrap;
 
     font-weight: 500;
 
@@ -15,12 +16,6 @@
 
 .Button:focus {
     outline: none;
-}
-
-.Button:disabled {
-    cursor: not-allowed;
-    color: var(--button-disabled-text);
-    background: var(--button-disabled);
 }
 
 .Button:focus-visible {
@@ -77,10 +72,6 @@
 
 .Button_ghost:focus-visible {
     outline: 2px solid var(--button-secondary-focus);
-}
-
-.Button_ghost:disabled {
-    background: transparent;
 }
 
 .Button_danger {
@@ -156,6 +147,7 @@
     font-size: var(--font-size-xs);
     line-height: var(--line-height-xxl);
     min-height: 24px;
+    min-width: 24px;
     padding: var(--gap-xs);
 }
 
@@ -163,6 +155,7 @@
     font-size: var(--font-size-s);
     line-height: var(--line-height-xxl);
     min-height: 32px;
+    min-width: 32px;
     padding: var(--gap-s);
 }
 
@@ -171,6 +164,7 @@
     line-height: 20px;
     line-height: var(--line-height-l);
     min-height: 40px;
+    min-width: 40px;
     padding: 10px var(--gap-s);
 }
 
@@ -194,4 +188,14 @@
 
 .Button_size_m .Icon_center {
     margin: 0 var(--gap-xs);
+}
+
+.Button:disabled {
+    cursor: not-allowed;
+    color: var(--button-disabled-text);
+    background: var(--button-disabled);
+}
+
+.Button_ghost:disabled {
+    background: transparent;
 }

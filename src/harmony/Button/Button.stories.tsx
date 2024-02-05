@@ -1,6 +1,8 @@
 import React, { ReactNode, useState } from 'react';
 import type { Meta } from '@storybook/react';
 
+import { Dropdown, DropdownPanel, DropdownTrigger } from '../Dropdown/Dropdown';
+
 import { Button } from './Button';
 
 const meta: Meta<typeof Button> = {
@@ -75,6 +77,31 @@ const Layout = ({
     marginBottom?: number;
     gap?: number;
 }) => <div style={{ display: 'grid', gridTemplateColumns, gap, marginBottom, alignItems: 'center' }}>{children}</div>;
+
+const data = Array.from({ length: 10 }, (_, i) => ({
+    id: i + 1,
+    title: `Very longest item title ${i + 1}`,
+}));
+
+const DropdownWoLabel = (args: any) => {
+    return (
+        <Dropdown {...args} hideOnClick>
+            <DropdownTrigger
+                arrow={false}
+                renderTrigger={(props) => (
+                    <Button view="default" brick="left" iconLeft={svgFilter} ref={props.ref} onClick={props.onClick} />
+                )}
+            />
+            <DropdownPanel style={{ width: '200px' }}>
+                <div>
+                    {data.map((val) => (
+                        <div>{val.title}</div>
+                    ))}
+                </div>
+            </DropdownPanel>
+        </Dropdown>
+    );
+};
 
 const ButtonSizes = () => {
     return (
@@ -267,7 +294,7 @@ const ButtonGroups = () => {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, min-content)', gap: 36, marginBottom: 80 }}>
                 <div style={{ display: 'flex' }}>
                     <Button text="Button" view="default" brick="right" />
-                    <Button view="default" brick="left" iconLeft={svgFilter} />
+                    <DropdownWoLabel />
                 </div>
                 <div style={{ display: 'flex' }}>
                     <Button text="Button" view="primary" brick="right" />
