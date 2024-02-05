@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { ComponentProps, useCallback, useState } from 'react';
 import styled from 'styled-components';
 import { gapS, gray7 } from '@taskany/colors';
 import { IconRightSmallOutline } from '@taskany/icons';
@@ -16,7 +16,15 @@ interface TreeViewNodeProps {
     onHide?: () => void;
 }
 
-const StyledIconRightSmallOutline = styled(IconRightSmallOutline)<{ visible?: boolean }>`
+const StyledIconRightSmallOutline = styled(
+    ({
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        visible,
+        ...props
+    }: ComponentProps<typeof IconRightSmallOutline> & {
+        visible?: boolean;
+    }) => <IconRightSmallOutline {...props} />,
+)`
     display: block;
 
     transition: transform 100ms ease-in-out;
