@@ -1,4 +1,4 @@
-import React, { ChangeEvent, HTMLAttributes, useCallback, useEffect, useRef, useState } from 'react';
+import React, { ChangeEvent, ComponentProps, HTMLAttributes, useCallback, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { gapS, textColor } from '@taskany/colors';
 import { IconSearchOutline } from '@taskany/icons';
@@ -13,8 +13,14 @@ import { Keyboard } from './Keyboard/Keyboard';
 import { Input } from './Input/Input';
 import { Text } from './Text/Text';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const StyledInput = styled(Input)<{ focused?: boolean }>`
+type InputProps = ComponentProps<typeof Input>;
+
+const StyledInput = styled(
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    ({ focused, forwardRef, ...props }: InputProps & { focused?: boolean; forwardRef: InputProps['ref'] }) => (
+        <Input ref={forwardRef} {...props} />
+    ),
+)`
     width: 200px;
 
     transition: width 100ms ease-in-out;
@@ -144,7 +150,7 @@ export const GlobalSearch = ({
             ))}
             <StyledGlobalSearch ref={popupTargetRef}>
                 <StyledInput
-                    ref={inputRef}
+                    forwardRef={inputRef}
                     focused={editMode}
                     placeholder={placeholder}
                     iconLeft={<IconSearchOutline size="s" color={textColor} />}
