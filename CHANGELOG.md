@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.7.1](https://github.com/taskany-inc/bricks/compare/v5.7.0...v5.7.1) (2024-02-05)
+
+
+### Bug Fixes
+
+* **Autocomplete:** keyboard navigation ([d38030d](https://github.com/taskany-inc/bricks/commit/d38030d953c11d3130adf539efa91e69ec11f6cd))
+
 ## [5.7.0](https://github.com/taskany-inc/bricks/compare/v5.6.2...v5.7.0) (2024-02-05)
 
 
