@@ -1,4 +1,4 @@
-import React, { createContext, forwardRef, useCallback, useContext, useMemo, useRef, useState } from 'react';
+import React, { ReactNode, createContext, forwardRef, useCallback, useContext, useMemo, useRef, useState } from 'react';
 import { IconDownSmallOutline, IconUpSmallOutline } from '@taskany/icons';
 import classNames from 'classnames';
 
@@ -14,8 +14,8 @@ interface DropdownProps {
 interface DropdownContextProps {
     isOpen?: boolean;
     toggle: () => void;
-    setTriggerRef: (el: HTMLSpanElement) => void;
-    dropdownRef: React.MutableRefObject<HTMLSpanElement | null>;
+    setTriggerRef: (el: HTMLElement | null) => void;
+    dropdownRef: React.MutableRefObject<HTMLElement | null>;
     hideOnClick?: boolean;
 }
 
@@ -27,8 +27,8 @@ export const DropdownContext = createContext<DropdownContextProps>({
 
 export const Dropdown: React.FC<React.PropsWithChildren<DropdownProps>> = ({ children, hideOnClick }) => {
     const [opened, setOpened] = useState(false);
-    const dropdownRef = useRef<HTMLSpanElement | null>(null);
-    const setTriggerRef = useCallback((el: HTMLSpanElement) => {
+    const dropdownRef = useRef<HTMLElement | null>(null);
+    const setTriggerRef = useCallback((el: HTMLElement | null) => {
         dropdownRef.current = el;
     }, []);
 
@@ -45,6 +45,12 @@ interface DropdownTriggerProps extends React.HTMLAttributes<HTMLDivElement> {
     error?: { message: string };
     readonly?: boolean;
     view?: 'default' | 'outline';
+    arrow?: boolean;
+    renderTrigger?: (props: {
+        isOpen?: boolean;
+        onClick?: () => void;
+        ref: (el: HTMLElement | null) => void;
+    }) => ReactNode;
 }
 
 const DropdownArrow: React.FC = () => (
@@ -60,37 +66,50 @@ const DropdownArrow: React.FC = () => (
 );
 
 export const DropdownTrigger = forwardRef<HTMLDivElement, React.PropsWithChildren<DropdownTriggerProps>>(
-    ({ children, view, label, readonly, className, ...attrs }, ref) => (
+    ({ children, view, label, readonly, className, arrow = true, renderTrigger, ...attrs }, ref) => (
         <DropdownContext.Consumer>
-            {({ toggle, setTriggerRef }) => (
-                <div
-                    className={classNames(
-                        classes.DropdownTrigger,
-                        {
-                            [classes.DropdownTriggerOutline]: view === 'outline',
-                        },
-                        className,
+            {({ isOpen, toggle, setTriggerRef }) => (
+                <>
+                    {nullable(
+                        renderTrigger,
+                        (render) =>
+                            render({
+                                onClick: !readonly ? toggle : undefined,
+                                ref: setTriggerRef,
+                                isOpen,
+                            }),
+                        <div
+                            className={classNames(
+                                classes.DropdownTrigger,
+                                {
+                                    [classes.DropdownTriggerOutline]: view === 'outline',
+                                },
+                                className,
+                            )}
+                            {...attrs}
+                            ref={ref}
+                        >
+                            {nullable(label, (l) => (
+                                <span className={classes.DropdownTriggerLabel}>
+                                    {l}
+                                    {nullable(arrow, () => (
+                                        <DropdownArrow />
+                                    ))}
+                                </span>
+                            ))}
+                            <span
+                                className={classes.DropdownTriggerControl}
+                                onClick={!readonly ? toggle : undefined}
+                                ref={setTriggerRef}
+                            >
+                                <span className={classes.DropdownTriggerValue}>{children}</span>
+                                {nullable(!readonly && !label && arrow, () => (
+                                    <DropdownArrow />
+                                ))}
+                            </span>
+                        </div>,
                     )}
-                    {...attrs}
-                    ref={ref}
-                >
-                    {nullable(label, (l) => (
-                        <span className={classes.DropdownTriggerLabel}>
-                            {l}
-                            <DropdownArrow />
-                        </span>
-                    ))}
-                    <span
-                        className={classes.DropdownTriggerControl}
-                        onClick={!readonly ? toggle : undefined}
-                        ref={setTriggerRef}
-                    >
-                        <span className={classes.DropdownTriggerValue}>{children}</span>
-                        {nullable(!readonly && !label, () => (
-                            <DropdownArrow />
-                        ))}
-                    </span>
-                </div>
+                </>
             )}
         </DropdownContext.Consumer>
     ),
