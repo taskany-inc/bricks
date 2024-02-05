@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.7.0](https://github.com/taskany-inc/bricks/compare/v5.6.2...v5.7.0) (2024-02-05)
+
+
+### Features
+
+* worker script ([8fbbc7c](https://github.com/taskany-inc/bricks/commit/8fbbc7c744c36975b42a2f366651390cbf65f7dc))
+
 ## [5.6.2](https://github.com/taskany-inc/bricks/compare/v5.6.1...v5.6.2) (2024-02-02)
 
 
