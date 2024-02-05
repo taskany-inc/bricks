@@ -36,7 +36,7 @@ interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'chi
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-    ({ className, iconLeft, iconRight, text, view = 'default', brick, size = 's', ...rest }, ref) => {
+    ({ className, iconLeft, iconRight, text, view = 'default', brick, size = 's', type = 'button', ...rest }, ref) => {
         const icons = [iconLeft, iconRight].filter(Boolean);
 
         if (!text && icons.length === 2) {
@@ -52,7 +52,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ];
 
         return (
-            <button className={cn(classes)} ref={ref} {...rest}>
+            <button className={cn(classes)} ref={ref} type={type} {...rest}>
                 {nullable(
                     !text && icons,
                     ([icon]) => (
