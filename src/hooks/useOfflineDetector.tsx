@@ -11,7 +11,12 @@ export const useOfflineDetector = ({
     pollingDelay = 5000,
     remoteServerUrl = '/',
 }: UseOfflineDetectorProps) => {
-    const [globalOnlineStatus, setGlobalOnlineStatus] = useState(navigator.onLine);
+    const [globalOnlineStatus, setGlobalOnlineStatus] = useState(() => {
+        if (typeof window === 'undefined') {
+            return true;
+        }
+        return navigator.onLine;
+    });
     const [remoteServerStatus, setRemoteServerStatus] = useState(true);
     let timeout: NodeJS.Timeout;
 
