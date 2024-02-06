@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.7.2](https://github.com/taskany-inc/bricks/compare/v5.7.1...v5.7.2) (2024-02-06)
+
+
+### Bug Fixes
+
+* add require to exports ([1f10fec](https://github.com/taskany-inc/bricks/commit/1f10fec9835bfb5dd30a7856efdb641916acc39e))
+
 ## [5.7.1](https://github.com/taskany-inc/bricks/compare/v5.7.0...v5.7.1) (2024-02-05)
 
 
