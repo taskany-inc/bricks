@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.7.4](https://github.com/taskany-inc/bricks/compare/v5.7.3...v5.7.4) (2024-02-06)
+
+
+### Reverts
+
+* Revert "fix: add require to exports" ([76c5de7](https://github.com/taskany-inc/bricks/commit/76c5de79dddc8aa7615a57e5fdaabc69af017bb1))
+
 ## [5.7.3](https://github.com/taskany-inc/bricks/compare/v5.7.2...v5.7.3) (2024-02-06)
 
 
