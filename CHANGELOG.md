@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.7.3](https://github.com/taskany-inc/bricks/compare/v5.7.2...v5.7.3) (2024-02-06)
+
+
+### Bug Fixes
+
+* **Harmony:** add renderProp to Dropdown ([71ced6c](https://github.com/taskany-inc/bricks/commit/71ced6cac472479d1dd7e08d33120dc56782582c))
+* **Harmony:** add some styles and props to Button ([507a213](https://github.com/taskany-inc/bricks/commit/507a213b0cbb08d46b48c4cbd3c2061c927f9097))
+* set transient props ([3020250](https://github.com/taskany-inc/bricks/commit/30202500e024c54bf6f77acf4f85805e2e280251))
+
 ## [5.7.2](https://github.com/taskany-inc/bricks/compare/v5.7.1...v5.7.2) (2024-02-06)
 
 
