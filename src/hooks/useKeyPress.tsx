@@ -6,16 +6,18 @@ export const useKeyPress = (targetKey: string | null) => {
     const [keyPressed, setKeyPressed] = useState(false);
 
     const downHandler = targetKey
-        ? ({ key }: KeyboardEvent) => {
-              if (key === targetKey) {
+        ? (e: KeyboardEvent) => {
+              if (e.key === targetKey) {
+                  e.preventDefault();
                   setKeyPressed(true);
               }
           }
         : noop;
 
     const upHandler = targetKey
-        ? ({ key }: KeyboardEvent) => {
-              if (key === targetKey) {
+        ? (e: KeyboardEvent) => {
+              if (e.key === targetKey) {
+                  e.preventDefault();
                   setKeyPressed(false);
               }
           }
