@@ -19,7 +19,7 @@ interface PopupProps
     maxWidth?: number;
     maxHeight?: number;
     offset?: number[];
-    children: React.ReactNode;
+    children?: React.ReactNode;
 }
 
 /**
