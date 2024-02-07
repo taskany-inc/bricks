@@ -82,7 +82,7 @@
 }
 
 .DatePickerStrictDateInput {
-    width: 2ch;
+    width: 4ch;
     text-align: center;
 }
 
@@ -91,7 +91,7 @@
 }
 
 .DatePickerYearInput, .DatePickerStrictDateInput[name=year] {
-    width: 4ch;
+    width: 6ch;
 }
 
 .DatePickerInlineWrapper + .DatePickerInlineWrapper,

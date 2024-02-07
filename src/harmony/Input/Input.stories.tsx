@@ -57,6 +57,31 @@ const Layout = ({ children }: { children: ReactNode }) => (
     </div>
 );
 
+const InputsSizes = () => {
+    return (
+        <>
+            <Title>
+                Inputs sizes <Text>Default / Focus</Text>
+            </Title>
+            <Layout>
+                <Input view="default" size="xs" />
+                <Input view="success" size="xs" />
+                <Input view="danger" size="xs" />
+            </Layout>
+            <Layout>
+                <Input view="default" />
+                <Input view="success" />
+                <Input view="danger" />
+            </Layout>
+            <Layout>
+                <Input view="default" size="m" />
+                <Input view="success" size="m" />
+                <Input view="danger" size="m" />
+            </Layout>
+        </>
+    );
+};
+
 const Inputs = () => {
     return (
         <>
@@ -75,6 +100,24 @@ const Inputs = () => {
                 <Input disabled view="default" />
                 <Input disabled view="success" />
                 <Input disabled view="danger" />
+            </Layout>
+        </>
+    );
+};
+
+const InputsOutlined = () => {
+    return (
+        <>
+            <Title>
+                Inputs Outlined <Text>Default / Focus / Disabled</Text>
+            </Title>
+            <Layout>
+                <Input view="default" outline />
+                <Input view="success" outline />
+                <Input view="danger" outline />
+                <Input view="default" disabled outline />
+                <Input view="success" disabled outline />
+                <Input view="danger" disabled outline />
             </Layout>
         </>
     );
@@ -105,27 +148,28 @@ const InputGroups = () => {
             <Layout>
                 <div style={{ display: 'flex' }}>
                     <Button text="Button" brick="right" />
-                    <Input brick="left" iconLeft={svgFilter} />
+                    <Input brick="left" iconLeft={svgFilter} outline />
                 </div>
                 <div style={{ display: 'flex' }}>
-                    <Input brick="right" />
+                    <Input brick="right" outline />
                     <Button text="Button" brick="left" />
                 </div>
                 <div style={{ display: 'flex' }}>
                     <Button text="Button" brick="right" />
-                    <Input brick="center" />
+                    <Input brick="center" outline />
                     <Button brick="left" iconRight={svgPlus} />
                 </div>
             </Layout>
             <Layout>
                 <div style={{ display: 'flex' }}>
-                    <Input brick="right" />
-                    <Input brick="center" iconLeft={svgFilter} />
+                    <Input brick="right" outline />
+                    <Input brick="center" iconLeft={svgFilter} outline />
                     <Input
                         brick="left"
                         value={value}
                         onChange={({ target }) => setValue(target.value)}
                         iconRight={svgPlus}
+                        outline
                     />
                 </div>
             </Layout>
@@ -137,10 +181,12 @@ export const AllInputs = () => {
     return (
         <>
             <Inputs />
+            <InputsSizes />
+            <InputsOutlined />
             <InputsWithIcons />
             <InputGroups />
         </>
     );
 };
 
-export { Inputs, InputsWithIcons, InputGroups };
+export { Inputs, InputsSizes, InputsOutlined, InputsWithIcons, InputGroups };
