@@ -1,16 +1,13 @@
 .Input {
-    position: relative;
+    border: none;
     display: flex;
     flex: 1;
-    font-size: var(--font-size-s);
-    line-height: var(--line-height-xl);
-
-    color: var(--text-primary);
+    width: 100%;
+    box-sizing: border-box;
     border-radius: var(--radius-m);
-
-    padding: 6px var(--gap-sm);
+    line-height: 1;
     transition: 200ms ease-in;
-    transition-property: border;
+    transition-property: border, color, background;
 }
 
 .Input:focus {
@@ -18,8 +15,7 @@
 }
 
 .Input:disabled {
-    border: 1px solid var(--input-border-disabled);
-    background: var(--input-disabled);
+    background: var(--input-disabled-borderless);
     color: var(--text-disabled);
 }
 
@@ -28,13 +24,12 @@
 }
 
 .Input_default {
-    border: 1px solid var(--input-border);
-    background: var(--input-fill);
+    background: var(--input-fill-borderless);
+    color: var(--text-primary);
 }
 
 .Input_default:focus-visible {
-    border: 1px solid var(--input-border-focused);
-    background: var(--input-fill-focused);
+    background: var(--input-fill-focused-borderless);
 }
 
 .Input_default:focus-visible ~ .Icon {
@@ -45,14 +40,30 @@
     color: var(--text-ghost);
 }
 
+.Input_outline.Input_default {
+    border-color: var(--input-border);
+    background: var(--input-fill);
+}
+
+.Input_outline.Input:disabled {
+    border-color: var(--input-border-disabled);
+    background: var(--input-disabled);
+    color: var(--text-disabled);
+}
+
+.Input_outline.Input_default:focus-visible {
+    border-color: var(--input-border-focused);
+    background: var(--input-fill-focused);
+}
+
 .Input_success {
-    border: 1px solid var(--primary-500);
+    border-color: var(--primary-500);
     background: var(--primary-900);
     color: var(--primary-400);
 }
 
 .Input_success:focus-visible {
-    border: 1px solid var(--primary-500);
+    border-color: var(--primary-500);
     background: var(--primary-900);
 }
 
@@ -61,13 +72,13 @@
 }
 
 .Input_danger {
-    border: 1px solid var(--danger-500);
+    border-color: var(--danger-500);
     background: var(--danger-900);
     color: var(--danger-400);
 }
 
 .Input_danger:focus-visible {
-    border: 1px solid var(--danger-500);
+    border-color: var(--danger-500);
     background: var(--danger-900);
 }
 
@@ -78,7 +89,6 @@
 .Wrapper {
     position: relative;
     display: flex;
-    min-height: 32px;
 }
 
 .Wrapper_icon_left .Input {
@@ -103,11 +113,19 @@
 
     color: var(--text-ghost);
     transition: color 200ms ease-in-out 0s;
+    pointer-events: var(--pointer-events);
+}
+
+.Input_danger ~ .Icon {
+    color: var(--danger-500);
+}
+
+.Input_success ~ .Icon {
+    color: var(--primary-500);
 }
 
 .Icon_left {
     left: var(--gap-s);
-    pointer-events: none;
 }
 
 .Icon_right {
@@ -130,4 +148,37 @@
 .Input_brick_right {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
+}
+
+.Input_brick_top {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.Input_brick_bottom {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.Input_size_xs {
+    font-size: var(--font-size-xs);
+    padding: var(--gap-xs) var(--gap-sm);
+    min-height: 24px;
+}
+
+.Input_size_s {
+    font-size: var(--font-size-s);
+    padding: var(--gap-xs) var(--gap-sm);
+    min-height: 32px;
+}
+
+.Input_size_m {
+    font-size: var(--font-size-m);
+    padding: var(--gap-s) var(--gap-m);
+    min-height: 40px;
+}
+
+.Input_outline {
+    border-width: 1px;
+    border-style: solid;
 }

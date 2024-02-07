@@ -547,7 +547,7 @@ export const DatePickerYear: React.FC<DatePickerYearProps> = ({ translates, max,
         <DatePickerOption
             {...translates}
             {...attrs}
-            className={classNames(classes.DatePickerYear, className)}
+            className={classNames(className)}
             collapse={!year}
             onClick={handleClick}
         >
@@ -754,7 +754,7 @@ export const DatePickerStrict: React.FC<DatePickerStrictProps> = ({
             <DatePickerOption
                 {...translates}
                 {...attrs}
-                className={classNames(classes.DatePickerStrictDate, className)}
+                className={classNames(className)}
                 collapse={!date}
                 onClick={handleClick}
             >
