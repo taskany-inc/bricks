@@ -18,11 +18,18 @@ const brickMap = {
 interface TextareaProps extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'children'> {
     view?: keyof typeof viewMap;
     brick?: keyof typeof brickMap;
+    outline?: boolean;
 }
 
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
-    ({ className, view = 'default', brick, ...rest }, ref) => {
-        const classes = [s.Textarea, viewMap[view], brick ? brickMap[brick] : '', className];
+    ({ className, view = 'default', brick, outline = true, ...rest }, ref) => {
+        const classes = [
+            s.Textarea,
+            viewMap[view],
+            brick ? brickMap[brick] : '',
+            { [s.Textarea_outline]: outline },
+            className,
+        ];
 
         return <textarea className={cn(classes)} ref={ref} {...rest} />;
     },

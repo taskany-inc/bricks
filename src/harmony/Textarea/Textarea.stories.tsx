@@ -53,6 +53,17 @@ const Textareas = () => {
                 <Textarea disabled view="success" />
                 <Textarea disabled view="danger" />
             </Layout>
+            <Title>
+                Textarea borderless <Text>Default / Focus / Disabled</Text>
+            </Title>
+            <Layout>
+                <Textarea view="default" outline={false} />
+                <Textarea view="success" outline={false} />
+                <Textarea view="danger" outline={false} />
+                <Textarea view="default" outline={false} disabled />
+                <Textarea view="success" outline={false} disabled />
+                <Textarea view="danger" outline={false} disabled />
+            </Layout>
         </>
     );
 };
