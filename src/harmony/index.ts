@@ -7,6 +7,7 @@ export * from './CircleProgressBar/CircleProgressBar';
 export * from './DatePicker/DatePicker';
 export * from './Dot/Dot';
 export * from './Dropdown/Dropdown';
+export * from './FormControl/FormControl';
 export * from './Input/Input';
 export * from './Link/Link';
 export * from './Popup/Popup';
