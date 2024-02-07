@@ -1,25 +1,25 @@
 import React, { useMemo } from 'react';
 import cn from 'classnames';
 
-import classes from './Text.module.css';
+import s from './Text.module.css';
 
-enum textSize {
-    xxs = classes.TextSizeXss,
-    xs = classes.TextSizeXs,
-    s = classes.TextSizeS,
-    m = classes.TextSizeM,
-    l = classes.TextSizeL,
-    xl = classes.TextSizeXl,
-    xxl = classes.TextSizeXxl,
-}
+const textSize = {
+    xxs: s.TextSizeXxs,
+    xs: s.TextSizeXs,
+    s: s.TextSizeS,
+    m: s.TextSizeM,
+    l: s.TextSizeL,
+    xl: s.TextSizeXl,
+    xxl: s.TextSizeXxl,
+};
 
-enum textWeight {
-    bolder = classes.TextBolder,
-    bold = classes.TextBold,
-    regular = classes.TextRegular,
-    thin = classes.TextThin,
-    thinner = classes.TextThinner,
-}
+const textWeight = {
+    bolder: s.TextBolder,
+    bold: s.TextBold,
+    regular: s.TextRegular,
+    thin: s.TextThin,
+    thinner: s.TextThinner,
+};
 
 interface TextProps {
     className?: string;
@@ -41,6 +41,7 @@ interface AllowedHTMLElements {
     i: React.JSX.IntrinsicElements['i'];
     b: React.JSX.IntrinsicElements['b'];
     strong: React.JSX.IntrinsicElements['strong'];
+    label: React.JSX.IntrinsicElements['label'];
     h1: React.JSX.IntrinsicElements['h1'];
     h2: React.JSX.IntrinsicElements['h2'];
     h3: React.JSX.IntrinsicElements['h3'];
@@ -55,8 +56,12 @@ const isHeading = (tag: keyof AllowedHTMLElements): tag is HeadingTagName => {
     return /^(h[1-6])/.test(tag);
 };
 
-const calcTextSizes = (tag: keyof AllowedHTMLElements, size: textSize, weight: textWeight = textWeight.regular) => {
-    const headingClasses: Record<HeadingTagName, [textSize, textWeight]> = {
+const calcTextSizes = (
+    tag: keyof AllowedHTMLElements,
+    size: keyof typeof textSize,
+    weight: keyof typeof textWeight = 'regular',
+) => {
+    const headingClasses: Record<HeadingTagName, [string, string]> = {
         h1: [textSize.xxl, textWeight.bolder],
         h2: [textSize.xl, textWeight.bolder],
         h3: [textSize.l, textWeight.regular],
@@ -72,43 +77,32 @@ const calcTextSizes = (tag: keyof AllowedHTMLElements, size: textSize, weight: t
     return [textSize[size], textWeight[weight]];
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function Text<T extends React.ComponentType<any>>(
-    props: React.PropsWithChildren<TextProps> & { as?: T } & React.ComponentProps<T>,
-): React.ReactElement<T>;
-export function Text<T extends keyof AllowedHTMLElements>(
-    props: React.PropsWithChildren<TextProps> & { as?: T } & AllowedHTMLElements[T],
-): React.ReactElement<T>;
-// cause there has overload
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function Text(props: any) {
-    const {
-        as: Tag = defaultTagName,
-        children,
-        size = 'm',
-        weight = 'regular',
-        className,
-        strike,
-        wordBreak,
-        wordWrap,
-        lines,
-        ellipsis,
-        color,
-        ...rest
-    } = props;
-
+export function Text<T extends keyof AllowedHTMLElements>({
+    as,
+    children,
+    size = 'm',
+    weight = 'regular',
+    className,
+    strike,
+    wordBreak,
+    wordWrap,
+    lines,
+    ellipsis,
+    color,
+    ...rest
+}: React.PropsWithChildren<TextProps> & { as?: T } & AllowedHTMLElements[T]) {
     const ownProps = { size, weight, strike, wordBreak, wordWrap, lines, ellipsis, color } as TextProps;
 
     const textStyles = useMemo(() => {
-        if (typeof Tag === 'string') {
-            return calcTextSizes(Tag as keyof AllowedHTMLElements, size, weight);
+        if (typeof as === 'string') {
+            return calcTextSizes(as, size, weight);
         }
 
         return null;
-    }, [Tag, size, weight]);
+    }, [as, size, weight]);
 
-    const additionalStyles = useMemo(() => {
-        const styles: Record<string, any> = {};
+    const additionalStyles: React.CSSProperties = useMemo(() => {
+        const styles: Record<string, unknown> = {};
 
         switch (true) {
             case !!wordBreak:
@@ -127,19 +121,21 @@ export function Text(props: any) {
                 break;
         }
 
-        return styles as React.CSSProperties;
-    }, [ownProps.strike, ownProps.wordBreak, ownProps.wordWrap, ownProps.lines, ownProps.ellipsis, ownProps.color]);
+        return styles;
+    }, [ownProps.wordBreak, ownProps.wordWrap, ownProps.lines, ownProps.color]);
+
+    const Tag: string = as || defaultTagName;
 
     return (
         <Tag
             {...rest}
-            className={cn(classes.Text, textStyles, className, {
-                [classes.TextEllipsis]: ellipsis,
-                [classes.TextWrapped]: !!wordWrap,
-                [classes.TextBreaked]: !!wordBreak,
-                [classes.TextStrike]: strike,
-                [classes.TextClamped]: !!lines,
-                [classes.TextColored]: !!color,
+            className={cn(s.Text, textStyles, className, {
+                [s.TextEllipsis]: ellipsis,
+                [s.TextWrapped]: !!wordWrap,
+                [s.TextBreaked]: !!wordBreak,
+                [s.TextStrike]: strike,
+                [s.TextClamped]: !!lines,
+                [s.TextColored]: !!color,
             })}
             style={additionalStyles}
         >
