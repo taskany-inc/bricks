@@ -28,6 +28,7 @@ interface ListViewContext {
     cursor?: number;
     hovered?: number;
     setHovered?: Dispatch<SetStateAction<undefined | number>>;
+    setCursor?: (cursor?: number) => void;
 }
 const listViewContext = createContext<ListViewContext | undefined>(undefined);
 
@@ -191,7 +192,15 @@ export const ListView: React.FC<ListViewProps> = ({ children, onKeyboardClick })
 
     return (
         <listViewContext.Provider
-            value={{ items: Array.from(items.current.values()), cursor, hovered, registerItem, mountItem, setHovered }}
+            value={{
+                items: Array.from(items.current.values()),
+                cursor,
+                hovered,
+                registerItem,
+                mountItem,
+                setHovered,
+                setCursor,
+            }}
         >
             {children}
         </listViewContext.Provider>
@@ -211,7 +220,7 @@ interface ListViewItemProps {
 }
 
 export const ListViewItem: React.FC<ListViewItemProps> = memo(({ renderItem, value }) => {
-    const { cursor, registerItem, mountItem, setHovered, hovered } = useListViewContext();
+    const { cursor, registerItem, mountItem, setHovered, hovered, setCursor } = useListViewContext();
     const mounted = useMounted();
     const id = useRef<number | undefined>(undefined);
 
@@ -229,11 +238,13 @@ export const ListViewItem: React.FC<ListViewItemProps> = memo(({ renderItem, val
 
     const onMouseLeave = useCallback<React.MouseEventHandler<HTMLElement>>(() => {
         setHovered?.(undefined);
+        setCursor?.(undefined);
     }, [setHovered]);
 
     const onMouseMove = useCallback<React.MouseEventHandler<HTMLElement>>(() => {
         if (hovered !== id.current) {
             setHovered?.(id.current);
+            setCursor?.(id.current);
         }
     }, [setHovered, hovered]);
 
