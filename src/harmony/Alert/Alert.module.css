@@ -1,6 +1,7 @@
 .Alert {
     display: flex;
     align-items: center;
+    justify-content: center;
     border-radius: var(--radius-m);
     padding: var(--gap-sm);
     gap: var(--gap-s);
