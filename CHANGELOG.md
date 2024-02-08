@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.8.1](https://github.com/taskany-inc/bricks/compare/v5.8.0...v5.8.1) (2024-02-08)
+
+
+### Bug Fixes
+
+* **useKeyPress:** add inputNodes that not prevent default events ([374450b](https://github.com/taskany-inc/bricks/commit/374450b1c534cc67bb3734d945607091cd105dc2))
+
 ## [5.8.0](https://github.com/taskany-inc/bricks/compare/v5.7.4...v5.8.0) (2024-02-08)
 
 
