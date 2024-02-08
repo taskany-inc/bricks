@@ -1,7 +1,7 @@
 .Dot {
     display: inline-block;
     border-radius: 50%;
-    background-color: var(--layer-above);
+    background-color: var(--dot-background, var(--layer-above));
 }
 
 .DotSmall {
