@@ -4,7 +4,7 @@ import cn from 'classnames';
 import { Text } from '../Text/Text';
 import { nullable } from '../../utils';
 
-import classes from './Badge.module.css';
+import s from './Badge.module.css';
 
 type TextPropsKeys = Exclude<keyof React.ComponentProps<typeof Text>, 'as' | 'size'>;
 
@@ -23,44 +23,38 @@ interface BadgeProps extends TextBadgeProps {
 }
 
 const sizeMap = {
-    s: classes.BadgeSizeS,
-    m: classes.BadgeSizeM,
-    l: classes.BadgeSizeL,
-    xl: classes.BadgeSizeXl,
+    s: s.BadgeSizeS,
+    m: s.BadgeSizeM,
+    l: s.BadgeSizeL,
+    xl: s.BadgeSizeXl,
 };
 
-export const Badge: React.FC<BadgeProps> = ({
-    iconLeft,
-    iconRight,
-    text,
-    className,
-    view = 'default',
-    size = 's',
-    weight = 'bold',
-    ...rest
-}) => {
-    return (
-        <Text
-            className={cn(
-                classes.Badge,
-                className,
-                {
-                    [classes.BadgeOutlined]: view === 'outline',
-                },
-                sizeMap[size],
-            )}
-            as="span"
-            weight={weight}
-            size={size}
-            {...rest}
-        >
-            {nullable(iconLeft, (icon) => (
-                <span className={classes.BadgeIconLeft}>{icon}</span>
-            ))}
-            {nullable(text, (t) => t)}
-            {nullable(iconRight, (icon) => (
-                <span className={classes.BadgeIconRight}>{icon}</span>
-            ))}
-        </Text>
-    );
-};
+export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
+    ({ iconLeft, iconRight, text, className, view = 'default', size = 's', weight = 'bold', ...rest }, ref) => {
+        return (
+            <Text
+                ref={ref}
+                className={cn(
+                    s.Badge,
+                    className,
+                    {
+                        [s.BadgeOutlined]: view === 'outline',
+                    },
+                    sizeMap[size],
+                )}
+                as="span"
+                weight={weight}
+                size={size}
+                {...rest}
+            >
+                {nullable(iconLeft, (icon) => (
+                    <span className={s.BadgeIconLeft}>{icon}</span>
+                ))}
+                {nullable(text, (t) => t)}
+                {nullable(iconRight, (icon) => (
+                    <span className={s.BadgeIconRight}>{icon}</span>
+                ))}
+            </Text>
+        );
+    },
+);
