@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.8.0](https://github.com/taskany-inc/bricks/compare/v5.7.4...v5.8.0) (2024-02-08)
+
+
+### Features
+
+* **Harmony:** add FormControl component ([a1ad032](https://github.com/taskany-inc/bricks/commit/a1ad0327568b216783bbf3888cbfc1d80c7e8cce))
+
+
+### Bug Fixes
+
+* **Harmony:** width Input ([cc47e50](https://github.com/taskany-inc/bricks/commit/cc47e505ddfc6944c92dd660b0d965d89c30f6ef))
+* **ListView:** reset cursor on mouse leave ([b030e86](https://github.com/taskany-inc/bricks/commit/b030e866c62d8879d076789b3992d7c171a7c258))
+* **useKeyPress:** prevent scroll events on up&down keys ([31d8858](https://github.com/taskany-inc/bricks/commit/31d885810cc74c7b1717472199dd4bc99f069a53))
+* **useOfflineDetector:** fix hook ([8d39e7e](https://github.com/taskany-inc/bricks/commit/8d39e7ed88c442dfdb5ec0829397fc74324a056a))
+
 ## [5.7.4](https://github.com/taskany-inc/bricks/compare/v5.7.3...v5.7.4) (2024-02-06)
 
 
