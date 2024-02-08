@@ -1,0 +1,22 @@
+.Alert {
+    display: flex;
+    align-items: center;
+    border-radius: var(--radius-m);
+    padding: var(--gap-sm);
+    gap: var(--gap-s);
+}
+
+.Alert_default {
+    background: var(--gray-900);
+    color: var(--text-primary);
+}
+
+.Alert_danger {
+    color: var(--danger-300);
+    background: var(--danger-900);
+}
+
+.Alert_warning {
+    color: var(--warn-300);
+    background: var(--warn-900);
+}
