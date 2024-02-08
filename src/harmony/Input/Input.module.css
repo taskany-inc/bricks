@@ -2,7 +2,6 @@
     border: none;
     display: flex;
     flex: 1;
-    width: 100%;
     box-sizing: border-box;
     border-radius: var(--radius-m);
     line-height: 1;
