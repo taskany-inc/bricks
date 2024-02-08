@@ -1,3 +1,4 @@
+export * from './Alert/Alert';
 export * from './AutoComplete/AutoComplete';
 export * from './Badge/Badge';
 export * from './Button/Button';
