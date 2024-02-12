@@ -81,7 +81,7 @@ export const FormControlInput = forwardRef<HTMLInputElement, FormControlInputPro
     );
 });
 
-interface FormControlLabelProps extends Omit<ComponentProps<typeof Text<'label'>>, 'as'> {}
+interface FormControlLabelProps extends Omit<ComponentProps<typeof Text>, 'as'> {}
 
 export const FormControlLabel = ({ ...props }: FormControlLabelProps) => {
     const { id } = useFormControlContext();
