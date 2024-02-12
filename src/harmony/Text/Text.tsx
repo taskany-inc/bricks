@@ -1,3 +1,5 @@
+/* eslint-disable func-names */
+/* eslint-disable prefer-arrow-callback */
 import React, { useMemo } from 'react';
 import cn from 'classnames';
 
@@ -21,8 +23,18 @@ const textWeight = {
     thinner: s.TextThinner,
 };
 
+const headingClasses: Record<HeadingTagName, [string, string]> = {
+    h1: [textSize.xxl, textWeight.bolder],
+    h2: [textSize.xl, textWeight.bolder],
+    h3: [textSize.l, textWeight.regular],
+    h4: [textSize.m, textWeight.bold],
+    h5: [textSize.m, textWeight.regular],
+    h6: [textSize.m, textWeight.thin],
+};
+
 interface TextProps {
     className?: string;
+    children?: React.ReactNode;
     size?: keyof typeof textSize;
     weight?: keyof typeof textWeight;
     color?: string;
@@ -51,55 +63,35 @@ interface AllowedHTMLElements {
 }
 
 type HeadingTagName = Extract<keyof AllowedHTMLElements, `h${number}`>;
+const isHeading = (tag: string): tag is HeadingTagName => /^(h[1-6])/.test(tag);
 
-const isHeading = (tag: keyof AllowedHTMLElements): tag is HeadingTagName => {
-    return /^(h[1-6])/.test(tag);
-};
+const calcTextSizes = (tag: string, size: keyof typeof textSize, weight: keyof typeof textWeight = 'regular') =>
+    isHeading(tag) ? headingClasses[tag] : [textSize[size], textWeight[weight]];
 
-const calcTextSizes = (
-    tag: keyof AllowedHTMLElements,
-    size: keyof typeof textSize,
-    weight: keyof typeof textWeight = 'regular',
-) => {
-    const headingClasses: Record<HeadingTagName, [string, string]> = {
-        h1: [textSize.xxl, textWeight.bolder],
-        h2: [textSize.xl, textWeight.bolder],
-        h3: [textSize.l, textWeight.regular],
-        h4: [textSize.m, textWeight.bold],
-        h5: [textSize.m, textWeight.regular],
-        h6: [textSize.m, textWeight.thin],
-    };
+export const Text = React.forwardRef(function <T extends keyof AllowedHTMLElements>(
+    props: TextProps & { as?: T } & AllowedHTMLElements[T],
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ref: React.ForwardedRef<any>,
+) {
+    const {
+        as,
+        children,
+        size = 'm',
+        weight = 'regular',
+        className,
+        strike,
+        wordBreak,
+        wordWrap,
+        lines,
+        ellipsis,
+        color,
+        ...rest
+    } = props;
+    const Tag: string = as || defaultTagName;
 
-    if (isHeading(tag)) {
-        return headingClasses[tag];
-    }
-
-    return [textSize[size], textWeight[weight]];
-};
-
-export function Text<T extends keyof AllowedHTMLElements>({
-    as,
-    children,
-    size = 'm',
-    weight = 'regular',
-    className,
-    strike,
-    wordBreak,
-    wordWrap,
-    lines,
-    ellipsis,
-    color,
-    ...rest
-}: React.PropsWithChildren<TextProps> & { as?: T } & AllowedHTMLElements[T]) {
     const ownProps = { size, weight, strike, wordBreak, wordWrap, lines, ellipsis, color } as TextProps;
 
-    const textStyles = useMemo(() => {
-        if (typeof as === 'string') {
-            return calcTextSizes(as, size, weight);
-        }
-
-        return null;
-    }, [as, size, weight]);
+    const textStyles = useMemo(() => calcTextSizes(Tag, size, weight), [Tag, size, weight]);
 
     const additionalStyles: React.CSSProperties = useMemo(() => {
         const styles: Record<string, unknown> = {};
@@ -124,11 +116,10 @@ export function Text<T extends keyof AllowedHTMLElements>({
         return styles;
     }, [ownProps.wordBreak, ownProps.wordWrap, ownProps.lines, ownProps.color]);
 
-    const Tag: string = as || defaultTagName;
-
     return (
         <Tag
             {...rest}
+            ref={ref}
             className={cn(s.Text, textStyles, className, {
                 [s.TextEllipsis]: ellipsis,
                 [s.TextWrapped]: !!wordWrap,
@@ -142,4 +133,4 @@ export function Text<T extends keyof AllowedHTMLElements>({
             {children}
         </Tag>
     );
-}
+});

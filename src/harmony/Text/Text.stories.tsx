@@ -14,6 +14,5 @@ export const Default: StoryObj<typeof Text> = {
         children: 'Simple text',
         size: 'xs',
         weight: 'bold',
-        as: 'span',
     },
 };
