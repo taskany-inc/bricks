@@ -33,3 +33,14 @@ export const Labeled: StoryFn<typeof Checkbox> = (args) => {
         </div>
     );
 };
+
+export const Rounded: StoryFn<typeof Checkbox> = (args) => {
+    return (
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <Checkbox {...args} view="rounded" label="Label 1" defaultChecked />
+            <Checkbox {...args} view="rounded" label="Label 2" />
+            <Checkbox {...args} view="rounded" label="Label 3" defaultChecked disabled />
+            <Checkbox {...args} view="rounded" label="Label 4" disabled />
+        </div>
+    );
+};

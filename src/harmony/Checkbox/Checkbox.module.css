@@ -108,3 +108,22 @@
     color: currentColor;
     margin-left: var(--gap-s);
 }
+
+.CheckboxRounded .CheckboxInput {
+    border-radius: 50%;
+}
+
+.CheckboxRounded .CheckboxInput:not(:disabled):checked {
+    background-color: var(--check-rounded-checked);
+    border-color: var(--check-rounded-checked);
+}
+
+.CheckboxRounded .CheckboxInput:not(:disabled):hover:checked {
+    background-color: var(--check-rounded-checked-hover);
+    border-color: var(--check-rounded-checked-hover);
+}
+
+.CheckboxRounded .CheckboxInput:not(:disabled):after,
+.CheckboxRounded .CheckboxInput:not(:disabled):before {
+    background-color: var(--check-rounded-mark);
+}
