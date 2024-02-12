@@ -10,6 +10,7 @@
     padding: var(--gap-s) var(--gap-sm);
     transition: 200ms ease-in;
     transition-property: border, color, background;
+    height: var(--textarea-height);
 }
 
 .Textarea:focus {

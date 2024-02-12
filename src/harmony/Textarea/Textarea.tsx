@@ -1,4 +1,4 @@
-import React, { TextareaHTMLAttributes, forwardRef } from 'react';
+import React, { TextareaHTMLAttributes, forwardRef, useMemo } from 'react';
 import cn from 'classnames';
 
 import s from './Textarea.module.css';
@@ -19,10 +19,11 @@ interface TextareaProps extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>
     view?: keyof typeof viewMap;
     brick?: keyof typeof brickMap;
     outline?: boolean;
+    height?: number | string;
 }
 
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
-    ({ className, view = 'default', brick, outline = true, ...rest }, ref) => {
+    ({ className, view = 'default', brick, outline, height, style, ...rest }, ref) => {
         const classes = [
             s.Textarea,
             viewMap[view],
@@ -31,6 +32,19 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
             className,
         ];
 
-        return <textarea className={cn(classes)} ref={ref} {...rest} />;
+        const styles = useMemo(() => {
+            const map: Record<string, unknown> = {};
+
+            if (height) {
+                map['--textarea-height'] = typeof height === 'number' ? `${height}px` : height;
+            }
+
+            return {
+                ...map,
+                ...style,
+            };
+        }, [height, style]);
+
+        return <textarea className={cn(classes)} ref={ref} style={styles} {...rest} />;
     },
 );
