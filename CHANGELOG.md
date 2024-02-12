@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.9.2](https://github.com/taskany-inc/bricks/compare/v5.9.1...v5.9.2) (2024-02-12)
+
+
+### Bug Fixes
+
+* **FormControl:** correct type inheritance ([b3d5e05](https://github.com/taskany-inc/bricks/commit/b3d5e05bb6110ebb8aead056bb497825a5aef9e4))
+
 ## [5.9.1](https://github.com/taskany-inc/bricks/compare/v5.9.0...v5.9.1) (2024-02-12)
 
 
