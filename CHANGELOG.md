@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.9.1](https://github.com/taskany-inc/bricks/compare/v5.9.0...v5.9.1) (2024-02-12)
+
+
+### Bug Fixes
+
+* **Text:** allow using without as prop ([adb8dc0](https://github.com/taskany-inc/bricks/commit/adb8dc0aca3b2900c0f1a075d8867ebe9617aac4))
+
 ## [5.9.0](https://github.com/taskany-inc/bricks/compare/v5.8.1...v5.9.0) (2024-02-08)
 
 
