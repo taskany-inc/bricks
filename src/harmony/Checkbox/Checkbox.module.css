@@ -19,7 +19,9 @@
     flex-basis: 1rem;
     width: 1rem;
     height: 1rem;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
+    transition-duration: var(--transition-time);
+    transition-timing-function: var(--transition-func);
+    transition-property: background-color, border-color;
     border-radius: 0.25rem;
 
     position: relative;
@@ -63,7 +65,9 @@
     opacity: 0;
     visibility: hidden;
     position: absolute;
-    transition: opacity 0.2s ease;
+    transition-duration: var(--transition-time);
+    transition-timing-function: var(--transition-func);
+    transition-property: opacity;
     background-color: currentColor;
 }
 
