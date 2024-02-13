@@ -3,7 +3,6 @@ import cn from 'classnames';
 import { IconExclamationCircleOutline, IconInfoCircleOutline } from '@taskany/icons';
 
 import { nullable } from '../../utils/nullable';
-import { Text } from '../../harmony/Text/Text';
 
 import s from './Alert.module.css';
 
@@ -28,7 +27,7 @@ export const Alert: React.FC<AlertProps> = ({ text, icon, className, view, ...pr
     return (
         <div className={cn(s.Alert, viewMap[view], className)} {...props}>
             {nullable(icon, (i) => i, iconMap[view])}
-            <Text color="inherit">{text}</Text>
+            <span>{text}</span>
         </div>
     );
 };
