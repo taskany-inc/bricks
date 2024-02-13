@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.10.0](https://github.com/taskany-inc/bricks/compare/v5.9.2...v5.10.0) (2024-02-13)
+
+
+### Features
+
+* **harmony/Checkbox:** add rounded view ([1635ce7](https://github.com/taskany-inc/bricks/commit/1635ce7b6ce691573f4eb17c7ad18142a73754c6))
+
+
+### Bug Fixes
+
+* **harmony/Checkbox:** use transition variables ([014aa37](https://github.com/taskany-inc/bricks/commit/014aa376d40e8c51c9e5110f9992044088d8a29c))
+
 ## [5.9.2](https://github.com/taskany-inc/bricks/compare/v5.9.1...v5.9.2) (2024-02-12)
 
 
