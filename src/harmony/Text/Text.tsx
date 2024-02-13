@@ -65,8 +65,8 @@ interface AllowedHTMLElements {
 type HeadingTagName = Extract<keyof AllowedHTMLElements, `h${number}`>;
 const isHeading = (tag: string): tag is HeadingTagName => /^(h[1-6])/.test(tag);
 
-const calcTextSizes = (tag: string, size: keyof typeof textSize, weight: keyof typeof textWeight = 'regular') =>
-    isHeading(tag) ? headingClasses[tag] : [textSize[size], textWeight[weight]];
+const calcTextSizes = (tag: string, size?: keyof typeof textSize, weight: keyof typeof textWeight = 'regular') =>
+    isHeading(tag) ? headingClasses[tag] : [size ? textSize[size] : undefined, textWeight[weight]];
 
 export const Text = React.forwardRef(function <T extends keyof AllowedHTMLElements>(
     props: TextProps & { as?: T } & AllowedHTMLElements[T],
@@ -76,7 +76,7 @@ export const Text = React.forwardRef(function <T extends keyof AllowedHTMLElemen
     const {
         as,
         children,
-        size = 'm',
+        size,
         weight = 'regular',
         className,
         strike,
@@ -120,7 +120,7 @@ export const Text = React.forwardRef(function <T extends keyof AllowedHTMLElemen
         <Tag
             {...rest}
             ref={ref}
-            className={cn(s.Text, textStyles, className, {
+            className={cn(textStyles, className, {
                 [s.TextEllipsis]: ellipsis,
                 [s.TextWrapped]: !!wordWrap,
                 [s.TextBreaked]: !!wordBreak,
