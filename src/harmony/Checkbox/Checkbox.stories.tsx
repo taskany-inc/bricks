@@ -1,6 +1,8 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 
+import { Text } from '../Text/Text';
+
 import { Checkbox } from './Checkbox';
 
 export default {
@@ -41,6 +43,34 @@ export const Rounded: StoryFn<typeof Checkbox> = (args) => {
             <Checkbox {...args} view="rounded" label="Label 2" />
             <Checkbox {...args} view="rounded" label="Label 3" defaultChecked disabled />
             <Checkbox {...args} view="rounded" label="Label 4" disabled />
+        </div>
+    );
+};
+
+export const BigLabelInSmallContainer: StoryFn<typeof Checkbox> = (args) => {
+    return (
+        <div style={{ width: 400 }}>
+            <Checkbox
+                {...args}
+                view="rounded"
+                label={
+                    <Text size="s" weight="regular" lines={2} ellipsis>
+                        very longest criteria title for this goal user@taskany.org changed goal from verus nobis to
+                        verus nobis as criteria 3 weeks ago
+                    </Text>
+                }
+                defaultChecked
+            />
+            <Checkbox
+                {...args}
+                view="default"
+                label={
+                    <Text size="s" weight="regular" lines={2} ellipsis>
+                        very longest criteria title for this goal user@taskany.org changed goal from verus nobis to
+                        verus nobis as criteria 3 weeks ago
+                    </Text>
+                }
+            />
         </div>
     );
 };
