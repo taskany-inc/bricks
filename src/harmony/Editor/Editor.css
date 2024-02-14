@@ -1,0 +1,32 @@
+.MonacoEditor,
+.MonacoEditor .monaco-editor,
+.MonacoEditor .monaco-editor-background,
+.MonacoEditor .monaco-editor .overflow-guard {
+    background-color: inherit;
+    border-radius: var(--radius-m);
+}
+
+.MonacoEditor .monaco-editor .mtk1 {
+    color: var(--text-primary);
+}
+
+.MonacoEditor .monaco-editor .decorationsOverviewRuler {
+    visibility: hidden;
+}
+
+.MonacoEditor .monaco-editor .view-overlays .current-line {
+    border: 0;
+}
+
+.MonacoEditor .monaco-editor .monaco-scrollable-element {
+    margin-left: -10px;
+    padding-left: 10px;
+}
+
+.MonacoEditor .monaco-editor .lines-content {
+    margin-top: 12px;
+}
+
+.MonacoEditor .monaco-editor .margin {
+    display: none;
+}
