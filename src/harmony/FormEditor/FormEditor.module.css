@@ -1,0 +1,125 @@
+/*
+    The element is positioned above the actions to
+    enable file selection when clicking in any area
+*/
+.UploadInput {
+    position: absolute;
+    z-index: 2;
+    opacity: 0;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.UploadButton {
+    position: relative;
+    margin-top: var(--gap-s);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--gap-xs);
+    padding: var(--gap-xs) var(--gap-s);
+}
+
+.LoadingMessage {
+    margin-left: auto;
+    color: var(--text-secondary);
+}
+
+.AttachmentDescriptionMessage {
+    color: var(--text-secondary);
+}
+
+.FormEditorPlaceholder {
+    position: absolute;
+    top: 12px;
+    left: 16px;
+    z-index: 1;
+    pointer-events: none;
+    color: var(--text-ghost);
+}
+
+.FormEditor_outlined {
+    padding: var(--gap-xs);
+    border: 1px solid var(--input-border);
+    border-radius: var(--radius-m);
+}
+
+.FormEditor_outlined .UploadButton {
+    padding: var(--gap-xs) 0;
+}
+
+.FormEditorWrapper {
+    outline: none;
+    box-sizing: border-box;
+    position: relative;
+    width: 100%;
+    transition: 200ms ease-in;
+    transition-property: border, color, background-color;
+    border-radius: var(--radius-m);
+    overflow: hidden;
+}
+
+.EditorBackground {
+    background-color: var(--background);
+}
+
+.FormEditorWrapper_brick_top,
+.FormEditorWrapper_brick_top .MonacoEditor {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.FormEditorWrapper_brick_bottom,
+.FormEditorWrapper_brick_bottom .MonacoEditor {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.FormEditorWrapper_brick_center,
+.FormEditorWrapper_brick_center .MonacoEditor {
+    border-radius: 0;
+}
+
+.FormEditor_disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    background-color: var(--input-disabled-borderless);
+    color: var(--text-disabled);
+}
+
+.FormEditorWrapper_view_danger {
+    border-color: var(--danger-500);
+}
+
+.FormEditorWrapper_view_danger .MonacoEditor {
+    background-color: var(--danger-900);
+    color: var(--danger-400);
+}
+
+.FormEditorWrapper_view_danger .Placeholder {
+    color: var(--danger-500);
+}
+
+/*
+    The usage of the same class at different levels (.FormEditor_focused):
+
+    1) When the editor is outlined, this styling targets the focused state,
+    highlighting only the form inside, excluding actions.
+
+    2) When the editor is not outlined, the same class is applied to a different element,
+    maintaining the focused state styling for consistency.
+*/
+.FormEditorWrapper.FormEditor_focused,
+.FormEditorWrapper .FormEditor_focused,
+.FormEditor_focused .EditorBackground,
+.FormEditor_filled .EditorBackground {
+    background-color: var(--input-fill-focused-borderless);
+}
+
+.FormEditorWrapper.FormEditorWrapper_view_danger.FormEditor_focused
+.FormEditorWrapper.FormEditorWrapper_view_danger .FormEditor_focused {
+    background-color: var(--danger-900);
+}

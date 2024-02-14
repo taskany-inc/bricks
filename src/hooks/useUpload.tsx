@@ -6,11 +6,11 @@ export const useUpload = (onSuccess?: () => void, onFail?: (message?: string) =>
     const [loading, setLoading] = useState(false);
     const [files, setFiles] = useState<{ type: string; filePath: string; name: string }[]>();
 
-    const uploadFiles = async (files: FileList) => {
+    const uploadFiles = async (files: File[]) => {
         setLoading(true);
 
         const body = new FormData();
-        Array.from(files).forEach((f) => body.append(formFieldName, f));
+        files.forEach((f) => body.append(formFieldName, f));
 
         await fetch(uploadLink, {
             method: 'POST',
