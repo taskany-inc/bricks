@@ -66,6 +66,7 @@ export default defineConfig({
                         'src/utils/getInitials.*',
                         'src/utils/preloadImage.*',
                         'src/utils/stringToColor.*',
+                        'src/harmony/Editor/Editor.*',
                     ],
                 }),
                 exitProcess(),
