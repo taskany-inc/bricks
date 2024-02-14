@@ -18,8 +18,9 @@ import { IconExclamationCircleSolid } from '@taskany/icons';
 
 import { Input } from '../Input/Input';
 import { Text } from '../Text/Text';
-import { nullable } from '../../utils';
+import { nullable, setRefs } from '../../utils';
 import { Tooltip } from '../Tooltip/Tooltip';
+import { FormEditor } from '../FormEditor/FormEditor';
 
 interface FormControlContext {
     id?: string;
@@ -79,6 +80,14 @@ export const FormControlInput = forwardRef<HTMLInputElement, FormControlInputPro
             {...props}
         />
     );
+});
+
+interface FormControlEditorProps extends ComponentProps<typeof FormEditor> {}
+
+export const FormControlEditor = forwardRef<HTMLDivElement, FormControlEditorProps>(({ ...props }, ref) => {
+    const { id, error, popupRef } = useFormControlContext();
+
+    return <FormEditor id={id} view={error && 'danger'} ref={setRefs(popupRef, ref)} {...props} />;
 });
 
 interface FormControlLabelProps extends Omit<ComponentProps<typeof Text>, 'as'> {}

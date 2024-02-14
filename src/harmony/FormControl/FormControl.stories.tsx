@@ -3,7 +3,7 @@ import type { Meta } from '@storybook/react';
 
 import { nullable } from '../../utils';
 
-import { FormControl, FormControlError, FormControlInput, FormControlLabel } from './FormControl';
+import { FormControl, FormControlEditor, FormControlError, FormControlInput, FormControlLabel } from './FormControl';
 
 const meta: Meta<typeof FormControl> = {
     title: 'Harmony/FormControl',
@@ -37,9 +37,14 @@ const ErrorControl = () => {
                     <FormControlError error={error} />
                 ))}
             </FormControl>
-            <FormControl>
+            <FormControl style={{ marginBottom: 40 }}>
                 <FormControlLabel>Email</FormControlLabel>
                 <FormControlInput placeholder="email@example.com" />
+                <FormControlError>Some error</FormControlError>
+            </FormControl>
+            <FormControl>
+                <FormControlLabel>Description</FormControlLabel>
+                <FormControlEditor placeholder="Description" />
                 <FormControlError>Some error</FormControlError>
             </FormControl>
         </>
