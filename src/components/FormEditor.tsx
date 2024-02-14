@@ -406,7 +406,7 @@ export const FormEditor = React.forwardRef<HTMLDivElement, FormEditorProps>(
             (e: React.ClipboardEvent<HTMLDivElement>) => {
                 if (!e.clipboardData.files.length) return;
 
-                uploadFiles(e.clipboardData.files);
+                uploadFiles(Array.from(e.clipboardData.files));
             },
             [uploadFiles],
         );
@@ -414,7 +414,7 @@ export const FormEditor = React.forwardRef<HTMLDivElement, FormEditorProps>(
         const onFileInputChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
             if (!e.target.files) return;
 
-            await uploadFiles(e.target.files);
+            await uploadFiles(Array.from(e.target.files));
         };
 
         const uploadInputProps = getInputProps();
