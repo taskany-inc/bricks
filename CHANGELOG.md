@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.11.0](https://github.com/taskany-inc/bricks/compare/v5.10.0...v5.11.0) (2024-02-14)
+
+
+### Features
+
+* **Harmony:** create alert component ([c6119a3](https://github.com/taskany-inc/bricks/commit/c6119a37f0b2ba1c85a24db0d236432bdccacbe9))
+
+
+### Bug Fixes
+
+* **harmony/Checkbox,harmony/Radio:** fix input's width ([a368761](https://github.com/taskany-inc/bricks/commit/a36876144d2289bcf8457693e9c95b5fbdc1ba27))
+
 ## [5.10.0](https://github.com/taskany-inc/bricks/compare/v5.9.2...v5.10.0) (2024-02-13)
 
 
