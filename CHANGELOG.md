@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.13.0](https://github.com/taskany-inc/bricks/compare/v5.12.0...v5.13.0) (2024-02-15)
+
+
+### Features
+
+* **Harmony:** add OfflineBanner component ([042ae73](https://github.com/taskany-inc/bricks/commit/042ae7364464dca8e6925507e43add23c0eda7f3))
+
 ## [5.12.0](https://github.com/taskany-inc/bricks/compare/v5.11.0...v5.12.0) (2024-02-15)
 
 
