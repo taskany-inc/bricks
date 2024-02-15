@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.12.0](https://github.com/taskany-inc/bricks/compare/v5.11.0...v5.12.0) (2024-02-15)
+
+
+### Features
+
+* **Harmony:** add FormControlEditor to FormControl ([53cb523](https://github.com/taskany-inc/bricks/commit/53cb523cd6aafea75d10e35edc8a1f8ed3b3be79))
+* **Harmony:** create default color ([47e24b5](https://github.com/taskany-inc/bricks/commit/47e24b558896244a6c82010068265112ed7210c6))
+* **Harmony:** create FormEditor ([f254ed7](https://github.com/taskany-inc/bricks/commit/f254ed7391c9407f1d32a61313e0c24658ca430b))
+
+
+### Bug Fixes
+
+* **FormEditor:** convert filelist to array ([ac778fb](https://github.com/taskany-inc/bricks/commit/ac778fb3d9f1e9b03ef4a2f637408e61466b117d))
+* **Harmony:** update Textarea ([4ca8cd4](https://github.com/taskany-inc/bricks/commit/4ca8cd43f64fa3419e4d602b1ba065456fc2a735))
+
 ## [5.11.0](https://github.com/taskany-inc/bricks/compare/v5.10.0...v5.11.0) (2024-02-14)
 
 
