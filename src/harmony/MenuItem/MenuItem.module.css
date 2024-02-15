@@ -1,0 +1,15 @@
+.MenuItem {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-s);
+    padding: var(--gap-s);
+    padding-right: var(--gap-sm);
+    border-radius: var(--radius-m);
+    width: 100%;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.MenuItem_hovered {
+    background-color: var(--base-hover);
+}
