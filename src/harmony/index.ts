@@ -14,6 +14,7 @@ export * from './Input/Input';
 export * from './Link/Link';
 export * from './Modal/Modal';
 export * from './OfflineBanner/OfflineBanner';
+export * from './MenuItem/MenuItem';
 export * from './Popup/Popup';
 export * from './Radio/Radio';
 export * from './RadioGroup/RadioGroup';
