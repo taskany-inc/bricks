@@ -12,6 +12,7 @@ export * from './FormControl/FormControl';
 export * from './FormEditor/FormEditor';
 export * from './Input/Input';
 export * from './Link/Link';
+export * from './Modal/Modal';
 export * from './OfflineBanner/OfflineBanner';
 export * from './Popup/Popup';
 export * from './Radio/Radio';
