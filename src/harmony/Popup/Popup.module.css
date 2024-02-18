@@ -5,12 +5,12 @@
     color: var(--text-primary);
     border: 1px solid var(--layer-above);
     background: var(--dropdown);
+    box-sizing: border-box;
 }
 
 .PopupContent {
     position: relative;
     z-index: 1;
-    width: max-content;
     min-width: 100%;
 }
 
