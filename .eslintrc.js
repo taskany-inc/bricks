@@ -6,7 +6,7 @@ module.exports = {
         'plugin:storybook/recommended',
     ],
     parser: '@typescript-eslint/parser',
-    plugins: ['import', 'prettier','@taskany/rules'],
+    plugins: ['import', 'prettier','@taskany/rules', 'react'],
     rules: {
         '@taskany/rules/prefer-interface': 'error',
         '@typescript-eslint/no-empty-function': 'off',
@@ -33,6 +33,13 @@ module.exports = {
                 ignoreRegExpLiterals: true,
                 ignoreStrings: true,
                 ignoreTemplateLiterals: true,
+            },
+        ],
+        'react/jsx-curly-brace-presence': [
+            'error',   
+            {
+                props: 'never',
+                children: 'never',
             },
         ],
         'implicit-arrow-linebreak': 'off',
