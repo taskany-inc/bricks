@@ -25,11 +25,14 @@
 
 .ModalContent {
     padding: var(--gap-m);
-    padding-top: var(--gap-s);
 }
 
 .ModalHeader {
     padding: var(--gap-m);
+}
+
+.ModalHeader ~ .ModalContent {
+    padding-top: var(--gap-s);
 }
 
 .ModalHeader_view_warning {
