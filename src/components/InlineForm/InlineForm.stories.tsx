@@ -29,15 +29,15 @@ export const InlineFormStories: StoryFn = () => {
                 onSubmit={action('form submitted')}
                 style={{ backgroundColor: 'transparent', display: 'flex', alignItems: 'center' }}
             >
-                <FormInput autoFocus brick="right" placeholder={'Enter criteria'} onChange={action('onChange')} />
+                <FormInput autoFocus brick="right" placeholder="Enter criteria" onChange={action('onChange')} />
                 <FormInput
                     autoComplete="off"
-                    placeholder={'No more than 100'}
+                    placeholder="No more than 100"
                     brick="center"
                     onChange={action('onChange')}
                     style={{ border: '1px' }}
                 />
-                <Button text={'Add'} brick="left" type="submit" view="primary" size="l" outline />
+                <Button text="Add" brick="left" type="submit" view="primary" size="l" outline />
                 <a
                     onMouseOver={action('onMouseOver')}
                     onMouseLeave={action('onMouseLeave')}
@@ -70,7 +70,7 @@ export const InlineFormErrorHandler: StoryFn = () => {
                 onError={onError}
                 onReset={() => setError(undefined)}
                 renderTrigger={({ onClick }) => (
-                    <Button onClick={onClick} text={'Show Form'} view="primary" size="l" outline />
+                    <Button onClick={onClick} text="Show Form" view="primary" size="l" outline />
                 )}
             >
                 <div style={{ backgroundColor: 'transparent', display: 'flex', alignItems: 'center' }}>
@@ -78,10 +78,10 @@ export const InlineFormErrorHandler: StoryFn = () => {
                         error={error}
                         autoFocus
                         brick="right"
-                        placeholder={'Enter text'}
+                        placeholder="Enter text"
                         onChange={action('onChange')}
                     />
-                    <Button text={'Add'} brick="left" type="submit" view="primary" size="l" outline />
+                    <Button text="Add" brick="left" type="submit" view="primary" size="l" outline />
                 </div>
             </InlineForm>
         </>
