@@ -2,12 +2,10 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid transparent;
-    
 }
 
 .BadgeOutlined {
-    border-color: currentColor;
+    border: 1px solid currentColor;
     border-radius: var(--radius-xl);
 }
 
