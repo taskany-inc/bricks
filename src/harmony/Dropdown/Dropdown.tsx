@@ -41,7 +41,7 @@ export const Dropdown: React.FC<React.PropsWithChildren<DropdownProps>> = ({ chi
 };
 
 interface DropdownTriggerProps extends React.HTMLAttributes<HTMLDivElement> {
-    label?: string;
+    label?: ReactNode;
     error?: { message: string };
     readonly?: boolean;
     view?: 'default' | 'outline';
@@ -66,7 +66,7 @@ const DropdownArrow: React.FC = () => (
 );
 
 export const DropdownTrigger = forwardRef<HTMLDivElement, React.PropsWithChildren<DropdownTriggerProps>>(
-    ({ children, view, label, readonly, className, arrow = true, renderTrigger, ...attrs }, ref) => (
+    ({ children, view, label, readonly, className, arrow = true, onClick, renderTrigger, ...attrs }, ref) => (
         <DropdownContext.Consumer>
             {({ isOpen, toggle, setTriggerRef }) => (
                 <>
@@ -86,6 +86,11 @@ export const DropdownTrigger = forwardRef<HTMLDivElement, React.PropsWithChildre
                                 },
                                 className,
                             )}
+                            onClick={(e) => {
+                                if (readonly) return;
+                                onClick?.(e);
+                                toggle();
+                            }}
                             {...attrs}
                             ref={ref}
                         >
@@ -97,11 +102,7 @@ export const DropdownTrigger = forwardRef<HTMLDivElement, React.PropsWithChildre
                                     ))}
                                 </span>
                             ))}
-                            <span
-                                className={classes.DropdownTriggerControl}
-                                onClick={!readonly ? toggle : undefined}
-                                ref={setTriggerRef}
-                            >
+                            <span className={classes.DropdownTriggerControl} ref={setTriggerRef}>
                                 <span className={classes.DropdownTriggerValue}>{children}</span>
                                 {nullable(!readonly && !label && arrow, () => (
                                     <DropdownArrow />
