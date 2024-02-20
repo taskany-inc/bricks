@@ -23,7 +23,7 @@ export const Default: StoryObj<typeof MenuItem> = {
 
 const data = ['Comments', 'Status', 'Criteria', 'Description', 'Participants'];
 
-export const List = () => {
+export const DefaultList = () => {
     return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
             <ListView onKeyboardClick={console.log}>
@@ -33,6 +33,32 @@ export const List = () => {
                         key={item}
                         renderItem={({ active, ...props }) => (
                             <MenuItem
+                                selected={[0, 2, 3].includes(index)}
+                                {...props}
+                                onClick={() => console.log(item)}
+                                hovered={active}
+                            >
+                                {item}
+                            </MenuItem>
+                        )}
+                    />
+                ))}
+            </ListView>
+        </div>
+    );
+};
+
+export const SelectableList = () => {
+    return (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+            <ListView onKeyboardClick={console.log}>
+                {data.map((item, index) => (
+                    <ListViewItem
+                        value={item}
+                        key={item}
+                        renderItem={({ active, ...props }) => (
+                            <MenuItem
+                                selectable
                                 selected={[0, 2, 3].includes(index)}
                                 {...props}
                                 onClick={() => console.log(item)}
