@@ -1,5 +1,3 @@
-.DatePicker {}
-
 .DatePickerOption {
     display: flex;
     gap: var(--gap-s);
@@ -10,10 +8,6 @@
 .DatePickerOptionLabel {
     width: 94px;
     font-weight: 500;
-}
-
-.DatePickerOptionContent {
-    width: 252px;
 }
 
 /* Chrome, Safari, Edge, Opera */
@@ -87,11 +81,8 @@
 }
 
 .DatePickerYearInput {
-    text-align: center;
-}
-
-.DatePickerYearInput, .DatePickerStrictDateInput[name=year] {
     width: 6ch;
+    text-align: center;
 }
 
 .DatePickerInlineWrapper + .DatePickerInlineWrapper,
