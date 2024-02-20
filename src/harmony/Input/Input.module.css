@@ -7,6 +7,7 @@
     line-height: 1;
     transition: 200ms ease-in;
     transition-property: border, color, background;
+    width: 100%;
 }
 
 .Input:focus {
@@ -112,7 +113,7 @@
 
     color: var(--text-ghost);
     transition: color 200ms ease-in-out 0s;
-    pointer-events: var(--pointer-events);
+    pointer-events: var(--input-pointer-events, auto);
 }
 
 .Input_danger ~ .Icon {
