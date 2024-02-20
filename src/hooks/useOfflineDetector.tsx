@@ -33,7 +33,7 @@ export const useOfflineDetector = ({
         window.addEventListener('offline', toggleStatus(false));
 
         if (!timeout) {
-            setTimeout(() => {
+            timeout = setInterval(() => {
                 if (globalOnlineStatus !== navigator.onLine) {
                     setGlobalOnlineStatus(navigator.onLine);
                 }
@@ -53,7 +53,7 @@ export const useOfflineDetector = ({
         return () => {
             window.removeEventListener('online', toggleStatus(true));
             window.removeEventListener('offline', toggleStatus(false));
-            clearTimeout(timeout);
+            clearInterval(timeout);
         };
     }, []);
 
