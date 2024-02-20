@@ -53,18 +53,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         },
         ref,
     ) => {
-        const classes = [
-            s.Input,
-            viewMap[view],
-            sizeMap[size],
-            brick ? brickMap[brick] : '',
-            { [s.Input_outline]: outline },
-        ];
-
         const wrapperStyles: Record<string, unknown> = useMemo(() => {
-            return {
-                '--pointer-events': pointerEvents || 'auto',
-            };
+            const wrapper: Record<string, unknown> = {};
+
+            if (pointerEvents) {
+                wrapper['--input-pointer-events'] = pointerEvents;
+            }
+
+            return wrapper;
         }, [pointerEvents]);
 
         return (
@@ -79,7 +75,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
                 style={wrapperStyles}
                 ref={forwardedRef}
             >
-                <input className={cn(classes)} ref={ref} autoComplete={autoComplete} {...rest} />
+                <input
+                    className={cn(s.Input, viewMap[view], sizeMap[size], brick ? brickMap[brick] : '', {
+                        [s.Input_outline]: outline,
+                    })}
+                    ref={ref}
+                    autoComplete={autoComplete}
+                    {...rest}
+                />
 
                 {nullable(iconLeft, (icon) => (
                     <span className={cn(s.Icon, s.Icon_left)}>{icon}</span>

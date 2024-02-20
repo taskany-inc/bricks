@@ -52,7 +52,7 @@ const Title = ({ children }: { children: ReactNode }) => (
 const Text = ({ children }: { children: ReactNode }) => <span style={{ fontSize: 16 }}>{children}</span>;
 
 const Layout = ({ children }: { children: ReactNode }) => (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, min-content)', gap: 36, marginBottom: 36 }}>
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, max-content)', gap: 36, marginBottom: 36 }}>
         {children}
     </div>
 );
