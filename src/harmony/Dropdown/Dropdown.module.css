@@ -32,6 +32,7 @@
     align-items: center;
     justify-content: flex-start;
     line-height: 1.5rem;
+    width: inherit;
 }
 
 .DropdownTriggerIcon {
