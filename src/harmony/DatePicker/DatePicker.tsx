@@ -40,7 +40,7 @@ interface DatePickerProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'on
         reset: string;
         warning?: string;
     };
-    onChange: (val: DatePickerValue) => void;
+    onChange: (val?: DatePickerValue) => void;
 }
 
 interface DatePickerContextProps {
@@ -120,8 +120,13 @@ interface DatePickerQuarterProps extends DatePickerPartProps {
     withAliases?: boolean;
 }
 
+const dateFragments = {
+    day: 'day',
+    month: 'month',
+    year: 'year',
+};
 interface DatePickerStrictProps extends DatePickerPartProps {
-    dateFragments: Array<'day' | 'month' | 'year'>;
+    dateFragments: Array<keyof typeof dateFragments>;
     splitter: string;
     translates: DatePickerPartProps['translates'] & { advice?: string };
 }
@@ -270,8 +275,6 @@ const mapValueToPartialState = (
         value,
     };
 
-    console.log(partialState);
-
     return partialState;
 };
 
@@ -355,6 +358,26 @@ const datePickerReducer: React.Reducer<DatePickerState, Actions> = (state, actio
     return nextState;
 };
 
+const quartersBricks = ['right', 'center', 'center', 'left'] as const;
+const aliasesBricks = ['right', 'center', 'left'] as const;
+const quarters: Quarter[] = ['Q1', 'Q2', 'Q3', 'Q4'] as const;
+const aliases: QuarterAlias[] = ['@prev', '@current', '@next'] as const;
+
+const inputNames = {
+    'date-picker-year': 'date-picker-year',
+    'date-picker-quarters': {
+        Q1: 'date-picker-quarter-Q1',
+        Q2: 'date-picker-quarter-Q2',
+        Q3: 'date-picker-quarter-Q3',
+        Q4: 'date-picker-quarter-Q4',
+    },
+    'date-picker-strict-date': {
+        [dateFragments.day]: `date-picker-strict-date-${dateFragments.day}`,
+        [dateFragments.month]: `date-picker-strict-date-${dateFragments.month}`,
+        [dateFragments.year]: `date-picker-strict-date-${dateFragments.year}`,
+    },
+} as const;
+
 export const DatePicker: React.FC<React.PropsWithChildren<DatePickerProps>> = ({
     value: defaultValue,
     translates,
@@ -435,7 +458,8 @@ export const DatePicker: React.FC<React.PropsWithChildren<DatePickerProps>> = ({
 
     const onReset = useCallback(() => {
         dispatch({ type: 'reset' });
-    }, []);
+        onChange(undefined);
+    }, [onChange]);
 
     const context = useMemo<DatePickerContextProps>(() => {
         return {
@@ -495,15 +519,13 @@ const DatePickerOption: React.FC<
             <Text size="s" className={classes.DatePickerOptionLabel}>
                 {title}
             </Text>
-            <div className={classes.DatePickerOptionContent}>
-                {nullable(
-                    !collapse,
-                    () => (
-                        <Button onClick={onClick} text={trigger} />
-                    ),
-                    children,
-                )}
-            </div>
+            {nullable(
+                !collapse,
+                () => (
+                    <Button onClick={onClick} text={trigger} />
+                ),
+                children,
+            )}
         </div>
     );
 };
@@ -563,6 +585,7 @@ export const DatePickerYear: React.FC<DatePickerYearProps> = ({ translates, max,
                     value={selectedYear ?? currentYear}
                     type="number"
                     brick="center"
+                    name={inputNames['date-picker-year']}
                     onChange={handleInputChange}
                 />
                 <Button
@@ -575,11 +598,6 @@ export const DatePickerYear: React.FC<DatePickerYearProps> = ({ translates, max,
         </DatePickerOption>
     );
 };
-
-const quartersBricks = ['right', 'center', 'center', 'left'] as const;
-const aliasesBricks = ['right', 'center', 'left'] as const;
-const quarters: Quarter[] = ['Q1', 'Q2', 'Q3', 'Q4'] as const;
-const aliases: QuarterAlias[] = ['@prev', '@current', '@next'] as const;
 
 export const DatePickerQuarter: React.FC<DatePickerQuarterProps> = ({
     translates,
@@ -633,6 +651,7 @@ export const DatePickerQuarter: React.FC<DatePickerQuarterProps> = ({
                         size="s"
                         onClick={() => handleSelectQuarter(quarter)}
                         view={selectedQuarter === quarter ? 'checked' : 'default'}
+                        name={inputNames['date-picker-quarters'][quarter]}
                     />
                 ))}
             </div>
@@ -705,7 +724,7 @@ export const DatePickerStrict: React.FC<DatePickerStrictProps> = ({
             }
 
             queueMicrotask(() => {
-                const target = node.querySelector(`[name=${next}]`);
+                const target = node.querySelector(`[name=${inputNames['date-picker-strict-date'][next]}]`);
                 if (target instanceof HTMLElement) {
                     target.focus();
                 }
@@ -766,9 +785,13 @@ export const DatePickerStrict: React.FC<DatePickerStrictProps> = ({
                         return (
                             <React.Fragment key={part}>
                                 <Input
-                                    className={classes.DatePickerStrictDateInput}
+                                    className={classNames(
+                                        part === 'year'
+                                            ? classes.DatePickerYearInput
+                                            : classes.DatePickerStrictDateInput,
+                                    )}
                                     type="number"
-                                    name={part}
+                                    name={inputNames['date-picker-strict-date'][part]}
                                     maxLength={valueLen[part]}
                                     value={dateValues[part]}
                                     onChange={handleChangeDatePart(part)}
