@@ -1,0 +1,16 @@
+.InputIndex {
+    z-index: 10000; /* tippy popup has zIndex: 9999 */
+}
+
+.Popup {
+    padding-top: calc(32px + (2 * var(--gap-s))); /* Input height 32px + Popup default offset */
+}
+
+.Input {
+    width: 200px;
+    transition: width var(--transition-time) var(--transition-func);
+}
+
+.Input_focused {
+    width: 100%;
+}
