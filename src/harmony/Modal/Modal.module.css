@@ -29,6 +29,8 @@
 
 .ModalHeader {
     padding: var(--gap-m);
+    border-top-left-radius: var(--radius-l);;
+    border-top-right-radius: var(--radius-l);;
 }
 
 .ModalHeader ~ .ModalContent {
@@ -58,7 +60,6 @@
     min-height: 200px;
     max-height: 90%;
     width: var(--modal-width);
-    overflow: hidden;
 
     border-radius: var(--radius-l);
     background-color: var(--layer);
