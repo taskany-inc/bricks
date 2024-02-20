@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.14.0](https://github.com/taskany-inc/bricks/compare/v5.13.0...v5.14.0) (2024-02-20)
+
+
+### Features
+
+* **ESLint:** add rules for curly braces ([73a2df4](https://github.com/taskany-inc/bricks/commit/73a2df4f16f8185c773e5153a52ce52e3c05ef64))
+* **Harmony:** create GlobalSearch component ([b5845f4](https://github.com/taskany-inc/bricks/commit/b5845f461895621c1bf19336fb7c821a483b0b81))
+* **Harmony:** create MenuItem component ([e244634](https://github.com/taskany-inc/bricks/commit/e244634ce5b0ffc64ac91957faea36221262a634))
+* **Harmony:** create Modal component ([cee78ce](https://github.com/taskany-inc/bricks/commit/cee78ceac27e42f2c02f6b7c296b00cb980e5f89))
+
+
+### Bug Fixes
+
+* **Harmony:** popups content width ([aede1bf](https://github.com/taskany-inc/bricks/commit/aede1bfde8fd3a9de2dee590fcd64d8af5f47340))
+* **Harmony:** remove overflow from Modal ([44c9be3](https://github.com/taskany-inc/bricks/commit/44c9be321315b753b2fb12fe4f5bdb5be6f20600))
+* **Harmony:** update Badge styless ([9a95399](https://github.com/taskany-inc/bricks/commit/9a95399be019137c6b7e84542e13dce4d85856f3))
+* **Harmony:** update DatePicker component ([73d0fce](https://github.com/taskany-inc/bricks/commit/73d0fce781a3618cfcebe6353ed6626bc09abc48))
+* **Harmony:** update Dropdown types & click area to open panel ([429f711](https://github.com/taskany-inc/bricks/commit/429f71111e63d196d5a0af48205a53ac9d5e05b6))
+* **Harmony:** update Input component ([5277e06](https://github.com/taskany-inc/bricks/commit/5277e069cad6de1847d59edcfc6d15f875a68eff))
+
 ## [5.13.0](https://github.com/taskany-inc/bricks/compare/v5.12.0...v5.13.0) (2024-02-15)
 
 
