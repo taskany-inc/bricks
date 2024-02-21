@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.15.0](https://github.com/taskany-inc/bricks/compare/v5.14.1...v5.15.0) (2024-02-21)
+
+
+### Features
+
+* **useOfflineDetector:** use setInterval ([8e3b2a9](https://github.com/taskany-inc/bricks/commit/8e3b2a9e54b0af77f1d63fa6640391d404407f8b))
+
 ## [5.14.1](https://github.com/taskany-inc/bricks/compare/v5.14.0...v5.14.1) (2024-02-20)
 
 
