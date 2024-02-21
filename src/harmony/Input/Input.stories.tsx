@@ -2,6 +2,7 @@ import React, { ComponentProps, ReactNode, useState } from 'react';
 import type { Meta } from '@storybook/react';
 
 import { Button } from '../Button/Button';
+import { Keyboard } from '../Keyboard/Keyboard';
 
 import { Input as InputComponent } from './Input';
 
@@ -177,6 +178,16 @@ const InputGroups = () => {
     );
 };
 
+const InputWithKeyboardAction = () => {
+    return (
+        <Layout>
+            <Input iconRight={<Keyboard>/</Keyboard>} />
+            <Input view="success" iconRight={<Keyboard view="success">/</Keyboard>} />
+            <Input view="danger" iconRight={<Keyboard view="danger">/</Keyboard>} />
+        </Layout>
+    );
+};
+
 export const AllInputs = () => {
     return (
         <>
@@ -185,6 +196,7 @@ export const AllInputs = () => {
             <InputsOutlined />
             <InputsWithIcons />
             <InputGroups />
+            <InputWithKeyboardAction />
         </>
     );
 };

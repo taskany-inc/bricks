@@ -12,6 +12,7 @@ export * from './FormControl/FormControl';
 export * from './FormEditor/FormEditor';
 export * from './GlobalSearch/GlobalSearch';
 export * from './Input/Input';
+export * from './Keyboard/Keyboard';
 export * from './Link/Link';
 export * from './MenuItem/MenuItem';
 export * from './Modal/Modal';

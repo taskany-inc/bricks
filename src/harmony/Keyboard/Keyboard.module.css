@@ -1,0 +1,71 @@
+.Keyboard {
+    display: inline-block;
+
+    font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+    line-height: 1.1em;
+    text-align: center;
+
+    border-width: 1px;
+    border-style: solid;
+
+    cursor: pointer;
+
+    transition: var(--transition-time) cubic-bezier(0.3, 0, 0.5, 1);
+    transition-property: box-shadow;
+}
+
+.Keyboard_default {
+    color: var(--input-border);
+
+    background-color: var(--input-background);
+
+    border-color: var(--input-border);
+
+    box-shadow: inset 0 -1px 0 var(--input-border);
+}
+
+.Keyboard_success {
+    color: var(--primary-400);
+
+    border-color: var(--primary-500);
+
+    background-color: var(--primary-900);
+
+    box-shadow: inset 0 -1px 0 var(--primary-500);
+}
+
+.Keyboard_danger {
+    color: var(--danger-400);
+
+    border-color: var(--danger-500);
+
+    background-color: var(--danger-900);
+
+    box-shadow: inset 0 -1px 0 var(--danger-500);
+}
+
+.Keyboard:hover {
+    box-shadow: inset 0 0px 0 var(--input-border);
+}
+
+.Keyboard span {
+    font-size: inherit;
+    text-align: center;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.Keyboard span + span {
+    margin-left: 0.3em;
+}
+
+.Keyboard_size_m {
+    padding: 2px 5px;
+    border-radius: var(--radius-m);
+
+}
+
+.Keyboard_size_s {
+    padding: 2px 3px;
+    border-radius: var(--radius-s);
+}
