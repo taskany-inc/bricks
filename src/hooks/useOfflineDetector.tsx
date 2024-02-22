@@ -18,7 +18,7 @@ export const useOfflineDetector = ({
         return navigator.onLine;
     });
     const [remoteServerStatus, setRemoteServerStatus] = useState(true);
-    let timeout: NodeJS.Timeout;
+    let timeout: NodeJS.Timeout | undefined;
 
     const toggleStatus = useCallback(
         (global: boolean) => () => {
@@ -54,6 +54,7 @@ export const useOfflineDetector = ({
             window.removeEventListener('online', toggleStatus(true));
             window.removeEventListener('offline', toggleStatus(false));
             clearInterval(timeout);
+            timeout = undefined;
         };
     }, []);
 
