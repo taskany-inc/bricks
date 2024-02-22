@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.16.0](https://github.com/taskany-inc/bricks/compare/v5.15.0...v5.16.0) (2024-02-22)
+
+
+### Features
+
+* **harmony:** add Keyboard component ([6ef5bca](https://github.com/taskany-inc/bricks/commit/6ef5bcadecf9938e5f7a0703b8bb35cc712ed5aa))
+
+
+### Bug Fixes
+
+* **offlinedetector:** clear timeout properly ([a5ea7e8](https://github.com/taskany-inc/bricks/commit/a5ea7e83bccdba32badd1215788a3398cf6a3fc2))
+
 ## [5.15.0](https://github.com/taskany-inc/bricks/compare/v5.14.1...v5.15.0) (2024-02-21)
 
 
