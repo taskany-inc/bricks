@@ -1,49 +1,144 @@
 .DropdownTrigger {
-    border: 1px solid transparent;
-    padding: var(--gap-xs) var(--gap-sm);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.125rem;
+
+    padding-left: var(--gap-xs);
+    padding-right: var(--gap-s);
+
+    width: 100%;
+    min-height: var(--gap-l);
     box-sizing: border-box;
+
+    border: 1px solid transparent;
+    border-radius: var(--radius-m);
+
+    transition: var(--transition-time) var(--transition-func);
+    transition-property: color, background-color, border-color;
+
+    user-select: none;
 }
 
-.DropdownTriggerOutline {
-    border-radius: 10px;
+.DropdownTriggerWithLabel {
+    height: 50px;
+    padding-top: var(--gap-xs);
+    padding-bottom: var(--gap-xs);
+}
+
+.DropdownTrigger:focus {
+    outline: none;
+}
+
+.DropdownTrigger:hover {
+    cursor: pointer;
+}
+
+.DropdownTrigger:focus-visible {
+    outline: 2px solid var(--gray-500);
+}
+
+.DropdownTrigger_view_default:hover {
+    background-color: var(--base-hover);
+}
+
+.DropdownTrigger_view_default:active,
+.DropdownTrigger_view_default.DropdownTrigger_active {
+    background-color: var(--button-secondary-active);
+}
+
+.DropdownTrigger_view_outline {
+    border-color: var(--gray-800);
+}
+
+.DropdownTrigger_view_outline:hover {
+    border-color: var(--gray-700);
+}
+
+.DropdownTrigger_view_outline:active,
+.DropdownTrigger_view_outline.DropdownTrigger_active {
+    border-color: var(--gray-600);
+}
+
+.DropdownTrigger_view_fill {
+    background-color: var(--button-secondary);
+}
+
+.DropdownTrigger_view_fill:hover {
+    background-color: var(--button-secondary-hover);
+}
+
+.DropdownTrigger_view_fill:active,
+.DropdownTrigger_view_fill.DropdownTrigger_active {
+    background-color: var(--button-secondary-active);
+}
+
+.DropdownTrigger.DropdownTrigger_disabled {
+    background-color: transparent;
+    color: var(--text-ghost);
+    cursor: not-allowed;
+}
+
+.DropdownTrigger_view_outline.DropdownTrigger_disabled {
     border-color: var(--base-hover);
 }
 
-.DropdownTriggerLabel {
-    display: flex;
-    margin-bottom: 0.125rem;
-    color: var(--text-ghost);
-    font-size: var(--font-size-xs);
-    line-height: 1rem;
-    align-items: center;
-    justify-content: flex-start;
+.DropdownTrigger_view_fill.DropdownTrigger_disabled {
+    background-color: var(--button-secondary);
 }
 
-.DropdownTriggerControl {
-    display: flex;
+.DropdownTrigger.DropdownTrigger_readOnly {
+    background-color: transparent;
+    color: var(--text-secondary);
+    cursor: default;
+}
+
+.DropdownTrigger_view_outline.DropdownTrigger_readOnly {
+    border-color: var(--base-hover);
+}
+
+.DropdownTrigger_view_fill.DropdownTrigger_readOnly {
+    background-color: var(--button-secondary);
+}
+
+.DropdownTriggerLabel {
     width: 100%;
-    flex-wrap: nowrap;
+    padding: 0 var(--gap-s);
+    box-sizing: border-box;
+    color: var(--text-ghost);
+}
+
+.DropdownTrigger_view_fill .DropdownTriggerLabel {
+    color: var(--text-secondary);
+}
+
+.DropdownTriggerValueWrapper {
+    display: flex;
     align-items: center;
+    justify-content: space-between;
+    flex: 1;
 }
 
 .DropdownTriggerValue {
-    display: flex;
-    flex: 1;
-    align-items: center;
-    justify-content: flex-start;
-    line-height: 1.5rem;
-    width: inherit;
-}
-
-.DropdownTriggerIcon {
-    margin-left: auto;
-    display: inline-flex;
-}
-
-.DropdownTriggerLabel .DropdownTriggerIcon {
-    margin-left: unset;
+    width: 100%;
+    padding: 0 var(--gap-s);
 }
 
 .DropdownPanel {
     box-sizing: border-box;
+}
+
+.DropdownTrigger_error,
+.DropdownTrigger_error:hover,
+.DropdownTrigger_error:active {
+    background-color: var(--danger-900);
+    color: var(--danger-400);
+}
+
+.DropdownTrigger_error_outline {
+    border-color: var(--danger-500);
+}
+
+.DropdownTriggerLabel_error {
+    color: var(--danger-600);
 }
