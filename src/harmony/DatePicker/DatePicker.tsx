@@ -36,8 +36,8 @@ interface DatePickerValue {
 interface DatePickerProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
     value?: DatePickerValue;
     translates: {
-        hint: string;
-        reset: string;
+        hint?: string;
+        reset?: string;
         warning?: string;
     };
     onChange: (val?: DatePickerValue) => void;
@@ -485,13 +485,18 @@ export const DatePicker: React.FC<React.PropsWithChildren<DatePickerProps>> = ({
             <div className={classNames(classes.DatePicker, className)} {...attrs}>
                 {children}
                 <div className={classes.DatePickerFooter}>
-                    <Tooltip
-                        target={<IconQuestionCircleSolid size="s" className={classes.DatePickerHintIcon} />}
-                        placement="top"
-                        offset={[10, 10]}
-                    >
-                        {translates.hint}
-                    </Tooltip>
+                    {nullable(translates.hint, (hint) => (
+                        <Tooltip
+                            target={<IconQuestionCircleSolid size={20} className={classes.DatePickerHintIcon} />}
+                            placement="top"
+                            offset={[10, 10]}
+                            maxWidth={180}
+                            minWidth={180}
+                            interactive
+                        >
+                            {hint}
+                        </Tooltip>
+                    ))}
 
                     {nullable(value, () => (
                         <Link className={classes.DatePickerResetControl} onClick={onReset} view="secondary">
@@ -504,6 +509,7 @@ export const DatePicker: React.FC<React.PropsWithChildren<DatePickerProps>> = ({
                         className={classes.DatePickerWarningMessage}
                         iconLeft={<IconExclamationCircleSolid size="s" />}
                         text={warnText}
+                        weight="regular"
                     />
                 ))}
             </div>

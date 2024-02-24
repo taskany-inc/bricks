@@ -1,165 +1,64 @@
-import React, { useState } from 'react';
+import React, { ComponentProps, useState } from 'react';
 import { StoryFn, Meta } from '@storybook/react';
 
-import { nullable } from '../../utils';
+import { Text } from '../Text/Text';
+import { Table, TableCell, TableRow } from '../Table/Table';
 
-import { Dropdown, DropdownPanel, DropdownTrigger } from './Dropdown';
+import { Dropdown as DropdownProvider, DropdownPanel, DropdownTrigger } from './Dropdown';
 
-type Story = StoryFn<typeof Dropdown>;
+type Story = StoryFn<typeof DropdownProvider>;
 
-const story: Meta<typeof Dropdown> = {
+const story: Meta<typeof DropdownProvider> = {
     title: '@harmony/Dropdown',
-    component: Dropdown,
+    component: DropdownProvider,
     args: {},
 };
 
 export default story;
 
-const itemStyles: React.CSSProperties = {
-    width: '100%',
-    whiteSpace: 'nowrap',
-    wordBreak: 'break-all',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-};
+const text =
+    'Lorem ipsum dolor sit amet consectetur adipisicing elit. In asperiores laboriosam, ipsum esse cum dolorem exercitationem molestiae.';
 
-const Item: React.FC<React.PropsWithChildren<{ muted?: boolean; onClick?: () => void }>> = ({
-    muted,
-    children,
-    onClick,
-}) => {
+const Dropdown = ({ view, error }: { view?: ComponentProps<typeof DropdownTrigger>['view']; error?: boolean }) => {
+    const [isOpen, setIsOpen] = useState(false);
     return (
-        <div onClick={onClick} style={{ color: muted ? 'var(--gray-700)' : 'var(--gray-300)', ...itemStyles }}>
-            {children}
-        </div>
+        <DropdownProvider isOpen={isOpen} onClose={() => setIsOpen(false)}>
+            <DropdownTrigger onClick={() => setIsOpen(true)} view={view} error={error}>
+                <Text size="s">Q4/2023</Text>
+            </DropdownTrigger>
+            <DropdownPanel width={200}>{text}</DropdownPanel>
+        </DropdownProvider>
     );
 };
 
-const List: React.FC<React.PropsWithChildren> = ({ children }) => {
-    return <div style={{ padding: '0 var(--gap-xs)' }}>{children}</div>;
-};
+const views = ['default', 'outline', 'fill'] as const;
 
-const data = Array.from({ length: 10 }, (_, i) => ({
-    id: i + 1,
-    title: `Very longest item title ${i + 1}`,
-}));
-
-export const Default: Story = (args) => {
-    const [selected, setSelected] = useState<string | null>(null);
+export const Default: Story = () => {
     return (
-        <Dropdown {...args}>
-            <DropdownTrigger label="Item" style={{ width: '200px' }}>
-                {nullable(
-                    selected,
-                    (value) => (
-                        <Item>{value}</Item>
-                    ),
-                    <Item muted>No selected</Item>,
-                )}
-            </DropdownTrigger>
-            <DropdownPanel style={{ width: '200px' }}>
-                <List>
-                    {data.map((val) => (
-                        <Item
-                            key={String(val.id)}
-                            muted={selected !== val.title}
-                            onClick={() => setSelected(val.title)}
-                        >
-                            {val.title}
-                        </Item>
+        <>
+            <Table>
+                <TableRow>
+                    {views.map((view) => (
+                        <TableCell style={{ flex: 1 }}>
+                            <Text weight="bold">{view}</Text>
+                        </TableCell>
                     ))}
-                </List>
-            </DropdownPanel>
-        </Dropdown>
-    );
-};
-
-export const Outlined: Story = (args) => {
-    const [selected, setSelected] = useState<string | null>(null);
-    return (
-        <Dropdown {...args}>
-            <DropdownTrigger label="Item" view="outline" style={{ width: '200px' }}>
-                {nullable(
-                    selected,
-                    (value) => (
-                        <Item>{value}</Item>
-                    ),
-                    <Item muted>No selected</Item>,
-                )}
-            </DropdownTrigger>
-            <DropdownPanel style={{ width: '200px' }}>
-                <List>
-                    {data.map((val) => (
-                        <Item
-                            key={String(val.id)}
-                            muted={selected !== val.title}
-                            onClick={() => setSelected(val.title)}
-                        >
-                            {val.title}
-                        </Item>
+                </TableRow>
+                <TableRow>
+                    {views.map((view) => (
+                        <TableCell>
+                            <Dropdown view={view} />
+                        </TableCell>
                     ))}
-                </List>
-            </DropdownPanel>
-        </Dropdown>
-    );
-};
-
-export const DefaultWoLabel: Story = (args) => {
-    const [selected, setSelected] = useState<string | null>(null);
-    return (
-        <Dropdown {...args}>
-            <DropdownTrigger style={{ width: '200px' }}>
-                {nullable(
-                    selected,
-                    (value) => (
-                        <Item>{value}</Item>
-                    ),
-                    <Item muted>No selected</Item>,
-                )}
-            </DropdownTrigger>
-            <DropdownPanel style={{ width: '200px' }}>
-                <List>
-                    {data.map((val) => (
-                        <Item
-                            key={String(val.id)}
-                            muted={selected !== val.title}
-                            onClick={() => setSelected(val.title)}
-                        >
-                            {val.title}
-                        </Item>
+                </TableRow>
+                <TableRow>
+                    {views.map((view) => (
+                        <TableCell>
+                            <Dropdown view={view} error />
+                        </TableCell>
                     ))}
-                </List>
-            </DropdownPanel>
-        </Dropdown>
-    );
-};
-
-export const OutlinedWoLabel: Story = (args) => {
-    const [selected, setSelected] = useState<string | null>(null);
-    return (
-        <Dropdown {...args}>
-            <DropdownTrigger view="outline" style={{ width: '200px' }}>
-                {nullable(
-                    selected,
-                    (value) => (
-                        <Item>{value}</Item>
-                    ),
-                    <Item muted>No selected</Item>,
-                )}
-            </DropdownTrigger>
-            <DropdownPanel style={{ width: '200px' }}>
-                <List>
-                    {data.map((val) => (
-                        <Item
-                            key={String(val.id)}
-                            muted={selected !== val.title}
-                            onClick={() => setSelected(val.title)}
-                        >
-                            {val.title}
-                        </Item>
-                    ))}
-                </List>
-            </DropdownPanel>
-        </Dropdown>
+                </TableRow>
+            </Table>
+        </>
     );
 };

@@ -42,7 +42,7 @@
     justify-content: space-between;
 }
 
-.DatePickerHintIcon {
+.DatePickerHintIcon.DatePickerHintIcon {
     color: var(--gray-900);
     background-color: var(--text-secondary);
 
@@ -53,6 +53,7 @@
     font-size: var(--font-size-xs);
     cursor: pointer;
     border-bottom: 1px dotted currentColor;
+    margin-left: auto;
 }
 
 .DatePickerInlineWrapper {
@@ -103,8 +104,8 @@
     padding: var(--gap-s);
     width: 100%;
     background-color: var(--gray-900);
-    display: inline-block;
-    vertical-align: middle;
-    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: start;
     border-radius: var(--radius-m);
 }

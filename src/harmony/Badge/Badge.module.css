@@ -12,11 +12,13 @@
 .BadgeIconLeft {
     margin-right: var(--gap-s);
     display: inline-flex;
+    line-height: 1;
 }
 
 .BadgeIconRight {
     margin-left: var(--gap-s);
     display: inline-flex;
+    line-height: 1;
 }
 
 .BadgeSizeS {

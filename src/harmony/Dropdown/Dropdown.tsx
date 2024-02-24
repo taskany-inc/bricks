@@ -1,150 +1,173 @@
-import React, { ReactNode, createContext, forwardRef, useCallback, useContext, useMemo, useRef, useState } from 'react';
+import React, {
+    ComponentProps,
+    MouseEventHandler,
+    MutableRefObject,
+    ReactNode,
+    createContext,
+    useCallback,
+    useContext,
+    useMemo,
+    useRef,
+} from 'react';
 import { IconDownSmallOutline, IconUpSmallOutline } from '@taskany/icons';
-import classNames from 'classnames';
+import cn from 'classnames';
 
 import { nullable } from '../../utils';
+import { Text } from '../Text/Text';
 import { Popup } from '../Popup/Popup';
+import { KeyCode, useKeyboard } from '../../hooks';
 
-import classes from './Dropdown.module.css';
-
-interface DropdownProps {
-    hideOnClick?: boolean;
-}
+import s from './Dropdown.module.css';
 
 interface DropdownContextProps {
     isOpen?: boolean;
-    toggle: () => void;
-    setTriggerRef: (el: HTMLElement | null) => void;
-    dropdownRef: React.MutableRefObject<HTMLElement | null>;
-    hideOnClick?: boolean;
+    panelRef?: MutableRefObject<HTMLDivElement | null>;
+    onClose?: () => void;
 }
 
-export const DropdownContext = createContext<DropdownContextProps>({
-    toggle: () => {},
-    setTriggerRef: () => {},
-    dropdownRef: { current: null },
+const DropdownContext = createContext<DropdownContextProps>({
+    isOpen: false,
 });
 
-export const Dropdown: React.FC<React.PropsWithChildren<DropdownProps>> = ({ children, hideOnClick }) => {
-    const [opened, setOpened] = useState(false);
-    const dropdownRef = useRef<HTMLElement | null>(null);
-    const setTriggerRef = useCallback((el: HTMLElement | null) => {
-        dropdownRef.current = el;
-    }, []);
-
-    const value = useMemo(
-        () => ({ isOpen: opened, toggle: () => setOpened((p) => !p), dropdownRef, setTriggerRef, hideOnClick }),
-        [opened, setTriggerRef],
-    );
-
-    return <DropdownContext.Provider value={value}>{children}</DropdownContext.Provider>;
-};
-
-interface DropdownTriggerProps extends React.HTMLAttributes<HTMLDivElement> {
-    label?: ReactNode;
-    error?: { message: string };
-    readonly?: boolean;
-    view?: 'default' | 'outline';
-    arrow?: boolean;
-    renderTrigger?: (props: {
-        isOpen?: boolean;
-        onClick?: () => void;
-        ref: (el: HTMLElement | null) => void;
-    }) => ReactNode;
+interface DropdownProps extends Omit<DropdownContextProps, 'panelRef'> {
+    children?: ReactNode;
 }
 
-const DropdownArrow: React.FC = () => (
-    <DropdownContext.Consumer>
-        {({ isOpen }) =>
-            nullable(
-                !isOpen,
-                () => <IconDownSmallOutline className={classes.DropdownTriggerIcon} size="xs" />,
-                <IconUpSmallOutline className={classes.DropdownTriggerIcon} size="xs" />,
-            )
-        }
-    </DropdownContext.Consumer>
-);
+export const Dropdown = ({ children, isOpen, onClose }: DropdownProps) => {
+    const panelRef = useRef<HTMLDivElement | null>(null);
 
-export const DropdownTrigger = forwardRef<HTMLDivElement, React.PropsWithChildren<DropdownTriggerProps>>(
-    ({ children, view, label, readonly, className, arrow = true, onClick, renderTrigger, ...attrs }, ref) => (
-        <DropdownContext.Consumer>
-            {({ isOpen, toggle, setTriggerRef }) => (
-                <>
-                    {nullable(
-                        renderTrigger,
-                        (render) =>
-                            render({
-                                onClick: !readonly ? toggle : undefined,
-                                ref: setTriggerRef,
-                                isOpen,
-                            }),
-                        <div
-                            className={classNames(
-                                classes.DropdownTrigger,
-                                {
-                                    [classes.DropdownTriggerOutline]: view === 'outline',
-                                },
-                                className,
-                            )}
-                            onClick={(e) => {
-                                if (readonly) return;
-                                onClick?.(e);
-                                toggle();
-                            }}
-                            {...attrs}
-                            ref={ref}
-                        >
-                            {nullable(label, (l) => (
-                                <span className={classes.DropdownTriggerLabel}>
-                                    {l}
-                                    {nullable(arrow, () => (
-                                        <DropdownArrow />
-                                    ))}
-                                </span>
-                            ))}
-                            <span className={classes.DropdownTriggerControl} ref={setTriggerRef}>
-                                <span className={classes.DropdownTriggerValue}>{children}</span>
-                                {nullable(!readonly && !label && arrow, () => (
-                                    <DropdownArrow />
-                                ))}
-                            </span>
-                        </div>,
-                    )}
-                </>
+    const ctx = useMemo(() => {
+        return {
+            isOpen,
+            panelRef,
+            onClose,
+        };
+    }, [isOpen, onClose]);
+
+    return <DropdownContext.Provider value={ctx}>{children}</DropdownContext.Provider>;
+};
+
+const DropdownArrow = ({ isOpen }: { isOpen?: boolean }) =>
+    nullable(!isOpen, () => <IconDownSmallOutline size="xs" />, <IconUpSmallOutline size="xs" />);
+
+const triggerViewMap = {
+    default: s.DropdownTrigger_view_default,
+    outline: s.DropdownTrigger_view_outline,
+    fill: s.DropdownTrigger_view_fill,
+};
+
+interface DropdownTriggerProps {
+    className?: string;
+    label?: ReactNode;
+    error?: boolean;
+    readOnly?: boolean;
+    disabled?: boolean;
+    view?: keyof typeof triggerViewMap;
+    children?: ReactNode;
+    renderTrigger?: ({
+        isOpen,
+        ref,
+    }: {
+        ref: DropdownContextProps['panelRef'];
+        isOpen: DropdownContextProps['isOpen'];
+    }) => ReactNode | null;
+    onClick?: MouseEventHandler<HTMLDivElement>;
+}
+
+export const DropdownTrigger = ({
+    children,
+    label,
+    view = 'default',
+    disabled,
+    error,
+    readOnly,
+    className,
+    onClick,
+    renderTrigger,
+    ...props
+}: DropdownTriggerProps) => {
+    const { panelRef, isOpen, onClose } = useContext(DropdownContext);
+
+    const [onESC] = useKeyboard([KeyCode.Escape], () => {
+        if (!isOpen) return;
+        onClose?.();
+    });
+
+    return nullable(
+        renderTrigger,
+        (render) => render({ isOpen, ref: panelRef }),
+        <div
+            className={cn(
+                s.DropdownTrigger,
+                { [triggerViewMap[view]]: !error },
+                { [s.DropdownTrigger_error]: error },
+                { [s.DropdownTrigger_error_outline]: error && view === 'outline' },
+                { [s.DropdownTrigger_disabled]: disabled },
+                { [s.DropdownTrigger_readOnly]: readOnly },
+                { [s.DropdownTriggerWithLabel]: Boolean(label) },
+                { [s.DropdownTrigger_active]: isOpen },
+                className,
             )}
-        </DropdownContext.Consumer>
-    ),
-);
+            tabIndex={0}
+            onClick={readOnly || disabled ? undefined : onClick}
+            ref={panelRef}
+            {...onESC}
+            {...props}
+        >
+            {nullable(label, () => (
+                <Text size="xs" className={cn(s.DropdownTriggerLabel, { [s.DropdownTriggerLabel_error]: error })}>
+                    {label}
+                </Text>
+            ))}
+            <div className={cn(s.DropdownTriggerValueWrapper)}>
+                <div className={cn(s.DropdownTriggerValue)}>{children}</div>
+                {nullable(!readOnly, () => (
+                    <DropdownArrow isOpen={isOpen} />
+                ))}
+            </div>
+        </div>,
+    );
+};
 
-interface DropdownPanelProps extends React.HTMLAttributes<HTMLDivElement> {}
+type PopupProps = ComponentProps<typeof Popup>;
+interface DropdownPanelProps extends Omit<PopupProps, 'minWidth' | 'maxWidth'> {
+    width?: PopupProps['minWidth'];
+}
 
-export const DropdownPanel: React.FC<
-    React.PropsWithChildren<DropdownPanelProps & React.ComponentProps<typeof Popup>>
-> = ({ className, children, placement = 'bottom', onClick, offset = [0, 10], ...attrs }) => {
-    const { isOpen, toggle, dropdownRef, hideOnClick } = useContext(DropdownContext);
+const defaultOffset = [0, 4];
 
-    const handleClick = useCallback<React.MouseEventHandler<HTMLDivElement>>(
-        (event) => {
-            if (hideOnClick) {
-                toggle();
-            }
-            onClick?.(event);
+export const DropdownPanel = ({
+    children,
+    className,
+    onClickOutside,
+    width,
+    offset = defaultOffset,
+    placement = 'bottom',
+    ...props
+}: DropdownPanelProps) => {
+    const { panelRef, isOpen, onClose } = useContext(DropdownContext);
+
+    const onClick = useCallback(
+        (...args: Parameters<NonNullable<PopupProps['onClickOutside']>>) => {
+            onClickOutside?.(...args);
+            onClose?.();
         },
-        [hideOnClick],
+        [onClose, onClickOutside],
     );
 
     return (
         <Popup
-            visible={isOpen}
-            interactive
-            reference={dropdownRef}
-            placement={placement}
-            onClickOutside={toggle}
             arrow={false}
+            interactive
+            visible={isOpen}
+            reference={panelRef}
+            placement={placement}
             offset={offset}
-            {...attrs}
-            onClick={handleClick}
-            className={classNames(classes.DropdownPanel, className)}
+            onClickOutside={onClick}
+            className={cn(s.DropdownPanel, className)}
+            minWidth={width}
+            maxWidth={width}
+            {...props}
         >
             {children}
         </Popup>
