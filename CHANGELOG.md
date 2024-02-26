@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.16.1](https://github.com/taskany-inc/bricks/compare/v5.16.0...v5.16.1) (2024-02-26)
+
+
+### Bug Fixes
+
+* **Harmony:** change input wrapper class ([08e15ee](https://github.com/taskany-inc/bricks/commit/08e15ee3d86960f918c1aeb7e5cddf7082416074))
+
 ## [5.16.0](https://github.com/taskany-inc/bricks/compare/v5.15.0...v5.16.0) (2024-02-22)
 
 
