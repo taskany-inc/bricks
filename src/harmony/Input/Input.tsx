@@ -66,10 +66,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         return (
             <div
                 className={cn(
-                    s.Wrapper,
+                    s.InputWrapper,
                     { [s.InputWrapper_brick]: brick },
-                    { [s.Wrapper_icon_left]: iconLeft },
-                    { [s.Wrapper_icon_right]: iconRight },
+                    { [s.InputWrapper_icon_left]: iconLeft },
+                    { [s.InputWrapper_icon_right]: iconRight },
                     className,
                 )}
                 style={wrapperStyles}

@@ -86,16 +86,16 @@
     color: var(--danger-400);
 }
 
-.Wrapper {
+.InputWrapper {
     position: relative;
     display: flex;
 }
 
-.Wrapper_icon_left .Input {
+.InputWrapper_icon_left .Input {
     padding-left: var(--gap-l);
 }
 
-.Wrapper_icon_right .Input {
+.InputWrapper_icon_right .Input {
     padding-right: var(--gap-l);
 }
 
