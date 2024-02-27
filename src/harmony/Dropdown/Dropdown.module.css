@@ -73,10 +73,15 @@
     background-color: var(--button-secondary-active);
 }
 
-.DropdownTrigger.DropdownTrigger_disabled {
-    background-color: transparent;
+.DropdownTrigger_disabled,
+.DropdownTrigger_disabled:hover,
+.DropdownTrigger_disabled:active {
     color: var(--text-ghost);
     cursor: not-allowed;
+}
+
+.DropdownTrigger_view_default.DropdownTrigger_disabled {
+    background-color: transparent;
 }
 
 .DropdownTrigger_view_outline.DropdownTrigger_disabled {
@@ -87,10 +92,15 @@
     background-color: var(--button-secondary);
 }
 
-.DropdownTrigger.DropdownTrigger_readOnly {
-    background-color: transparent;
+.DropdownTrigger_readOnly,
+.DropdownTrigger_readOnly:hover,
+.DropdownTrigger_readOnly:active {
     color: var(--text-secondary);
     cursor: default;
+}
+
+.DropdownTrigger_view_default.DropdownTrigger_readOnly {
+    background-color: transparent;
 }
 
 .DropdownTrigger_view_outline.DropdownTrigger_readOnly {

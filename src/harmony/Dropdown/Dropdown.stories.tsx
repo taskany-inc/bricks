@@ -1,4 +1,4 @@
-import React, { ComponentProps, useState } from 'react';
+import React, { ComponentProps, ReactNode, useState } from 'react';
 import { StoryFn, Meta } from '@storybook/react';
 
 import { Text } from '../Text/Text';
@@ -19,11 +19,27 @@ export default story;
 const text =
     'Lorem ipsum dolor sit amet consectetur adipisicing elit. In asperiores laboriosam, ipsum esse cum dolorem exercitationem molestiae.';
 
-const Dropdown = ({ view, error }: { view?: ComponentProps<typeof DropdownTrigger>['view']; error?: boolean }) => {
+const Dropdown = ({
+    view,
+    error,
+    disabled,
+    readOnly,
+}: {
+    view?: ComponentProps<typeof DropdownTrigger>['view'];
+    error?: boolean;
+    disabled?: boolean;
+    readOnly?: boolean;
+}) => {
     const [isOpen, setIsOpen] = useState(false);
     return (
         <DropdownProvider isOpen={isOpen} onClose={() => setIsOpen(false)}>
-            <DropdownTrigger onClick={() => setIsOpen(true)} view={view} error={error}>
+            <DropdownTrigger
+                onClick={() => setIsOpen(true)}
+                view={view}
+                error={error}
+                disabled={disabled}
+                readOnly={readOnly}
+            >
                 <Text size="s">Q4/2023</Text>
             </DropdownTrigger>
             <DropdownPanel width={200}>{text}</DropdownPanel>
@@ -31,31 +47,68 @@ const Dropdown = ({ view, error }: { view?: ComponentProps<typeof DropdownTrigge
     );
 };
 
+const Cell = ({ children }: { children?: ReactNode }) => <TableCell style={{ flex: 1 }}>{children}</TableCell>;
+
 const views = ['default', 'outline', 'fill'] as const;
 
 export const Default: Story = () => {
     return (
         <>
-            <Table>
+            <Table style={{ gap: 20 }}>
                 <TableRow>
+                    <Cell></Cell>
                     {views.map((view) => (
-                        <TableCell style={{ flex: 1 }}>
+                        <Cell>
                             <Text weight="bold">{view}</Text>
-                        </TableCell>
+                        </Cell>
                     ))}
                 </TableRow>
                 <TableRow>
+                    <Cell>only view</Cell>
                     {views.map((view) => (
-                        <TableCell>
+                        <Cell>
                             <Dropdown view={view} />
-                        </TableCell>
+                        </Cell>
                     ))}
                 </TableRow>
                 <TableRow>
+                    <Cell>readOnly</Cell>
                     {views.map((view) => (
-                        <TableCell>
+                        <Cell>
+                            <Dropdown view={view} readOnly />
+                        </Cell>
+                    ))}
+                </TableRow>
+                <TableRow>
+                    <Cell>disabled</Cell>
+                    {views.map((view) => (
+                        <Cell>
+                            <Dropdown view={view} disabled />
+                        </Cell>
+                    ))}
+                </TableRow>
+                <TableRow>
+                    <Cell>error</Cell>
+                    {views.map((view) => (
+                        <Cell>
                             <Dropdown view={view} error />
-                        </TableCell>
+                        </Cell>
+                    ))}
+                </TableRow>
+                <TableRow>
+                    <Cell>error + readOnly</Cell>
+                    {views.map((view) => (
+                        <Cell>
+                            <Dropdown view={view} error readOnly />
+                        </Cell>
+                    ))}
+                </TableRow>
+                <TableRow>
+                    <Cell>error + disabled</Cell>
+                    {views.map((view) => (
+                        <Cell>
+                            <Dropdown view={view} error disabled />
+                        </Cell>
                     ))}
                 </TableRow>
             </Table>
