@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.16.2](https://github.com/taskany-inc/bricks/compare/v5.16.1...v5.16.2) (2024-02-27)
+
+
+### Bug Fixes
+
+* **Dropdown:** trigger view (error + readOnly) ([cb9cd00](https://github.com/taskany-inc/bricks/commit/cb9cd00d591be4f05546dc17283debb271331855))
+
 ## [5.16.1](https://github.com/taskany-inc/bricks/compare/v5.16.0...v5.16.1) (2024-02-26)
 
 
