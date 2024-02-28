@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.17.0](https://github.com/taskany-inc/bricks/compare/v5.16.2...v5.17.0) (2024-02-28)
+
+
+### Features
+
+* custom logo support ([9482fd2](https://github.com/taskany-inc/bricks/commit/9482fd250ea9155a89629e404df17b561abdf592))
+
 ## [5.16.2](https://github.com/taskany-inc/bricks/compare/v5.16.1...v5.16.2) (2024-02-27)
 
 
