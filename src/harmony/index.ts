@@ -24,6 +24,7 @@ export * from './State/State';
 export * from './Switch/Switch';
 export * from './Table/Table';
 export * from './Tag/Tag';
+export * from './TaskanyLogo/TaskanyLogo';
 export * from './Text/Text';
 export * from './Textarea/Textarea';
 export * from './Tooltip/Tooltip';
