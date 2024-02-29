@@ -200,12 +200,6 @@ const createYearRange = (year: number) => ({
     end: new Date(year, 11, 31),
 });
 
-const dateToShortISO = (date?: Date) => {
-    const current = getDateObject(date);
-
-    return `${current.year}-${String(current.month).padStart(2, '0')}-${String(current.day).padStart(2, '0')}`;
-};
-
 const calculateReturnedValue = ({
     collapseFields,
     selectedYear,
@@ -394,8 +388,6 @@ export const DatePicker: React.FC<React.PropsWithChildren<DatePickerProps>> = ({
         ...mapValueToPartialState(defaultValue),
     });
 
-    const prevDatePickerValue = useRef(defaultValue);
-
     const setSelectedYear = useCallback((year: number) => {
         dispatch({
             type: 'set selected year',
@@ -436,25 +428,8 @@ export const DatePicker: React.FC<React.PropsWithChildren<DatePickerProps>> = ({
             return;
         }
 
-        const prevValue = prevDatePickerValue.current;
-
-        const newStartDate = value.range.start ? dateToShortISO(value.range.start) : null;
-        const prevStartDate = prevValue?.range.start ? dateToShortISO(prevValue.range.start) : null;
-
-        const newEndDate = value.range.end ? dateToShortISO(value.range.end) : null;
-        const prevEndDate = prevValue?.range.end ? dateToShortISO(prevValue.range.end) : null;
-
-        if (
-            value?.type !== prevValue?.type ||
-            value?.alias !== prevValue?.alias ||
-            prevStartDate !== newStartDate ||
-            prevEndDate !== newEndDate
-        ) {
-            onChange(value);
-
-            prevDatePickerValue.current = value;
-        }
-    }, [defaultValue, value]);
+        onChange(value);
+    }, [value]);
 
     const onReset = useCallback(() => {
         dispatch({ type: 'reset' });
@@ -547,7 +522,8 @@ export const DatePickerYear: React.FC<DatePickerYearProps> = ({ translates, max,
 
     const handleClick = useCallback(() => {
         setCollapseFields('Year');
-    }, [selectedYear, setSelectedYear, currentYear, setCollapseFields]);
+        setSelectedYear(currentYear);
+    }, [setSelectedYear, currentYear, setCollapseFields]);
 
     const switchYears = useCallback(
         (diff: 1 | -1) => {
@@ -632,7 +608,7 @@ export const DatePickerQuarter: React.FC<DatePickerQuarterProps> = ({
         setCollapseFields('Quarter');
         setSelectedQuarter(currentQuarter);
         setSelectedYear(currentYear);
-    }, [setCollapseFields]);
+    }, [setCollapseFields, currentQuarter, currentYear]);
 
     const handleSelectQuarterAlias = useCallback(
         (alias: QuarterAlias) => {
@@ -742,17 +718,20 @@ export const DatePickerStrict: React.FC<DatePickerStrictProps> = ({
     const handleClick = useCallback(() => {
         setCollapseFields('Strict');
         setStrictDate(currentDate);
-    }, [setCollapseFields, currentDate]);
+    }, [setCollapseFields, setStrictDate, currentDate]);
 
     const handleChangeDatePart = useCallback(
         (part: (typeof dateFragments)[number]): React.ChangeEventHandler<HTMLInputElement> => {
             return (event) => {
-                const value = parseInt(event.target.value, 10);
+                if (event.target.value.length === event.target.maxLength + 1) {
+                    return;
+                }
 
                 if (event.target.value.length === event.target.maxLength) {
                     switchInputFocus(part);
                 }
 
+                const value = parseInt(event.target.value, 10);
                 setDateValues((prev) => ({ ...prev, [part]: value }));
             };
         },

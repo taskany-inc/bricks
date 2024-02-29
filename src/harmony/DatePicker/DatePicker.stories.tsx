@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ComponentProps, useState } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 
 import { DatePicker, DatePickerQuarter, DatePickerStrict, DatePickerYear } from './DatePicker';
@@ -36,8 +36,9 @@ export default meta;
 
 export const Default: StoryObj<typeof DatePicker> = {
     render(props) {
+        const [date, setDate] = useState<ComponentProps<typeof DatePicker>['value']>();
         return (
-            <DatePicker {...props}>
+            <DatePicker {...props} value={date} onChange={setDate}>
                 <DatePickerYear translates={translates.year} />
                 <DatePickerQuarter translates={translates.quarter} />
                 <DatePickerStrict
