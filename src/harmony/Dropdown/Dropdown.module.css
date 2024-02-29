@@ -132,6 +132,13 @@
 .DropdownTriggerValue {
     width: 100%;
     padding: 0 var(--gap-s);
+    box-sizing: border-box;
+}
+
+.DropdownTriggerValue_interactive {
+    /* 100% - width of icon size xs */
+    max-width: calc(100% - var(--gap-m));
+    padding-right: 0;
 }
 
 .DropdownPanel {

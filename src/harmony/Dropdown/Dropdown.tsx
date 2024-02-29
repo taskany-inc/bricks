@@ -120,7 +120,9 @@ export const DropdownTrigger = ({
                 </Text>
             ))}
             <div className={cn(s.DropdownTriggerValueWrapper)}>
-                <div className={cn(s.DropdownTriggerValue)}>{children}</div>
+                <div className={cn(s.DropdownTriggerValue, { [s.DropdownTriggerValue_interactive]: !readOnly })}>
+                    {children}
+                </div>
                 {nullable(!readOnly, () => (
                     <DropdownArrow isOpen={isOpen} />
                 ))}
