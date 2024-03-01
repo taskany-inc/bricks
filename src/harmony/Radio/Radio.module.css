@@ -11,6 +11,11 @@
     cursor: not-allowed;
 }
 
+.RadioReadonly {
+    cursor: default;
+    pointer-events: none;
+}
+
 .RadioInput {
     appearance: none;
     cursor: pointer;

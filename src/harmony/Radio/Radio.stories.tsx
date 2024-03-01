@@ -11,6 +11,9 @@ export default {
     argTypes: {
         onChange: { action: 'onChange' },
     },
+    args: {
+        readOnly: false,
+    },
 } as Meta<typeof Radio>;
 
 export const Default: StoryFn<typeof Radio> = (args) => (
