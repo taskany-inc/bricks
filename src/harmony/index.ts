@@ -5,6 +5,7 @@ export * from './Button/Button';
 export * from './Checkbox/Checkbox';
 export * from './Circle/Circle';
 export * from './CircleProgressBar/CircleProgressBar';
+export * from './Counter/Counter';
 export * from './DatePicker/DatePicker';
 export * from './Dot/Dot';
 export * from './Dropdown/Dropdown';

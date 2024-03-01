@@ -1,0 +1,81 @@
+:root {
+    --counter-color-default: var(--gray-800);
+    --counter-color-primary: var(--primary-600);
+    --counter-color-danger: var(--danger-600);
+    --counter-color-warn: var(--warn-600);
+    --counter-color-checked: var(--blue-900);
+    --counter-color-ghost: var(--gray-900);
+    --counter-color-default-text: var(--text-primary);
+    --counter-color-primary-text: var(--primary-950);
+    --counter-color-danger-text: var(--danger-950);
+    --counter-color-warn-text: var(--warn-950);
+    --counter-color-checked-text: var(--blue-50);
+    --counter-color-ghost-text: var(--text-secondary);
+    --counter-color-active-default: var(--gray-900);
+    --counter-color-active-primary: var(--primary-700);
+    --counter-color-active-danger: var(--danger-700);
+    --counter-color-active-warn: var(--warn-700);
+    --counter-color-active-checked: var(--blue-800);
+    --counter-color-active-ghost: var(--gray-700);
+}
+
+.Counter {
+    display: inline-block;
+    text-align: center;
+    transition: background-color var(--transition-time) var(--transition-func), color var(--transition-time) var(--transition-func);
+    color: inherit;
+    min-width: 2ch;
+}
+
+.CounterSize_xs {
+    font-size: var(--font-size-xs);
+    padding: var(--gap-xs);
+    border-radius: var(--radius-l);
+}
+.CounterSize_s {
+    font-size: var(--font-size-s);
+    padding: var(--gap-xs);
+    border-radius: var(--radius-l);
+}
+.CounterSize_m {
+    font-size: var(--font-size-m);
+    padding: var(--gap-xs);
+    border-radius: var(--radius-xl);
+}
+
+.CounterView_default {
+    background-color: var(--counter-color-default);
+    color: var(--counter-color-default-text);
+}
+.CounterView_primary {
+    background-color: var(--counter-color-primary);
+    color: var(--counter-color-primary-text);
+}
+.CounterView_danger {
+    background-color: var(--counter-color-danger);
+    color: var(--counter-color-danger-text);
+}
+.CounterView_warn {
+    background-color: var(--counter-color-warn);
+    color: var(--counter-color-warn-text);
+}
+.CounterView_checked {
+    background-color: var(--counter-color-checked);
+    color: var(--counter-color-checked-text);
+}
+
+.CounterActive.CounterView_default {
+    background-color: var(--counter-color-active-default);
+}
+.CounterActive.CounterView_primary {
+    background-color: var(--counter-color-active-primary);
+}
+.CounterActive.CounterView_danger {
+    background-color: var(--counter-color-active-danger);
+}
+.CounterActive.CounterView_warn {
+    background-color: var(--counter-color-active-warn);
+}
+.CounterActive.CounterView_checked {
+    background-color: var(--counter-color-active-checked);
+}
