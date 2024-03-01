@@ -11,14 +11,15 @@ interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
-    ({ label, className, disabled, view = 'default', ...rest }, ref) => (
+    ({ label, className, view = 'default', ...rest }, ref) => (
         <label
             className={cn(classes.Checkbox, className, {
-                [classes.CheckboxDisabled]: disabled,
+                [classes.CheckboxDisabled]: rest.disabled,
                 [classes.CheckboxRounded]: view === 'rounded',
+                [classes.CheckboxReadonly]: rest.readOnly,
             })}
         >
-            <input className={cn(classes.CheckboxInput)} type="checkbox" ref={ref} disabled={disabled} {...rest} />
+            <input className={cn(classes.CheckboxInput)} type="checkbox" ref={ref} {...rest} />
             {nullable(label, (labelComponent) => (
                 <span className={cn(classes.CheckboxLabel)}>{labelComponent}</span>
             ))}
