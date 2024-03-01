@@ -1,0 +1,32 @@
+.FlatProgressBar {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 4px;
+}
+
+.FlatProgressBarStrokeWrapper {
+    flex: 1 0 auto;
+    height: 4px;
+    position: relative;
+    background-color: var(--gray-900);
+}
+
+.FlatProgressBarStroke {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--primary-500);
+    height: 4px;
+    transition: width var(--transition-time) var(--transition-func);
+}
+
+.FlatProgressBarValue {
+    color: var(--primary-500);
+    margin-left: auto;
+}
+
+.FlatProgressBarPill .FlatProgressBarStrokeWrapper,
+.FlatProgressBarPill .FlatProgressBarStroke {
+    border-radius: 2px;
+}
