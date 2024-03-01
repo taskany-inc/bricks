@@ -52,3 +52,13 @@ export const IconedControlsWithInitialValue: Story = (props) => <IconedContorls 
 IconedControlsWithInitialValue.args = {
     value: 'list',
 };
+
+export const ControlsWithCounter: Story = (props) => {
+    return (
+        <Switch {...props}>
+            <SwitchControl count={5} text="List" value="list" />
+            <SwitchControl count={10} text="Kanban" value="kanban" />
+            <SwitchControl count={7} text="Updates" value="updates" />
+        </Switch>
+    );
+};

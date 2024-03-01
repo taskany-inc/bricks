@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { nullable } from '../../utils';
 import { Button } from '../Button/Button';
 import { useMounted, useEventCallback } from '../../hooks';
+import { Counter } from '../Counter/Counter';
 
 import classes from './Switch.module.css';
 
@@ -31,11 +32,12 @@ const SwitchContext = createContext<SwitchContextProps>({
     },
 });
 
-interface SwitchControlProps extends React.ComponentProps<typeof Button> {
+interface SwitchControlProps extends Omit<React.ComponentProps<typeof Button>, 'view'> {
     value: string;
+    count?: number;
 }
 
-export const SwitchControl: React.FC<SwitchControlProps> = ({ text, value, className, ...props }) => {
+export const SwitchControl: React.FC<SwitchControlProps> = ({ text, value, className, count, ...props }) => {
     const { active, register, onChange, name } = useContext(SwitchContext);
     const controlRef = useRef<HTMLButtonElement>(null);
 
@@ -68,6 +70,13 @@ export const SwitchControl: React.FC<SwitchControlProps> = ({ text, value, class
             view="ghost"
             text={text}
             {...props}
+            iconRight={nullable(
+                count != null,
+                () => (
+                    <Counter size={props.size} count={count as number} active={active === value} />
+                ),
+                props.iconRight,
+            )}
             onClick={handleClick}
         />
     );
