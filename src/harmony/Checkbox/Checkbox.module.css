@@ -11,9 +11,13 @@
     color: var(--text-ghost);
 }
 
+.CheckboxReadonly {
+    cursor: default;
+    pointer-events:none;
+}
+
 .CheckboxInput {
     appearance: none;
-    cursor: pointer;
     background-color: transparent;
     border: 1px solid var(--check-default);
     flex: 0 0 1rem;

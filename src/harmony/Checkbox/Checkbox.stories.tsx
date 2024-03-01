@@ -13,6 +13,7 @@ export default {
     },
     args: {
         name: 'checkbox',
+        readOnly: false,
     },
 } as Meta<typeof Checkbox>;
 
