@@ -2,6 +2,7 @@ import React, { ReactNode, useState } from 'react';
 import type { Meta } from '@storybook/react';
 
 import { Dropdown, DropdownPanel, DropdownTrigger } from '../Dropdown/Dropdown';
+import { Counter } from '../Counter/Counter';
 
 import { Button } from './Button';
 
@@ -261,7 +262,7 @@ const ButtonsStretched = () => {
     );
 };
 
-const OnyIcons = () => {
+const OnlyIcons = () => {
     return (
         <>
             <Title>
@@ -398,6 +399,19 @@ const ButtonsChecked = () => {
     );
 };
 
+const CountButtons = () => (
+    <>
+        <Title>Count Buttons</Title>
+        <Layout gridTemplateColumns="repeat(6, min-content)" gap={4}>
+            <Button text="Button" view="default" iconRight={<Counter view="default" count={6} size="s" />} />
+            <Button text="Button" view="primary" iconRight={<Counter view="primary" count={6} size="s" />} />
+            <Button text="Button" view="ghost" iconRight={<Counter view="ghost" count={6} size="s" />} />
+            <Button text="Button" view="danger" iconRight={<Counter view="danger" count={6} size="s" />} />
+            <Button text="Button" view="warning" iconRight={<Counter view="warning" count={6} size="s" />} />
+        </Layout>
+    </>
+);
+
 export const AllButtons = () => {
     return (
         <>
@@ -405,11 +419,21 @@ export const AllButtons = () => {
             <Buttons />
             <ButtonsWithIcons />
             <ButtonsStretched />
-            <OnyIcons />
+            <OnlyIcons />
             <ButtonGroups />
             <ButtonsChecked />
+            <CountButtons />
         </>
     );
 };
 
-export { ButtonSizes, Buttons, ButtonsWithIcons, ButtonsStretched, OnyIcons, ButtonGroups, ButtonsChecked };
+export {
+    ButtonSizes,
+    Buttons,
+    ButtonsWithIcons,
+    ButtonsStretched,
+    OnlyIcons,
+    ButtonGroups,
+    ButtonsChecked,
+    CountButtons,
+};
