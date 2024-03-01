@@ -661,6 +661,18 @@ const valueLen = {
     year: 4,
 };
 
+function getBrickByIndex(i: number, max: number): Required<React.ComponentProps<typeof Input>>['brick'] {
+    if (i === 0) {
+        return 'right';
+    }
+
+    if (i === max) {
+        return 'left';
+    }
+
+    return 'center';
+}
+
 export const DatePickerStrict: React.FC<DatePickerStrictProps> = ({
     translates,
     className,
@@ -762,26 +774,26 @@ export const DatePickerStrict: React.FC<DatePickerStrictProps> = ({
                 collapse={!date}
                 onClick={handleClick}
             >
-                <div
-                    className={classNames(classes.DatePickerInlineWrapper, classes.DatePickerInlineGap)}
-                    ref={wrapperRef}
-                >
+                <div className={classNames(classes.DatePickerInlineWrapper)} ref={wrapperRef}>
                     {dateFragments.map((part, index) => {
                         return (
                             <React.Fragment key={part}>
                                 <Input
-                                    className={classNames(
-                                        part === 'year'
-                                            ? classes.DatePickerYearInput
-                                            : classes.DatePickerStrictDateInput,
-                                    )}
+                                    className={classNames(classes.DatePickerStrictDateInput, {
+                                        [classes.DatePickerYearInput]: part === 'year',
+                                    })}
+                                    brick={getBrickByIndex(index, dateFragments.length - 1)}
                                     type="number"
                                     name={inputNames['date-picker-strict-date'][part]}
                                     maxLength={valueLen[part]}
                                     value={dateValues[part]}
                                     onChange={handleChangeDatePart(part)}
                                 />
-                                {nullable(index !== dateFragments.length - 1, () => splitter)}
+                                {nullable(index !== dateFragments.length - 1, () => (
+                                    <Text as="span" size="s" className={classes.DatePickerStrictInputSplitter}>
+                                        {splitter}
+                                    </Text>
+                                ))}
                             </React.Fragment>
                         );
                     })}

@@ -81,9 +81,26 @@
     text-align: center;
 }
 
+.DatePickerStrictDateInput input {
+    text-align: center;
+}
+
+.DatePickerStrictDateInput + .DatePickerStrictDateInput input {
+    padding-left: 0;
+}
+
+.DatePickerStrictDateInput.DatePickerStrictDateInput {
+    margin-left: 0;
+}
+
 .DatePickerYearInput {
     width: 6ch;
     text-align: center;
+    
+}
+
+.DatePickerYearInput.DatePickerYearInput {
+    margin-left: 0;
 }
 
 .DatePickerInlineWrapper + .DatePickerInlineWrapper,
@@ -108,4 +125,13 @@
     align-items: center;
     justify-content: start;
     border-radius: var(--radius-m);
+}
+
+.DatePickerStrictInputSplitter {
+    display: inline-flex;
+    padding: var(--gap-xs);
+    background-color: var(--input-fill-borderless);
+    color: var(--text-secondary);
+    height: 32px;
+    box-sizing: border-box;
 }
