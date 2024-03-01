@@ -9,6 +9,7 @@ export * from './Counter/Counter';
 export * from './DatePicker/DatePicker';
 export * from './Dot/Dot';
 export * from './Dropdown/Dropdown';
+export * from './FlatProgressBar/FlatProgressBar';
 export * from './FormControl/FormControl';
 export * from './FormEditor/FormEditor';
 export * from './GlobalSearch/GlobalSearch';
