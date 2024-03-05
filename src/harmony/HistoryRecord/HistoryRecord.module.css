@@ -1,0 +1,100 @@
+.HistoryRecord {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--gap-s);
+    position: relative;
+}
+
+.HistoryRecord:not(:last-child) {
+    padding-bottom: var(--gap-s);
+}
+
+.HistoryRecord::before {
+    content: '';
+    position: absolute;
+    left: 1rem;
+    top: 0;
+    bottom: 0;
+    border-left: 1px solid var(--gray-900);
+    transform: translateX(-50%);
+}
+
+.HistoryRecord:first-child:not(.HistoryRecordCollapse .HistoryRecord):before {
+    top: 1rem;
+}
+
+.HistoryRecord:last-child:not(.HistoryRecordCollapse .HistoryRecord):before {
+    bottom: calc(100% - 1rem);
+}
+
+.HistoryRecordContent {
+    flex: 1;
+}
+
+.HistoryRecordTitleWrapper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+}
+
+.HistoryRecordTime {
+    margin-left: auto;
+    color: var(--text-secondary);
+}
+
+.HistoryRecordAuthorsGroup {
+    padding-top: var(--gap-xs);
+    display: inline-flex;
+    justify-content: flex-end;
+    position: relative;
+    z-index: 1;
+    width: 2rem; /* same width as UserImage */
+    transition: width var(--transition-func) var(--transition-time);
+}
+
+.HistoryRecordUsersGroupItem {
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid var(--background-color);
+    border-radius: 50%;
+    box-sizing: border-box;
+    transition: margin-left var(--transition-func) var(--transition-time);
+}
+
+.HistoryRecordUsersGroupItem:not(:first-child) {
+    margin-left: calc(-2rem + 2px);
+}
+
+.HistoryRecord:hover .HistoryRecordUsersGroupItem:not(:first-child) {
+    margin-left: -0.75rem;
+}
+
+.HistoryRecord:hover .HistoryRecordAuthorsGroup:is(.HistoryRecordAuthorsGroupExpandeble) {
+    width: calc(1.25rem * var(--users-count) + 0.75rem);
+    justify-content: flex-start;
+}
+
+.HistoryRecordCollapse {
+    overflow: hidden;
+}
+.HistoryRecordCollapsePanel {
+    box-sizing: border-box;
+    transition: height var(--transition-func) var(--transition-time);
+}
+
+.HistoryRecordCollapsePanel .HistoryRecord {
+    padding-bottom: var(--gap-s);
+}
+
+.HistoryRecordDot {
+    margin-left: var(--gap-m);
+    margin-right: var(--gap-s);
+    transform: translateX(-50%);
+    width: 0.75rem;
+    height: 0.75rem;
+    --dot-backgound: var(--gray-900);
+}
+
+.HistoryRecordCollapse + .HistoryRecord {
+    align-items: center;
+}
