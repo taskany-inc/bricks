@@ -5,20 +5,31 @@
 
     letter-spacing: -1.5px;
     font-weight: 500;
-    font-size: 0.625rem;
+    
     line-height: 1.5rem;
     user-select: none;
-    width: 1.5rem;
-    min-width: 1.5rem;
-    height: 1.5rem;
 
     background-image: linear-gradient(to right, var(--circle-main-color), var(--circle-secondary-color));
 }
 
 .CircleDarken {
-    color: white;
+    color: var(--base-white);
 }
 
 .CircleLighten {
-    color: black;
+    color: var(--base-dark);
+}
+
+.CircleSizeS {
+    font-size: 0.625rem;
+    width: 1.5rem;
+    min-width: 1.5rem;
+    height: 1.5rem;
+}
+
+.CircleSizeM {
+    font-size: 0.825rem;
+    width: 2rem;
+    min-width: 2rem;
+    height: 2rem;
 }

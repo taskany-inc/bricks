@@ -7,10 +7,17 @@ import classes from './Circle.module.css';
 
 interface CircleProps extends React.HTMLAttributes<HTMLSpanElement> {
     string: string;
+    size?: 's' | 'm';
     className?: string;
 }
 
-export const Circle: React.FC<React.PropsWithChildren<CircleProps>> = ({ children, string, className, ...attrs }) => {
+export const Circle: React.FC<React.PropsWithChildren<CircleProps>> = ({
+    children,
+    string,
+    className,
+    size = 's',
+    ...attrs
+}) => {
     const mainColor = stringToColor(string);
     const isDark = isColorDark(mainColor);
 
@@ -28,6 +35,8 @@ export const Circle: React.FC<React.PropsWithChildren<CircleProps>> = ({ childre
             className={cn(classes.Circle, className, {
                 [classes.CircleLighten]: !isDark,
                 [classes.CircleDarken]: isDark,
+                [classes.CircleSizeS]: size === 's',
+                [classes.CircleSizeM]: size === 'm',
             })}
             {...attrs}
             style={colorValue}
