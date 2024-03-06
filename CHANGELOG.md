@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.18.1](https://github.com/taskany-inc/bricks/compare/v5.18.0...v5.18.1) (2024-03-06)
+
+
+### Bug Fixes
+
+* reexport useUrlParams from index ([105d779](https://github.com/taskany-inc/bricks/commit/105d7799feae6cdfdd643a7f57dba02bbf96ede6))
+
 ## [5.18.0](https://github.com/taskany-inc/bricks/compare/v5.17.1...v5.18.0) (2024-03-06)
 
 
