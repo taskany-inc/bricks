@@ -21,7 +21,7 @@
     color: var(--switch-text-hovered);
 }
 
-.SwitchControl:hover {
+.SwitchControl:not(:disabled):hover {
     background: transparent;
     color: var(--switch-text-hovered);
 }
