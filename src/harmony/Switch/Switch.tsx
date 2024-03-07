@@ -12,6 +12,7 @@ interface SwitchProps extends Omit<React.HTMLAttributes<HTMLInputElement>, 'onCh
     onChange?: (event: React.SyntheticEvent<HTMLButtonElement>) => void;
     name?: string;
     value?: string;
+    animated?: boolean;
 }
 
 interface SwitchContextProps {
@@ -21,6 +22,7 @@ interface SwitchContextProps {
     name?: string;
     switchActive: (next: string) => void;
     register: (value: string, node: HTMLButtonElement) => () => void;
+    animated?: boolean;
 }
 
 const SwitchContext = createContext<SwitchContextProps>({
@@ -38,7 +40,7 @@ interface SwitchControlProps extends Omit<React.ComponentProps<typeof Button>, '
 }
 
 export const SwitchControl: React.FC<SwitchControlProps> = ({ text, value, className, count, ...props }) => {
-    const { active, register, onChange, name } = useContext(SwitchContext);
+    const { active, register, onChange, name, animated } = useContext(SwitchContext);
     const controlRef = useRef<HTMLButtonElement>(null);
 
     useEffect(() => {
@@ -64,6 +66,7 @@ export const SwitchControl: React.FC<SwitchControlProps> = ({ text, value, class
             ref={controlRef}
             className={classNames(classes.SwitchControl, className, {
                 [classes.SwitchControl_active]: active === value,
+                [classes.SwitchControl_animated]: animated,
             })}
             name={name}
             value={value}
@@ -85,6 +88,7 @@ export const SwitchControl: React.FC<SwitchControlProps> = ({ text, value, class
 const defaultPinStyles = {};
 
 export const Switch: React.FC<PropsWithChildren<SwitchProps>> = ({
+    animated = true,
     children,
     value,
     name,
@@ -148,12 +152,16 @@ export const Switch: React.FC<PropsWithChildren<SwitchProps>> = ({
 
     return (
         <SwitchContext.Provider
-            value={{ active, switchActive, register, nodesMapRef, name, onChange: onChangeHandler }}
+            value={{ animated, active, switchActive, register, nodesMapRef, name, onChange: onChangeHandler }}
         >
             <div className={classNames(classes.Switch, className)} ref={wrapperRef} {...props}>
                 {children}
                 {nullable(mounted, () => (
-                    <span className={classes.SwitchPin} style={pinStyle} ref={pinRef} />
+                    <span
+                        className={classNames(classes.SwitchPin, { [classes.SwitchPin_animated]: animated })}
+                        style={pinStyle}
+                        ref={pinRef}
+                    />
                 ))}
             </div>
         </SwitchContext.Provider>
