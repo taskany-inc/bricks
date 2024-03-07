@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.18.3](https://github.com/taskany-inc/bricks/compare/v5.18.2...v5.18.3) (2024-03-07)
+
+
+### Bug Fixes
+
+* add classNames to Switch ([3b24fc7](https://github.com/taskany-inc/bricks/commit/3b24fc74a36a92002ff37b5c27dcdb8b97f0282c))
+
 ## [5.18.2](https://github.com/taskany-inc/bricks/compare/v5.18.1...v5.18.2) (2024-03-07)
 
 
