@@ -84,7 +84,14 @@ export const SwitchControl: React.FC<SwitchControlProps> = ({ text, value, class
 
 const defaultPinStyles = {};
 
-export const Switch: React.FC<PropsWithChildren<SwitchProps>> = ({ children, value, name, onChange, ...props }) => {
+export const Switch: React.FC<PropsWithChildren<SwitchProps>> = ({
+    children,
+    value,
+    name,
+    onChange,
+    className,
+    ...props
+}) => {
     const [active, setActive] = useState(() => value);
     const [pinStyle, setPinStyle] = useState<{ left?: number; width?: number }>(defaultPinStyles);
     const wrapperRef = useRef<HTMLDivElement>(null);
@@ -143,7 +150,7 @@ export const Switch: React.FC<PropsWithChildren<SwitchProps>> = ({ children, val
         <SwitchContext.Provider
             value={{ active, switchActive, register, nodesMapRef, name, onChange: onChangeHandler }}
         >
-            <div className={classes.Switch} ref={wrapperRef} {...props}>
+            <div className={classNames(classes.Switch, className)} ref={wrapperRef} {...props}>
                 {children}
                 {nullable(mounted, () => (
                     <span className={classes.SwitchPin} style={pinStyle} ref={pinRef} />
