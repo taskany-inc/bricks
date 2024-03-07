@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.19.0](https://github.com/taskany-inc/bricks/compare/v5.18.3...v5.19.0) (2024-03-07)
+
+
+### Features
+
+* animation optional ([0564886](https://github.com/taskany-inc/bricks/commit/056488631c8ba6857daa82383e83796204d15ad7))
+
 ## [5.18.3](https://github.com/taskany-inc/bricks/compare/v5.18.2...v5.18.3) (2024-03-07)
 
 
