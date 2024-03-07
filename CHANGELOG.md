@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.18.2](https://github.com/taskany-inc/bricks/compare/v5.18.1...v5.18.2) (2024-03-07)
+
+
+### Bug Fixes
+
+* add missed attrs to Switch ([ac1a550](https://github.com/taskany-inc/bricks/commit/ac1a550e7c4c67ce11f0fab0b4215456867e9a7c))
+* remove disabled Switch hover ([8a5c20c](https://github.com/taskany-inc/bricks/commit/8a5c20c155eb150b40d63dc28327df4cfaefd74c))
+
 ## [5.18.1](https://github.com/taskany-inc/bricks/compare/v5.18.0...v5.18.1) (2024-03-06)
 
 
