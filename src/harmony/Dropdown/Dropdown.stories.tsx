@@ -24,15 +24,17 @@ const Dropdown = ({
     error,
     disabled,
     readOnly,
+    arrow,
 }: {
     view?: ComponentProps<typeof DropdownTrigger>['view'];
     error?: boolean;
     disabled?: boolean;
     readOnly?: boolean;
+    arrow?: boolean;
 }) => {
     const [isOpen, setIsOpen] = useState(false);
     return (
-        <DropdownProvider isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        <DropdownProvider isOpen={isOpen} onClose={() => setIsOpen(false)} arrow={arrow}>
             <DropdownTrigger
                 onClick={() => setIsOpen(true)}
                 view={view}
@@ -67,7 +69,7 @@ export const Default: Story = () => {
                     <Cell>only view</Cell>
                     {views.map((view) => (
                         <Cell>
-                            <Dropdown view={view} />
+                            <Dropdown view={view} arrow />
                         </Cell>
                     ))}
                 </TableRow>
@@ -75,7 +77,7 @@ export const Default: Story = () => {
                     <Cell>readOnly</Cell>
                     {views.map((view) => (
                         <Cell>
-                            <Dropdown view={view} readOnly />
+                            <Dropdown view={view} readOnly arrow />
                         </Cell>
                     ))}
                 </TableRow>
@@ -83,7 +85,7 @@ export const Default: Story = () => {
                     <Cell>disabled</Cell>
                     {views.map((view) => (
                         <Cell>
-                            <Dropdown view={view} disabled />
+                            <Dropdown view={view} disabled arrow />
                         </Cell>
                     ))}
                 </TableRow>
@@ -91,7 +93,7 @@ export const Default: Story = () => {
                     <Cell>error</Cell>
                     {views.map((view) => (
                         <Cell>
-                            <Dropdown view={view} error />
+                            <Dropdown view={view} error arrow />
                         </Cell>
                     ))}
                 </TableRow>
@@ -99,7 +101,7 @@ export const Default: Story = () => {
                     <Cell>error + readOnly</Cell>
                     {views.map((view) => (
                         <Cell>
-                            <Dropdown view={view} error readOnly />
+                            <Dropdown view={view} error readOnly arrow />
                         </Cell>
                     ))}
                 </TableRow>
@@ -107,7 +109,7 @@ export const Default: Story = () => {
                     <Cell>error + disabled</Cell>
                     {views.map((view) => (
                         <Cell>
-                            <Dropdown view={view} error disabled />
+                            <Dropdown view={view} error disabled arrow />
                         </Cell>
                     ))}
                 </TableRow>

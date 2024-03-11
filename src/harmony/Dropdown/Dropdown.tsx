@@ -23,17 +23,19 @@ interface DropdownContextProps {
     isOpen?: boolean;
     panelRef?: MutableRefObject<HTMLDivElement | null>;
     onClose?: () => void;
+    arrow?: boolean;
 }
 
 const DropdownContext = createContext<DropdownContextProps>({
     isOpen: false,
+    arrow: false,
 });
 
 interface DropdownProps extends Omit<DropdownContextProps, 'panelRef'> {
     children?: ReactNode;
 }
 
-export const Dropdown = ({ children, isOpen, onClose }: DropdownProps) => {
+export const Dropdown = ({ children, isOpen, onClose, arrow }: DropdownProps) => {
     const panelRef = useRef<HTMLDivElement | null>(null);
 
     const ctx = useMemo(() => {
@@ -41,8 +43,9 @@ export const Dropdown = ({ children, isOpen, onClose }: DropdownProps) => {
             isOpen,
             panelRef,
             onClose,
+            arrow,
         };
-    }, [isOpen, onClose]);
+    }, [isOpen, onClose, arrow]);
 
     return <DropdownContext.Provider value={ctx}>{children}</DropdownContext.Provider>;
 };
@@ -86,12 +89,14 @@ export const DropdownTrigger = ({
     renderTrigger,
     ...props
 }: DropdownTriggerProps) => {
-    const { panelRef, isOpen, onClose } = useContext(DropdownContext);
+    const { panelRef, isOpen, onClose, arrow } = useContext(DropdownContext);
 
     const [onESC] = useKeyboard([KeyCode.Escape], () => {
         if (!isOpen) return;
         onClose?.();
     });
+
+    const hasArrow = !readOnly && arrow;
 
     return nullable(
         renderTrigger,
@@ -120,10 +125,10 @@ export const DropdownTrigger = ({
                 </Text>
             ))}
             <div className={cn(s.DropdownTriggerValueWrapper)}>
-                <div className={cn(s.DropdownTriggerValue, { [s.DropdownTriggerValue_interactive]: !readOnly })}>
+                <div className={cn(s.DropdownTriggerValue, { [s.DropdownTriggerValue_interactive]: hasArrow })}>
                     {children}
                 </div>
-                {nullable(!readOnly, () => (
+                {nullable(hasArrow, () => (
                     <DropdownArrow isOpen={isOpen} />
                 ))}
             </div>
