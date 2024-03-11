@@ -3,8 +3,10 @@ import { Meta, StoryFn } from '@storybook/react';
 import { IconSearchOutline } from '@taskany/icons';
 
 import { Checkbox } from '../Checkbox/Checkbox';
+import { Input } from '../Input/Input';
+import { RadioControl, RadioGroup, RadioGroupLabel } from '../RadioGroup/RadioGroup';
 
-import { AutoComplete, AutoCompleteInput, AutoCompleteList, AutoCompleteRadioGroup } from './AutoComplete';
+import { AutoComplete, AutoCompleteList } from './AutoComplete';
 
 type Component = typeof AutoComplete;
 type Props = React.ComponentProps<Component>;
@@ -59,21 +61,20 @@ export const Single: StoryFn<Props> = (args) => {
         <AutoComplete
             mode="single"
             items={list}
-            onChange={args.onChange}
-            keyGetter={(item) => item.id}
+            onClick={args.onClick}
             renderItem={(props) => (
                 <FocusableItem
                     focused={props.active}
-                    onClick={props.onItemClick}
+                    onClick={props.onClick}
                     onMouseLeave={props.onMouseLeave}
                     onMouseMove={props.onMouseMove}
                 >{`${props.item.id}: ${props.item.title}`}</FocusableItem>
             )}
         >
-            <AutoCompleteInput
+            <Input
                 type="text"
                 value={value}
-                onChange={setValue}
+                onChange={(e) => setValue(e.target.value)}
                 iconLeft={<IconSearchOutline size="s" />}
                 placeholder="Type `tit...` for search"
             />
@@ -98,8 +99,7 @@ export const Multiple: StoryFn<Props> = (args) => {
         <AutoComplete
             mode="multiple"
             items={list}
-            onChange={args.onChange}
-            keyGetter={(item) => item.id}
+            onClick={args.onClick}
             renderItem={(props) => (
                 <FocusableItem
                     style={{
@@ -111,8 +111,8 @@ export const Multiple: StoryFn<Props> = (args) => {
                     onMouseMove={props.onMouseMove}
                 >
                     <Checkbox
-                        checked={props.checked}
-                        onChange={props.onItemClick}
+                        checked={props.isSelected}
+                        onChange={props.onClick}
                         value={props.item.id}
                         name="item"
                         label={`${props.item.id}: ${props.item.title}`}
@@ -120,10 +120,10 @@ export const Multiple: StoryFn<Props> = (args) => {
                 </FocusableItem>
             )}
         >
-            <AutoCompleteInput
+            <Input
                 type="text"
                 value={value}
-                onChange={setValue}
+                onChange={(e) => setValue(e.target.value)}
                 iconLeft={<IconSearchOutline size="s" />}
                 placeholder="Type `tit...` for search"
             />
@@ -159,30 +159,30 @@ export const WithRadio: StoryFn<Props> = (args) => {
         <AutoComplete
             mode="single"
             items={list}
-            onChange={args.onChange}
-            keyGetter={(item) => item.id}
+            onClick={args.onClick}
             renderItem={(props) => (
                 <FocusableItem focused={props.active} onMouseLeave={props.onMouseLeave} onMouseMove={props.onMouseMove}>
-                    <label onClick={props.onItemClick}>
+                    <label onClick={props.onClick}>
                         <span>{`${props.item.id}: ${props.item.title}`}</span>
                     </label>
                 </FocusableItem>
             )}
         >
-            <AutoCompleteInput
+            <Input
                 type="text"
                 value={value}
-                onChange={setValue}
+                onChange={(e) => setValue(e.target.value)}
                 iconLeft={<IconSearchOutline size="s" />}
                 placeholder="Type `tit...` for search"
             />
-            <AutoCompleteRadioGroup
-                title="Mode"
-                items={radios}
-                name="mode"
-                onChange={(val) => setMode(val.value)}
-                value={mode}
-            />
+            <RadioGroup name="mode" onChange={(e) => setMode(e.target.value)} value={mode}>
+                <RadioGroupLabel>Mode</RadioGroupLabel>
+                {radios.map((radio) => (
+                    <RadioControl value={radio.value} checked={mode === radio.value}>
+                        {radio.title}
+                    </RadioControl>
+                ))}
+            </RadioGroup>
             <AutoCompleteList title="Suggesstions" />
         </AutoComplete>
     );
@@ -254,16 +254,15 @@ const finiteList: Items = Array.from({ length: 5 }, (_, i) => {
 export const MultipleFiniteList: StoryFn<Props> = (args) => (
     <AutoComplete
         mode="multiple"
-        onChange={args.onChange}
-        keyGetter={(item) => item.id}
+        onClick={args.onClick}
         items={finiteList}
         value={finiteList.slice(2, 4)}
         renderItem={(props) => (
             <FocusableItem focused={props.active} onMouseLeave={props.onMouseLeave} onMouseMove={props.onMouseMove}>
                 <Checkbox
-                    onChange={props.onItemClick}
+                    onChange={props.onClick}
                     name="item"
-                    checked={props.checked}
+                    checked={props.isSelected}
                     value={props.item.id}
                     label={props.item.title}
                 />
