@@ -1,0 +1,5 @@
+.StateGroupDot {
+    width: var(--gap-sm);
+    height: var(--gap-sm);
+    border: 1px solid var(--background);
+}
