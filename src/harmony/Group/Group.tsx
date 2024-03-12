@@ -16,7 +16,7 @@ interface GroupProps {
      * Prop to determine whether to enable the adjusted stacking order of group items during hover within the group.
      * If passed, the hovered item will be brought to the front, overlapping others.
      */
-    withHover?: boolean;
+    interactive?: boolean;
 
     /**
      *  To superimpose group elements on top of each other, `xs` by default
@@ -24,9 +24,11 @@ interface GroupProps {
     overlay?: keyof typeof overlaySize;
 }
 
-export const Group = ({ children, className, withHover, overlay = 'xs' }: GroupProps) => {
+export const Group = ({ children, className, interactive, overlay = 'xs' }: GroupProps) => {
     return (
-        <div className={cn(s.Group, { [s.Group_hovered]: withHover }, overlaySize[overlay], className)}>{children}</div>
+        <div className={cn(s.Group, { [s.Group_interactive]: interactive }, overlaySize[overlay], className)}>
+            {children}
+        </div>
     );
 };
 

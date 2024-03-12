@@ -3,8 +3,7 @@ import React, { useMemo, useRef } from 'react';
 import { nullable } from '../../utils';
 import { User } from '../User/User';
 import { Tooltip } from '../Tooltip/Tooltip';
-
-import classes from './UserGroup.module.css';
+import { Group, GroupItem } from '../Group/Group';
 
 interface UserProps extends Pick<React.ComponentProps<typeof User>, 'email' | 'name'> {
     image?: string | null;
@@ -20,15 +19,7 @@ const WrappedUser: React.FC<UserProps> = ({ name, email, image, ...props }) => {
 
     return (
         <>
-            <User
-                short
-                className={classes.UserGroupItem}
-                name={name}
-                email={email}
-                src={image}
-                {...props}
-                ref={targetRef}
-            />
+            <User short name={name} email={email} src={image} {...props} ref={targetRef} />
             <Tooltip placement="top" reference={targetRef}>
                 {name ?? email}
             </Tooltip>
@@ -51,9 +42,11 @@ export const UserGroup: React.FC<UserGroupProps> = ({ users, showCount = 4 }) =>
     }, [users]);
 
     return (
-        <div className={classes.UserGroup}>
+        <Group interactive overlay="s">
             {users.slice(0, realShowCount).map((user, i) => (
-                <WrappedUser key={`${user.email}-${i}`} {...user} />
+                <GroupItem key={`${user.email}-${i}`}>
+                    <WrappedUser {...user} />
+                </GroupItem>
             ))}
             {nullable(restUserNames, (list) => (
                 <>
@@ -63,6 +56,6 @@ export const UserGroup: React.FC<UserGroupProps> = ({ users, showCount = 4 }) =>
                     </Tooltip>
                 </>
             ))}
-        </div>
+        </Group>
     );
 };
