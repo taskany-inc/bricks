@@ -23,6 +23,7 @@ export * from './Popup/Popup';
 export * from './Radio/Radio';
 export * from './RadioGroup/RadioGroup';
 export * from './State/State';
+export * from './StateGroup/StateGroup';
 export * from './Switch/Switch';
 export * from './Table/Table';
 export * from './Tag/Tag';
