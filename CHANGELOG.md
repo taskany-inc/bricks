@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.20.0](https://github.com/taskany-inc/bricks/compare/v5.19.0...v5.20.0) (2024-03-12)
+
+
+### Features
+
+* add arrow param ([e437474](https://github.com/taskany-inc/bricks/commit/e4374745c5184f464b5db06a872ac3e7cb339823))
+* **HistoryRecord:** a brand new component ([8464ccc](https://github.com/taskany-inc/bricks/commit/8464cccb08ee21b9cdbe45a585345d889ec76226))
+
+
+### Bug Fixes
+
+* **Harmony:** remove local state from AutoComplete ([b690e0f](https://github.com/taskany-inc/bricks/commit/b690e0fddd495ebf68ac433584efedb96c103841))
+
 ## [5.19.0](https://github.com/taskany-inc/bricks/compare/v5.18.3...v5.19.0) (2024-03-07)
 
 
