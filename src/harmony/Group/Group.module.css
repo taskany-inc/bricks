@@ -2,7 +2,7 @@
     display: flex;
 }
 
-.Group_hovered .GroupItem:hover {
+.Group_interactive .GroupItem:hover {
     z-index: 1;
 }
 
