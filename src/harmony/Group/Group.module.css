@@ -1,0 +1,15 @@
+.Group {
+    display: flex;
+}
+
+.Group_hovered .GroupItem:hover {
+    z-index: 1;
+}
+
+.Group_overlay_xs .GroupItem + .GroupItem {
+    margin-left: calc(-1 * var(--gap-xs));
+}
+
+.Group_overlay_s .GroupItem + .GroupItem {
+    margin-left: calc(-1 * var(--gap-s));
+}
