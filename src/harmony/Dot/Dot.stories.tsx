@@ -12,6 +12,6 @@ export default meta;
 
 export const Default: StoryObj<typeof Dot> = {
     render(props) {
-        return <Dot {...props} />;
+        return <Dot color="cyan" {...props} />;
     },
 };
