@@ -14,8 +14,8 @@ interface AutoCompleteContext<T> {
     value?: T[];
     mode?: 'single' | 'multiple';
     selectedItems: Record<string, boolean>;
-    onClick: (item: T) => void;
-    renderItem?: (props: { item: T; onClick: () => void; isSelected: boolean } & ListViewItemRenderProps) => ReactNode;
+    onChange: (item: T) => void;
+    renderItem?: (props: { item: T; onChange: () => void; isSelected: boolean } & ListViewItemRenderProps) => ReactNode;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -23,13 +23,13 @@ const AutoCompleteContext = createContext<AutoCompleteContext<any>>({
     items: [],
     mode: 'single',
     selectedItems: {},
-    onClick: () => {},
+    onChange: () => {},
 });
 
-interface AutocompleteProps<T> extends Omit<AutoCompleteContext<T>, 'onClick' | 'selectedItems'> {
+interface AutocompleteProps<T> extends Omit<AutoCompleteContext<T>, 'onChange' | 'selectedItems'> {
     children: ReactNode;
     value?: T[];
-    onClick?: (items: T[]) => void;
+    onChange?: (items: T[]) => void;
 }
 
 export const AutoComplete = <T extends { id: string }>({
@@ -37,7 +37,7 @@ export const AutoComplete = <T extends { id: string }>({
     items,
     value,
     mode = 'single',
-    onClick,
+    onChange,
     renderItem,
 }: AutocompleteProps<T>) => {
     const selectedItems = useMemo(() => {
@@ -49,20 +49,20 @@ export const AutoComplete = <T extends { id: string }>({
 
     const valueRef = useLatest({ value, selectedItems });
 
-    const handleClick = useCallback(
+    const handleChange = useCallback(
         (item: T) => {
             if (mode === 'multiple' && Array.isArray(valueRef.current.value)) {
                 const restValues = valueRef.current.selectedItems[item.id]
                     ? valueRef.current.value.filter((value) => value.id !== item.id)
                     : valueRef.current.value.concat(item);
 
-                onClick?.(restValues);
+                onChange?.(restValues);
                 return;
             }
 
-            onClick?.([item]);
+            onChange?.([item]);
         },
-        [mode, onClick, valueRef],
+        [mode, onChange, valueRef],
     );
 
     const ctx = useMemo(() => {
@@ -71,14 +71,14 @@ export const AutoComplete = <T extends { id: string }>({
             items,
             selectedItems,
             value,
-            onClick: handleClick as (item: { id: string }) => void,
+            onChange: handleChange as (item: { id: string }) => void,
             renderItem,
         };
-    }, [mode, items, selectedItems, value, handleClick, renderItem]);
+    }, [mode, items, selectedItems, value, handleChange, renderItem]);
 
     return (
         <AutoCompleteContext.Provider value={ctx}>
-            <ListView onKeyboardClick={handleClick}>{children}</ListView>
+            <ListView onKeyboardClick={handleChange}>{children}</ListView>
         </AutoCompleteContext.Provider>
     );
 };
@@ -100,14 +100,14 @@ export const AutoCompleteList = <T extends { id: string }>({
     selected,
     filterSelected,
 }: AutoCompleteListProps) => {
-    const { items, value, selectedItems, onClick, renderItem } =
+    const { items, value, selectedItems, onChange, renderItem } =
         useContext<AutoCompleteContext<T>>(AutoCompleteContext);
 
     const render = useCallback(
         (item: T) => (props: ListViewItemRenderProps) => {
-            return renderItem?.({ ...props, item, onClick: () => onClick(item), isSelected: selectedItems[item.id] });
+            return renderItem?.({ ...props, item, onChange: () => onChange(item), isSelected: selectedItems[item.id] });
         },
-        [onClick, renderItem, selectedItems],
+        [onChange, renderItem, selectedItems],
     );
 
     let array: typeof items = [];
