@@ -3,8 +3,9 @@ import { StoryFn, Meta } from '@storybook/react';
 
 import { Text } from '../Text/Text';
 import { Table, TableCell, TableRow } from '../Table/Table';
+import { nullable } from '../../utils';
 
-import { Dropdown as DropdownProvider, DropdownPanel, DropdownTrigger } from './Dropdown';
+import { Dropdown as DropdownProvider, DropdownPanel, DropdownTrigger, DropdownTriggerError } from './Dropdown';
 
 type Story = StoryFn<typeof DropdownProvider>;
 
@@ -44,6 +45,9 @@ const Dropdown = ({
             >
                 <Text size="s">Q4/2023</Text>
             </DropdownTrigger>
+            {nullable(error, () => (
+                <DropdownTriggerError message="error" />
+            ))}
             <DropdownPanel width={200}>{text}</DropdownPanel>
         </DropdownProvider>
     );

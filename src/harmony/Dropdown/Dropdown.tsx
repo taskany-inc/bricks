@@ -16,6 +16,7 @@ import { nullable } from '../../utils';
 import { Text } from '../Text/Text';
 import { Popup } from '../Popup/Popup';
 import { KeyCode, useKeyboard } from '../../hooks';
+import { Tooltip } from '../Tooltip/Tooltip';
 
 import s from './Dropdown.module.css';
 
@@ -53,6 +54,24 @@ export const Dropdown = ({ children, isOpen, onClose, arrow }: DropdownProps) =>
 const DropdownArrow = ({ isOpen }: { isOpen?: boolean }) =>
     nullable(!isOpen, () => <IconDownSmallOutline size="xs" />, <IconUpSmallOutline size="xs" />);
 
+interface DropdownTriggerErrorProps extends Pick<ComponentProps<typeof Tooltip>, 'placement' | 'offset'> {
+    message?: ReactNode;
+}
+
+export const DropdownTriggerError = ({
+    message,
+    offset = [0, 8],
+    placement = 'bottom',
+    ...props
+}: DropdownTriggerErrorProps) => {
+    const { panelRef } = useContext(DropdownContext);
+    return (
+        <Tooltip view="danger" reference={panelRef} placement={placement} offset={offset} {...props}>
+            {message}
+        </Tooltip>
+    );
+};
+
 const triggerViewMap = {
     default: s.DropdownTrigger_view_default,
     outline: s.DropdownTrigger_view_outline,
@@ -67,6 +86,7 @@ interface DropdownTriggerProps {
     disabled?: boolean;
     view?: keyof typeof triggerViewMap;
     children?: ReactNode;
+    placeholder?: string;
     renderTrigger?: ({
         isOpen,
         ref,
@@ -85,6 +105,7 @@ export const DropdownTrigger = ({
     error,
     readOnly,
     className,
+    placeholder,
     onClick,
     renderTrigger,
     ...props
@@ -126,7 +147,19 @@ export const DropdownTrigger = ({
             ))}
             <div className={cn(s.DropdownTriggerValueWrapper)}>
                 <div className={cn(s.DropdownTriggerValue, { [s.DropdownTriggerValue_interactive]: hasArrow })}>
-                    {children}
+                    {nullable(
+                        children,
+                        () => children,
+                        <Text
+                            size="s"
+                            ellipsis
+                            className={cn(s.DropdownTriggerValuePlaceholder, {
+                                [s.DropdownTriggerValuePlaceholder_error]: error,
+                            })}
+                        >
+                            {placeholder}
+                        </Text>,
+                    )}
                 </div>
                 {nullable(hasArrow, () => (
                     <DropdownArrow isOpen={isOpen} />

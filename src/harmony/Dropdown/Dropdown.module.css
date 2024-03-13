@@ -134,6 +134,15 @@
     box-sizing: border-box;
 }
 
+.DropdownTriggerValuePlaceholder {
+    color: var(--text-ghost);
+    white-space: nowrap;
+}
+
+.DropdownTriggerValuePlaceholder_error {
+    color: currentColor;
+}
+
 .DropdownTriggerValue_interactive {
     /* 100% - width of icon size xs */
     max-width: calc(100% - var(--gap-m));
