@@ -1,7 +1,6 @@
 .Checkbox {
     position: relative;
     display: inline-flex;
-    align-items: center;
     cursor: pointer;
     color: var(--text-primary);
 }
@@ -35,6 +34,9 @@
     margin: 0;
 
     color: var(--check-mark);
+
+    /* align by middle of first line */
+    vertical-align: -0.2em;
 }
 
 .CheckboxInput:disabled {
@@ -114,7 +116,6 @@
 
 .CheckboxLabel {
     color: currentColor;
-    margin-left: var(--gap-s);
 }
 
 .CheckboxRounded .CheckboxInput {

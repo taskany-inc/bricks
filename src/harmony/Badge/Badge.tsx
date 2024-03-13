@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import cn from 'classnames';
 
 import { Text } from '../Text/Text';
@@ -7,6 +7,17 @@ import { nullable } from '../../utils';
 import s from './Badge.module.css';
 
 type TextPropsKeys = Exclude<keyof React.ComponentProps<typeof Text>, 'as' | 'size'>;
+
+const defaultTagName: keyof Pick<React.JSX.IntrinsicElements, 'span'> = 'span';
+interface AllowedHTMLElements {
+    div: React.JSX.IntrinsicElements['div'];
+    p: React.JSX.IntrinsicElements['p'];
+    span: React.JSX.IntrinsicElements['span'];
+    i: React.JSX.IntrinsicElements['i'];
+    b: React.JSX.IntrinsicElements['b'];
+    strong: React.JSX.IntrinsicElements['strong'];
+    label: React.JSX.IntrinsicElements['label'];
+}
 
 type TextBadgeProps = Pick<
     React.ComponentProps<typeof Text>,
@@ -18,8 +29,9 @@ interface BadgeProps extends TextBadgeProps {
     iconRight?: React.ReactNode;
     view?: 'default' | 'outline';
     size?: 's' | 'm' | 'l' | 'xl';
-    text?: string;
+    text?: React.ReactNode;
     color?: string;
+    as?: keyof AllowedHTMLElements;
 }
 
 const sizeMap = {
@@ -29,32 +41,48 @@ const sizeMap = {
     xl: s.BadgeSizeXl,
 };
 
-export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
-    ({ iconLeft, iconRight, text, className, view = 'default', size = 's', weight = 'bold', ...rest }, ref) => {
-        return (
-            <Text
-                ref={ref}
-                className={cn(
-                    s.Badge,
-                    className,
-                    {
-                        [s.BadgeOutlined]: view === 'outline',
-                    },
-                    sizeMap[size],
-                )}
-                as="span"
-                weight={weight}
-                size={size}
-                {...rest}
-            >
-                {nullable(iconLeft, (icon) => (
-                    <span className={s.BadgeIconLeft}>{icon}</span>
-                ))}
-                {nullable(text, (t) => t)}
-                {nullable(iconRight, (icon) => (
-                    <span className={s.BadgeIconRight}>{icon}</span>
-                ))}
-            </Text>
-        );
-    },
-);
+// eslint-disable-next-line prefer-arrow-callback
+export const Badge = forwardRef(function Badge<T extends keyof AllowedHTMLElements>(
+    props: BadgeProps & { as?: T } & AllowedHTMLElements[T],
+    ref: React.ForwardedRef<any>,
+) {
+    const {
+        iconLeft,
+        iconRight,
+        text,
+        className,
+        view = 'default',
+        size = 's',
+        weight = 'bold',
+        as = defaultTagName,
+        ...rest
+    } = props;
+
+    return (
+        <Text
+            as={as}
+            ref={ref}
+            weight={weight}
+            size={size}
+            {...rest}
+            className={cn(
+                s.Badge,
+                className,
+                {
+                    [s.BadgeOutlined]: view === 'outline',
+                },
+                sizeMap[size],
+            )}
+        >
+            {nullable(iconLeft, (icon) => (
+                <span className={cn(s.BadgeIcon, s.BadgeIconLeft)}>{icon}</span>
+            ))}
+            {nullable(text, (t) => (
+                <span className={s.BadgeText}>{t}</span>
+            ))}
+            {nullable(iconRight, (icon) => (
+                <span className={cn(s.BadgeIcon, s.BadgeIconRight)}>{icon}</span>
+            ))}
+        </Text>
+    );
+});

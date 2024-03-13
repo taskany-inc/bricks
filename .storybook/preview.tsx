@@ -7,6 +7,8 @@ import lightTheme from '@taskany/colors/harmony/light.css?inline';
 
 import { TextStyle } from '../src/components/Text/Text';
 
+import '@taskany/icons/style.css';
+
 const GlobalStyle = createGlobalStyle`
     html, body {
         font-family: ${fontDisplay};

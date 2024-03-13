@@ -1,7 +1,5 @@
 .Radio {
     position: relative;
-    display: inline-flex;
-    align-items: center;
     color: var(--text-primary);
     cursor: pointer;
 }
@@ -31,9 +29,12 @@
 
     outline: none;
     padding: 0;
-    margin: 0.125rem; /* with this prop getting same size as Checkbox */
+    margin: 0.0625em; /* == 1px around radio input, with this prop getting same size as Checkbox */
 
     color: var(--check-checked);
+
+    /* align by middle of first line */
+    vertical-align: -0.2em;
 }
 
 .RadioInput:not(:disabled):hover {
@@ -93,5 +94,4 @@
 
 .RadioLabel {
     color: currentColor;
-    margin-left: var(--gap-s);
 }

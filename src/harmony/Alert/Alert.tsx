@@ -3,6 +3,7 @@ import cn from 'classnames';
 import { IconExclamationCircleOutline, IconInfoCircleOutline } from '@taskany/icons';
 
 import { nullable } from '../../utils/nullable';
+import { Badge } from '../Badge/Badge';
 
 import s from './Alert.module.css';
 
@@ -25,9 +26,13 @@ const iconMap = {
 
 export const Alert: React.FC<AlertProps> = ({ text, icon, className, view, ...props }) => {
     return (
-        <div className={cn(s.Alert, viewMap[view], className)} {...props}>
-            {nullable(icon, (i) => i, iconMap[view])}
-            <span>{text}</span>
-        </div>
+        <Badge
+            className={cn(s.Alert, viewMap[view], className)}
+            {...props}
+            weight="regular"
+            size="m"
+            iconLeft={nullable(icon, (i) => i, iconMap[view])}
+            text={text}
+        />
     );
 };
