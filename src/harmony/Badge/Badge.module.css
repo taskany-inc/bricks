@@ -1,7 +1,7 @@
 .Badge {
     display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    align-items: baseline;
+    justify-content: flex-start;
 }
 
 .BadgeOutlined {
@@ -9,16 +9,20 @@
     border-radius: var(--radius-xl);
 }
 
+.BadgeIcon {
+    display: inline-block;
+    line-height: 1;
+    max-width: 1em;
+    height: 1em;
+    text-align: center;
+}
+
 .BadgeIconLeft {
     margin-right: var(--gap-s);
-    display: inline-flex;
-    line-height: 1;
 }
 
 .BadgeIconRight {
     margin-left: var(--gap-s);
-    display: inline-flex;
-    line-height: 1;
 }
 
 .BadgeSizeS {

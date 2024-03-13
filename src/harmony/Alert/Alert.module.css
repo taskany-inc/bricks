@@ -3,8 +3,8 @@
     align-items: center;
     justify-content: center;
     border-radius: var(--radius-m);
-    padding: var(--gap-sm);
-    gap: var(--gap-s);
+    gap:var(--gap-xs);
+    padding: var(--gap-xs) var(--gap-sm);
 }
 
 .Alert_default {

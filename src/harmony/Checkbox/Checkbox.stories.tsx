@@ -54,12 +54,10 @@ export const BigLabelInSmallContainer: StoryFn<typeof Checkbox> = (args) => {
             <Checkbox
                 {...args}
                 view="rounded"
-                label={
-                    <Text size="s" weight="regular" lines={2} ellipsis>
-                        very longest criteria title for this goal user@taskany.org changed goal from verus nobis to
-                        verus nobis as criteria 3 weeks ago
-                    </Text>
-                }
+                lines={2}
+                ellipsis
+                strike
+                label="very longest criteria title for this goal user@taskany.org changed goal from verus nobis to verus nobis as criteria 3 weeks ago"
                 defaultChecked
             />
             <Checkbox
