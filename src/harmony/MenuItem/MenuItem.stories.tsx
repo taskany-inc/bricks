@@ -27,17 +27,12 @@ export const DefaultList = () => {
     return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
             <ListView onKeyboardClick={console.log}>
-                {data.map((item, index) => (
+                {data.map((item) => (
                     <ListViewItem
                         value={item}
                         key={item}
                         renderItem={({ active, ...props }) => (
-                            <MenuItem
-                                selected={[0, 2, 3].includes(index)}
-                                {...props}
-                                onClick={() => console.log(item)}
-                                hovered={active}
-                            >
+                            <MenuItem {...props} onClick={() => console.log(item)} hovered={active}>
                                 {item}
                             </MenuItem>
                         )}
@@ -58,6 +53,33 @@ export const SelectableList = () => {
                         key={item}
                         renderItem={({ active, ...props }) => (
                             <MenuItem
+                                selectable
+                                selected={[1].includes(index)}
+                                {...props}
+                                onClick={() => console.log(item)}
+                                hovered={active}
+                            >
+                                {item}
+                            </MenuItem>
+                        )}
+                    />
+                ))}
+            </ListView>
+        </div>
+    );
+};
+
+export const MultipleSelectableList = () => {
+    return (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+            <ListView onKeyboardClick={console.log}>
+                {data.map((item, index) => (
+                    <ListViewItem
+                        value={item}
+                        key={item}
+                        renderItem={({ active, ...props }) => (
+                            <MenuItem
+                                multiple
                                 selectable
                                 selected={[0, 2, 3].includes(index)}
                                 {...props}
