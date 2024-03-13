@@ -13,3 +13,12 @@
 .MenuItem_hovered {
     background-color: var(--base-hover);
 }
+
+.MenuItemSelectedDot {
+    background-color: var(--check-checked);
+}
+
+.MenuItemIconContainer {
+    /* icon size */
+    padding-left: var(--gap-m);
+}

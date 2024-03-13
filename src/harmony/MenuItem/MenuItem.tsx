@@ -1,8 +1,8 @@
-import React, { ComponentProps, HTMLAttributes, ReactNode } from 'react';
+import React, { HTMLAttributes, ReactNode, useMemo } from 'react';
 import cn from 'classnames';
-import { BaseIcon, IconTickOutline } from '@taskany/icons';
+import { IconTickOutline } from '@taskany/icons';
 
-import { nullable } from '../../utils';
+import { Dot } from '../Dot/Dot';
 
 import s from './MenuItem.module.css';
 
@@ -11,7 +11,7 @@ interface MenuItemProps extends HTMLAttributes<HTMLDivElement> {
     iconLeft?: ReactNode;
     hovered?: boolean;
     selected?: boolean;
-    size?: ComponentProps<typeof IconTickOutline>['size'];
+    multiple?: boolean;
 }
 
 export const MenuItem = ({
@@ -20,22 +20,29 @@ export const MenuItem = ({
     hovered,
     selected,
     children,
-    size = 's',
     selectable,
+    multiple,
     ...props
 }: MenuItemProps) => {
+    const icon = useMemo(() => {
+        if (!selectable || iconLeft) {
+            return iconLeft;
+        }
+
+        if (multiple && selected) {
+            return <IconTickOutline size="s" />;
+        }
+
+        if (multiple) {
+            return <span className={s.MenuItemIconContainer} />;
+        }
+
+        return <Dot className={cn({ [s.MenuItemSelectedDot]: selected })} />;
+    }, [selectable, iconLeft, multiple, selected]);
+
     return (
         <div className={cn(s.MenuItem, { [s.MenuItem_hovered]: hovered }, className)} {...props}>
-            {nullable(
-                selectable && !iconLeft,
-                () =>
-                    nullable(
-                        selected,
-                        () => <IconTickOutline size={size} />,
-                        <BaseIcon value={() => null} size={size} />,
-                    ),
-                iconLeft,
-            )}
+            {icon}
 
             {children}
         </div>
