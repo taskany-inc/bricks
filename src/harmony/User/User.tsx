@@ -32,7 +32,7 @@ export const Avatar: React.FC<
     const [status, setStatus] = useState<AvatarLoadState>('loading');
 
     if (!src || status === 'error') {
-        return <Gravatar name={name} email={email} size={sizeMap[size]} />;
+        return <Gravatar className={className} name={name} email={email} size={sizeMap[size]} {...rest} />;
     }
 
     preloadImage(src)

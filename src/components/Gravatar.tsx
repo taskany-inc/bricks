@@ -17,8 +17,6 @@ interface GravatarProps extends React.HTMLAttributes<HTMLImageElement> {
     className?: string;
     domain?: string;
     name?: string | null;
-
-    onClick?: () => void;
 }
 
 const StyledImage = styled.img`
