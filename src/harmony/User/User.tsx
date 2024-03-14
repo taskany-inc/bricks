@@ -1,4 +1,4 @@
-import React, { forwardRef, useState } from 'react';
+import React, { ComponentProps, forwardRef, useState } from 'react';
 import cn from 'classnames';
 
 import { Circle } from '../Circle/Circle';
@@ -26,7 +26,9 @@ interface UserProps {
 
 type AvatarLoadState = 'success' | 'error' | 'loading';
 
-const Avatar: React.FC<Pick<UserProps, 'name' | 'email' | 'src' | 'size'>> = ({ src, email, name, size = 's' }) => {
+export const Avatar: React.FC<
+    Pick<UserProps, 'name' | 'email' | 'src' | 'size'> & Omit<ComponentProps<typeof Circle>, 'string'>
+> = ({ src, email, name, size = 's', className, ...rest }) => {
     const [status, setStatus] = useState<AvatarLoadState>('loading');
 
     if (!src || status === 'error') {
@@ -38,7 +40,7 @@ const Avatar: React.FC<Pick<UserProps, 'name' | 'email' | 'src' | 'size'>> = ({ 
         .catch(() => setStatus('error'));
 
     return (
-        <Circle string={`${email}`} className={classes.UserPicWrapper} size={size}>
+        <Circle string={`${email}`} className={cn(classes.UserPicWrapper, className)} size={size} {...rest}>
             {nullable(
                 status === 'success',
                 () => (
