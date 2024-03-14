@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.22.1](https://github.com/taskany-inc/bricks/compare/v5.22.0...v5.22.1) (2024-03-14)
+
+
+### Bug Fixes
+
+* fix classname and onclick ([b921fed](https://github.com/taskany-inc/bricks/commit/b921fed8dd02eb1c527cc8d5b3d3a59d8aa735f0))
+
 ## [5.22.0](https://github.com/taskany-inc/bricks/compare/v5.21.0...v5.22.0) (2024-03-14)
 
 
