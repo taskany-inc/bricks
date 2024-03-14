@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.22.0](https://github.com/taskany-inc/bricks/compare/v5.21.0...v5.22.0) (2024-03-14)
+
+
+### Features
+
+* add avatar export ([35b99c8](https://github.com/taskany-inc/bricks/commit/35b99c8fde3b1c266f9bac01bcc5e7256a1a7fb0))
+
 ## [5.21.0](https://github.com/taskany-inc/bricks/compare/v5.20.0...v5.21.0) (2024-03-13)
 
 
