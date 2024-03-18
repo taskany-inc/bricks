@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.22.2](https://github.com/taskany-inc/bricks/compare/v5.22.1...v5.22.2) (2024-03-18)
+
+
+### Bug Fixes
+
+* extend GlobalSearch params ([f0f0996](https://github.com/taskany-inc/bricks/commit/f0f099638f865b3744f04fad26a5fdfdd8841495))
+
 ## [5.22.1](https://github.com/taskany-inc/bricks/compare/v5.22.0...v5.22.1) (2024-03-14)
 
 
