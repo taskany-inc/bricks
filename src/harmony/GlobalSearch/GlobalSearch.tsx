@@ -25,13 +25,14 @@ export interface GlobalSearchProps
     searchResultExists?: boolean;
     placement?: ComponentProps<typeof Popup>['placement'];
     offset?: ComponentProps<typeof Popup>['offset'];
-    minWidth?: ComponentProps<typeof Popup>['minWidth'];
-    maxWidth?: ComponentProps<typeof Popup>['maxWidth'];
+    expandable?: boolean;
+    popupMinWidth?: ComponentProps<typeof Popup>['minWidth'];
+    popupMaxWidth?: ComponentProps<typeof Popup>['maxWidth'];
 }
 
 const defaultSizes = {
-    minWidth: 400,
-    maxWidth: 800,
+    popupMinWidth: 400,
+    popupMaxWidth: 800,
 };
 
 const defaultOffset = [-8, -40];
@@ -43,10 +44,11 @@ export const GlobalSearch = ({
     disabled,
     children,
     searchResultExists,
+    expandable,
     placement = 'bottom-start',
     offset = defaultOffset,
-    minWidth = defaultSizes.minWidth,
-    maxWidth = defaultSizes.maxWidth,
+    popupMinWidth = defaultSizes.popupMinWidth,
+    popupMaxWidth = defaultSizes.popupMaxWidth,
     ...attrs
 }: GlobalSearchProps) => {
     const popupContentRef = useRef<HTMLDivElement>(null);
@@ -124,7 +126,7 @@ export const GlobalSearch = ({
                 className={cn(
                     s.Input,
                     { [s.InputIndex]: editMode && surfaceVisible.current },
-                    { [s.Input_focused]: editMode },
+                    { [s.Input_expanded]: editMode && expandable },
                 )}
                 {...onESC}
                 {...attrs}
@@ -135,8 +137,8 @@ export const GlobalSearch = ({
                 visible={popupVisible}
                 reference={popupTargetRef}
                 interactive
-                minWidth={minWidth}
-                maxWidth={minWidth}
+                minWidth={popupMinWidth}
+                maxWidth={popupMaxWidth}
                 offset={offset}
                 className={s.Popup}
             >
