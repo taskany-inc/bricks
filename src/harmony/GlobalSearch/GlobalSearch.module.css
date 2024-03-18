@@ -11,6 +11,6 @@
     transition: width var(--transition-time) var(--transition-func);
 }
 
-.Input_focused {
+.Input_expanded {
     width: 100%;
 }
