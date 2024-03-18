@@ -23,7 +23,18 @@ export interface GlobalSearchProps
     placeholder?: string;
     disabled?: boolean;
     searchResultExists?: boolean;
+    placement?: ComponentProps<typeof Popup>['placement'];
+    offset?: ComponentProps<typeof Popup>['offset'];
+    minWidth?: ComponentProps<typeof Popup>['minWidth'];
+    maxWidth?: ComponentProps<typeof Popup>['maxWidth'];
 }
+
+const defaultSizes = {
+    minWidth: 400,
+    maxWidth: 800,
+};
+
+const defaultOffset = [-8, -40];
 
 export const GlobalSearch = ({
     value,
@@ -32,6 +43,10 @@ export const GlobalSearch = ({
     disabled,
     children,
     searchResultExists,
+    placement = 'bottom-start',
+    offset = defaultOffset,
+    minWidth = defaultSizes.minWidth,
+    maxWidth = defaultSizes.maxWidth,
     ...attrs
 }: GlobalSearchProps) => {
     const popupContentRef = useRef<HTMLDivElement>(null);
@@ -115,14 +130,14 @@ export const GlobalSearch = ({
                 {...attrs}
             />
             <Popup
-                placement="bottom-start"
+                placement={placement}
                 arrow={false}
                 visible={popupVisible}
                 reference={popupTargetRef}
                 interactive
-                minWidth={400}
-                maxWidth={800}
-                offset={[-8, -40]}
+                minWidth={minWidth}
+                maxWidth={minWidth}
+                offset={offset}
                 className={s.Popup}
             >
                 <div ref={popupContentRef} {...onESC}>
