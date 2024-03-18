@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.23.0](https://github.com/taskany-inc/bricks/compare/v5.22.2...v5.23.0) (2024-03-18)
+
+
+### Features
+
+* add expandable prop ([3909c7a](https://github.com/taskany-inc/bricks/commit/3909c7a5d6ad015556818bcc925bad70a5651a3b))
+
 ## [5.22.2](https://github.com/taskany-inc/bricks/compare/v5.22.1...v5.22.2) (2024-03-18)
 
 
