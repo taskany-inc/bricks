@@ -9,7 +9,8 @@
     font-weight: 500;
 
     cursor: pointer;
-    transition: background 200ms ease-in;
+    transition: all var(--transition-time) var(--transition-func);
+    will-change: background, color;
 
     position: relative;
 }
@@ -58,20 +59,23 @@
 }
 
 .Button_ghost {
-    color: var(--button-secondary-text);
+    color: var(--text-secondary);
     background: transparent;
 }
 
 .Button_ghost:hover {
     background: var(--button-secondary-hover);
+    color: var(--button-secondary-text);
 }
 
 .Button_ghost:active {
     background: var(--button-secondary-active);
+    color: var(--button-secondary-text);
 }
 
 .Button_ghost:focus-visible {
     outline: 2px solid var(--button-secondary-focus);
+    color: var(--button-secondary-text);
 }
 
 .Button_danger {
@@ -156,7 +160,7 @@
     line-height: var(--line-height-xxl);
     min-height: 32px;
     min-width: 32px;
-    padding: var(--gap-s);
+    padding: var(--gap-xs) var(--gap-s);
 }
 
 .Button_size_m {
