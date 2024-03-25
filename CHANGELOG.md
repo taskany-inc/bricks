@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.23.1](https://github.com/taskany-inc/bricks/compare/v5.23.0...v5.23.1) (2024-03-25)
+
+
+### Bug Fixes
+
+* **Button:** padding for `s` size, text color for `ghost` view ([dab6c78](https://github.com/taskany-inc/bricks/commit/dab6c78075c272ca96ea716f7fa0825d8a7f42c2))
+* icon position in text elements ([ba3bddc](https://github.com/taskany-inc/bricks/commit/ba3bddcc0d1eb6152b669d8baea847cb8340480c))
+
 ## [5.23.0](https://github.com/taskany-inc/bricks/compare/v5.22.2...v5.23.0) (2024-03-18)
 
 
