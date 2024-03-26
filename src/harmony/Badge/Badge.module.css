@@ -2,6 +2,8 @@
     display: inline-flex;
     align-items: baseline;
     justify-content: flex-start;
+
+    --badge-icon-size: 1em;
 }
 
 .BadgeOutlined {
@@ -12,8 +14,8 @@
 .BadgeIcon {
     display: inline-block;
     line-height: 1;
-    max-width: 1em;
-    height: 1em;
+    max-width: var(--badge-icon-size);
+    height: var(--badge-icon-size);
     text-align: center;
 }
 
