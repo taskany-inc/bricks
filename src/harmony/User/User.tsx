@@ -6,6 +6,7 @@ import { preloadImage } from '../../utils/preloadImage';
 import { nullable } from '../../utils';
 import { getInitials } from '../../utils/getInitials';
 import { Gravatar } from '../../components';
+import { Badge } from '../Badge/Badge';
 
 import classes from './User.module.css';
 
@@ -55,9 +56,18 @@ export const Avatar: React.FC<
 export const User = forwardRef<HTMLDivElement, UserProps>(
     ({ email, name, src, short, inheritColor, size = 's', className }, ref) => {
         return (
-            <div className={cn(classes.User, className)} ref={ref}>
-                <Avatar src={src} name={name} email={email} size={size} />
-                {nullable(!short, () => (
+            <Badge
+                className={cn(
+                    classes.User,
+                    {
+                        [classes.UserSizeS]: size === 's',
+                        [classes.UserSizeM]: size === 'm',
+                    },
+                    className,
+                )}
+                ref={ref}
+                iconLeft={<Avatar src={src} name={name} email={email} size={size} />}
+                text={nullable(!short, () => (
                     <span
                         className={cn(classes.UserName, {
                             [classes.UserNameColorInherit]: inheritColor,
@@ -66,7 +76,7 @@ export const User = forwardRef<HTMLDivElement, UserProps>(
                         {name || email}
                     </span>
                 ))}
-            </div>
+            />
         );
     },
 );

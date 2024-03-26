@@ -1,7 +1,13 @@
 .User {
-    display: flex;
     align-items: center;
-    justify-content: flex-start;
+}
+
+.UserSizeS {
+    --badge-icon-size: 1.5rem; /* as `Circle` dimensions */
+}
+
+.UserSizeM {
+    --badge-icon-size: 2rem; /* as `Circle` dimensions */
 }
 
 .UserPicWrapper {
@@ -16,7 +22,6 @@
 .UserName {
     font-size: var(--font-size-s);
     line-height: 1rem;
-    margin-left: var(--gap-s);
     color: var(--text-primary);
     text-overflow: ellipsis;
     overflow: hidden;
