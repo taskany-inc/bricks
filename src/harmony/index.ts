@@ -23,6 +23,7 @@ export * from './OfflineBanner/OfflineBanner';
 export * from './Popup/Popup';
 export * from './Radio/Radio';
 export * from './RadioGroup/RadioGroup';
+export * from './Spinner/Spinner';
 export * from './State/State';
 export * from './StateGroup/StateGroup';
 export * from './Switch/Switch';
