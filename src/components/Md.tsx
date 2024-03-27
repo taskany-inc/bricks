@@ -20,6 +20,7 @@ export const Md = styled.div`
     img {
         max-width: 100%;
         border-radius: ${radiusS};
+        cursor: pointer;
     }
 
     p {
