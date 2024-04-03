@@ -1,0 +1,63 @@
+.Card {
+    --card-background: var(--layer-above);
+    --card-foreground: var(--text-secondary);
+    
+    position: relative;
+    box-sizing: border-box;
+    min-height: auto;
+
+    border-radius: var(--radius-m);
+}
+
+.CardInfo {
+    position: relative;
+    box-sizing: border-box;
+    padding:  var(--gap-xs) var(--gap-sm);
+
+    background-color: var(--card-background);
+    color: var(--card-foreground);
+    
+    font-weight: 600;
+    font-size: var(--font-size-s);
+
+    border-top-left-radius: var(--radius-m);
+    border-top-right-radius: var(--radius-m);
+}
+
+.CardContent {
+    position: relative;
+    box-sizing: border-box;
+    padding: var(--gap-sm);
+    user-select: auto;
+
+    border: 1px solid var(--layer-above);
+    border-top: 0;
+    color: var(--text-primary);
+
+    border-bottom-left-radius: var(--radius-m);
+    border-bottom-right-radius: var(--radius-m);
+}
+
+.CardContent_flat {
+    background: var(--layer-hover);
+    border-color: var(--card-border)
+}
+
+.CardInfo_corner::before {
+    position: absolute;
+    z-index: 0;
+
+    content: '';
+
+    width: var(--gap-sm);
+    height: var(--gap-sm);
+
+    background-color: var(--card-background);
+
+    transform: rotate(-45deg);
+    transition: border var(--transition-time) var(--transition-func);
+
+    top: 50%;
+    margin-top: calc(var(--gap-sm) * -1 / 2);
+    left: calc(var(--gap-s) * -1 / 2);
+}
