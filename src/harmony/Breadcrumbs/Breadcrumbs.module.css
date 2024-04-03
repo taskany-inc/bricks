@@ -1,0 +1,8 @@
+.Breadcrumbs {
+    display: flex;
+    gap: var(--gap-xs);
+}
+
+.BreadcrumbSeparator:last-child {
+    display: none;
+}
