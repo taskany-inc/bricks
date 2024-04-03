@@ -23,6 +23,8 @@ interface UserProps {
     short?: boolean;
     inheritColor?: boolean;
     className?: string;
+    iconRight?: ComponentProps<typeof Badge>['iconRight'];
+    action?: ComponentProps<typeof Badge>['action'];
 }
 
 type AvatarLoadState = 'success' | 'error' | 'loading';
@@ -54,7 +56,7 @@ export const Avatar: React.FC<
 };
 
 export const User = forwardRef<HTMLDivElement, UserProps>(
-    ({ email, name, src, short, inheritColor, size = 's', className }, ref) => {
+    ({ email, name, src, short, inheritColor, size = 's', className, iconRight, action }, ref) => {
         return (
             <Badge
                 className={cn(
@@ -77,6 +79,8 @@ export const User = forwardRef<HTMLDivElement, UserProps>(
                         {name || email}
                     </span>
                 ))}
+                iconRight={iconRight}
+                action={action}
             />
         );
     },

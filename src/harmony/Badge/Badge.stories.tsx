@@ -38,6 +38,21 @@ export const Default: StoryObj<typeof Badge> = {
                     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`}
                     iconLeft={<IconExclamationCircleOutline size="s" />}
                 />
+                <br />
+                <Badge
+                    {...props}
+                    text="Static visibility iconRight"
+                    iconLeft={<IconExclamationCircleOutline size="s" />}
+                    iconRight={<IconExclamationCircleOutline size="s" />}
+                />
+                <br />
+                <Badge
+                    {...props}
+                    text="Dynamic visibility iconRight"
+                    iconLeft={<IconExclamationCircleOutline size="s" />}
+                    iconRight={<IconTargetOutline size="s" />}
+                    action="dynamic"
+                />
             </div>
         );
     },

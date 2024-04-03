@@ -12,11 +12,8 @@
 }
 
 .BadgeIcon {
-    display: inline-block;
     line-height: 1;
     max-width: var(--badge-icon-size);
-    height: var(--badge-icon-size);
-    text-align: center;
 }
 
 .BadgeIconLeft {
@@ -38,4 +35,13 @@
 }
 .BadgeSizeXl {
     padding: 4px 16px;
+}
+
+.BadgeAction {
+    opacity: 0;
+    transition: opacity var(--transition-time) var(--transition-func);
+}
+
+.Badge:hover .BadgeAction {
+    opacity: 1;
 }
