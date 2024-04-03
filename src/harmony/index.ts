@@ -3,6 +3,7 @@ export * from './AutoComplete/AutoComplete';
 export * from './Badge/Badge';
 export * from './Breadcrumbs/Breadcrumbs';
 export * from './Button/Button';
+export * from './Card/Card';
 export * from './Checkbox/Checkbox';
 export * from './Circle/Circle';
 export * from './CircleProgressBar/CircleProgressBar';

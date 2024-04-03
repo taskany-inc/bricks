@@ -94,7 +94,7 @@
   },
   "dependencies": {
     "@monaco-editor/react": "4.6.0",
-    "@taskany/colors": "1.11.0",
+    "@taskany/colors": "1.13.0",
     "@taskany/icons": "2.0.7",
     "@tippyjs/react": "4.2.6",
     "classnames": "2.5.1",
