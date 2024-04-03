@@ -14,6 +14,7 @@ export const State = React.forwardRef<HTMLSpanElement, StateProps>(({ title, col
     return (
         <Badge
             ref={ref}
+            className={s.StateBadge}
             iconLeft={<Dot size="l" className={s.StateDot} color={color} />}
             text={title}
             color={color}
