@@ -75,13 +75,13 @@ export const Badge = forwardRef(function Badge<T extends keyof AllowedHTMLElemen
             )}
         >
             {nullable(iconLeft, (icon) => (
-                <span className={cn(s.BadgeIcon, s.BadgeIconLeft)}>{icon}</span>
+                <span className={cn(s.BadgeIcon, { [s.BadgeIconLeft]: text })}>{icon}</span>
             ))}
             {nullable(text, (t) => (
                 <span className={s.BadgeText}>{t}</span>
             ))}
             {nullable(iconRight, (icon) => (
-                <span className={cn(s.BadgeIcon, s.BadgeIconRight)}>{icon}</span>
+                <span className={cn(s.BadgeIcon, { [s.BadgeIconRight]: text })}>{icon}</span>
             ))}
         </Text>
     );

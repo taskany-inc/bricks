@@ -19,6 +19,10 @@
     height: auto;
 }
 
+.User_short {
+    padding: 0;   
+}
+
 .UserName {
     font-size: var(--font-size-s);
     line-height: 1rem;
