@@ -1,6 +1,7 @@
 export * from './Alert/Alert';
 export * from './AutoComplete/AutoComplete';
 export * from './Badge/Badge';
+export * from './Breadcrumbs/Breadcrumbs';
 export * from './Button/Button';
 export * from './Checkbox/Checkbox';
 export * from './Circle/Circle';
