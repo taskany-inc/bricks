@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.25.0](https://github.com/taskany-inc/bricks/compare/v5.24.0...v5.25.0) (2024-04-03)
+
+
+### Features
+
+* **Badge:** add action ([f67bc4f](https://github.com/taskany-inc/bricks/commit/f67bc4f9b5083743d7a0f98f31f1d9bbb4d7d2f7))
+
+
+### Bug Fixes
+
+* update UserGroup markup ([f0bb9ad](https://github.com/taskany-inc/bricks/commit/f0bb9ade30b82dc3b99eb6b9b43415003b03e526))
+
 ## [5.24.0](https://github.com/taskany-inc/bricks/compare/v5.23.1...v5.24.0) (2024-03-27)
 
 
