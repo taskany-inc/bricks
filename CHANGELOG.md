@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.25.1](https://github.com/taskany-inc/bricks/compare/v5.25.0...v5.25.1) (2024-04-03)
+
+
+### Bug Fixes
+
+* state align ([5add0dc](https://github.com/taskany-inc/bricks/commit/5add0dc665cc8e0843b2242981a9acf079f0f90a))
+
 ## [5.25.0](https://github.com/taskany-inc/bricks/compare/v5.24.0...v5.25.0) (2024-04-03)
 
 
