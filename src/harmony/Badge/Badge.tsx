@@ -32,6 +32,7 @@ interface BadgeProps extends TextBadgeProps {
     text?: React.ReactNode;
     color?: string;
     as?: keyof AllowedHTMLElements;
+    action?: 'dynamic' | 'static';
 }
 
 const sizeMap = {
@@ -41,48 +42,58 @@ const sizeMap = {
     xl: s.BadgeSizeXl,
 };
 
-// eslint-disable-next-line prefer-arrow-callback
-export const Badge = forwardRef(function Badge<T extends keyof AllowedHTMLElements>(
-    props: BadgeProps & { as?: T } & AllowedHTMLElements[T],
-    ref: React.ForwardedRef<any>,
-) {
-    const {
-        iconLeft,
-        iconRight,
-        text,
-        className,
-        view = 'default',
-        size = 's',
-        weight = 'bold',
-        as = defaultTagName,
-        ...rest
-    } = props;
+export const Badge = forwardRef(
+    <T extends keyof AllowedHTMLElements>(
+        props: BadgeProps & { as?: T } & AllowedHTMLElements[T],
+        ref: React.ForwardedRef<any>,
+    ) => {
+        const {
+            iconLeft,
+            iconRight,
+            text,
+            className,
+            view = 'default',
+            size = 's',
+            weight = 'bold',
+            as = defaultTagName,
+            action = 'static',
+            ...rest
+        } = props;
 
-    return (
-        <Text
-            as={as}
-            ref={ref}
-            weight={weight}
-            size={size}
-            {...rest}
-            className={cn(
-                s.Badge,
-                className,
-                {
-                    [s.BadgeOutlined]: view === 'outline',
-                },
-                sizeMap[size],
-            )}
-        >
-            {nullable(iconLeft, (icon) => (
-                <span className={cn(s.BadgeIcon, { [s.BadgeIconLeft]: text })}>{icon}</span>
-            ))}
-            {nullable(text, (t) => (
-                <span className={s.BadgeText}>{t}</span>
-            ))}
-            {nullable(iconRight, (icon) => (
-                <span className={cn(s.BadgeIcon, { [s.BadgeIconRight]: text })}>{icon}</span>
-            ))}
-        </Text>
-    );
-});
+        return (
+            <Text
+                as={as}
+                ref={ref}
+                weight={weight}
+                size={size}
+                {...rest}
+                className={cn(
+                    s.Badge,
+                    className,
+                    {
+                        [s.BadgeOutlined]: view === 'outline',
+                    },
+                    sizeMap[size],
+                )}
+            >
+                {nullable(iconLeft, (icon) => (
+                    <span className={cn(s.BadgeIcon, { [s.BadgeIconLeft]: text })}>{icon}</span>
+                ))}
+                {nullable(text, (t) => (
+                    <span>{t}</span>
+                ))}
+                {nullable(iconRight, (icon) => (
+                    <span
+                        className={cn(
+                            s.BadgeIcon,
+                            { [s.BadgeIconRight]: text },
+                            { [s.BadgeAction]: action === 'dynamic' },
+                        )}
+                    >
+                        {icon}
+                    </span>
+                ))}
+            </Text>
+        );
+    },
+);
