@@ -1,9 +1,14 @@
 .Group {
     display: flex;
+    align-items: center;
 }
 
 .Group_interactive .GroupItem:hover {
     z-index: 1;
+}
+
+.GroupItem {
+    display: inline-flex;
 }
 
 .Group_overlay_xs .GroupItem + .GroupItem {

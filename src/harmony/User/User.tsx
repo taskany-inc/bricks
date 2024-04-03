@@ -62,6 +62,7 @@ export const User = forwardRef<HTMLDivElement, UserProps>(
                     {
                         [classes.UserSizeS]: size === 's',
                         [classes.UserSizeM]: size === 'm',
+                        [classes.User_short]: short,
                     },
                     className,
                 )}
