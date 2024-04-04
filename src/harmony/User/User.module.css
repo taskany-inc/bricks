@@ -20,17 +20,12 @@
 }
 
 .User_short {
-    padding: 0;   
+    padding: 0;
 }
 
 .UserName {
     font-size: var(--font-size-s);
     line-height: 1rem;
-    color: var(--text-primary);
     text-overflow: ellipsis;
     overflow: hidden;
-}
-
-.UserNameColorInherit {
-    color: inherit;
 }
