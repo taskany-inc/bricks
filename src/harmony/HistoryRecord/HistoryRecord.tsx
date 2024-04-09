@@ -1,5 +1,5 @@
-import React, { useEffect, useMemo, useReducer, useRef } from 'react';
-import classNames from 'classnames';
+import React, { useMemo, useReducer, useRef } from 'react';
+import cn from 'classnames';
 
 import { User } from '../User/User';
 import { Counter } from '../Counter/Counter';
@@ -8,7 +8,7 @@ import { nullable } from '../../utils';
 import { Dot } from '../Dot/Dot';
 import { Button } from '../Button/Button';
 
-import classes from './HistoryRecord.module.css';
+import s from './HistoryRecord.module.css';
 
 type UserProps = React.ComponentProps<typeof User>;
 
@@ -27,13 +27,13 @@ const UserCollapse: React.FC<Pick<HistoryRecordProps, 'authors'>> = ({ authors }
 
     return (
         <div
-            className={classNames(classes.HistoryRecordAuthorsGroup, {
-                [classes.HistoryRecordAuthorsGroupExpandeble]: authors.length > 1,
+            className={cn(s.HistoryRecordAuthorsGroup, {
+                [s.HistoryRecordAuthorsGroupExpandable]: authors.length > 1,
             })}
             style={visibleCountVar}
         >
             {authors.slice(0, 2).map((author) => (
-                <User {...author} key={author.email} short size="m" className={classes.HistoryRecordUsersGroupItem} />
+                <User {...author} key={author.email} short size="m" className={s.HistoryRecordUsersGroupItem} />
             ))}
             {nullable(authors.length - 2 > 0, () => (
                 <Counter count={authors.length - 2} />
@@ -49,18 +49,18 @@ export const HistoryRecord: React.FC<React.PropsWithChildren<HistoryRecordProps>
     date,
 }) => {
     return (
-        <div className={classNames(classes.HistoryRecord)}>
+        <div className={cn(s.HistoryRecord)}>
             <UserCollapse authors={authors} />
-            <div className={classes.HistoryRecordContent}>
-                <div className={classes.HistoryRecordTitleWrapper}>
+            <div className={s.HistoryRecordContent}>
+                <div className={s.HistoryRecordTitleWrapper}>
                     <Text size="s" weight="bold">
                         {title}
                     </Text>
-                    <Text as="span" size="xs" weight="thin" className={classes.HistoryRecordTime}>
+                    <Text as="span" size="xs" weight="thin" className={s.HistoryRecordTime}>
                         {date}
                     </Text>
                 </div>
-                <div className={classes.HistoryRecordContent}>{children}</div>
+                <div className={s.HistoryRecordContent}>{children}</div>
             </div>
         </div>
     );
@@ -77,29 +77,20 @@ export const HistoryRecordCollapse: React.FC<React.PropsWithChildren<HistoryReco
 }) => {
     const collapseRef = useRef<HTMLDivElement | null>(null);
     const [collapsed, toggleCollapsed] = useReducer((state) => !state, true);
-    const heightRef = useRef(0);
 
-    useEffect(() => {
-        if (collapseRef.current) {
-            heightRef.current = collapseRef.current.offsetHeight;
-        }
-    }, []);
-
-    useEffect(() => {
-        if (collapseRef.current) {
-            collapseRef.current.style.setProperty('height', collapsed ? '0' : `${heightRef.current}px`);
-        }
+    const height = useMemo(() => {
+        return collapsed ? '0px' : collapseRef.current?.scrollHeight;
     }, [collapsed]);
 
     return (
         <>
-            <div className={classes.HistoryRecordCollapse}>
-                <div className={classes.HistoryRecordCollapsePanel} ref={collapseRef}>
+            <div className={s.HistoryRecordCollapse} style={{ height }}>
+                <div className={s.HistoryRecordCollapsePanel} ref={collapseRef}>
                     {children}
                 </div>
             </div>
-            <div className={classNames(classes.HistoryRecord)}>
-                <Dot className={classes.HistoryRecordDot} />
+            <div className={cn(s.HistoryRecord)}>
+                <Dot className={s.HistoryRecordDot} />
                 <Button size="s" view="default" onClick={toggleCollapsed} text={translates[Number(collapsed)]} />
             </div>
         </>

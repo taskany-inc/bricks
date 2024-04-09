@@ -45,7 +45,6 @@
 .HistoryRecordAuthorsGroup {
     padding-top: var(--gap-xs);
     display: inline-flex;
-    justify-content: flex-end;
     position: relative;
     z-index: 1;
     width: 2rem; /* same width as UserImage */
@@ -59,27 +58,25 @@
     border-radius: 50%;
     box-sizing: border-box;
     transition: margin-left var(--transition-func) var(--transition-time);
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .HistoryRecordUsersGroupItem:not(:first-child) {
-    margin-left: calc(-2rem + 2px);
+    margin-left: calc(-2rem + var(--gap-xs));
 }
 
 .HistoryRecord:hover .HistoryRecordUsersGroupItem:not(:first-child) {
     margin-left: -0.75rem;
 }
 
-.HistoryRecord:hover .HistoryRecordAuthorsGroup:is(.HistoryRecordAuthorsGroupExpandeble) {
+.HistoryRecord:hover .HistoryRecordAuthorsGroup:is(.HistoryRecordAuthorsGroupExpandable) {
     width: calc(1.25rem * var(--users-count) + 0.75rem);
     justify-content: flex-start;
 }
 
-.HistoryRecordCollapse {
-    overflow: hidden;
-}
 .HistoryRecordCollapsePanel {
     box-sizing: border-box;
-    transition: height var(--transition-func) var(--transition-time);
 }
 
 .HistoryRecordCollapsePanel .HistoryRecord {
@@ -97,4 +94,9 @@
 
 .HistoryRecordCollapse + .HistoryRecord {
     align-items: center;
+}
+
+.HistoryRecordCollapse {
+    overflow: hidden;
+    transition: height var(--transition-func) var(--transition-time);
 }
