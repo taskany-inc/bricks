@@ -11,6 +11,11 @@
     border-radius: var(--radius-xl);
 }
 
+.BadgeSecondary .BadgeText {
+    color: var(--text-secondary);
+    transition: color var(--transition-time) var(--transition-func);
+}
+
 .BadgeIcon {
     line-height: 1;
     max-width: var(--badge-icon-size);
@@ -44,4 +49,9 @@
 
 .Badge:hover .BadgeAction {
     opacity: 1;
+}
+
+.Badge:hover .BadgeTextInteractive {
+    color: var(--text-primary);
+    cursor: pointer;
 }
