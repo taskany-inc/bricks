@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.26.1](https://github.com/taskany-inc/bricks/compare/v5.26.0...v5.26.1) (2024-04-09)
+
+
+### Bug Fixes
+
+* **Harmony:** aliases layout ([95f0a39](https://github.com/taskany-inc/bricks/commit/95f0a39db1eda1770102c3d5ed61e1e7247d51f4))
+
 ## [5.26.0](https://github.com/taskany-inc/bricks/compare/v5.25.1...v5.26.0) (2024-04-08)
 
 
