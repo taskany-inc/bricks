@@ -1,13 +1,16 @@
 .DatePickerOption {
-    display: flex;
+    display: grid;
+    grid-template-columns: 80px fit-content(100%);
     gap: var(--gap-s);
+
 
     margin-bottom: var(--gap-sm);
 }
 
 .DatePickerOptionLabel {
-    width: 94px;
     font-weight: 500;
+    margin-top: var(--gap-s);
+    line-height: var(--line-height-l);
 }
 
 /* Chrome, Safari, Edge, Opera */
@@ -76,12 +79,8 @@
     grid-template-columns: repeat(3, 1fr);
 }
 
-.DatePickerStrictDateInput {
-    width: 4ch;
-    text-align: center;
-}
-
 .DatePickerStrictDateInput input {
+    width: 5ch;
     text-align: center;
 }
 
@@ -93,10 +92,10 @@
     margin-left: 0;
 }
 
-.DatePickerYearInput {
-    width: 6ch;
+.DatePickerYearInput input {
+    width: 7ch;
     text-align: center;
-    
+
 }
 
 .DatePickerYearInput.DatePickerYearInput {
@@ -110,7 +109,7 @@
 
 .DatePickerStrictDateAdvice {
     /* correct alignment by right column */
-    padding-left: calc(94px + var(--gap-s));
+    padding-left: calc(80px + var(--gap-s));
     color: var(--text-secondary);
     margin-bottom: var(--gap-sm);
 }

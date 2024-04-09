@@ -624,33 +624,35 @@ export const DatePickerQuarter: React.FC<DatePickerQuarterProps> = ({
 
     return (
         <DatePickerOption {...translates} {...attrs} className={className} collapse={!quarter} onClick={handleClick}>
-            <div className={classNames(classes.DatePickerQuarter)}>
-                {quarters.map((quarter, index) => (
-                    <Button
-                        key={quarter}
-                        text={quarter}
-                        brick={quartersBricks[index]}
-                        size="s"
-                        onClick={() => handleSelectQuarter(quarter)}
-                        view={selectedQuarter === quarter ? 'checked' : 'default'}
-                        name={inputNames['date-picker-quarters'][quarter]}
-                    />
-                ))}
-            </div>
-            {nullable(withAliases, () => (
-                <div className={classNames(classes.DatePickerQuarterAlias)}>
-                    {aliases.map((alias, index) => (
+            <div>
+                <div className={classNames(classes.DatePickerQuarter)}>
+                    {quarters.map((quarter, index) => (
                         <Button
-                            brick={aliasesBricks[index]}
-                            key={alias}
-                            text={alias}
-                            view={selectedAlias === alias ? 'checked' : 'default'}
+                            key={quarter}
+                            text={quarter}
+                            brick={quartersBricks[index]}
                             size="s"
-                            onClick={() => handleSelectQuarterAlias(alias)}
+                            onClick={() => handleSelectQuarter(quarter)}
+                            view={selectedQuarter === quarter ? 'checked' : 'default'}
+                            name={inputNames['date-picker-quarters'][quarter]}
                         />
                     ))}
                 </div>
-            ))}
+                {nullable(withAliases, () => (
+                    <div className={classNames(classes.DatePickerQuarterAlias)}>
+                        {aliases.map((alias, index) => (
+                            <Button
+                                brick={aliasesBricks[index]}
+                                key={alias}
+                                text={alias}
+                                view={selectedAlias === alias ? 'checked' : 'default'}
+                                size="s"
+                                onClick={() => handleSelectQuarterAlias(alias)}
+                            />
+                        ))}
+                    </div>
+                ))}
+            </div>
         </DatePickerOption>
     );
 };
