@@ -24,23 +24,28 @@ type TextBadgeProps = Pick<
     TextPropsKeys | keyof React.HTMLAttributes<HTMLSpanElement>
 >;
 
-interface BadgeProps extends TextBadgeProps {
-    iconLeft?: React.ReactNode;
-    iconRight?: React.ReactNode;
-    view?: 'default' | 'outline';
-    size?: 's' | 'm' | 'l' | 'xl';
-    text?: React.ReactNode;
-    color?: string;
-    as?: keyof AllowedHTMLElements;
-    action?: 'dynamic' | 'static';
-}
-
 const sizeMap = {
     s: s.BadgeSizeS,
     m: s.BadgeSizeM,
     l: s.BadgeSizeL,
     xl: s.BadgeSizeXl,
 };
+
+const viewMap = {
+    outline: s.BadgeOutlined,
+    secondary: s.BadgeSecondary,
+};
+
+interface BadgeProps extends TextBadgeProps {
+    iconLeft?: React.ReactNode;
+    iconRight?: React.ReactNode;
+    view?: keyof typeof viewMap;
+    size?: keyof typeof sizeMap;
+    text?: React.ReactNode;
+    color?: string;
+    as?: keyof AllowedHTMLElements;
+    action?: 'dynamic' | 'static';
+}
 
 export const Badge = forwardRef(
     <T extends keyof AllowedHTMLElements>(
@@ -52,11 +57,12 @@ export const Badge = forwardRef(
             iconRight,
             text,
             className,
-            view = 'default',
+            view,
             size = 's',
             weight = 'bold',
             as = defaultTagName,
             action = 'static',
+            onClick,
             ...rest
         } = props;
 
@@ -67,20 +73,13 @@ export const Badge = forwardRef(
                 weight={weight}
                 size={size}
                 {...rest}
-                className={cn(
-                    s.Badge,
-                    className,
-                    {
-                        [s.BadgeOutlined]: view === 'outline',
-                    },
-                    sizeMap[size],
-                )}
+                className={cn(s.Badge, className, view ? viewMap[view] : '', sizeMap[size])}
             >
                 {nullable(iconLeft, (icon) => (
                     <span className={cn(s.BadgeIcon, { [s.BadgeIconLeft]: text })}>{icon}</span>
                 ))}
                 {nullable(text, (t) => (
-                    <span>{t}</span>
+                    <span className={cn(s.BadgeText, { [s.BadgeTextInteractive]: Boolean(onClick) })}>{t}</span>
                 ))}
                 {nullable(iconRight, (icon) => (
                     <span

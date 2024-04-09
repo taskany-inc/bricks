@@ -15,15 +15,19 @@ const sizeMap = {
     m: 32,
 } as const;
 
-interface UserProps {
+interface AllowedBadgeProps {
+    iconRight?: ComponentProps<typeof Badge>['iconRight'];
+    action?: ComponentProps<typeof Badge>['action'];
+    view?: ComponentProps<typeof Badge>['view'];
+}
+
+interface UserProps extends AllowedBadgeProps {
     name?: string | null;
     email?: string | null;
     src?: string | null;
     size?: keyof typeof sizeMap;
     short?: boolean;
     className?: string;
-    iconRight?: ComponentProps<typeof Badge>['iconRight'];
-    action?: ComponentProps<typeof Badge>['action'];
 }
 
 type AvatarLoadState = 'success' | 'error' | 'loading';
@@ -55,7 +59,7 @@ export const Avatar: React.FC<
 };
 
 export const User = forwardRef<HTMLDivElement, UserProps>(
-    ({ email, name, src, short, size = 's', className, iconRight, action }, ref) => {
+    ({ email, name, src, short, size = 's', className, ...props }, ref) => {
         return (
             <Badge
                 className={cn(
@@ -72,8 +76,7 @@ export const User = forwardRef<HTMLDivElement, UserProps>(
                 text={nullable(!short, () => (
                     <span className={classes.UserName}>{name || email}</span>
                 ))}
-                iconRight={iconRight}
-                action={action}
+                {...props}
             />
         );
     },
