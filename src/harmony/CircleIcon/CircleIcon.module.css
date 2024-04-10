@@ -1,0 +1,15 @@
+.CircleIconWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gray-900);
+    transition: background var(--transition-time) var(--transition-func);
+}
+
+.CircleIconWrapper:hover {
+    background: var(--input-fill-focused-borderless);
+}
+
+.CircleIconWrapper + span {
+    color: var(--text-secondary);
+}
