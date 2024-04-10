@@ -5,9 +5,15 @@ import { isColorDark, stringToColor } from '../../utils/stringToColor';
 
 import classes from './Circle.module.css';
 
+const sizeMap = {
+    xs: classes.CircleSizeXs,
+    s: classes.CircleSizeS,
+    m: classes.CircleSizeM,
+};
+
 interface CircleProps extends React.HTMLAttributes<HTMLSpanElement> {
     string: string;
-    size?: 's' | 'm';
+    size?: keyof typeof sizeMap;
     className?: string;
 }
 
@@ -32,12 +38,15 @@ export const Circle: React.FC<React.PropsWithChildren<CircleProps>> = ({
 
     return (
         <div
-            className={cn(classes.Circle, className, {
-                [classes.CircleLighten]: !isDark,
-                [classes.CircleDarken]: isDark,
-                [classes.CircleSizeS]: size === 's',
-                [classes.CircleSizeM]: size === 'm',
-            })}
+            className={cn(
+                classes.Circle,
+                className,
+                {
+                    [classes.CircleLighten]: !isDark,
+                    [classes.CircleDarken]: isDark,
+                },
+                sizeMap[size],
+            )}
             {...attrs}
             style={colorValue}
         >
