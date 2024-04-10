@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.27.1](https://github.com/taskany-inc/bricks/compare/v5.27.0...v5.27.1) (2024-04-10)
+
+
+### Bug Fixes
+
+* **Badge:** set onClick prop to Text ([ec9862e](https://github.com/taskany-inc/bricks/commit/ec9862e9e890bbe675dd6a8c0cebea55caeb9585))
+
 ## [5.27.0](https://github.com/taskany-inc/bricks/compare/v5.26.1...v5.27.0) (2024-04-10)
 
 
