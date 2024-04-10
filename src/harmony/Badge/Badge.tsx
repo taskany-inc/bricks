@@ -72,6 +72,7 @@ export const Badge = forwardRef(
                 ref={ref}
                 weight={weight}
                 size={size}
+                onClick={onClick}
                 {...rest}
                 className={cn(s.Badge, className, view ? viewMap[view] : '', sizeMap[size])}
             >
