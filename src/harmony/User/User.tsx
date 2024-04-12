@@ -11,6 +11,7 @@ import { Badge } from '../Badge/Badge';
 import classes from './User.module.css';
 
 const sizeMap = {
+    xs: 16,
     s: 24,
     m: 32,
 } as const;
@@ -65,6 +66,7 @@ export const User = forwardRef<HTMLDivElement, UserProps>(
                 className={cn(
                     classes.User,
                     {
+                        [classes.UserSizeXs]: size === 'xs',
                         [classes.UserSizeS]: size === 's',
                         [classes.UserSizeM]: size === 'm',
                         [classes.User_short]: short,
