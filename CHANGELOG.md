@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.28.0](https://github.com/taskany-inc/bricks/compare/v5.27.1...v5.28.0) (2024-04-12)
+
+
+### Features
+
+* **Harmony:** add xs size to Circle ([575f9be](https://github.com/taskany-inc/bricks/commit/575f9be1009e7c6d1b76e46b81f253e1c8aa8e8a))
+* **Harmony:** create CircleIcon component ([8b81b93](https://github.com/taskany-inc/bricks/commit/8b81b9369df040c465967ba1cba91e00f1582b20))
+
+
+### Bug Fixes
+
+* **User,Circle:** add new size ([d6fb3d7](https://github.com/taskany-inc/bricks/commit/d6fb3d79d79ff91491656a71209461459044560b))
+
 ## [5.27.1](https://github.com/taskany-inc/bricks/compare/v5.27.0...v5.27.1) (2024-04-10)
 
 
