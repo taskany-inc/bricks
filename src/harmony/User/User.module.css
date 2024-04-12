@@ -2,6 +2,10 @@
     align-items: center;
 }
 
+.UserSizeXs {
+    --badge-icon-size: 1rem; /* as `Circle` dimensions */
+}
+
 .UserSizeS {
     --badge-icon-size: 1.5rem; /* as `Circle` dimensions */
 }

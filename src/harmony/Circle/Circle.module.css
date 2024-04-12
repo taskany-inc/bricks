@@ -10,6 +10,11 @@
     user-select: none;
 
     background-image: linear-gradient(to right, var(--circle-main-color), var(--circle-secondary-color));
+
+    font-size: var(--circle-font-size);
+    width: var(--circle-diameter);
+    min-width: var(--circle-diameter);
+    height: var(--circle-diameter);
 }
 
 .CircleDarken {
@@ -28,15 +33,16 @@
 }
 
 .CircleSizeS {
-    font-size: 0.625rem;
-    width: 1.5rem;
-    min-width: 1.5rem;
-    height: 1.5rem;
+    --circle-font-size: 0.625rem;
+    --circle-diameter: 1.5rem;
 }
 
 .CircleSizeM {
-    font-size: 0.825rem;
-    width: 2rem;
-    min-width: 2rem;
-    height: 2rem;
+    --circle-font-size: 0.825rem;
+    --circle-diameter: 2rem;
+}
+
+.CircleSizeXs {
+    --circle-font-size: 0.475rem;
+    --circle-diameter: 1rem;
 }
