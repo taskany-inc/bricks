@@ -26,10 +26,8 @@
 }
 
 .CircleSizeXs {
-    font-size: 0.5rem;
-    width: 1.25rem;
-    min-width: 1.25rem;
-    height: 1.25rem;
+    --circle-font-size: 0.5rem;
+    --circle-diameter: 1.125rem;
 }
 
 .CircleSizeS {
@@ -40,9 +38,4 @@
 .CircleSizeM {
     --circle-font-size: 0.825rem;
     --circle-diameter: 2rem;
-}
-
-.CircleSizeXs {
-    --circle-font-size: 0.475rem;
-    --circle-diameter: 1rem;
 }
