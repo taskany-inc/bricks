@@ -3,7 +3,7 @@
 }
 
 .UserSizeXs {
-    --badge-icon-size: 1rem; /* as `Circle` dimensions */
+    --badge-icon-size: 1.125rem; /* as `Circle` dimensions */
 }
 
 .UserSizeS {
