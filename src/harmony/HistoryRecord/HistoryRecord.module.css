@@ -100,3 +100,12 @@
     overflow: hidden;
     transition: height var(--transition-func) var(--transition-time);
 }
+
+.HistoryRecordUsersRestCounter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* like width in .HistoryRecordUsersGroupItem */
+    min-width: 2rem;
+}
