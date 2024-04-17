@@ -96,6 +96,7 @@ const StyledInput = styled(
     margin: 0;
     padding: 0;
     background-color: transparent;
+    color: ${textColor};
 `;
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
