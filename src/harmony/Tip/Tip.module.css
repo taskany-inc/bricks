@@ -1,0 +1,15 @@
+.Tip_primary {
+    color: var(--text-secondary);
+}
+
+.Tip_warning {
+    color: var(--warn-500);
+}
+
+.Tip_danger {
+    color: var(--danger-500);
+}
+
+.TipTitle {
+    color: var(--text-ghost);
+}
