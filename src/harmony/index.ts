@@ -35,6 +35,7 @@ export * from './Tag/Tag';
 export * from './TaskanyLogo/TaskanyLogo';
 export * from './Text/Text';
 export * from './Textarea/Textarea';
+export * from './Tip/Tip';
 export * from './Tooltip/Tooltip';
 export * from './TreeView/TreeView';
 export * from './User/User';
