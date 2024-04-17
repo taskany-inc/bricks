@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.28.1](https://github.com/taskany-inc/bricks/compare/v5.28.0...v5.28.1) (2024-04-17)
+
+
+### Bug Fixes
+
+* **Input:** correct text color ([91460b3](https://github.com/taskany-inc/bricks/commit/91460b39b3d90f69ceb85b100053b47b636b1830))
+* **Switch:** onClick handler value ([d41697a](https://github.com/taskany-inc/bricks/commit/d41697ac5d9055d39b1b3f5b224af46343964a5b))
+
 ## [5.28.0](https://github.com/taskany-inc/bricks/compare/v5.27.1...v5.28.0) (2024-04-12)
 
 
