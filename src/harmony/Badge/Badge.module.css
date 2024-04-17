@@ -19,6 +19,7 @@
 .BadgeIcon {
     line-height: 1;
     max-width: var(--badge-icon-size);
+    max-height: var(--badge-icon-size);
 }
 
 .BadgeIconLeft {

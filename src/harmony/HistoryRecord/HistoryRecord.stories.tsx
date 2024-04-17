@@ -55,87 +55,60 @@ export const Default = () => {
 };
 
 export const Collaspable = () => {
-    const [first, second] = makeUsers('John Doe', 'Maria Doe');
+    const users = makeUsers('John Doe', 'Maria Doe', 'Denis Voropaev');
+    const [first, second] = users;
 
     return (
-        <div style={{ width: '350px' }}>
-            <HistoryRecord authors={[first, second]} title={`${first.name} and ${second.name}`} date="5 months ago">
+        <div style={{ width: 500 }}>
+            <HistoryRecord authors={users} title={users.map(({ name }) => name).join(' and ')} date="5 months ago">
                 <Text as="p" size="xs" weight="thin">
                     has changed project about 5 times
                 </Text>
             </HistoryRecord>
             <HistoryRecordCollapse translates={['Collapse', 'Show activity']}>
-                <HistoryRecord authors={[second]} title={second.name} date="4 month ago">
-                    <Text as="p" size="xs" weight="thin">
-                        has changed project from{' '}
-                        <Link href="https://taskany.org">
-                            <Text as="span" strike weight="bold">
-                                Project One
-                            </Text>{' '}
-                        </Link>
-                        to{' '}
-                        <Link href="https://taskany.org">
-                            <Text as="span" weight="bold">
-                                Project Two
-                            </Text>{' '}
-                        </Link>
-                    </Text>
-                </HistoryRecord>
-                <HistoryRecord authors={[first]} title={first.name} date="4 month ago">
-                    <Text as="p" size="xs" weight="thin">
-                        has changed project from{' '}
-                        <Link href="https://taskany.org">
-                            <Text as="span" strike weight="bold">
-                                Project One
-                            </Text>{' '}
-                        </Link>
-                        to{' '}
-                        <Link href="https://taskany.org">
-                            <Text as="span" weight="bold">
-                                Project Two
-                            </Text>{' '}
-                        </Link>
-                    </Text>
-                </HistoryRecord>
+                {users.map((user) => (
+                    <HistoryRecord authors={[user]} title={user.name} date="4 month ago">
+                        <Text as="p" size="xs" weight="thin">
+                            has changed project from{' '}
+                            <Link href="https://taskany.org">
+                                <Text as="span" strike weight="bold">
+                                    Project One
+                                </Text>{' '}
+                            </Link>
+                            to{' '}
+                            <Link href="https://taskany.org">
+                                <Text as="span" weight="bold">
+                                    Project Two
+                                </Text>{' '}
+                            </Link>
+                        </Text>
+                    </HistoryRecord>
+                ))}
             </HistoryRecordCollapse>
-            <HistoryRecord authors={[first, second]} title={`${first.name} and ${second.name}`} date="5 months ago">
+            <HistoryRecord authors={users} title={users.map(({ name }) => name).join('and')} date="5 months ago">
                 <Text as="p" size="xs" weight="thin">
                     has changed project about 5 times
                 </Text>
             </HistoryRecord>
             <HistoryRecordCollapse translates={['Collapse', 'Show activity']}>
-                <HistoryRecord authors={[second]} title={second.name} date="4 month ago">
-                    <Text as="p" size="xs" weight="thin">
-                        has changed project from{' '}
-                        <Link href="https://taskany.org">
-                            <Text as="span" strike weight="bold">
-                                Project One
-                            </Text>{' '}
-                        </Link>
-                        to{' '}
-                        <Link href="https://taskany.org">
-                            <Text as="span" weight="bold">
-                                Project Two
-                            </Text>{' '}
-                        </Link>
-                    </Text>
-                </HistoryRecord>
-                <HistoryRecord authors={[first]} title={first.name} date="4 month ago">
-                    <Text as="p" size="xs" weight="thin">
-                        has changed project from{' '}
-                        <Link href="https://taskany.org">
-                            <Text as="span" strike weight="bold">
-                                Project One
-                            </Text>{' '}
-                        </Link>
-                        to{' '}
-                        <Link href="https://taskany.org">
-                            <Text as="span" weight="bold">
-                                Project Two
-                            </Text>{' '}
-                        </Link>
-                    </Text>
-                </HistoryRecord>
+                {users.map((user) => (
+                    <HistoryRecord authors={[user]} title={user.name} date="4 month ago">
+                        <Text as="p" size="xs" weight="thin">
+                            has changed project from{' '}
+                            <Link href="https://taskany.org">
+                                <Text as="span" strike weight="bold">
+                                    Project One
+                                </Text>{' '}
+                            </Link>
+                            to{' '}
+                            <Link href="https://taskany.org">
+                                <Text as="span" weight="bold">
+                                    Project Two
+                                </Text>{' '}
+                            </Link>
+                        </Text>
+                    </HistoryRecord>
+                ))}
             </HistoryRecordCollapse>
             <HistoryRecord authors={[first]} title={first.name} date="4 months ago">
                 <Text size="xs" weight="thin">

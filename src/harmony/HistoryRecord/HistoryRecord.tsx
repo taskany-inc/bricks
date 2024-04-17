@@ -36,7 +36,10 @@ const UserCollapse: React.FC<Pick<HistoryRecordProps, 'authors'>> = ({ authors }
                 <User {...author} key={author.email} short size="m" className={s.HistoryRecordUsersGroupItem} />
             ))}
             {nullable(authors.length - 2 > 0, () => (
-                <Counter count={authors.length - 2} />
+                <Counter
+                    count={authors.length - 2}
+                    className={cn(s.HistoryRecordUsersGroupItem, s.HistoryRecordUsersRestCounter)}
+                />
             ))}
         </div>
     );
