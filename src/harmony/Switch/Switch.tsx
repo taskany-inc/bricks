@@ -9,7 +9,7 @@ import { Counter } from '../Counter/Counter';
 import classes from './Switch.module.css';
 
 interface SwitchProps extends Omit<React.HTMLAttributes<HTMLInputElement>, 'onChange'> {
-    onChange?: (event: React.SyntheticEvent<HTMLButtonElement>) => void;
+    onChange?: (event: React.SyntheticEvent<HTMLButtonElement>, active: string) => void;
     name?: string;
     value?: string;
     animated?: boolean;
@@ -139,7 +139,7 @@ export const Switch: React.FC<PropsWithChildren<SwitchProps>> = ({
         (event: React.SyntheticEvent<HTMLButtonElement>, nextActive: string) => {
             setActive(nextActive);
 
-            onChange?.(event);
+            onChange?.(event, nextActive);
         },
         [onChange],
     );
