@@ -73,6 +73,7 @@ export const User = forwardRef<HTMLDivElement, UserProps>(
                     },
                     className,
                 )}
+                as="div"
                 ref={ref}
                 iconLeft={<Avatar src={src} name={name} email={email} size={size} />}
                 text={nullable(!short, () => (
