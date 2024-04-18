@@ -1,6 +1,7 @@
 export * from './useClickOutside';
 export * from './useCopyToClipboard';
 export * from './useEventCallback';
+export * from './useForkedRef';
 export * from './useHotkeys';
 export * from './useKeyPress';
 export * from './useKeyboard';

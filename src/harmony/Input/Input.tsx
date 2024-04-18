@@ -1,7 +1,17 @@
-import React, { CSSProperties, InputHTMLAttributes, MutableRefObject, ReactNode, forwardRef, useMemo } from 'react';
+import React, {
+    CSSProperties,
+    InputHTMLAttributes,
+    MutableRefObject,
+    ReactNode,
+    forwardRef,
+    useEffect,
+    useMemo,
+    useRef,
+} from 'react';
 import cn from 'classnames';
 
 import { nullable } from '../../utils';
+import { useForkedRef } from '../../hooks/useForkedRef';
 
 import s from './Input.module.css';
 
@@ -49,10 +59,22 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             outline,
             pointerEvents,
             forwardedRef,
+            autoFocus,
             ...rest
         },
         ref,
     ) => {
+        const inputRef = useRef<HTMLInputElement>(null);
+        const forkedInputRef = useForkedRef(inputRef, ref);
+
+        useEffect(() => {
+            if (autoFocus) {
+                queueMicrotask(() => {
+                    inputRef.current?.focus();
+                });
+            }
+        }, [autoFocus]);
+
         const wrapperStyles: Record<string, unknown> = useMemo(() => {
             const wrapper: Record<string, unknown> = {};
 
@@ -79,8 +101,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
                     className={cn(s.Input, viewMap[view], sizeMap[size], brick ? brickMap[brick] : '', {
                         [s.Input_outline]: outline,
                     })}
-                    ref={ref}
+                    ref={forkedInputRef}
                     autoComplete={autoComplete}
+                    autoFocus={autoFocus}
                     {...rest}
                 />
 
