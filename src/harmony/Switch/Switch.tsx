@@ -39,7 +39,7 @@ interface SwitchControlProps extends Omit<React.ComponentProps<typeof Button>, '
     count?: number;
 }
 
-export const SwitchControl: React.FC<SwitchControlProps> = ({ text, value, className, count, ...props }) => {
+export const SwitchControl: React.FC<SwitchControlProps> = ({ text, value, className, count, onClick, ...props }) => {
     const { active, register, onChange, name, animated } = useContext(SwitchContext);
     const controlRef = useRef<HTMLButtonElement>(null);
 
@@ -80,7 +80,7 @@ export const SwitchControl: React.FC<SwitchControlProps> = ({ text, value, class
                 ),
                 props.iconRight,
             )}
-            onClick={handleClick}
+            onClick={onClick || handleClick}
         />
     );
 };
@@ -101,6 +101,10 @@ export const Switch: React.FC<PropsWithChildren<SwitchProps>> = ({
     const wrapperRef = useRef<HTMLDivElement>(null);
     const nodesMapRef = useRef<Map<string, HTMLButtonElement>>(new Map());
     const pinRef = useRef<HTMLSpanElement>(null);
+
+    useEffect(() => {
+        setActive(value);
+    }, [value]);
 
     const updatePinStyles = useEventCallback(() => {
         if (!active) {
