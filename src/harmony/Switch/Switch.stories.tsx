@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
 import { IconGridLayoutOutline, IconListUnorderedOutline, IconMessagePlusOutline } from '@taskany/icons';
 
@@ -59,6 +59,32 @@ export const ControlsWithCounter: Story = (props) => {
             <SwitchControl count={5} text="List" value="list" />
             <SwitchControl count={10} text="Kanban" value="kanban" />
             <SwitchControl count={7} text="Updates" value="updates" />
+        </Switch>
+    );
+};
+
+export const ProgramControlled: Story = () => {
+    const [state, setState] = useState('kanban');
+
+    const onUpdatesClick = useCallback<React.MouseEventHandler<HTMLButtonElement>>(() => {
+        // eslint-disable-next-line no-alert, no-restricted-globals
+        const result = confirm('Сonfirm to continue');
+
+        if (result) {
+            setState('updates');
+        }
+    }, []);
+
+    return (
+        <Switch value={state}>
+            <SwitchControl iconLeft={<IconListUnorderedOutline size="s" />} text="List" value="list" />
+            <SwitchControl iconLeft={<IconGridLayoutOutline size="s" />} text="Kanban" value="kanban" />
+            <SwitchControl
+                onClick={onUpdatesClick}
+                iconLeft={<IconMessagePlusOutline size="s" />}
+                text="Updates"
+                value="updates"
+            />
         </Switch>
     );
 };
