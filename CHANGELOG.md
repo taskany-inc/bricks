@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.29.1](https://github.com/taskany-inc/bricks/compare/v5.29.0...v5.29.1) (2024-04-19)
+
+
+### Bug Fixes
+
+* next hydration error ([33da8bb](https://github.com/taskany-inc/bricks/commit/33da8bb800ff046e468962f6e1f1de1749cad904))
+
 ## [5.29.0](https://github.com/taskany-inc/bricks/compare/v5.28.0...v5.29.0) (2024-04-17)
 
 
