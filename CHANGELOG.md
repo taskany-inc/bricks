@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.30.0](https://github.com/taskany-inc/bricks/compare/v5.29.1...v5.30.0) (2024-04-25)
+
+
+### Features
+
+* **Input:** add possibility to focus input after mounting ([254a47c](https://github.com/taskany-inc/bricks/commit/254a47ca28d25b74eff6168e4f8942fb789ab678))
+
 ## [5.29.1](https://github.com/taskany-inc/bricks/compare/v5.29.0...v5.29.1) (2024-04-19)
 
 
