@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.31.0](https://github.com/taskany-inc/bricks/compare/v5.30.0...v5.31.0) (2024-05-15)
+
+
+### Features
+
+* program controlled Switch ([700e095](https://github.com/taskany-inc/bricks/commit/700e09554c71afd6b882fbcf61c6b558b190ffe6))
+* **translit:** add util ([1a02433](https://github.com/taskany-inc/bricks/commit/1a02433a47597fbaa3c1a80b1245b963891b90c0))
+
 ## [5.30.0](https://github.com/taskany-inc/bricks/compare/v5.29.1...v5.30.0) (2024-04-25)
 
 
