@@ -32,7 +32,9 @@
     "prepare": "husky install",
     "type-check": "npx tsc --noEmit",
     "storybook": "BABEL_ENV=dev storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "test": "node --import tsx --test ./src/**/*.test.*",
+    "test:watch": "node --import tsx --test --watch ./src/**/*.test.*"
   },
   "license": "MIT",
   "devDependencies": {
@@ -81,6 +83,7 @@
     "react-dom": "18.2.0",
     "storybook": "7.6.10",
     "styled-components": "5.3.11",
+    "tsx": "4.10.2",
     "typescript": "5.3.3",
     "typescript-plugin-css-modules": "5.1.0",
     "unplugin-auto-re-export": "0.2.1",
