@@ -8,7 +8,7 @@ import external from '@yelo/rollup-node-external';
 import autoReExportPlugin from "unplugin-auto-re-export/vite";
 import { exitProcess } from "./.vite/plugins/exitProcess";
 
-const ignore = ['src/**/*.d.ts', 'src/**/*.stories.{ts,tsx}']
+const ignore = ['src/**/*.d.ts', 'src/**/*.stories.{ts,tsx}', 'src/**/*.test.{ts,tsx}']
 
 export default defineConfig({
     css: {
@@ -66,6 +66,7 @@ export default defineConfig({
                         'src/utils/getInitials.*',
                         'src/utils/preloadImage.*',
                         'src/utils/stringToColor.*',
+                        'src/utils/translit.test.*',
                         'src/harmony/Editor/Editor.*',
                         'src/harmony/Group/Group.*',
                     ],
