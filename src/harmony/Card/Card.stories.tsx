@@ -30,7 +30,6 @@ const colors = [
     {
         backgroundColor: 'var(--status-background-blocked)',
         foregroundColor: 'var(--status-blocked)',
-        corner: true,
     },
     {
         backgroundColor: 'var(--status-background-failed)',
@@ -45,6 +44,7 @@ const colors = [
     {
         backgroundColor: 'var(--status-background-at-risk)',
         foregroundColor: 'var(--status-at-risk)',
+        corner: true,
     },
     {
         backgroundColor: 'var(--status-background-cancelled)',
@@ -57,6 +57,12 @@ export default meta;
 export const Default: StoryFn<typeof meta> = () => {
     return (
         <Layout>
+            <Card backgroundColor="var(--status-background-at-risk)">
+                <CardContent view="transparent">Comment text</CardContent>
+            </Card>
+            <Card>
+                <CardContent view="flat">Comment text</CardContent>
+            </Card>
             <Card>
                 <CardInfo>Header</CardInfo>
                 <CardContent view="transparent">Comment text</CardContent>
@@ -65,9 +71,9 @@ export const Default: StoryFn<typeof meta> = () => {
                 <CardInfo>Header</CardInfo>
                 <CardContent>Comment text</CardContent>
             </Card>
-            {colors.map((props, i) => (
-                <Card key={i}>
-                    <CardInfo {...props}>Header</CardInfo>
+            {colors.map(({ corner, ...props }, i) => (
+                <Card key={i} {...props}>
+                    <CardInfo corner={corner}>Header</CardInfo>
                     <CardContent>Comment text</CardContent>
                 </Card>
             ))}
