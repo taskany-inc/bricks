@@ -5,13 +5,14 @@ import { User } from '../User/User';
 import { Tooltip } from '../Tooltip/Tooltip';
 import { Group, GroupItem } from '../Group/Group';
 
-interface UserProps extends Pick<React.ComponentProps<typeof User>, 'email' | 'name'> {
+interface UserProps extends Pick<React.ComponentProps<typeof User>, 'email' | 'name' | 'size'> {
     image?: string | null;
 }
 
 interface UserGroupProps {
     users: Array<UserProps>;
     showCount?: number;
+    size?: React.ComponentProps<typeof User>['size'];
 }
 
 const WrappedUser: React.FC<UserProps> = ({ name, email, image, ...props }) => {
@@ -27,7 +28,7 @@ const WrappedUser: React.FC<UserProps> = ({ name, email, image, ...props }) => {
     );
 };
 
-export const UserGroup: React.FC<UserGroupProps> = ({ users, showCount = 4 }) => {
+export const UserGroup: React.FC<UserGroupProps> = ({ users, showCount = 4, size }) => {
     const realShowCount = users.length > showCount ? showCount : users.length;
     const targetRestRef = useRef<HTMLDivElement>(null);
 
@@ -45,7 +46,7 @@ export const UserGroup: React.FC<UserGroupProps> = ({ users, showCount = 4 }) =>
         <Group interactive overlay="s">
             {users.slice(0, realShowCount).map((user, i) => (
                 <GroupItem key={`${user.email}-${i}`}>
-                    <WrappedUser {...user} />
+                    <WrappedUser {...user} size={size} />
                 </GroupItem>
             ))}
             {nullable(restUserNames, (list) => (
