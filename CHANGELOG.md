@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.31.1](https://github.com/taskany-inc/bricks/compare/v5.31.0...v5.31.1) (2024-05-17)
+
+
+### Bug Fixes
+
+* **harmony/AutoComplete:** component import path ([3f27ff0](https://github.com/taskany-inc/bricks/commit/3f27ff0421fea193cf207099646a76d12974e038))
+
 ## [5.31.0](https://github.com/taskany-inc/bricks/compare/v5.30.0...v5.31.0) (2024-05-15)
 
 
