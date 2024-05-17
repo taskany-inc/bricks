@@ -1,7 +1,7 @@
 import React, { ComponentProps, ReactNode, createContext, useCallback, useContext, useMemo } from 'react';
 
 import { useLatest } from '../../hooks/useLatest';
-import { ListView, ListViewItem } from '../../components';
+import { ListView, ListViewItem } from '../../components/ListView/ListView';
 import { Text } from '../Text/Text';
 import { nullable } from '../../utils';
 
