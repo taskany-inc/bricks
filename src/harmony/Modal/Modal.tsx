@@ -3,7 +3,7 @@ import { IconXOutline } from '@taskany/icons';
 import cn from 'classnames';
 
 import { useKeyboard, KeyCode } from '../../hooks/useKeyboard';
-import { Portal } from '../../components';
+import { Portal } from '../../components/Portal';
 import { nullable } from '../../utils';
 import { Button } from '../Button/Button';
 import { Text } from '../Text/Text';

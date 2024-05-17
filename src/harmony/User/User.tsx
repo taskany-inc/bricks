@@ -5,7 +5,7 @@ import { Circle } from '../Circle/Circle';
 import { preloadImage } from '../../utils/preloadImage';
 import { nullable } from '../../utils';
 import { getInitials } from '../../utils/getInitials';
-import { Gravatar } from '../../components';
+import { Gravatar } from '../../components/Gravatar';
 import { Badge } from '../Badge/Badge';
 
 import classes from './User.module.css';
