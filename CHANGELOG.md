@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.32.0](https://github.com/taskany-inc/bricks/compare/v5.31.2...v5.32.0) (2024-05-17)
+
+
+### Features
+
+* support border-color ([9f37cb3](https://github.com/taskany-inc/bricks/commit/9f37cb3cfb9b469b2eb555abf6f1fd1b3659a71e))
+
 ## [5.31.2](https://github.com/taskany-inc/bricks/compare/v5.31.1...v5.31.2) (2024-05-17)
 
 
