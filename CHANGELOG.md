@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.34.0](https://github.com/taskany-inc/bricks/compare/v5.33.0...v5.34.0) (2024-05-21)
+
+
+### Features
+
+* support ModalPreview to harmony ([303d6b6](https://github.com/taskany-inc/bricks/commit/303d6b64c6d6eea09891bf1e9c19e295a9e3883a))
+
 ## [5.33.0](https://github.com/taskany-inc/bricks/compare/v5.32.0...v5.33.0) (2024-05-21)
 
 
