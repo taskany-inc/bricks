@@ -1,0 +1,20 @@
+.ModalPreview {
+    box-sizing: border-box;
+    position: fixed;
+    z-index: 100;
+    right: var(--gap-m);
+    top: var(--gap-m);
+    bottom: var(--gap-m);
+
+    overflow: hidden;
+
+    min-width: 300px;
+    width: 700px;
+    min-height: 95%;
+
+    border-radius: var(--radius-m);
+
+    background-color: var(--background-color);
+
+    box-shadow: -4px 4px 8px 0px rgba(0, 0, 0, 0.2);
+}

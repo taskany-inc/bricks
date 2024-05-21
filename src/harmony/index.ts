@@ -22,6 +22,7 @@ export * from './Keyboard/Keyboard';
 export * from './Link/Link';
 export * from './MenuItem/MenuItem';
 export * from './Modal/Modal';
+export * from './ModalPreview/ModalPreview';
 export * from './OfflineBanner/OfflineBanner';
 export * from './Popup/Popup';
 export * from './Radio/Radio';
