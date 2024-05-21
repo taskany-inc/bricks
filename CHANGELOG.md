@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.33.0](https://github.com/taskany-inc/bricks/compare/v5.32.0...v5.33.0) (2024-05-21)
+
+
+### Features
+
+* size param for UserGroup ([38db54a](https://github.com/taskany-inc/bricks/commit/38db54a381e2742b53e3e6174e061e3c3e54fa3b))
+
 ## [5.32.0](https://github.com/taskany-inc/bricks/compare/v5.31.2...v5.32.0) (2024-05-17)
 
 
