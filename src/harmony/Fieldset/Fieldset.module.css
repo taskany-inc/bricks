@@ -1,0 +1,22 @@
+.Fieldset {
+    border: 0;
+
+    padding: var(--gap-m) 0 0 0;
+    margin: 0;
+}
+
+.Legend {
+    padding: var(--gap-s) var(--gap-m) 0;
+}
+
+.Fieldset_default {
+    color: var(--text-secondary);
+}
+
+.Fieldset_warning {
+    color: var(--warn-500);
+}
+
+.Fieldset_danger {
+    color: var(--danger-500);
+}

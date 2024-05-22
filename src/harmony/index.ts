@@ -12,6 +12,7 @@ export * from './Counter/Counter';
 export * from './DatePicker/DatePicker';
 export * from './Dot/Dot';
 export * from './Dropdown/Dropdown';
+export * from './Fieldset/Fieldset';
 export * from './FlatProgressBar/FlatProgressBar';
 export * from './FormControl/FormControl';
 export * from './FormEditor/FormEditor';
