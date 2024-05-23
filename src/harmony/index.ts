@@ -25,6 +25,7 @@ export * from './MenuItem/MenuItem';
 export * from './Modal/Modal';
 export * from './ModalPreview/ModalPreview';
 export * from './OfflineBanner/OfflineBanner';
+export * from './PageLoadProgress/PageLoadProgress';
 export * from './Popup/Popup';
 export * from './Radio/Radio';
 export * from './RadioGroup/RadioGroup';

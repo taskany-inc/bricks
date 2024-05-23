@@ -1,0 +1,27 @@
+.PageLoadProgress {
+    --progress-bar-color: var(--brand-color);
+    --progress-bar-height: '4px';
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--progress-bar-height);
+}
+
+.PageLoadProgressBar {
+    height: 100%;
+    width: 0;
+    transition: width 0.6s linear;
+    position: relative;
+    display: flex;
+}
+
+.PageLoadProgressBarInner {
+    background-color: var(--progress-bar-color);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
