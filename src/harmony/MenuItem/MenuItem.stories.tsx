@@ -3,7 +3,7 @@ import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import { IconAddOutline } from '@taskany/icons';
 
-import { ListView, ListViewItem } from '../../components/ListView/ListView';
+import { ListView, ListViewItem } from '../ListView/ListView';
 
 import { MenuItem } from './MenuItem';
 
