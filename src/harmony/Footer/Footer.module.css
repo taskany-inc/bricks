@@ -1,0 +1,15 @@
+.Footer {
+    display: grid;
+    grid-template-columns: 1fr 6fr 0fr;
+    align-items: center;
+    padding: 20px 40px;
+    color: var(--text-secondary);
+}
+
+.FooterMenu {
+    display: flex;
+}
+
+.FooterItem {
+    padding: 0px var(--gap-s);
+}
