@@ -121,7 +121,7 @@ export const Text = React.forwardRef(function <T extends keyof AllowedHTMLElemen
         <Tag
             {...rest}
             ref={ref}
-            className={cn(textStyles, className, {
+            className={cn(s.Text, textStyles, className, {
                 [s.TextEllipsis]: ellipsis,
                 [s.TextWrapped]: !!wordWrap,
                 [s.TextBreaked]: !!wordBreak,
