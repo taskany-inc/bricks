@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.37.0](https://github.com/taskany-inc/bricks/compare/v5.36.0...v5.37.0) (2024-05-27)
+
+
+### Features
+
+* remove styled components from harmony ([d17c012](https://github.com/taskany-inc/bricks/commit/d17c0123cb93fbf78c62420e72f9a0dbdb6a71f4))
+
 ## [5.36.0](https://github.com/taskany-inc/bricks/compare/v5.35.0...v5.36.0) (2024-05-23)
 
 
