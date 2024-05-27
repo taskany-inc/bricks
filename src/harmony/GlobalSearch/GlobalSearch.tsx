@@ -8,7 +8,7 @@ import { useHotkey } from '../../hooks/useHotkeys';
 import { Popup } from '../Popup/Popup';
 import { Input } from '../Input/Input';
 import { Text } from '../Text/Text';
-import { Keyboard } from '../../components/Keyboard/Keyboard';
+import { Keyboard } from '../Keyboard/Keyboard';
 import { useKeyboard, KeyCode } from '../../hooks';
 import { ModalOverlay } from '../Modal/Modal';
 

@@ -1,0 +1,7 @@
+.Trunk {
+    stroke: var(--text-primary);
+}
+
+.Leaves {
+    stroke: var(--primary-600);
+}
