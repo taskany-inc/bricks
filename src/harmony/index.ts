@@ -18,6 +18,7 @@ export * from './Footer/Footer';
 export * from './FormControl/FormControl';
 export * from './FormEditor/FormEditor';
 export * from './GlobalSearch/GlobalSearch';
+export * from './Gravatar/Gravatar';
 export * from './HistoryRecord/HistoryRecord';
 export * from './Input/Input';
 export * from './Keyboard/Keyboard';

@@ -5,16 +5,10 @@ import { Circle } from '../Circle/Circle';
 import { preloadImage } from '../../utils/preloadImage';
 import { nullable } from '../../utils';
 import { getInitials } from '../../utils/getInitials';
-import { Gravatar } from '../../components/Gravatar';
 import { Badge } from '../Badge/Badge';
+import { Gravatar } from '../Gravatar/Gravatar';
 
 import classes from './User.module.css';
-
-const sizeMap = {
-    xs: 16,
-    s: 24,
-    m: 32,
-} as const;
 
 interface AllowedBadgeProps {
     iconRight?: ComponentProps<typeof Badge>['iconRight'];
@@ -26,7 +20,7 @@ interface UserProps extends AllowedBadgeProps {
     name?: string | null;
     email?: string | null;
     src?: string | null;
-    size?: keyof typeof sizeMap;
+    size?: ComponentProps<typeof Gravatar>['size'];
     short?: boolean;
     className?: string;
 }
@@ -39,7 +33,7 @@ export const Avatar: React.FC<
     const [status, setStatus] = useState<AvatarLoadState>('loading');
 
     if (!src || status === 'error') {
-        return <Gravatar className={className} name={name} email={email} size={sizeMap[size]} {...rest} />;
+        return <Gravatar className={className} name={name} email={email} size={size} {...rest} />;
     }
 
     preloadImage(src)
