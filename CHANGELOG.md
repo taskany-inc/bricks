@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.37.2](https://github.com/taskany-inc/bricks/compare/v5.37.1...v5.37.2) (2024-05-28)
+
+
+### Bug Fixes
+
+* gravatar host ([c9623ac](https://github.com/taskany-inc/bricks/commit/c9623ac3e6bd60b6fabcc67fff9d04bffc4a3f90))
+
 ## [5.37.1](https://github.com/taskany-inc/bricks/compare/v5.37.0...v5.37.1) (2024-05-28)
 
 
