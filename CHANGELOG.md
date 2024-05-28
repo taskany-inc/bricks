@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.37.1](https://github.com/taskany-inc/bricks/compare/v5.37.0...v5.37.1) (2024-05-28)
+
+
+### Bug Fixes
+
+* return Text styles ([476a1c5](https://github.com/taskany-inc/bricks/commit/476a1c56c528fbe827befeb636b3e870b80a876c))
+
 ## [5.37.0](https://github.com/taskany-inc/bricks/compare/v5.36.0...v5.37.0) (2024-05-27)
 
 
