@@ -29,7 +29,7 @@ export const Gravatar: FC<GravatarProps> = ({
     size = 's',
     rating = 'g',
     def = 'retro',
-    domain = 'www.gravatar.com',
+    domain = process.env.NEXT_PUBLIC_GRAVATAR_HOST || 'www.gravatar.com',
     email,
     md5,
     name,
