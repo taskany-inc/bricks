@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.38.0](https://github.com/taskany-inc/bricks/compare/v5.37.2...v5.38.0) (2024-05-29)
+
+
+### Features
+
+* remove Md component ([8a29635](https://github.com/taskany-inc/bricks/commit/8a2963591f7e18d985b09efcb797da1f984eaab7))
+
 ## [5.37.2](https://github.com/taskany-inc/bricks/compare/v5.37.1...v5.37.2) (2024-05-28)
 
 
