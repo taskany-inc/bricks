@@ -1,0 +1,5 @@
+.Image {
+    max-width: 100%;
+    border-radius: var(--radius-m);
+    cursor: pointer;
+}

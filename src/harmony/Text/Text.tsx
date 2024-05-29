@@ -61,6 +61,10 @@ interface AllowedHTMLElements {
     h5: React.JSX.IntrinsicElements['h5'];
     h6: React.JSX.IntrinsicElements['h6'];
     legend: React.JSX.IntrinsicElements['legend'];
+    ol: React.JSX.IntrinsicElements['ol'];
+    ul: React.JSX.IntrinsicElements['ul'];
+    li: React.JSX.IntrinsicElements['li'];
+    blockquote: React.JSX.IntrinsicElements['blockquote'];
 }
 
 type HeadingTagName = Extract<keyof AllowedHTMLElements, `h${number}`>;
