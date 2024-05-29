@@ -4,6 +4,9 @@ h3.Text,
 h4.Text,
 h5.Text,
 h6.Text,
+ul.Text,
+ol.Text,
+li.Text,
 p.Text {
     margin-top: 0;
     margin-bottom: 0;
@@ -15,6 +18,9 @@ h3.Text:first-child,
 h4.Text:first-child,
 h5.Text:first-child,
 h6.Text:first-child,
+ul.Text:first-child,
+ol.Text:first-child,
+li.Text:first-child,
 p.Text:first-child {
     padding-top: 0;
 }
@@ -25,6 +31,9 @@ h3.Text:last-child,
 h4.Text:last-child,
 h5.Text:last-child,
 h6.Text:last-child,
+ul.Text:last-child,
+ol.Text:last-child,
+li.Text:last-child,
 p.Text:last-child {
     padding-bottom: 0;
 }
@@ -48,6 +57,7 @@ h5.Text {
 }
 
 p.Text {
+    hyphens: auto;
     padding-top: var(--gap-xs);
     padding-bottom: var(--gap-sm);
 }
@@ -123,4 +133,23 @@ p.Text {
 
 .TextStrike {
     text-decoration: line-through;
+}
+
+ol.Text, ul.Text, li.Text {
+    font-size: var(--font-size-m);
+    line-height: var(--line-height-m);
+    font-weight: 400;
+}
+
+ol.Text, ul.Text {
+    padding-top: var(--gap-xs);
+    padding-bottom: var(--gap-sm);
+}
+
+li.Text {
+    padding-bottom: var(--gap-xs);
+}
+
+blockquote.Text {
+    padding: var(--gap-sm) var(--gap-sm) var(--gap-sm) var(--gap-l);
 }
