@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useMemo, useRef, useState, ComponentProps } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { IconAttachOutline } from '@taskany/icons';
 import cn from 'classnames';
@@ -27,6 +27,7 @@ interface File {
     type: string;
     filePath: string;
 }
+type OnMountCallback = ComponentProps<typeof Editor>['onMount'];
 
 interface FormEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'onBlur' | 'onFocus'> {
     id?: string;
@@ -55,6 +56,8 @@ interface FormEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'on
     onUploadSuccess?: () => void;
     onUploadFail?: (message?: string) => void;
     attachFormatter?: (files: File[]) => string;
+    options: React.ComponentProps<typeof Editor>['options'];
+    onMount?: OnMountCallback;
 }
 
 const defaultAttachmentsButtonMessage = 'Attach files';
@@ -116,7 +119,9 @@ export const FormEditor = React.forwardRef<HTMLDivElement, FormEditorProps>(
             onUploadFail,
             attachFormatter = defaultAttachFormatter,
             className,
+            onMount,
             view,
+            options,
             ...attrs
         },
         ref,
@@ -134,8 +139,7 @@ export const FormEditor = React.forwardRef<HTMLDivElement, FormEditorProps>(
         const formCtx = useContext(formContext);
         const disabled = formCtx.disabled || internalDisabled;
 
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const handleEditorDidMount = (editor: any /* IStandaloneEditor */) => {
+        const handleEditorDidMount: OnMountCallback = (editor, monaco) => {
             monacoEditorRef.current = editor;
 
             if (autoFocus) {
@@ -152,6 +156,8 @@ export const FormEditor = React.forwardRef<HTMLDivElement, FormEditorProps>(
             });
 
             setViewValue(value);
+
+            onMount?.(editor, monaco);
         };
 
         useEffect(() => {
@@ -267,6 +273,8 @@ export const FormEditor = React.forwardRef<HTMLDivElement, FormEditorProps>(
             };
         }, [height, contentHeight, maxEditorHeight, outline]);
 
+        const editorOptions = useMemo(() => ({ ...defaultOptions, ...options }), []);
+
         return (
             <div
                 tabIndex={0}
@@ -315,7 +323,7 @@ export const FormEditor = React.forwardRef<HTMLDivElement, FormEditorProps>(
                             theme="vs-dark"
                             defaultLanguage="markdown"
                             value={viewValue}
-                            options={defaultOptions}
+                            options={editorOptions}
                             onChange={onChange}
                             onMount={handleEditorDidMount}
                             className={cn(s.MonacoEditor)}
