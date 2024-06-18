@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.39.0](https://github.com/taskany-inc/bricks/compare/v5.38.0...v5.39.0) (2024-06-18)
+
+
+### Features
+
+* path onMount prop ([4a5d606](https://github.com/taskany-inc/bricks/commit/4a5d6066199ff038fe335a4279a5e23bf6f62cc5))
+* path options prop ([8993174](https://github.com/taskany-inc/bricks/commit/899317465ac8d9f728221a56ec2539fab0a23ddb))
+
 ## [5.38.0](https://github.com/taskany-inc/bricks/compare/v5.37.2...v5.38.0) (2024-05-29)
 
 
