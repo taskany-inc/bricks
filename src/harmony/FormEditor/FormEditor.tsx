@@ -56,7 +56,7 @@ interface FormEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'on
     onUploadSuccess?: () => void;
     onUploadFail?: (message?: string) => void;
     attachFormatter?: (files: File[]) => string;
-    options: React.ComponentProps<typeof Editor>['options'];
+    options?: React.ComponentProps<typeof Editor>['options'];
     onMount?: OnMountCallback;
 }
 
@@ -273,7 +273,7 @@ export const FormEditor = React.forwardRef<HTMLDivElement, FormEditorProps>(
             };
         }, [height, contentHeight, maxEditorHeight, outline]);
 
-        const editorOptions = useMemo(() => ({ ...defaultOptions, ...options }), []);
+        const editorOptions = useMemo(() => ({ ...defaultOptions, ...options }), [options]);
 
         return (
             <div
