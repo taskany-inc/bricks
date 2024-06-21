@@ -14,6 +14,7 @@ interface AllowedBadgeProps {
     iconRight?: ComponentProps<typeof Badge>['iconRight'];
     action?: ComponentProps<typeof Badge>['action'];
     view?: ComponentProps<typeof Badge>['view'];
+    as?: ComponentProps<typeof Badge>['as'];
 }
 
 interface UserProps extends AllowedBadgeProps {
@@ -54,7 +55,7 @@ export const Avatar: React.FC<
 };
 
 export const User = forwardRef<HTMLDivElement, UserProps>(
-    ({ email, name, src, short, size = 's', className, ...props }, ref) => {
+    ({ email, name, src, short, size = 's', as = 'div', className, ...props }, ref) => {
         return (
             <Badge
                 className={cn(
@@ -67,7 +68,7 @@ export const User = forwardRef<HTMLDivElement, UserProps>(
                     },
                     className,
                 )}
-                as="div"
+                as={as}
                 ref={ref}
                 iconLeft={<Avatar src={src} name={name} email={email} size={size} />}
                 text={nullable(!short, () => (
