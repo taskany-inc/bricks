@@ -77,13 +77,13 @@ export const Badge = forwardRef(
                 className={cn(s.Badge, className, view ? viewMap[view] : '', sizeMap[size])}
             >
                 {nullable(iconLeft, (icon) => (
-                    <div className={cn(s.BadgeIcon, { [s.BadgeIconLeft]: text })}>{icon}</div>
+                    <span className={cn(s.BadgeIcon, { [s.BadgeIconLeft]: text })}>{icon}</span>
                 ))}
                 {nullable(text, (t) => (
-                    <div className={cn(s.BadgeText, { [s.BadgeTextInteractive]: Boolean(onClick) })}>{t}</div>
+                    <span className={cn(s.BadgeText, { [s.BadgeTextInteractive]: Boolean(onClick) })}>{t}</span>
                 ))}
                 {nullable(iconRight, (icon) => (
-                    <div
+                    <span
                         className={cn(
                             s.BadgeIcon,
                             { [s.BadgeIconRight]: text },
@@ -91,7 +91,7 @@ export const Badge = forwardRef(
                         )}
                     >
                         {icon}
-                    </div>
+                    </span>
                 ))}
             </Text>
         );
