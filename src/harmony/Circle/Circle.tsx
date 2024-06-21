@@ -37,7 +37,7 @@ export const Circle: React.FC<React.PropsWithChildren<CircleProps>> = ({
     }, [string, mainColor]);
 
     return (
-        <div
+        <span
             className={cn(
                 classes.Circle,
                 className,
@@ -51,6 +51,6 @@ export const Circle: React.FC<React.PropsWithChildren<CircleProps>> = ({
             style={colorValue}
         >
             {children}
-        </div>
+        </span>
     );
 };
