@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.40.0](https://github.com/taskany-inc/bricks/compare/v5.39.0...v5.40.0) (2024-06-21)
+
+
+### Features
+
+* support span render for User component ([cc41a3d](https://github.com/taskany-inc/bricks/commit/cc41a3d5286b7dbfe3c75f2c13129fdb4d5944fc))
+
 ## [5.39.0](https://github.com/taskany-inc/bricks/compare/v5.38.0...v5.39.0) (2024-06-18)
 
 
