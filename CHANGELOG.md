@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.40.1](https://github.com/taskany-inc/bricks/compare/v5.40.0...v5.40.1) (2024-06-21)
+
+
+### Bug Fixes
+
+* add as prop to User ([ddbd6dd](https://github.com/taskany-inc/bricks/commit/ddbd6ddb963d75feeacace6b57058c647f279ab2))
+
 ## [5.40.0](https://github.com/taskany-inc/bricks/compare/v5.39.0...v5.40.0) (2024-06-21)
 
 
