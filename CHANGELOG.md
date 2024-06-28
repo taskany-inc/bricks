@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.40.2](https://github.com/taskany-inc/bricks/compare/v5.40.1...v5.40.2) (2024-06-28)
+
+
+### Bug Fixes
+
+* fix circle line-height ([26b9e9e](https://github.com/taskany-inc/bricks/commit/26b9e9e8e6ac44c1d2a4e8c4b86936b119c79377))
+
 ## [5.40.1](https://github.com/taskany-inc/bricks/compare/v5.40.0...v5.40.1) (2024-06-21)
 
 
