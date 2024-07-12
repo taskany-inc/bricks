@@ -97,6 +97,8 @@ const defaultAttachFormatter = (files: File[]) => {
 
 const maxEditorHeight = 450;
 
+const monacoWrapperProps = { className: s.MonacoWrapper };
+
 export const FormEditor = React.forwardRef<HTMLDivElement, FormEditorProps>(
     (
         {
@@ -318,17 +320,19 @@ export const FormEditor = React.forwardRef<HTMLDivElement, FormEditorProps>(
                             { [s.FormEditor_focused]: focused && outline },
                         )}
                     >
-                        <Editor
-                            loading=""
-                            theme="vs-dark"
-                            defaultLanguage="markdown"
-                            value={viewValue}
-                            options={editorOptions}
-                            onChange={onChange}
-                            onMount={handleEditorDidMount}
-                            className={cn(s.MonacoEditor)}
-                        />
-
+                        <div className={cn(s.PaddingWrapper, { [s.PaddingWrapper_view_danger]: view === 'danger' })}>
+                            <Editor
+                                loading=""
+                                theme="vs-dark"
+                                defaultLanguage="markdown"
+                                value={viewValue}
+                                options={editorOptions}
+                                onChange={onChange}
+                                onMount={handleEditorDidMount}
+                                className={cn(s.MonacoEditor)}
+                                wrapperProps={monacoWrapperProps}
+                            />
+                        </div>
                         {nullable(focused && !disableAttaches, () => (
                             <div className={s.UploadButton}>
                                 <input className={s.UploadInput} onChange={onFileInputChange} type="file" multiple />

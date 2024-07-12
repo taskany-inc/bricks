@@ -66,6 +66,21 @@
     background-color: var(--background);
 }
 
+.PaddingWrapper {
+    padding-top: 12px;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.MonacoWrapper {
+    margin-left: -10px;
+}
+
+.PaddingWrapper_view_danger {
+    background-color: var(--danger-900);
+}
+
 .FormEditorWrapper_brick_top,
 .FormEditorWrapper_brick_top .MonacoEditor {
     border-top-left-radius: 0;

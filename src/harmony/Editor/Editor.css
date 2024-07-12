@@ -18,15 +18,6 @@
     border: 0;
 }
 
-.MonacoEditor .monaco-editor .monaco-scrollable-element {
-    margin-left: -10px;
-    padding-left: 10px;
-}
-
-.MonacoEditor .monaco-editor .lines-content {
-    margin-top: 12px;
-}
-
 .MonacoEditor .monaco-editor .margin {
     display: none;
 }
