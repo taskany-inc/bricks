@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.40.3](https://github.com/taskany-inc/bricks/compare/v5.40.2...v5.40.3) (2024-07-15)
+
+
+### Bug Fixes
+
+* line start is unclicable ([00edc6c](https://github.com/taskany-inc/bricks/commit/00edc6caa62c823b3bf1bf2d46b0838dbeb7c3ff))
+
 ## [5.40.2](https://github.com/taskany-inc/bricks/compare/v5.40.1...v5.40.2) (2024-06-28)
 
 
