@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.41.0](https://github.com/taskany-inc/bricks/compare/v5.40.3...v5.41.0) (2024-07-24)
+
+
+### Features
+
+* add harmony sidebar ([7bdea07](https://github.com/taskany-inc/bricks/commit/7bdea071716b240414c19642ea6ba25b2a361f46))
+
 ## [5.40.3](https://github.com/taskany-inc/bricks/compare/v5.40.2...v5.40.3) (2024-07-15)
 
 
