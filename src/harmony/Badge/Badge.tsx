@@ -63,6 +63,7 @@ export const Badge = forwardRef(
             as = defaultTagName,
             action = 'static',
             onClick,
+            ellipsis,
             ...rest
         } = props;
 
@@ -73,6 +74,7 @@ export const Badge = forwardRef(
                 weight={weight}
                 size={size}
                 onClick={onClick}
+                ellipsis={ellipsis}
                 {...rest}
                 className={cn(s.Badge, className, view ? viewMap[view] : '', sizeMap[size])}
             >
@@ -80,7 +82,14 @@ export const Badge = forwardRef(
                     <span className={cn(s.BadgeIcon, { [s.BadgeIconLeft]: text })}>{icon}</span>
                 ))}
                 {nullable(text, (t) => (
-                    <span className={cn(s.BadgeText, { [s.BadgeTextInteractive]: Boolean(onClick) })}>{t}</span>
+                    <span
+                        className={cn(s.BadgeText, {
+                            [s.BadgeTextInteractive]: Boolean(onClick),
+                            [s.BadgeTextEllipsis]: ellipsis,
+                        })}
+                    >
+                        {t}
+                    </span>
                 ))}
                 {nullable(iconRight, (icon) => (
                     <span

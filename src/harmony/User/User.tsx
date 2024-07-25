@@ -10,14 +10,9 @@ import { Gravatar } from '../Gravatar/Gravatar';
 
 import classes from './User.module.css';
 
-interface AllowedBadgeProps {
-    iconRight?: ComponentProps<typeof Badge>['iconRight'];
-    action?: ComponentProps<typeof Badge>['action'];
-    view?: ComponentProps<typeof Badge>['view'];
-    as?: ComponentProps<typeof Badge>['as'];
-}
+type BannedBadgeProps = keyof Pick<ComponentProps<typeof Badge>, 'iconLeft' | 'text' | 'size' | 'lines'>;
 
-interface UserProps extends AllowedBadgeProps {
+interface UserProps extends Omit<ComponentProps<typeof Badge>, BannedBadgeProps> {
     name?: string | null;
     email?: string | null;
     src?: string | null;
@@ -55,7 +50,7 @@ export const Avatar: React.FC<
 };
 
 export const User = forwardRef<HTMLDivElement, UserProps>(
-    ({ email, name, src, short, size = 's', as = 'div', className, ...props }, ref) => {
+    ({ email, name, src, short, size = 's', as = 'div', className, ellipsis, ...props }, ref) => {
         return (
             <Badge
                 className={cn(
@@ -65,9 +60,12 @@ export const User = forwardRef<HTMLDivElement, UserProps>(
                         [classes.UserSizeS]: size === 's',
                         [classes.UserSizeM]: size === 'm',
                         [classes.User_short]: short,
+                        [classes.UserOutlined]: props.view === 'outline',
                     },
                     className,
                 )}
+                ellipsis={ellipsis}
+                lines={ellipsis ? 1 : undefined}
                 as={as}
                 ref={ref}
                 iconLeft={<Avatar src={src} name={name} email={email} size={size} />}

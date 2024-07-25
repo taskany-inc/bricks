@@ -51,8 +51,17 @@
 .Badge:hover .BadgeAction {
     opacity: 1;
 }
+.BadgeText {
+    font-size: 1em;
+}
 
 .Badge:hover .BadgeTextInteractive {
     color: var(--text-primary);
     cursor: pointer;
+}
+
+.BadgeTextEllipsis {
+    display: -webkit-box;
+    -webkit-line-clamp: var(--text-line-clamp);
+    -webkit-box-orient: vertical;
 }

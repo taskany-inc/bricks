@@ -33,3 +33,8 @@
     text-overflow: ellipsis;
     overflow: hidden;
 }
+
+.UserOutlined {
+    padding: 0;
+    padding-right: var(--gap-s);
+}

@@ -101,21 +101,19 @@ export const Text = React.forwardRef(function <T extends keyof AllowedHTMLElemen
     const additionalStyles: React.CSSProperties = useMemo(() => {
         const styles: Record<string, unknown> = {};
 
-        switch (true) {
-            case !!wordBreak:
-                styles['--text-breaked'] = wordBreak;
-                break;
-            case !!wordWrap:
-                styles['--text-wrapped'] = wordWrap;
-                break;
-            case !!lines:
-                styles['--text-line-clamp'] = lines;
-                break;
-            case !!color:
-                styles['--text-custom-color'] = color;
-                break;
-            default:
-                break;
+        if (wordBreak) {
+            styles['--text-breaked'] = wordBreak;
+        }
+
+        if (wordWrap) {
+            styles['--text-wrapped'] = wordWrap;
+        }
+
+        if (lines) {
+            styles['--text-line-clamp'] = lines;
+        }
+        if (color) {
+            styles['--text-custom-color'] = color;
         }
 
         return styles;
