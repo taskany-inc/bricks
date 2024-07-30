@@ -1,0 +1,50 @@
+.KanbanContainer {
+    display: flex;
+}
+
+.KanbanColumn {
+    width: 328px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    padding: var(--gap-s) var(--gap-sm);
+    border-right: 1px solid var(--gray-900);
+}
+
+.KanbanColumn:last-child {
+    border-right: 0;
+}
+
+.KanbanCard {
+    background: var(--layer);
+    padding: var(--gap-s) var(--gap-sm);
+    border-radius: var(--radius-m);
+    border: 1px solid var(--gray-900);
+}
+
+.KanbanCard:not(:last-child) {
+    margin-bottom: var(--gap-sm);
+}
+
+.KanbanCardInfo {
+    color: var(--text-ghost);
+    display: flex;
+    gap: var(--gap-s);
+}
+
+.KanbanCardInfo:not(:last-child) {
+    margin-bottom: var(--gap-xs);
+}
+
+.KanbanCardContent {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: var(--gap-xs);
+}
+
+.KanbanCardContent:not(:last-child){
+    margin-bottom: var(--gap-xs);
+}
+
+.KanbanCardContentItem {
+    flex: 1;
+}
