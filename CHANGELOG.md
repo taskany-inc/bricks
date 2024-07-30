@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.41.1](https://github.com/taskany-inc/bricks/compare/v5.41.0...v5.41.1) (2024-07-30)
+
+
+### Bug Fixes
+
+* **Bagde,User,Text:** fix clamping text ([6109730](https://github.com/taskany-inc/bricks/commit/610973089c85bd9223e71d798afba417af1d477f))
+
 ## [5.41.0](https://github.com/taskany-inc/bricks/compare/v5.40.3...v5.41.0) (2024-07-24)
 
 
