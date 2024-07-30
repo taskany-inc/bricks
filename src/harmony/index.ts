@@ -40,6 +40,7 @@ export * from './PageLoadProgress/PageLoadProgress';
 export * from './Popup/Popup';
 export * from './Radio/Radio';
 export * from './RadioGroup/RadioGroup';
+export * from './Select/Select';
 export * from './SheepLogo/SheepLogo';
 export * from './Spinner/Spinner';
 export * from './State/State';
