@@ -152,15 +152,6 @@ interface SelectPanelProps extends Omit<ComponentProps<typeof DropdownPanel>, 'o
     title?: string;
 }
 
-/**
- * The definition SelectGuardedProps<T> defines a type that includes `onChange` & `mode` props.
- * If the mode property is `single`, the onChange method should accept a single value of type T.
- * If the mode property is `multiple`, the onChange method should accept an array of values of type T.
- */
-export type SelectGuardedProps<T> =
-    | { mode: 'single'; onChange?: (value: T) => void }
-    | { mode: 'multiple'; onChange?: (value: T[]) => void };
-
 export const SelectPanel = ({ placement = 'top-start', title, children, iconLeft, ...rest }: SelectPanelProps) => {
     const { open, onClose, items = [], value, onChange, mode, selectable, renderItem } = useContext(SelectContext);
 
