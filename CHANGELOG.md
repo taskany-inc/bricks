@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.42.0](https://github.com/taskany-inc/bricks/compare/v5.41.1...v5.42.0) (2024-08-02)
+
+
+### Features
+
+* harmony select ([eaaefdb](https://github.com/taskany-inc/bricks/commit/eaaefdb8a7cdccfbc11c6ceff2c3458ffb7be3a4))
+
 ## [5.41.1](https://github.com/taskany-inc/bricks/compare/v5.41.0...v5.41.1) (2024-07-30)
 
 
