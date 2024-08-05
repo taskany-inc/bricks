@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.43.0](https://github.com/taskany-inc/bricks/compare/v5.42.0...v5.43.0) (2024-08-05)
+
+
+### Features
+
+* support Kanban ([2572af9](https://github.com/taskany-inc/bricks/commit/2572af9e8b6abdf608a059f279811a84bd9e7b1b))
+
 ## [5.42.0](https://github.com/taskany-inc/bricks/compare/v5.41.1...v5.42.0) (2024-08-02)
 
 
