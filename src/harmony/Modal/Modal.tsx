@@ -60,7 +60,7 @@ export const ModalHeader = ({ className, children, view, ...props }: ModalHeader
     </Text>
 );
 
-export const Modal = ({ visible, children, width = 800, onClose, onShow, style, ...props }: ModalProps) => {
+export const Modal = ({ visible, children, width = 800, onClose, onShow, style, className, ...props }: ModalProps) => {
     const [onESC] = useKeyboard([KeyCode.Escape], () => onClose?.(), {
         disableGlobalEvent: false,
     });
@@ -92,7 +92,7 @@ export const Modal = ({ visible, children, width = 800, onClose, onShow, style, 
     return nullable(visible, () => (
         <Portal id="modal">
             <ModalOverlay>
-                <div className={s.Modal} style={modalStyles} {...onESC} {...props}>
+                <div className={cn(s.Modal, className)} style={modalStyles} {...onESC} {...props}>
                     {children}
                 </div>
             </ModalOverlay>
