@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.43.1](https://github.com/taskany-inc/bricks/compare/v5.43.0...v5.43.1) (2024-08-10)
+
+
+### Bug Fixes
+
+* **Modal:** compose class names ([171484c](https://github.com/taskany-inc/bricks/commit/171484c1e7e128f55c6e77bc36fc64d6dc1029c6))
+
 ## [5.43.0](https://github.com/taskany-inc/bricks/compare/v5.42.0...v5.43.0) (2024-08-05)
 
 
