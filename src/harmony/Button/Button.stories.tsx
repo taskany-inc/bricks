@@ -69,7 +69,7 @@ const Text = ({ children }: { children: ReactNode }) => <span style={{ fontSize:
 
 const Layout = ({
     children,
-    gridTemplateColumns = 'repeat(5, min-content)',
+    gridTemplateColumns = 'repeat(6, min-content)',
     marginBottom = 60,
     gap = 36,
 }: {
@@ -194,6 +194,7 @@ const Buttons = () => {
                 <Button text="Button" view="ghost" />
                 <Button text="Button" view="danger" />
                 <Button text="Button" view="warning" />
+                <Button text="Button" view="clear" />
             </Layout>
             <Title>
                 Buttons <Text>disabled</Text>
@@ -204,6 +205,7 @@ const Buttons = () => {
                 <Button text="Button" disabled view="ghost" />
                 <Button text="Button" disabled view="danger" />
                 <Button text="Button" disabled view="warning" />
+                <Button text="Button" disabled view="clear" />
             </Layout>
             <Layout>
                 <Button disabled view="default" iconLeft={svgFilter} />
@@ -211,6 +213,7 @@ const Buttons = () => {
                 <Button disabled view="ghost" iconLeft={svgPlusCircle} />
                 <Button disabled view="danger" iconLeft={svgTrash} />
                 <Button disabled view="warning" iconLeft={svgTrash} />
+                <Button disabled view="clear" iconLeft={svgPlus} />
             </Layout>
         </>
     );
@@ -228,11 +231,13 @@ const ButtonsWithIcons = () => {
                 <Button text="Button" view="ghost" iconLeft={svgPlusCircle} />
                 <Button text="Button" view="danger" iconLeft={svgTrash} />
                 <Button text="Button" view="warning" iconLeft={svgCopy} />
+                <Button text="Button" view="clear" iconLeft={svgCopy} />
                 <Button text="Button" view="default" iconRight={svgFilter} />
                 <Button text="Button" view="primary" iconRight={svgPlus} />
                 <Button text="Button" view="ghost" iconRight={svgPlusCircle} />
                 <Button text="Button" view="danger" iconRight={svgTrash} />
                 <Button text="Button" view="warning" iconRight={svgCopy} />
+                <Button text="Button" view="clear" iconRight={svgCopy} />
             </Layout>
             <Layout>
                 <Button text="Button" view="default" iconLeft={svgFilter} iconRight={svgFilter} />
@@ -240,6 +245,7 @@ const ButtonsWithIcons = () => {
                 <Button text="Button" view="ghost" iconLeft={svgPlusCircle} iconRight={svgPlusCircle} />
                 <Button text="Button" view="danger" iconLeft={svgTrash} iconRight={svgTrash} />
                 <Button text="Button" view="warning" iconLeft={svgCopy} iconRight={svgCopy} />
+                <Button text="Button" view="clear" iconLeft={svgCopy} iconRight={svgCopy} />
             </Layout>
         </>
     );
@@ -257,6 +263,7 @@ const ButtonsStretched = () => {
                 <Button text="Button" view="ghost" iconLeft={svgPlusCircle} iconRight={svgPlusCircle} />
                 <Button text="Button" view="danger" iconLeft={svgTrash} iconRight={svgTrash} />
                 <Button text="Button" view="warning" iconLeft={svgCopy} iconRight={svgCopy} />
+                <Button text="Button" view="clear" iconLeft={svgCopy} iconRight={svgCopy} />
             </Layout>
         </>
     );
@@ -268,19 +275,21 @@ const OnlyIcons = () => {
             <Title>
                 Only icons <Text>Default / Hover / Active / Focus</Text>
             </Title>
-            <Layout gridTemplateColumns="repeat(6, min-content)">
+            <Layout gridTemplateColumns="repeat(7, min-content)">
                 <div>iconLeft</div>
                 <Button view="default" iconLeft={svgFilter} />
                 <Button view="primary" iconLeft={svgPlus} />
                 <Button view="ghost" iconLeft={svgPlusCircle} />
                 <Button view="danger" iconLeft={svgTrash} />
                 <Button view="warning" iconLeft={svgTrash} />
+                <Button view="clear" iconLeft={svgFilter} />
                 <div>iconRight</div>
                 <Button view="default" iconRight={svgFilter} />
                 <Button view="primary" iconRight={svgPlus} />
                 <Button view="ghost" iconRight={svgPlusCircle} />
                 <Button view="danger" iconRight={svgTrash} />
                 <Button view="warning" iconRight={svgCopy} />
+                <Button view="clear" iconRight={svgFilter} />
             </Layout>
         </>
     );
@@ -408,6 +417,7 @@ const CountButtons = () => (
             <Button text="Button" view="ghost" iconRight={<Counter view="ghost" count={6} size="s" />} />
             <Button text="Button" view="danger" iconRight={<Counter view="danger" count={6} size="s" />} />
             <Button text="Button" view="warning" iconRight={<Counter view="warning" count={6} size="s" />} />
+            <Button text="Button" view="clear" iconRight={<Counter view="default" count={6} size="s" />} />
         </Layout>
     </>
 );
