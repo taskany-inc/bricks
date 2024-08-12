@@ -12,6 +12,7 @@ const viewMap = {
     danger: s.Button_danger,
     warning: s.Button_warning,
     checked: s.Button_checked,
+    clear: s.Button_clear,
 };
 
 const brickMap = {

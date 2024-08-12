@@ -129,6 +129,20 @@
     outline: 2px solid var(--button-checked-focus);
 }
 
+.Button_clear {
+    color: var(--text-secondary);
+    background: transparent;
+}
+
+.Button_clear:hover {
+    color: var(--button-secondary-text);
+}
+
+.Button_clear:focus-visible {
+    outline: 2px solid var(--button-secondary-focus);
+    color: var(--button-secondary-text);
+}
+
 .Button_brick_center {
     border-radius: 0;
 }
@@ -200,6 +214,7 @@
     background: var(--button-disabled);
 }
 
-.Button_ghost:disabled {
+.Button_ghost:disabled,
+.Button_clear:disabled {
     background: transparent;
 }
