@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.44.0](https://github.com/taskany-inc/bricks/compare/v5.43.1...v5.44.0) (2024-08-12)
+
+
+### Features
+
+* **Button:** add clear variant ([14be6ea](https://github.com/taskany-inc/bricks/commit/14be6eadd7ec0ea007942fcf035b14348805e5f7))
+
 ## [5.43.1](https://github.com/taskany-inc/bricks/compare/v5.43.0...v5.43.1) (2024-08-10)
 
 
