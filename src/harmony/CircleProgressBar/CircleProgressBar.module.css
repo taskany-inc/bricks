@@ -1,6 +1,5 @@
 .ProgressBar {
     position: relative;
-    display: inline-flex;
 }
 
 .Circle_overlay {
@@ -25,10 +24,14 @@
     color: var(--primary-500);
 }
 
-.Text_size_m {
+.Text_size_s {
     font-size: var(--font-size-xxs);
 }
 
-.Text_size_l {
+.Text_size_m {
     font-size: var(--font-size-xs);
+}
+
+.Text_size_l {
+    font-size: var(--font-size-s);
 }

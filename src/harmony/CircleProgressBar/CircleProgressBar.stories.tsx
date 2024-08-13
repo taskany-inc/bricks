@@ -13,9 +13,11 @@ export default meta;
 export const Circles = () => {
     return (
         <div style={{ display: 'flex', gap: 24, alignItems: 'center' }}>
-            <CircleProgressBar value={0} />
-            <CircleProgressBar value={60} />
-            <CircleProgressBar value={100} size="l" />
+            <CircleProgressBar size="xxs" value={30} />
+            <CircleProgressBar size="xs" value={30} />
+            <CircleProgressBar size="s" value={0} />
+            <CircleProgressBar size="m" value={60} />
+            <CircleProgressBar size="l" value={100} />
         </div>
     );
 };
