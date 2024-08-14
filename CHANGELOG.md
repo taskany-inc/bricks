@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.44.1](https://github.com/taskany-inc/bricks/compare/v5.44.0...v5.44.1) (2024-08-14)
+
+
+### Bug Fixes
+
+* add forwardRef ([76dcf62](https://github.com/taskany-inc/bricks/commit/76dcf62370d015c92f73b50c940379c697b42eaf))
+
 ## [5.44.0](https://github.com/taskany-inc/bricks/compare/v5.43.1...v5.44.0) (2024-08-12)
 
 
