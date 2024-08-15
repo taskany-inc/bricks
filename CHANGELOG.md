@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.45.1](https://github.com/taskany-inc/bricks/compare/v5.45.0...v5.45.1) (2024-08-15)
+
+
+### Bug Fixes
+
+* form editor suggestions overlay ([be9fc59](https://github.com/taskany-inc/bricks/commit/be9fc59f8f2587eaad149b7f12455c9d43cc52e1))
+
 ## [5.45.0](https://github.com/taskany-inc/bricks/compare/v5.44.1...v5.45.0) (2024-08-15)
 
 
