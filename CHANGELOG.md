@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.45.0](https://github.com/taskany-inc/bricks/compare/v5.44.1...v5.45.0) (2024-08-15)
+
+
+### Features
+
+* **CircleProgressBar:** added `xs | s` sizes ([18c660a](https://github.com/taskany-inc/bricks/commit/18c660a121fce96b2274b0c251103d83541c7091))
+
 ## [5.44.1](https://github.com/taskany-inc/bricks/compare/v5.44.0...v5.44.1) (2024-08-14)
 
 
