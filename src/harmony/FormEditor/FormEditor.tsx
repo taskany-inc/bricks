@@ -99,6 +99,10 @@ const maxEditorHeight = 450;
 
 const monacoWrapperProps = { className: s.MonacoWrapper };
 
+const formEditorWrapperStyles: Record<string, string> = {
+    '--form-editor-buttons-height': '36px',
+};
+
 export const FormEditor = React.forwardRef<HTMLDivElement, FormEditorProps>(
     (
         {
@@ -266,14 +270,12 @@ export const FormEditor = React.forwardRef<HTMLDivElement, FormEditorProps>(
         }, [disabled]);
 
         const editorContentStyles = useMemo(() => {
-            const indent = outline ? 'marginBottom' : 'paddingBottom';
             return {
                 height: contentHeight,
                 minHeight: height,
                 maxHeight: maxEditorHeight,
-                [indent]: '40px',
             };
-        }, [height, contentHeight, maxEditorHeight, outline]);
+        }, [height, contentHeight]);
 
         const editorOptions = useMemo(() => ({ ...defaultOptions, ...options }), [options]);
 
@@ -288,6 +290,7 @@ export const FormEditor = React.forwardRef<HTMLDivElement, FormEditorProps>(
                     { [s.FormEditor_focused]: focused && !outline },
                     brick ? brickMap[brick] : '',
                 )}
+                style={formEditorWrapperStyles}
             >
                 <div
                     {...getRootProps()}
@@ -333,33 +336,33 @@ export const FormEditor = React.forwardRef<HTMLDivElement, FormEditorProps>(
                                 wrapperProps={monacoWrapperProps}
                             />
                         </div>
-                        {nullable(focused && !disableAttaches, () => (
-                            <div className={s.UploadButton}>
-                                <input className={s.UploadInput} onChange={onFileInputChange} type="file" multiple />
-
-                                {nullable(
-                                    loading,
-                                    () => (
-                                        <Text as="span" size="s" className={s.LoadingMessage}>
-                                            {messages?.attachmentsUploading || defaultAttachmentsUploadingMessage}
-                                        </Text>
-                                    ),
-                                    <>
-                                        <Button
-                                            size="xs"
-                                            view="ghost"
-                                            text={messages?.attachmentsButton || defaultAttachmentsButtonMessage}
-                                            iconLeft={<IconAttachOutline size="xs" />}
-                                            onClick={onUploadLinkClick}
-                                        />
-                                        <Text as="span" size="s" className={s.AttachmentDescriptionMessage}>
-                                            {messages?.attachmentsDescription || defaultAttachmentsDescriptionMessage}
-                                        </Text>
-                                    </>,
-                                )}
-                            </div>
-                        ))}
                     </div>
+                    {nullable(focused && !disableAttaches, () => (
+                        <div className={s.UploadButton}>
+                            <input className={s.UploadInput} onChange={onFileInputChange} type="file" multiple />
+
+                            {nullable(
+                                loading,
+                                () => (
+                                    <Text as="span" size="s" className={s.LoadingMessage}>
+                                        {messages?.attachmentsUploading || defaultAttachmentsUploadingMessage}
+                                    </Text>
+                                ),
+                                <>
+                                    <Button
+                                        size="xs"
+                                        view="ghost"
+                                        text={messages?.attachmentsButton || defaultAttachmentsButtonMessage}
+                                        iconLeft={<IconAttachOutline size="xs" />}
+                                        onClick={onUploadLinkClick}
+                                    />
+                                    <Text as="span" size="s" className={s.AttachmentDescriptionMessage}>
+                                        {messages?.attachmentsDescription || defaultAttachmentsDescriptionMessage}
+                                    </Text>
+                                </>,
+                            )}
+                        </div>
+                    ))}
                 </div>
             </div>
         );

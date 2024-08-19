@@ -14,8 +14,9 @@
 }
 
 .UploadButton {
+    margin-bottom: calc(var(--form-editor-buttons-height) * -1);
     position: relative;
-    margin-top: var(--gap-s);
+    margin-top: var(--gap-xs);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -47,8 +48,8 @@
     border-radius: var(--radius-m);
 }
 
-.FormEditor_outlined .UploadButton {
-    padding: var(--gap-xs) 0;
+.FormEditor_outlined + .UploadButton {
+    padding: var(--gap-xs);
 }
 
 .FormEditorWrapper {
@@ -59,17 +60,27 @@
     transition: 200ms ease-in;
     transition-property: border, color, background-color;
     border-radius: var(--radius-m);
-    overflow: hidden;
+    padding-bottom: var(--form-editor-buttons-height)
 }
 
 .EditorBackground {
     background-color: var(--background);
+    border-radius: var(--radius-m);
+    margin-bottom: calc(var(--form-editor-buttons-height) * -1);
+    padding-bottom: var(--form-editor-buttons-height)
+}
+
+.EditorBackground.FormEditor_outlined {
+    margin-bottom: 0px;
+    padding-bottom: var(--gap-xs);
 }
 
 .PaddingWrapper {
     padding-top: 12px;
     height: 100%;
     box-sizing: border-box;
+    border-top-left-radius: var(--radius-m);
+    border-top-right-radius: var(--radius-m);
 }
 
 .MonacoWrapper {
@@ -106,11 +117,6 @@
 
 .FormEditorWrapper_view_danger {
     border-color: var(--danger-500);
-}
-
-.FormEditorWrapper_view_danger .MonacoEditor {
-    background-color: var(--danger-900);
-    color: var(--danger-400);
 }
 
 .FormEditorWrapper_view_danger .Placeholder {
