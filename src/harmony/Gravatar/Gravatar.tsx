@@ -84,6 +84,6 @@ export const Gravatar: FC<GravatarProps> = ({
             {getInitials(name)}
         </Circle>
     ) : (
-        <img className={cn(s.GravatarImage, className)} src={img} height={pixelSize} width={size} {...props} />
+        <img className={cn(s.GravatarImage, className)} src={img} height={pixelSize} width={pixelSize} {...props} />
     );
 };
