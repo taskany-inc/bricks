@@ -1,8 +1,7 @@
-import React, { ComponentProps, FC, HTMLAttributes, ReactNode } from 'react';
+import React, { ComponentProps, FC, HTMLAttributes } from 'react';
 import cn from 'classnames';
-import { IconAddOutline, IconAdjustHorizontalSolid } from '@taskany/icons';
+import { IconAddOutline } from '@taskany/icons';
 
-import { Dropdown, DropdownPanel, DropdownTrigger } from '../Dropdown/Dropdown';
 import { Text } from '../Text/Text';
 import { nullable } from '../../utils';
 import { Button } from '../Button/Button';
@@ -55,29 +54,6 @@ export const FiltersBarControlGroup: FC<HTMLAttributes<HTMLDivElement>> = ({ chi
         {children}
     </div>
 );
-
-interface FiltersBarViewDropdownProps {
-    children?: ReactNode;
-    title?: string;
-}
-
-export const FiltersBarViewDropdown: FC<FiltersBarViewDropdownProps> = ({ children, title }) => {
-    return (
-        <Dropdown>
-            <DropdownTrigger className={s.FiltersBarViewDropdownDrigger} view="fill">
-                <div className={s.FiltersBarViewDropdownDrigger}>
-                    <IconAdjustHorizontalSolid size="xxs" />
-                    {nullable(title, (t) => (
-                        <Text size="s">{t}</Text>
-                    ))}
-                </div>
-            </DropdownTrigger>
-            <DropdownPanel width={335} placement="bottom-start" className={s.FiltersBarDropdownPanel}>
-                <div className={s.FiltersBarDropdownPanelContainer}>{children}</div>
-            </DropdownPanel>
-        </Dropdown>
-    );
-};
 
 interface AddFilterDropdownProps<T> {
     items: T[];

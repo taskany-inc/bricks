@@ -1,7 +1,6 @@
 import React from 'react';
 import { StoryFn, Meta } from '@storybook/react';
 
-import { Button } from '../Button/Button';
 import { Separator } from '../Separator/Separator';
 import { GlobalSearch } from '../GlobalSearch/GlobalSearch';
 
@@ -53,7 +52,6 @@ export const FilterBar: StoryFn<typeof FiltersBar> = () => {
             <FiltersBarItem>
                 <GlobalSearch onChange={() => {}} />
             </FiltersBarItem>
-            <FiltersBarItem></FiltersBarItem>
         </FiltersBar>
     );
 };
