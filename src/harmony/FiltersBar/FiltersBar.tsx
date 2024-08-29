@@ -1,11 +1,8 @@
-import React, { ComponentProps, FC, HTMLAttributes } from 'react';
+import React, { FC, HTMLAttributes } from 'react';
 import cn from 'classnames';
-import { IconAddOutline } from '@taskany/icons';
 
 import { Text } from '../Text/Text';
 import { nullable } from '../../utils';
-import { Button } from '../Button/Button';
-import { Select, SelectPanel, SelectTrigger } from '../Select/Select';
 
 import s from './FiltersBar.module.css';
 
@@ -54,49 +51,3 @@ export const FiltersBarControlGroup: FC<HTMLAttributes<HTMLDivElement>> = ({ chi
         {children}
     </div>
 );
-
-interface AddFilterDropdownProps<T> {
-    items: T[];
-    onChange: (value: T[]) => void;
-    title?: string;
-}
-export const AddFilterDropdown = <T extends { id: string; title: string }>({
-    items,
-    onChange,
-    title,
-}: AddFilterDropdownProps<T>) => {
-    return (
-        <Select
-            items={items}
-            mode="single"
-            onChange={onChange}
-            renderItem={(props) => <Text size="s">{props.item.title}</Text>}
-        >
-            <SelectTrigger
-                renderTrigger={(props) =>
-                    nullable(Boolean(items.length), () => (
-                        <Button
-                            text={title}
-                            iconLeft={<IconAddOutline size="xxs" />}
-                            onClick={props.onClick}
-                            ref={props.ref}
-                        />
-                    ))
-                }
-            />
-            <SelectPanel placement="bottom" />
-        </Select>
-    );
-};
-
-export const FiltersBarDropdownTitle: FC<ComponentProps<typeof Text>> = ({ children }) => {
-    return (
-        <Text className={s.FiltersBarDropdownTitle} weight="bold">
-            {children}
-        </Text>
-    );
-};
-
-export const FiltersBarDropdownContent: FC<HTMLAttributes<HTMLDivElement>> = ({ children }) => {
-    return <div className={s.FiltersBarDropdownContent}>{children}</div>;
-};
