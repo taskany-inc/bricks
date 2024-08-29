@@ -45,7 +45,7 @@ interface SelectProps extends ComponentProps<typeof Dropdown> {
     children: ReactNode;
 }
 
-export const Select = <T extends { id: string }>({
+export const Select = <T extends { id: string | number }>({
     children,
     isOpen,
     onClose,
