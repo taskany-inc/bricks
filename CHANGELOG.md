@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.46.1](https://github.com/taskany-inc/bricks/compare/v5.46.0...v5.46.1) (2024-08-30)
+
+
+### Bug Fixes
+
+* storybook build failed ([e83e39f](https://github.com/taskany-inc/bricks/commit/e83e39f8b5e6c1c4c93ea7bd026bb6df8f88dd62))
+
 ## [5.46.0](https://github.com/taskany-inc/bricks/compare/v5.45.2...v5.46.0) (2024-08-30)
 
 
