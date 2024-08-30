@@ -1,17 +1,14 @@
 import React from 'react';
 import { StoryFn, Meta } from '@storybook/react';
+import { IconAddOutline } from '@taskany/icons';
 
 import { Separator } from '../Separator/Separator';
 import { GlobalSearch } from '../GlobalSearch/GlobalSearch';
+import { Select, SelectPanel, SelectTrigger } from '../Select/Select';
+import { Text } from '../Text/Text';
+import { Button } from '../Button/Button';
 
-import {
-    FiltersBar,
-    FiltersBarCounter,
-    AddFilterDropdown,
-    FiltersBarItem,
-    FiltersBarTitle,
-    FiltersBarControlGroup,
-} from './FiltersBar';
+import { FiltersBar, FiltersBarCounter, FiltersBarItem, FiltersBarTitle, FiltersBarControlGroup } from './FiltersBar';
 
 const story: Meta<typeof FiltersBar> = {
     title: '@harmony/FiltersBar',
@@ -45,7 +42,19 @@ export const FilterBar: StoryFn<typeof FiltersBar> = () => {
             <Separator />
             <FiltersBarItem layout="fill">
                 <FiltersBarControlGroup>
-                    <AddFilterDropdown title="Add filter" items={items} onChange={() => {}} />
+                    <Select
+                        items={items}
+                        mode="single"
+                        renderItem={({ item }) => <Text>{item.title}</Text>}
+                        onChange={() => {}}
+                    >
+                        <SelectTrigger
+                            renderTrigger={({ ref, ...props }) => (
+                                <Button text="Filter" iconLeft={<IconAddOutline size="xxs" />} ref={ref} {...props} />
+                            )}
+                        />
+                        <SelectPanel placement="bottom" />
+                    </Select>
                     <FiltersBarCounter total={3} counter={10} />
                 </FiltersBarControlGroup>
             </FiltersBarItem>
