@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.47.0](https://github.com/taskany-inc/bricks/compare/v5.46.1...v5.47.0) (2024-09-02)
+
+
+### Features
+
+* **useUrlParams:** support boolean param ([a317023](https://github.com/taskany-inc/bricks/commit/a317023102d9936934087dfcf6df7262ec2a65a0))
+
 ## [5.46.1](https://github.com/taskany-inc/bricks/compare/v5.46.0...v5.46.1) (2024-08-30)
 
 
