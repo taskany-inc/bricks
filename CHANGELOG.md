@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.48.0](https://github.com/taskany-inc/bricks/compare/v5.47.0...v5.48.0) (2024-09-10)
+
+
+### Features
+
+* support useIntersectionLoader ([66c6841](https://github.com/taskany-inc/bricks/commit/66c68411d5f53eaf6b39b4db89ceed28aa250608))
+
 ## [5.47.0](https://github.com/taskany-inc/bricks/compare/v5.46.1...v5.47.0) (2024-09-02)
 
 
