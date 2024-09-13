@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useCallback, useState } from 'react';
+import React, { createContext, FC, ReactNode, useContext, useMemo, useState } from 'react';
 import { IconRightSmallOutline } from '@taskany/icons';
 import cn from 'classnames';
 
@@ -17,6 +17,14 @@ interface TreeViewNodeProps {
     onHide?: () => void;
 }
 
+interface TreeViewContext {
+    visible?: boolean;
+    interactive?: boolean;
+    onTitleClick?: () => void;
+}
+
+const treeViewContext = createContext<TreeViewContext>({});
+
 interface TreeViewProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export const TreeView: FC<TreeViewProps> = ({ children, ...rest }) => {
@@ -27,6 +35,23 @@ export const TreeViewElement: FC<TreeViewProps> = ({ children, className, ...res
     return (
         <div className={cn(s.TreeViewElement, className)} {...rest}>
             {children}
+        </div>
+    );
+};
+
+interface TreeViewTitleProps extends React.HTMLAttributes<HTMLDivElement> {}
+
+export const TreeViewTitle: FC<TreeViewTitleProps> = ({ children, className }) => {
+    const { interactive, onTitleClick, visible } = useContext(treeViewContext);
+
+    return (
+        <div className={cn(s.TreeViewTitle, className)} onClick={interactive ? onTitleClick : undefined}>
+            <IconRightSmallOutline
+                className={cn([s.Icon, { [s.Icon_transform]: visible }])}
+                size="s"
+                onClick={interactive ? undefined : onTitleClick}
+            />
+            <div className={s.TreeViewTitleContent}>{children}</div>
         </div>
     );
 };
@@ -42,30 +67,31 @@ export const TreeViewNode: React.FC<TreeViewNodeProps> = ({
 }) => {
     const [visible, setVisible] = useState(defaultVisible);
 
-    const onClick = useCallback(() => {
-        if (!visible && children) {
-            setVisible(true);
-            onShow?.();
-        } else {
-            setVisible(false);
-            onHide?.();
-        }
-    }, [visible, children, setVisible, onHide, onShow]);
+    const context = useMemo(
+        () => ({
+            visible,
+            interactive,
+            onTitleClick: () => {
+                if (!visible && children) {
+                    setVisible(true);
+                    onShow?.();
+                } else {
+                    setVisible(false);
+                    onHide?.();
+                }
+            },
+        }),
+        [visible, children, setVisible, onHide, onShow, interactive],
+    );
 
     return (
-        <div className={className}>
-            <div className={s.TreeViewTitle} onClick={interactive ? onClick : undefined}>
-                <IconRightSmallOutline
-                    className={cn([s.Icon, { [s.Icon_transform]: visible }])}
-                    size="s"
-                    onClick={interactive ? undefined : onClick}
-                />
-                <div className={s.TreeViewTitleContent}>{title}</div>
+        <treeViewContext.Provider value={context}>
+            <div className={className}>
+                {title}
+                {nullable(visible && children, () => (
+                    <div className={s.TreeViewContent}>{children}</div>
+                ))}
             </div>
-
-            {nullable(visible && children, () => (
-                <div className={s.TreeViewContent}>{children}</div>
-            ))}
-        </div>
+        </treeViewContext.Provider>
     );
 };
