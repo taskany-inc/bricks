@@ -135,8 +135,10 @@ const en = [
     'ya',
 ];
 
-export const translit = (str: string) => {
+export const translit = (str: string, lang?: 'ru' | 'en') => {
     const from = /[а-яё]/i.test(str) ? 'ru' : 'en';
+
+    if (lang && lang === from) return str;
 
     const [sourceAlphabet, targetAlphabet] = from === 'ru' ? [ru, en] : [en, ru];
 
