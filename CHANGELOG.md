@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.49.0](https://github.com/taskany-inc/bricks/compare/v5.48.1...v5.49.0) (2024-09-16)
+
+
+### Features
+
+* **translit:** result language ([4989338](https://github.com/taskany-inc/bricks/commit/4989338b87edf8dbed79cbbf0cbc74dd3b9451e0))
+
 ## [5.48.1](https://github.com/taskany-inc/bricks/compare/v5.48.0...v5.48.1) (2024-09-16)
 
 
