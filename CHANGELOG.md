@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.48.1](https://github.com/taskany-inc/bricks/compare/v5.48.0...v5.48.1) (2024-09-16)
+
+
+### Bug Fixes
+
+* sepatare TreeViewTitle to standalone component ([e001280](https://github.com/taskany-inc/bricks/commit/e001280744b44cbddb2376417209343f88f1ceaa))
+
 ## [5.48.0](https://github.com/taskany-inc/bricks/compare/v5.47.0...v5.48.0) (2024-09-10)
 
 
