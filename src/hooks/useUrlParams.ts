@@ -16,7 +16,7 @@ const serializers: Serializers = {
     boolean: (value) => (value ? '1' : undefined),
     string: (value) => value,
     stringArray: (value) => value?.join(separator),
-    number: (value) => String(value),
+    number: (value) => (value === undefined ? undefined : String(value)),
     numberArray: (value) => value?.join(separator),
 };
 
