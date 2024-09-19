@@ -7,7 +7,7 @@ import {
 } from '@taskany/icons';
 import classNames from 'classnames';
 
-import { nullable } from '../../utils';
+import { nullable, DateRange, DateRangeType, QuarterAlias, QuartersKeys } from '../../utils';
 import { Text } from '../Text/Text';
 import { Button } from '../Button/Button';
 import { Input } from '../Input/Input';
@@ -17,20 +17,11 @@ import { Badge } from '../Badge/Badge';
 
 import classes from './DatePicker.module.css';
 
-type DatePickerRangeType = 'Year' | 'Quarter' | 'Strict';
-type Quarter = 'Q1' | 'Q2' | 'Q3' | 'Q4';
-type QuarterAlias = '@prev' | '@current' | '@next';
-
-interface DatePickerRange {
-    start?: Date;
-    end: Date;
-}
-
 interface DatePickerValue {
-    range: DatePickerRange;
-    type?: DatePickerRangeType;
+    range: DateRange;
+    type?: DateRangeType;
     alias?: QuarterAlias;
-    shortcutQuarter?: Quarter;
+    shortcutQuarter?: QuartersKeys;
 }
 
 interface DatePickerProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
@@ -46,18 +37,18 @@ interface DatePickerProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'on
 interface DatePickerContextProps {
     currentDate: Date;
     currentYear: number;
-    currentQuarter: Quarter;
+    currentQuarter: QuartersKeys;
     currentAlias: QuarterAlias;
     selectedYear?: number;
-    selectedQuarter?: Quarter;
+    selectedQuarter?: QuartersKeys;
     selectedAlias?: QuarterAlias;
     selectedDate?: Date;
     collapseFields?: Record<'year' | 'quarter' | 'date', boolean>;
     setSelectedYear: (year: number) => void;
-    setSelectedQuarter: (quarter: Quarter) => void;
+    setSelectedQuarter: (quarter: QuartersKeys) => void;
     setSelectedQuarterAlias: (alias?: QuarterAlias) => void;
     setStrictDate: (date: string | Date) => void;
-    setCollapseFields: (mode: DatePickerRangeType) => void;
+    setCollapseFields: (mode: DateRangeType) => void;
 }
 
 interface DatePickerOptionProps {
@@ -70,10 +61,10 @@ interface DatePickerOptionProps {
 interface DatePickerState {
     currentDate: Date;
     currentYear: number;
-    currentQuarter: Quarter;
+    currentQuarter: QuartersKeys;
     currentAlias: QuarterAlias;
     selectedYear?: number;
-    selectedQuarter?: Quarter;
+    selectedQuarter?: QuartersKeys;
     selectedAlias?: QuarterAlias;
     selectedDate?: Date;
     collapseFields: ReturnType<typeof getReadOnlyFields>;
@@ -88,7 +79,7 @@ type Actions =
       }
     | {
           type: 'set selected quarter';
-          payload: Quarter | undefined;
+          payload: QuartersKeys | undefined;
       }
     | {
           type: 'set selected alias';
@@ -139,9 +130,9 @@ const getDateObject = (now = new Date()) => {
     };
 };
 
-const getCurrentQuarter = (now = new Date()): Quarter => `Q${Math.floor(now.getMonth() / 3) + 1}` as Quarter;
+const getCurrentQuarter = (now = new Date()): QuartersKeys => `Q${Math.floor(now.getMonth() / 3) + 1}` as QuartersKeys;
 
-const getReadOnlyFields = (type: DatePickerRangeType) => {
+const getReadOnlyFields = (type: DateRangeType) => {
     if (type === 'Strict') {
         return { year: true, quarter: true, date: false };
     }
@@ -151,8 +142,8 @@ const getReadOnlyFields = (type: DatePickerRangeType) => {
     return { year: false, quarter: true, date: true };
 };
 
-const createQuarterRange = (q: Quarter, year?: number): Required<DatePickerRange> => {
-    const qToM: Record<Quarter, number> = {
+const createQuarterRange = (q: QuartersKeys, year?: number): Required<DateRange> => {
+    const qToM: Record<QuartersKeys, number> = {
         Q1: 2,
         Q2: 5,
         Q3: 8,
@@ -176,7 +167,7 @@ const createQuarterRange = (q: Quarter, year?: number): Required<DatePickerRange
     };
 };
 
-const getQuaterByAlias = (alias: QuarterAlias): [Quarter, number] => {
+const getQuaterByAlias = (alias: QuarterAlias): [QuartersKeys, number] => {
     const currentQuarterRange = createQuarterRange(getCurrentQuarter());
 
     if (alias === '@current') {
@@ -354,7 +345,7 @@ const datePickerReducer: React.Reducer<DatePickerState, Actions> = (state, actio
 
 const quartersBricks = ['right', 'center', 'center', 'left'] as const;
 const aliasesBricks = ['right', 'center', 'left'] as const;
-const quarters: Quarter[] = ['Q1', 'Q2', 'Q3', 'Q4'] as const;
+const quarters: QuartersKeys[] = ['Q1', 'Q2', 'Q3', 'Q4'] as const;
 const aliases: QuarterAlias[] = ['@prev', '@current', '@next'] as const;
 
 const inputNames = {
@@ -395,7 +386,7 @@ export const DatePicker: React.FC<React.PropsWithChildren<DatePickerProps>> = ({
         });
     }, []);
 
-    const setSelectedQuarter = useCallback((quarter?: Quarter) => {
+    const setSelectedQuarter = useCallback((quarter?: QuartersKeys) => {
         dispatch({
             type: 'set selected quarter',
             payload: quarter,
@@ -416,7 +407,7 @@ export const DatePicker: React.FC<React.PropsWithChildren<DatePickerProps>> = ({
         });
     }, []);
 
-    const setCollapseFields = useCallback((mode: DatePickerRangeType) => {
+    const setCollapseFields = useCallback((mode: DateRangeType) => {
         dispatch({
             type: 'set collapse fields',
             payload: getReadOnlyFields(mode),
@@ -599,7 +590,7 @@ export const DatePickerQuarter: React.FC<DatePickerQuarterProps> = ({
         setCollapseFields,
     } = useContext(DatePickerContext);
 
-    const handleSelectQuarter = useCallback((q: Quarter) => {
+    const handleSelectQuarter = useCallback((q: QuartersKeys) => {
         setSelectedQuarter(q);
         setSelectedQuarterAlias(undefined);
     }, []);
