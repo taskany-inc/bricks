@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.50.0](https://github.com/taskany-inc/bricks/compare/v5.49.1...v5.50.0) (2024-09-20)
+
+
+### Features
+
+* add KanbanScroller ([a510c36](https://github.com/taskany-inc/bricks/commit/a510c36b4e07a0c2310b52c76f9f520d242a67cf))
+
 ## [5.49.1](https://github.com/taskany-inc/bricks/compare/v5.49.0...v5.49.1) (2024-09-19)
 
 
