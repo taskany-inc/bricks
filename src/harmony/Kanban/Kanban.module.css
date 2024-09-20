@@ -48,3 +48,25 @@
 .KanbanCardContentItem {
     flex: 1;
 }
+
+.KanbanShadow {
+    height: 100%;
+    position: relative;
+}
+
+.KanbanShadow:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--kanban-shadow-height);
+    background: var(--background);
+    z-index: 3;
+}
+
+.KanbanScroller {
+    height: 100%;
+    overflow: auto;
+}

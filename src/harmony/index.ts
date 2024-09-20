@@ -31,6 +31,7 @@ export * from './Kanban/KanbanCardInfo';
 export * from './Kanban/KanbanCardTitle';
 export * from './Kanban/KanbanColumn';
 export * from './Kanban/KanbanContainer';
+export * from './Kanban/KanbanScroller';
 export * from './Keyboard/Keyboard';
 export * from './Link/Link';
 export * from './ListView/ListView';
