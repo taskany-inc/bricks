@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.51.0](https://github.com/taskany-inc/bricks/compare/v5.50.0...v5.51.0) (2024-09-23)
+
+
+### Features
+
+* date utils ([440350f](https://github.com/taskany-inc/bricks/commit/440350f26adf003bbfaff5ab5d1939671eb8ea0d))
+
 ## [5.50.0](https://github.com/taskany-inc/bricks/compare/v5.49.1...v5.50.0) (2024-09-20)
 
 
