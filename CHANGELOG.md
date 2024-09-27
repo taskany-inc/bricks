@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.52.0](https://github.com/taskany-inc/bricks/compare/v5.51.0...v5.52.0) (2024-09-27)
+
+
+### Features
+
+* support cookies utils ([3a4e3b2](https://github.com/taskany-inc/bricks/commit/3a4e3b2b58dd0c93ebcb10cfc1dc13565b8fca0c))
+
 ## [5.51.0](https://github.com/taskany-inc/bricks/compare/v5.50.0...v5.51.0) (2024-09-23)
 
 
