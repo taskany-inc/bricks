@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.52.1](https://github.com/taskany-inc/bricks/compare/v5.52.0...v5.52.1) (2024-09-27)
+
+
+### Bug Fixes
+
+* **Dropdown:** wrap DropdownPanel in nullable ([ed37067](https://github.com/taskany-inc/bricks/commit/ed3706731c69baa7bc3a433a3c68fbc3e81e0b1b))
+
 ## [5.52.0](https://github.com/taskany-inc/bricks/compare/v5.51.0...v5.52.0) (2024-09-27)
 
 
