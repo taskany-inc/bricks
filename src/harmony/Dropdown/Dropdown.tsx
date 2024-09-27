@@ -195,7 +195,9 @@ export const DropdownPanel = ({
         [onClose, onClickOutside],
     );
 
-    return (
+    return nullable(isOpen, () => (
+        // The content component instance remains in memory/mounted across open/closes of the popover.
+        // https://github.com/atomiks/tippyjs-react/issues/82
         <Popup
             arrow={false}
             interactive
@@ -211,5 +213,5 @@ export const DropdownPanel = ({
         >
             {children}
         </Popup>
-    );
+    ));
 };
