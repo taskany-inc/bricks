@@ -9,8 +9,11 @@ const textSize = {
     xxs: s.TextSizeXxs,
     xs: s.TextSizeXs,
     s: s.TextSizeS,
+    sm: s.TextSizeSm,
     m: s.TextSizeM,
+    ml: s.TextSizeMl,
     l: s.TextSizeL,
+    lg: s.TextSizeLg,
     xl: s.TextSizeXl,
     xxl: s.TextSizeXxl,
 };
@@ -19,6 +22,7 @@ const textWeight = {
     bolder: s.TextBolder,
     bold: s.TextBold,
     regular: s.TextRegular,
+    normal: s.TextNormal,
     thin: s.TextThin,
     thinner: s.TextThinner,
 };
@@ -28,7 +32,7 @@ const headingClasses: Record<HeadingTagName, [string, string]> = {
     h2: [textSize.xl, textWeight.bolder],
     h3: [textSize.l, textWeight.regular],
     h4: [textSize.m, textWeight.bold],
-    h5: [textSize.m, textWeight.regular],
+    h5: [textSize.ml, textWeight.regular],
     h6: [textSize.m, textWeight.thin],
 };
 
