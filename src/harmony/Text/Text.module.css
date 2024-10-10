@@ -74,13 +74,25 @@ p.Text {
     font-size: var(--font-size-s);
     line-height: var(--line-height-s);
 }
+.TextSizeSm {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-sm);
+}
 .TextSizeM {
     font-size: var(--font-size-m);
     line-height: var(--line-height-m);
 }
+.TextSizeMl {
+    font-size: var(--font-size-ml);
+    line-height: var(--line-height-ml);
+}
 .TextSizeL {
     font-size: var(--font-size-l);
     line-height: var(--line-height-l);
+}
+.TextSizeLg {
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-lg);
 }
 .TextSizeXl {
     font-size: var(--font-size-xl);
@@ -100,6 +112,9 @@ p.Text {
 }
 .TextRegular {
     font-weight: 400;
+}
+.TextNormal {
+    font-weight: 500;
 }
 .TextBold {
     font-weight: 600;
