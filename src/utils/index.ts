@@ -7,3 +7,4 @@ export * from './upload';
 export * from './worker';
 export * from './date';
 export * from './cookies';
+export * from './keyPredictor';
