@@ -2,6 +2,7 @@ export * from './cookies';
 export * from './date';
 export * from './flatten';
 export * from './isRetina';
+export * from './keyPredictor';
 export * from './nullable';
 export * from './setRefs';
 export * from './translit';
