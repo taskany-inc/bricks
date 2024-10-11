@@ -51,10 +51,20 @@ const ErrorControl = () => {
     );
 };
 
+export const Required = () => {
+    return (
+        <FormControl style={{ marginBottom: 40, width: '300px' }} required>
+            <FormControlLabel>Name</FormControlLabel>
+            <FormControlInput placeholder="Enter the name" value="John" size="m" outline />
+        </FormControl>
+    );
+};
+
 export const AllControls = () => {
     return (
         <>
             <Default />
+            <Required />
             <ErrorControl />
         </>
     );

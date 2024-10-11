@@ -3,15 +3,17 @@
     justify-content: center;
     flex-direction: column;
 
-    padding-left: var(--gap-xs);
-    padding-right: var(--gap-s);
+    padding-left: var(--gap-s);
+    padding-right: var(--gap-sm);
 
     width: 100%;
-    min-height: var(--gap-l);
     box-sizing: border-box;
 
     border: 1px solid transparent;
     border-radius: var(--radius-m);
+
+    background-color: var(--gray-950);
+    color: var(--text-primary);
 
     transition: var(--transition-time) var(--transition-func);
     transition-property: color, background-color, border-color;
@@ -167,4 +169,22 @@
 
 .DropdownTriggerLabel_error {
     color: var(--danger-600);
+}
+
+.DropdownTrigger_size_xs {
+    font-size: var(--font-size-xs);
+    padding-left: var(--gap-xs);
+    padding-right: var(--gap-xs);
+    min-height: 24px;
+}
+
+.DropdownTrigger_size_s {
+    font-size: var(--font-size-s);
+    padding-right: var(--gap-s);
+    min-height: 32px;
+}
+
+.DropdownTrigger_size_m {
+    font-size: var(--font-size-m);
+    min-height: 40px;
 }
