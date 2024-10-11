@@ -25,6 +25,7 @@ const Dropdown = ({
     error,
     disabled,
     readOnly,
+    size,
     arrow,
 }: {
     view?: ComponentProps<typeof DropdownTrigger>['view'];
@@ -32,12 +33,14 @@ const Dropdown = ({
     disabled?: boolean;
     readOnly?: boolean;
     arrow?: boolean;
+    size?: ComponentProps<typeof DropdownTrigger>['size'];
 }) => {
     const [isOpen, setIsOpen] = useState(false);
     return (
         <DropdownProvider isOpen={isOpen} onClose={() => setIsOpen(false)} arrow={arrow}>
             <DropdownTrigger
                 onClick={() => setIsOpen(true)}
+                size={size}
                 view={view}
                 error={error}
                 disabled={disabled}
@@ -121,3 +124,17 @@ export const Default: Story = () => {
         </>
     );
 };
+
+const sizes = ['xs', 's', 'm'] as const;
+
+export const DifferentSizes = () => (
+    <Table style={{ gap: 20 }}>
+        <TableRow>
+            {sizes.map((size) => (
+                <Cell>
+                    <Dropdown view="outline" arrow size={size} />
+                </Cell>
+            ))}
+        </TableRow>
+    </Table>
+);

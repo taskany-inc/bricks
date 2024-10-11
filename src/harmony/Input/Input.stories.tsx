@@ -102,6 +102,14 @@ const Inputs = () => {
                 <Input disabled view="success" />
                 <Input disabled view="danger" />
             </Layout>
+            <Title>
+                Inputs <Text>read only</Text>
+            </Title>
+            <Layout>
+                <Input readOnly view="default" value="Read only value" />
+                <Input readOnly view="success" value="Read only value" />
+                <Input readOnly view="danger" value="Read only value" />
+            </Layout>
         </>
     );
 };
@@ -119,6 +127,9 @@ const InputsOutlined = () => {
                 <Input view="default" disabled outline />
                 <Input view="success" disabled outline />
                 <Input view="danger" disabled outline />
+                <Input view="default" readOnly outline value="Read only value" />
+                <Input view="success" readOnly outline value="Read only value" />
+                <Input view="danger" readOnly outline value="Read only value" />
             </Layout>
         </>
     );

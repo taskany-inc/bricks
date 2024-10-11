@@ -4,10 +4,72 @@
     flex: 1;
     box-sizing: border-box;
     border-radius: var(--radius-m);
-    line-height: 1;
+    line-height: 1.5;
     transition: 200ms ease-in;
     transition-property: border, color, background;
     width: 100%;
+    background: var(--input-fill-borderless);
+    color: var(--text-primary);
+}
+
+.Input:focus-visible {
+    background: var(--input-fill-focused-borderless);
+}
+
+.Input:focus-visible ~ .Icon {
+    color: var(--text-secondary);
+}
+
+.Input::placeholder {
+    color: var(--text-ghost);
+}
+
+.Input_outline.Input {
+    border-color: var(--input-border);
+    background: var(--input-fill);
+}
+
+.Input_outline.Input:focus-visible {
+    border-color: var(--input-border-focused);
+    background: var(--input-fill-focused);
+}
+
+.Input.Input_success {
+    border-color: var(--primary-500);
+    background: var(--primary-900);
+    color: var(--primary-400);
+}
+
+.Input.Input_success:focus-visible {
+    border-color: var(--primary-500);
+    background: var(--primary-900);
+    color: var(--primary-400);
+}
+
+.Input.Input_success::placeholder {
+    color: var(--primary-400);
+}
+
+.Input.Input_danger {
+    border-color: var(--danger-500);
+    background: var(--danger-900);
+    color: var(--danger-400);
+}
+
+.Input.Input_danger:focus-visible {
+    border-color: var(--danger-500);
+    background: var(--danger-900);
+    color: var(--danger-400);
+}
+
+.Input.Input_danger::placeholder {
+    color: var(--danger-400);
+}
+
+.Input_outline.Input:disabled {
+    border-color: var(--input-border-disabled);
+    background: var(--input-disabled);
+    color: var(--text-disabled);
 }
 
 .Input:focus {
@@ -23,67 +85,8 @@
     color: var(--text-disabled);
 }
 
-.Input_default {
-    background: var(--input-fill-borderless);
-    color: var(--text-primary);
-}
-
-.Input_default:focus-visible {
-    background: var(--input-fill-focused-borderless);
-}
-
-.Input_default:focus-visible ~ .Icon {
-    color: var(--text-secondary);
-}
-
-.Input_default::placeholder {
-    color: var(--text-ghost);
-}
-
-.Input_outline.Input_default {
-    border-color: var(--input-border);
-    background: var(--input-fill);
-}
-
-.Input_outline.Input:disabled {
-    border-color: var(--input-border-disabled);
-    background: var(--input-disabled);
-    color: var(--text-disabled);
-}
-
-.Input_outline.Input_default:focus-visible {
-    border-color: var(--input-border-focused);
-    background: var(--input-fill-focused);
-}
-
-.Input_success {
-    border-color: var(--primary-500);
-    background: var(--primary-900);
-    color: var(--primary-400);
-}
-
-.Input_success:focus-visible {
-    border-color: var(--primary-500);
-    background: var(--primary-900);
-}
-
-.Input_success::placeholder {
-    color: var(--primary-400);
-}
-
-.Input_danger {
-    border-color: var(--danger-500);
-    background: var(--danger-900);
-    color: var(--danger-400);
-}
-
-.Input_danger:focus-visible {
-    border-color: var(--danger-500);
-    background: var(--danger-900);
-}
-
-.Input_danger::placeholder {
-    color: var(--danger-400);
+.Input_outline:hover {
+    border-color: var(--input-border-hovered);
 }
 
 .InputWrapper {
@@ -181,4 +184,10 @@
 .Input_outline {
     border-width: 1px;
     border-style: solid;
+}
+
+.Input:read-only {
+    background: var(--input-readonly);
+    color: var(--text-primary);
+    border-color: var(--input-border);
 }

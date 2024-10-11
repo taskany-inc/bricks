@@ -1,0 +1,12 @@
+.FormControlLabel {
+    display: inline-flex;
+    margin-bottom: var(--gap-s);
+}
+
+.FormControlLabelRequired:after {
+    content: '*';
+    color: var(--danger-500);
+    font-size: 1em;
+    line-height: inherit;
+    margin-left: 0.25em;
+}

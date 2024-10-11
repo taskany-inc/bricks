@@ -20,6 +20,12 @@ import { Tooltip } from '../Tooltip/Tooltip';
 
 import s from './Dropdown.module.css';
 
+const sizeMap = {
+    xs: s.DropdownTrigger_size_xs,
+    s: s.DropdownTrigger_size_s,
+    m: s.DropdownTrigger_size_m,
+} as const;
+
 interface DropdownContextProps {
     isOpen?: boolean;
     panelRef?: MutableRefObject<HTMLDivElement | null>;
@@ -85,6 +91,7 @@ interface DropdownTriggerProps {
     readOnly?: boolean;
     disabled?: boolean;
     view?: keyof typeof triggerViewMap;
+    size?: keyof typeof sizeMap;
     children?: ReactNode;
     placeholder?: string;
     renderTrigger?: ({
@@ -101,6 +108,7 @@ export const DropdownTrigger = ({
     children,
     label,
     view = 'default',
+    size = 's',
     disabled,
     error,
     readOnly,
@@ -125,13 +133,16 @@ export const DropdownTrigger = ({
         <div
             className={cn(
                 s.DropdownTrigger,
-                { [triggerViewMap[view]]: !error },
-                { [s.DropdownTrigger_error]: error },
-                { [s.DropdownTrigger_error_outline]: error && view === 'outline' },
-                { [s.DropdownTrigger_disabled]: disabled },
-                { [s.DropdownTrigger_readOnly]: readOnly },
-                { [s.DropdownTriggerWithLabel]: Boolean(label) },
-                { [s.DropdownTrigger_active]: isOpen },
+                sizeMap[size],
+                {
+                    [triggerViewMap[view]]: !error,
+                    [s.DropdownTrigger_error]: error,
+                    [s.DropdownTrigger_error_outline]: error && view === 'outline',
+                    [s.DropdownTrigger_disabled]: disabled,
+                    [s.DropdownTrigger_readOnly]: readOnly,
+                    [s.DropdownTriggerWithLabel]: Boolean(label),
+                    [s.DropdownTrigger_active]: isOpen,
+                },
                 className,
             )}
             tabIndex={0}
