@@ -64,10 +64,10 @@
 }
 
 .EditorBackground {
-    background-color: var(--background);
+    background-color: var(--input-fill);
     border-radius: var(--radius-m);
     margin-bottom: calc(var(--form-editor-buttons-height) * -1);
-    padding-bottom: var(--form-editor-buttons-height)
+    padding-bottom: var(--form-editor-buttons-height);
 }
 
 .EditorBackground.FormEditor_outlined {
@@ -136,7 +136,8 @@
 .FormEditorWrapper .FormEditor_focused,
 .FormEditor_focused .EditorBackground,
 .FormEditor_filled .EditorBackground {
-    background-color: var(--input-fill-focused-borderless);
+    background-color: var(--input-fill-focused);
+    border-color: var(--input-border-focused);
 }
 
 .FormEditorWrapper.FormEditorWrapper_view_danger.FormEditor_focused
