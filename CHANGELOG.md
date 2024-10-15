@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.52.2](https://github.com/taskany-inc/bricks/compare/v5.52.1...v5.52.2) (2024-10-15)
+
+
+### Bug Fixes
+
+* **FormControl,Input:** apply new styles ([a0dc911](https://github.com/taskany-inc/bricks/commit/a0dc91122058a19c84f32be8203bb0e4efc887a4))
+* **FormEditor:** background color ([fcbad5e](https://github.com/taskany-inc/bricks/commit/fcbad5eb49548c3e8755e41e67011919781a1a89))
+* **Text:** apply new typo styles ([e6a586e](https://github.com/taskany-inc/bricks/commit/e6a586e198bac91715f78b05a113d4798e631f2a))
+* **Text:** change H* styles ([4d90049](https://github.com/taskany-inc/bricks/commit/4d900493a3799536624f5774934975de63b01cb8))
+
 ## [5.52.1](https://github.com/taskany-inc/bricks/compare/v5.52.0...v5.52.1) (2024-09-27)
 
 
