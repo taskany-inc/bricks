@@ -116,8 +116,11 @@ p.Text {
 .TextNormal {
     font-weight: 500;
 }
-.TextBold {
+.TextSemiBold {
     font-weight: 600;
+}
+.TextBold {
+    font-weight: 700;
 }
 .TextBolder {
     font-weight: 800;

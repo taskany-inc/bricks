@@ -21,6 +21,7 @@ const textSize = {
 const textWeight = {
     bolder: s.TextBolder,
     bold: s.TextBold,
+    semiBold: s.TextSemiBold,
     regular: s.TextRegular,
     normal: s.TextNormal,
     thin: s.TextThin,
@@ -28,9 +29,9 @@ const textWeight = {
 };
 
 const headingClasses: Record<HeadingTagName, [string, string]> = {
-    h1: [textSize.xxl, textWeight.bolder],
-    h2: [textSize.xl, textWeight.bolder],
-    h3: [textSize.l, textWeight.regular],
+    h1: [textSize.xxl, textWeight.bold],
+    h2: [textSize.xl, textWeight.bold],
+    h3: [textSize.l, textWeight.bold],
     h4: [textSize.m, textWeight.bold],
     h5: [textSize.ml, textWeight.regular],
     h6: [textSize.m, textWeight.thin],
