@@ -73,6 +73,7 @@ export const AllControls = () => {
 export const Editor = () => {
     const [value, setValue] = React.useState<string>();
     const [name, setName] = React.useState<string>();
+    const [date, setDate] = React.useState<Date | string>();
 
     return (
         <>
@@ -86,9 +87,23 @@ export const Editor = () => {
                     onChange={(e) => setName(e.target.value)}
                 />
             </FormControl>
-            <FormControl style={{ marginBottom: 40, width: '500px' }}>
+            <FormControl style={{ width: '500px' }}>
                 <FormControlLabel>Code</FormControlLabel>
                 <FormControlEditor outline placeholder="Your decision here" value={value} onChange={setValue} />
+            </FormControl>
+            <FormControl style={{ marginBottom: 40, width: '500px' }}>
+                <FormControlLabel>Date</FormControlLabel>
+                <FormControlInput
+                    placeholder="Enter the name"
+                    value={String(date)}
+                    type="date"
+                    size="m"
+                    outline
+                    onChange={(e) => setDate(e.target.value)}
+                />
+                {nullable(!date, () => (
+                    <FormControlError>Some error</FormControlError>
+                ))}
             </FormControl>
         </>
     );

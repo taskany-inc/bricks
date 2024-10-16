@@ -4,9 +4,11 @@ import React, {
     MutableRefObject,
     ReactNode,
     forwardRef,
+    useCallback,
     useEffect,
     useMemo,
     useRef,
+    useState,
 } from 'react';
 import cn from 'classnames';
 
@@ -60,12 +62,18 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             pointerEvents,
             forwardedRef,
             autoFocus,
+            type,
+            value,
+            onChange,
             ...rest
         },
         ref,
     ) => {
+        const isDateTimeInput = type?.includes('date') || type?.includes('time') || type?.includes('month');
+
         const inputRef = useRef<HTMLInputElement>(null);
         const forkedInputRef = useForkedRef(inputRef, ref);
+        const [hasDateTimeValue, setFlag] = useState(isDateTimeInput ? !!value : false);
 
         useEffect(() => {
             if (autoFocus) {
@@ -85,6 +93,16 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             return wrapper;
         }, [pointerEvents]);
 
+        const handleChange = useCallback<React.ChangeEventHandler<HTMLInputElement>>(
+            (event) => {
+                if (isDateTimeInput) {
+                    setFlag(!!event.target.value);
+                }
+                onChange?.(event);
+            },
+            [onChange],
+        );
+
         return (
             <div
                 className={cn(
@@ -100,10 +118,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
                 <input
                     className={cn(s.Input, viewMap[view], sizeMap[size], brick ? brickMap[brick] : '', {
                         [s.Input_outline]: outline,
+                        [s.Input_Filled]: hasDateTimeValue,
                     })}
                     ref={forkedInputRef}
                     autoComplete={autoComplete}
                     autoFocus={autoFocus}
+                    value={value}
+                    onChange={handleChange}
+                    type={type}
                     {...rest}
                 />
 

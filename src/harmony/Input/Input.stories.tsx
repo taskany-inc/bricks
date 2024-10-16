@@ -201,8 +201,8 @@ const InputWithKeyboardAction = () => {
 
 const DifferentInputTypes = () => (
     <Layout>
-        <Input outline size="m" name="date" type="date" />
-        <Input outline size="m" name="numeric" type="number" />
+        <Input outline size="m" name="date" type="date" style={{ width: '200px' }} />
+        <Input outline size="m" name="month" type="month" />
         <Input outline size="m" name="time" type="time" />
     </Layout>
 );
