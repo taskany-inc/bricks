@@ -16,10 +16,6 @@
     background: var(--input-fill-focused-borderless);
 }
 
-.Input:focus-visible ~ .Icon {
-    color: var(--text-secondary);
-}
-
 .Input::placeholder {
     color: var(--text-ghost);
 }
@@ -47,7 +43,11 @@
 }
 
 .Input.Input_success::placeholder {
-    color: var(--primary-400);
+    color: var(--primary-700);
+}
+
+.Input.Input_success:focus-visible + .Icon {
+    color: var(--primary-500);
 }
 
 .Input.Input_danger {
@@ -63,7 +63,11 @@
 }
 
 .Input.Input_danger::placeholder {
-    color: var(--danger-400);
+    color: var(--danger-700);
+}
+
+.Input.Input_danger:focus-visible + .Icon {
+    color: var(--danger-500);
 }
 
 .Input_outline.Input:disabled {
@@ -190,4 +194,8 @@
     background: var(--input-readonly);
     color: var(--text-primary);
     border-color: var(--input-border);
+}
+
+.Input:focus-visible ~ .Icon {
+    color: var(--text-secondary);
 }
