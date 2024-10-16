@@ -70,4 +70,28 @@ export const AllControls = () => {
     );
 };
 
+export const Editor = () => {
+    const [value, setValue] = React.useState<string>();
+    const [name, setName] = React.useState<string>();
+
+    return (
+        <>
+            <FormControl style={{ marginBottom: 40, width: '300px' }} required>
+                <FormControlLabel>Name</FormControlLabel>
+                <FormControlInput
+                    placeholder="Enter the name"
+                    value={name}
+                    size="m"
+                    outline
+                    onChange={(e) => setName(e.target.value)}
+                />
+            </FormControl>
+            <FormControl style={{ marginBottom: 40, width: '500px' }}>
+                <FormControlLabel>Code</FormControlLabel>
+                <FormControlEditor outline placeholder="Your decision here" value={value} onChange={setValue} />
+            </FormControl>
+        </>
+    );
+};
+
 export { Default, ErrorControl };
