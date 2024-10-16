@@ -1,15 +1,16 @@
 .Input {
-    border: none;
+    border: 1px solid transparent;
     display: flex;
     flex: 1;
     box-sizing: border-box;
     border-radius: var(--radius-m);
-    line-height: 1.5;
     transition: 200ms ease-in;
     transition-property: border, color, background;
     width: 100%;
     background: var(--input-fill-borderless);
     color: var(--text-primary);
+    padding-inline: 0;
+    padding-block: 0;
 }
 
 .Input:focus-visible {
@@ -169,25 +170,20 @@
 
 .Input_size_xs {
     font-size: var(--font-size-xs);
-    padding: var(--gap-xs) var(--gap-sm);
-    min-height: 24px;
+    padding: 0 var(--gap-sm);
+    height: 24px;
 }
 
 .Input_size_s {
     font-size: var(--font-size-s);
-    padding: var(--gap-xs) var(--gap-sm);
-    min-height: 32px;
+    padding: 0 var(--gap-sm);
+    height: 32px;
 }
 
 .Input_size_m {
     font-size: var(--font-size-m);
-    padding: var(--gap-s) var(--gap-m);
-    min-height: 40px;
-}
-
-.Input_outline {
-    border-width: 1px;
-    border-style: solid;
+    padding: 0 var(--gap-m);
+    height: 40px;
 }
 
 .Input:read-only {
