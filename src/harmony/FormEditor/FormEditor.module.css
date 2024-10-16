@@ -132,15 +132,22 @@
     2) When the editor is not outlined, the same class is applied to a different element,
     maintaining the focused state styling for consistency.
 */
+.FormEditor_filled .EditorBackground {
+    background-color: var(--input-fill);
+    border-color: var(--input-border);
+}
+
 .FormEditorWrapper.FormEditor_focused,
 .FormEditorWrapper .FormEditor_focused,
-.FormEditor_focused .EditorBackground,
-.FormEditor_filled .EditorBackground {
+.FormEditor_focused .EditorBackground {
     background-color: var(--input-fill-focused);
     border-color: var(--input-border-focused);
 }
 
+
+
 .FormEditorWrapper.FormEditorWrapper_view_danger.FormEditor_focused
 .FormEditorWrapper.FormEditorWrapper_view_danger .FormEditor_focused {
     background-color: var(--danger-900);
+    
 }

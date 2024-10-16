@@ -309,7 +309,7 @@ export const FormEditor = React.forwardRef<HTMLDivElement, FormEditorProps>(
                     ))}
 
                     {nullable(!focused && !value && placeholder, () => (
-                        <Text className={s.FormEditorPlaceholder} size="s" as="span">
+                        <Text className={s.FormEditorPlaceholder} size="m" as="span">
                             {placeholder}
                         </Text>
                     ))}
