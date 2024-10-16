@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.52.3](https://github.com/taskany-inc/bricks/compare/v5.52.2...v5.52.3) (2024-10-16)
+
+
+### Bug Fixes
+
+* **FormEditor:** apply common field colors ([696f0e5](https://github.com/taskany-inc/bricks/commit/696f0e536caef62c5bdeccfaaab6e14ff8aff14d))
+* **Input:** fix icon & placeholder colors ([326474d](https://github.com/taskany-inc/bricks/commit/326474d40d1e3e641d83cffcbe9364f218244e90))
+
 ## [5.52.2](https://github.com/taskany-inc/bricks/compare/v5.52.1...v5.52.2) (2024-10-15)
 
 
