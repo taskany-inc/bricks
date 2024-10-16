@@ -199,6 +199,14 @@ const InputWithKeyboardAction = () => {
     );
 };
 
+const DifferentInputTypes = () => (
+    <Layout>
+        <Input outline size="m" name="date" type="date" />
+        <Input outline size="m" name="numeric" type="number" />
+        <Input outline size="m" name="time" type="time" />
+    </Layout>
+);
+
 export const AllInputs = () => {
     return (
         <>
@@ -208,8 +216,9 @@ export const AllInputs = () => {
             <InputsWithIcons />
             <InputGroups />
             <InputWithKeyboardAction />
+            <DifferentInputTypes />
         </>
     );
 };
 
-export { Inputs, InputsSizes, InputsOutlined, InputsWithIcons, InputGroups };
+export { Inputs, InputsSizes, InputsOutlined, InputsWithIcons, InputGroups, DifferentInputTypes };
