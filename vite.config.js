@@ -66,7 +66,7 @@ export default defineConfig({
                         'src/utils/getInitials.*',
                         'src/utils/preloadImage.*',
                         'src/utils/stringToColor.*',
-                        'src/utils/translit.test.*',
+                        'src/utils/*.test.*',
                         'src/harmony/Editor/Editor.*',
                         'src/harmony/Group/Group.*',
                     ],
