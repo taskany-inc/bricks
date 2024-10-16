@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.53.0](https://github.com/taskany-inc/bricks/compare/v5.52.3...v5.53.0) (2024-10-16)
+
+
+### Features
+
+* **1152:** add keyPredictor util ([7bac95a](https://github.com/taskany-inc/bricks/commit/7bac95a826cc99e72325291c39fe5eae5d3c30ac))
+
 ## [5.52.3](https://github.com/taskany-inc/bricks/compare/v5.52.2...v5.52.3) (2024-10-16)
 
 
