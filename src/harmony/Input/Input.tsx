@@ -62,18 +62,16 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             pointerEvents,
             forwardedRef,
             autoFocus,
-            type,
+            type = 'text',
             value,
             onChange,
             ...rest
         },
         ref,
     ) => {
-        const isDateTimeInput = type?.includes('date') || type?.includes('time') || type?.includes('month');
-
         const inputRef = useRef<HTMLInputElement>(null);
         const forkedInputRef = useForkedRef(inputRef, ref);
-        const [hasDateTimeValue, setFlag] = useState(isDateTimeInput ? !!value : false);
+        const [isFilled, setFlag] = useState(!!value);
 
         useEffect(() => {
             if (autoFocus) {
@@ -95,9 +93,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
         const handleChange = useCallback<React.ChangeEventHandler<HTMLInputElement>>(
             (event) => {
-                if (isDateTimeInput) {
-                    setFlag(!!event.target.value);
-                }
+                setFlag(!!event.target.value);
                 onChange?.(event);
             },
             [onChange],
@@ -118,7 +114,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
                 <input
                     className={cn(s.Input, viewMap[view], sizeMap[size], brick ? brickMap[brick] : '', {
                         [s.Input_outline]: outline,
-                        [s.Input_Filled]: hasDateTimeValue,
+                        [s.Input_Filled]: isFilled,
                     })}
                     ref={forkedInputRef}
                     autoComplete={autoComplete}
