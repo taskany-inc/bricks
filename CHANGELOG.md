@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.53.1](https://github.com/taskany-inc/bricks/compare/v5.53.0...v5.53.1) (2024-10-17)
+
+
+### Bug Fixes
+
+* **Input,Dropdown:** same colors for components ([5ef775d](https://github.com/taskany-inc/bricks/commit/5ef775d56ce8ae693886663e5915740bfe1c717c))
+* **Input:** fix element height ([3fef810](https://github.com/taskany-inc/bricks/commit/3fef8103f4a4d5371a0530163ef3e44290e7b8f9))
+* **Input:** icon for date-time inputs ([9f0af47](https://github.com/taskany-inc/bricks/commit/9f0af47b370f384494529c5445130d56ff29b043))
+
 ## [5.53.0](https://github.com/taskany-inc/bricks/compare/v5.52.3...v5.53.0) (2024-10-16)
 
 
