@@ -204,6 +204,9 @@ const DifferentInputTypes = () => (
         <Input outline size="m" name="date" type="date" style={{ width: '200px' }} />
         <Input outline size="m" name="month" type="month" />
         <Input outline size="m" name="time" type="time" />
+        <Input outline iconLeft={svgFilter} size="m" name="date" type="date" style={{ width: '200px' }} />
+        <Input outline view="success" size="m" name="month" type="month" />
+        <Input outline view="danger" size="m" name="time" type="week" />
     </Layout>
 );
 

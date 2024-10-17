@@ -12,109 +12,12 @@
     color: var(--text-primary);
     padding-inline: 0;
     padding-block: 0;
-
     font: inherit;
 }
 
+.Input:focus,
 .Input:focus-visible {
-    background: var(--input-fill-focused-borderless);
-}
-
-.Input::-webkit-datetime-edit,
-.Input::placeholder {
-    color: var(--text-ghost);
-}
-
-.Input_Filled::-webkit-datetime-edit {
-    color: var(--text-primary);
-}
-
-.Input_outline:hover {
-    border-color: var(--input-border-hovered);
-}
-
-.Input_outline.Input {
-    border-color: var(--input-border);
-    background: var(--input-fill);
-}
-
-.Input_outline.Input:focus-visible {
-    border-color: var(--input-border-focused);
-    background: var(--input-fill-focused);
-}
-
-.Input.Input_success {
-    border-color: var(--primary-500);
-    background: var(--primary-900);
-    color: var(--primary-400);
-}
-
-.Input.Input_success:focus-visible {
-    border-color: var(--primary-500);
-    background: var(--primary-900);
-    color: var(--primary-400);
-}
-
-.Input.Input_success::placeholder,
-.Input::-webkit-datetime-edit.Input_success {
-    color: var(--primary-700);
-}
-
-.Input.Input_success:focus-visible + .Icon {
-    color: var(--primary-500);
-}
-
-.Input.Input_danger {
-    border-color: var(--danger-500);
-    background: var(--danger-900);
-    color: var(--danger-400);
-}
-
-.Input.Input_danger:focus-visible {
-    border-color: var(--danger-500);
-    background: var(--danger-900);
-    color: var(--danger-400);
-}
-
-.Input.Input_danger::placeholder,
-.Input::-webkit-datetime-edit.Input_success {
-    color: var(--danger-700);
-}
-
-.Input.Input_danger:focus-visible + .Icon {
-    color: var(--danger-500);
-}
-
-.Input_outline.Input:disabled {
-    border-color: var(--input-border-disabled);
-    background: var(--input-disabled);
-    color: var(--text-disabled);
-}
-
-.Input:focus {
     outline: none;
-}
-
-.Input:disabled {
-    background: var(--input-disabled-borderless);
-    color: var(--text-disabled);
-}
-
-.Input:disabled::placeholder {
-    color: var(--text-disabled);
-}
-
-.InputWrapper {
-    position: relative;
-    display: flex;
-}
-
-.InputWrapper_icon_left .Input {
-    padding-left: var(--gap-l);
-}
-
-.InputWrapper_icon_right .Input {
-    padding-right: var(--gap-l);
 }
 
 .Icon {
@@ -134,14 +37,6 @@
     pointer-events: var(--input-pointer-events, auto);
 }
 
-.Input_danger ~ .Icon {
-    color: var(--danger-500);
-}
-
-.Input_success ~ .Icon {
-    color: var(--primary-500);
-}
-
 .Icon_left {
     left: var(--gap-s);
 }
@@ -150,8 +45,35 @@
     right: var(--gap-s);
 }
 
-.InputWrapper_brick + .InputWrapper_brick {
-    margin-left: 1px;
+.Input_outline {
+    border-color: var(--input-border);
+    background: var(--input-fill);
+}
+
+.Input_success {
+    background: var(--primary-900);
+    color: var(--primary-400);
+}
+
+.Input_success ~ .Icon {
+    color: var(--primary-500);
+}
+
+.Input_danger {
+    background: var(--danger-900);
+    color: var(--danger-400);
+}
+
+.Input_danger ~ .Icon {
+    color: var(--danger-500);
+}
+
+.Input_outline.Input_success {
+    border-color: var(--primary-500);
+}
+
+.Input_outline.Input_danger {
+    border-color: var(--danger-500);
 }
 
 .Input_brick_center {
@@ -177,6 +99,137 @@
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
 }
+
+.InputWrapper_brick + .InputWrapper_brick {
+    margin-left: 1px;
+}
+
+/* attrs & pseudo selectors */
+
+.Input::-webkit-calendar-picker-indicator {
+    display: inline-flex;
+    color: currentColor;
+    background-image: none;
+    background-size: 1em 1em;
+    background-color: currentColor;
+    margin: 0;
+    padding: 0;
+    margin-left: 0.25em;
+    cursor: pointer;
+    position: absolute;
+    right: 1em;
+}
+
+.InputWrapper_icon_right .Input::-webkit-calendar-picker-indicator {
+    right: 2em;
+}
+
+.Input::-webkit-calendar-picker-indicator {
+    -webkit-mask-image: url(../../../node_modules/teenyicons/outline/calendar.svg);
+    mask-image: url(../../../node_modules/teenyicons/outline/calendar.svg);
+}
+
+.Input[type="time"]::-webkit-calendar-picker-indicator {
+    -webkit-mask-image: url(../../../node_modules/teenyicons/outline/clock.svg);
+    mask-image: url(../../../node_modules/teenyicons/outline/clock.svg);
+}
+
+.Input:focus-visible {
+    background: var(--input-fill-focused-borderless);
+}
+
+.Input::-webkit-datetime-edit,
+.Input::placeholder {
+    color: var(--text-ghost);
+}
+
+.Input_Filled::-webkit-datetime-edit {
+    color: var(--text-primary);
+}
+
+.Input_outline:hover {
+    border-color: var(--input-border-hovered);
+}
+
+.Input_outline.Input_success:hover {
+    border-color: var(--primary-400);
+}
+
+.Input_outline.Input_danger:hover {
+    border-color: var(--danger-400);
+}
+
+.Input_outline:focus-visible {
+    border-color: var(--input-border-focused);
+    background: var(--input-fill-focused);
+}
+
+.Input_success:focus-visible {
+    background: var(--primary-900);
+    color: var(--primary-400);
+}
+
+.Input_outline.Input_success:focus-visible {
+    border-color: var(--primary-400);
+}
+
+.Input_success::placeholder,
+.Input_success::-webkit-datetime-edit {
+    color: var(--primary-700);
+}
+
+.Input_success:focus-visible ~ .Icon {
+    color: var(--primary-500);
+}
+
+.Input_danger:focus-visible {
+    background: var(--danger-900);
+    color: var(--danger-400);
+}
+
+.Input_outline.Input_danger:focus-visible {
+    border-color: var(--danger-400);
+}
+
+.Input_danger::placeholder,
+.Input_danger::-webkit-datetime-edit {
+    color: var(--danger-700);
+}
+
+.Input_danger:focus-visible + .Icon {
+    color: var(--danger-500);
+}
+
+.Input_outline.Input:disabled {
+    border-color: var(--input-border-disabled);
+    background: var(--input-disabled);
+    color: var(--text-disabled);
+}
+
+.Input:read-only {
+    background: var(--input-readonly);
+    color: var(--text-primary);
+}
+
+.Input_outline:read-only {
+    border-color: var(--input-border);
+}
+
+.Input:disabled {
+    background: var(--input-disabled-borderless);
+    color: var(--text-disabled);
+}
+
+.Input:disabled::placeholder {
+    color: var(--text-disabled);
+}
+
+.Input_outline:disabled {
+    background: var(--input-disabled);
+    border-color: var(--input-border-disabled);
+}
+
+/* sizing */
 
 .Input_size_xs {
     font-size: var(--font-size-xs);
@@ -262,40 +315,20 @@
     padding-right: calc(1em + var(--gap-l) + var(--gap-m) * 2);
 }
 
-.Input:read-only {
-    background: var(--input-readonly);
-    color: var(--text-primary);
-    border-color: var(--input-border);
+.InputWrapper {
+    position: relative;
+    display: flex;
 }
 
-.Input:focus-visible ~ .Icon {
-    color: var(--text-secondary);
+.InputWrapper_icon_left .Input {
+    padding-left: var(--gap-l);
 }
 
-.Input::-webkit-calendar-picker-indicator {
-    display: inline-flex;
-    color: transparent;
-    background-image: none;
-    background-size: 1em 1em;
-    background-color: var(--text-ghost);
-    margin: 0;
-    padding: 0;
-    margin-left: 0.25em;
-    cursor: pointer;
-    position: absolute;
-    right: 1em;
+.InputWrapper_icon_right .Input {
+    padding-right: var(--gap-l);
 }
 
-.InputWrapper_icon_right .Input::-webkit-calendar-picker-indicator {
-    right: 2em;
-}
-
-.Input::-webkit-calendar-picker-indicator {
-    -webkit-mask-image: url(../../../node_modules/teenyicons/outline/calendar.svg);
-    mask-image: url(../../../node_modules/teenyicons/outline/calendar.svg);
-}
-
-.Input[type="time"]::-webkit-calendar-picker-indicator {
-    -webkit-mask-image: url(../../../node_modules/teenyicons/outline/clock.svg);
-    mask-image: url(../../../node_modules/teenyicons/outline/clock.svg);
+.Input_Filled ~ .Icon_left,
+.Input:focus-visible ~ .Icon_left {
+    color: currentColor;
 }
