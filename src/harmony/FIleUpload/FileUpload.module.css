@@ -1,0 +1,58 @@
+.FileUpload {
+    display: flex;
+    flex-direction: column;
+}
+
+.FileUpload_Dropzone:focus,
+.FileUpload_Dropzone:focus-visible {
+    outline: none;
+}
+
+.FileUpload_Dropzone {
+    background-color: var(--input-fill);
+    border: 1px dashed var(--input-border);
+    border-radius: var(--radius-m);
+    height: 62px;
+    flex: 1 0 auto;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1 0 auto;
+    max-width: 100%;
+    pointer-events: all;
+    transition: var(--transition-time) var(--transition-func);
+    transition-property: background-color, border-style, border-color;
+}
+
+.FileUpload_Dropzone_disabled {
+    cursor: not-allowed;
+
+    background-color: var(--input-disabled);
+    border-color: var(--input-border-disabled);
+}
+
+.FileUpload_Dropzone:not(.FileUpload_Dropzone_disabled):focus-visible {
+    border-style: solid;
+    border-color: var(--input-border-focused);
+    background-color: var(--input-fill-focused);
+}
+
+.FileUpload_Dropzone:not(.FileUpload_Dropzone_disabled):hover {
+    background-color: var(--gray-900);
+}
+
+.FileUpload_DropzoneText {
+    color: var(--text-secondary);
+    transition: var(--transition-time) var(--transition-func);
+    transition-property: color;
+}
+
+.FileUpload_Dropzone_disabled .FileUpload_DropzoneText {
+    color: var(--text-disabled);
+}
+
+.FileUpload_File_error {
+    color: var(--button-danger);
+}

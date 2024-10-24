@@ -2,11 +2,21 @@ import { useState } from 'react';
 
 import { formFieldName } from '../utils/upload';
 
-export const useUpload = (onSuccess?: () => void, onFail?: (message?: string) => void, uploadLink = '/api/upload') => {
-    const [loading, setLoading] = useState(false);
-    const [files, setFiles] = useState<{ type: string; filePath: string; name: string }[]>();
+interface FileData {
+    type: string;
+    filePath: string;
+    name: string;
+}
 
-    const uploadFiles = async (files: File[]) => {
+export const useUpload = (
+    onSuccess?: () => void,
+    onFail?: (message?: string, rejectionFiles?: FileData[]) => void,
+    uploadLink = '/api/upload',
+) => {
+    const [loading, setLoading] = useState(false);
+    const [files, setFiles] = useState<FileData[]>();
+
+    const uploadFiles = async (files: (File & { path?: string })[]) => {
         setLoading(true);
 
         const body = new FormData();
@@ -23,23 +33,34 @@ export const useUpload = (onSuccess?: () => void, onFail?: (message?: string) =>
 
                 return Promise.reject(new Error(`${res.status} ${res.statusText}`));
             })
-            .then((res) => {
-                if (res.succeeded.length > 0) {
-                    onSuccess && onSuccess();
-                    setFiles(res.succeeded);
-                }
+            .then(
+                (res) => {
+                    if (res.succeeded.length > 0) {
+                        onSuccess && onSuccess();
+                        setFiles(res.succeeded);
+                    }
 
-                res.failed.length > 0 &&
+                    res.failed.length > 0 &&
+                        onFail &&
+                        onFail(
+                            `Failed to load files ${res.failed.map(({ name }: { name: string }) => name).join(', ')}: ${
+                                res.errorMessage
+                            }`,
+                            res.failed,
+                        );
+                },
+                (err) => {
                     onFail &&
-                    onFail(
-                        `Failed to load files ${res.failed.map(({ name }: { name: string }) => name).join(', ')}: ${
-                            res.errorMessage
-                        }`,
-                    );
-            })
-            .catch((err) => {
-                onFail && onFail(err.message);
-            })
+                        onFail(
+                            err.message,
+                            files.map((f) => ({
+                                filePath: f.path != null ? f.path : '',
+                                name: f.name,
+                                type: f.type,
+                            })),
+                        );
+                },
+            )
             .finally(() => setLoading(false));
     };
     return {

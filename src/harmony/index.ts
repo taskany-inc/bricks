@@ -13,6 +13,7 @@ export * from './Counter/Counter';
 export * from './DatePicker/DatePicker';
 export * from './Dot/Dot';
 export * from './Dropdown/Dropdown';
+export * from './FIleUpload/FileUpload';
 export * from './Fieldset/Fieldset';
 export * from './FiltersBar/FiltersBar';
 export * from './FlatProgressBar/FlatProgressBar';
