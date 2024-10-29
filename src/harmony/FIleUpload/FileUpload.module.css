@@ -26,20 +26,13 @@
     transition-property: background-color, border-style, border-color;
 }
 
-.FileUpload_Dropzone_disabled {
-    cursor: not-allowed;
-
-    background-color: var(--input-disabled);
-    border-color: var(--input-border-disabled);
-}
-
 .FileUpload_Dropzone:not(.FileUpload_Dropzone_disabled):focus-visible {
     border-style: solid;
     border-color: var(--input-border-focused);
     background-color: var(--input-fill-focused);
 }
 
-.FileUpload_Dropzone:not(.FileUpload_Dropzone_disabled):hover {
+.FileUpload_Dropzone:not(.FileUpload_Dropzone_disabled, .FileUpload_Dropzone_error):hover {
     background-color: var(--gray-900);
 }
 
@@ -49,10 +42,26 @@
     transition-property: color;
 }
 
+.FileUpload_File_error {
+    color: var(--button-danger);
+}
+
+.FileUpload_Dropzone_disabled {
+    cursor: not-allowed;
+
+    background-color: var(--input-disabled);
+    border-color: var(--input-border-disabled);
+}
+
 .FileUpload_Dropzone_disabled .FileUpload_DropzoneText {
     color: var(--text-disabled);
 }
 
-.FileUpload_File_error {
-    color: var(--button-danger);
+.FileUpload_Dropzone_error {
+    border-color: var(--danger-400);
+    background-color: var(--danger-900);
+}
+
+.FileUpload_Dropzone_error .FileUpload_DropzoneText {
+    color: var(--danger-400)
 }

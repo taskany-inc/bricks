@@ -3,7 +3,14 @@ import type { Meta } from '@storybook/react';
 
 import { nullable } from '../../utils';
 
-import { FormControl, FormControlEditor, FormControlError, FormControlInput, FormControlLabel } from './FormControl';
+import {
+    FormConrolFileUpload,
+    FormControl,
+    FormControlEditor,
+    FormControlError,
+    FormControlInput,
+    FormControlLabel,
+} from './FormControl';
 
 const meta: Meta<typeof FormControl> = {
     title: 'Harmony/FormControl',
@@ -45,6 +52,21 @@ const ErrorControl = () => {
             <FormControl>
                 <FormControlLabel>Description</FormControlLabel>
                 <FormControlEditor placeholder="Description" />
+                <FormControlError>Some error</FormControlError>
+            </FormControl>
+
+            <FormControl>
+                <FormControlLabel>Photo</FormControlLabel>
+                <FormConrolFileUpload
+                    translates={{
+                        idle: 'Choose file',
+                        active: 'Drop file here',
+                        loading: 'Loading',
+                        accepted: 'Loaded',
+                        error: "File doesn't load",
+                        fileExtensionsText: 'In *.pdf or *.doc / *.docx format',
+                    }}
+                />
                 <FormControlError>Some error</FormControlError>
             </FormControl>
         </>

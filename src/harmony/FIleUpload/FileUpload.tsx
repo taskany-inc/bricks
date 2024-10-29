@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { forwardRef, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useDropzone, DropzoneOptions } from 'react-dropzone';
 import { IconFileTickOutline, IconFileXOutline, IconXCircleOutline } from '@taskany/icons';
 import cn from 'classnames';
@@ -33,10 +33,13 @@ interface FileUploadProps extends Omit<DropzoneOptions, 'onDrop' | 'onDropAccept
         error: string;
         fileExtensionsText: string;
     };
-    onChange: (fileList: FileStatus['file'][]) => void;
+    id?: string;
+    forwardedRef?: React.MutableRefObject<HTMLDivElement | null>;
+    onChange?: (fileList: FileStatus['file'][]) => void;
     onUploadSuccess?: () => void;
     onUploadFail?: (message?: string, list?: Array<FileStatus['file']>) => void;
     uploadLink?: string;
+    isError?: boolean;
 }
 
 interface FileUploadTextContentProps {
@@ -114,132 +117,129 @@ const FileNameBadge: React.FC<FileNameBadgeProps> = ({ fullName, onClick, state,
     );
 };
 
-export const FileUpload: React.FC<FileUploadProps> = ({
-    translates,
-    onChange,
-    onUploadFail,
-    onUploadSuccess,
-    uploadLink,
-    ...props
-}) => {
-    const [uploadedFiles, setUploadedFiles] = useState<FileStatus[]>([]);
+export const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(
+    ({ translates, onChange, onUploadFail, onUploadSuccess, uploadLink, forwardedRef, id, ...props }, ref) => {
+        const [uploadedFiles, setUploadedFiles] = useState<FileStatus[]>([]);
 
-    const handleFailFiles = useCallback((message?: string, rejectionList?: FileStatus['file'][]) => {
-        onUploadFail?.(message, rejectionList);
+        const handleFailFiles = useCallback((message?: string, rejectionList?: FileStatus['file'][]) => {
+            onUploadFail?.(message, rejectionList);
 
-        setUploadedFiles((prev) => {
-            if (!rejectionList) {
-                return prev;
-            }
-
-            const res = prev.concat(rejectionList.map((file) => ({ file, state: 'failed' })));
-
-            const uniqueMap = new Map();
-
-            for (const value of res) {
-                const it = uniqueMap.get(value.file.name);
-
-                if (it == null) {
-                    uniqueMap.set(value.file.name, value);
+            setUploadedFiles((prev) => {
+                if (!rejectionList) {
+                    return prev;
                 }
-            }
 
-            return Array.from(uniqueMap.values());
-        });
-    }, []);
+                const res = prev.concat(rejectionList.map((file) => ({ file, state: 'failed' })));
 
-    const { loading, files, uploadFiles } = useUpload(onUploadSuccess, handleFailFiles, uploadLink);
-    const { isDragActive, getInputProps, getRootProps, fileRejections } = useDropzone({
-        ...props,
-        onDrop: uploadFiles,
-    });
+                const uniqueMap = new Map();
 
-    const handleRemove = useCallback((file: (typeof uploadedFiles)[number]) => {
-        setUploadedFiles((prev) => prev.filter((f) => f !== file));
-    }, []);
+                for (const value of res) {
+                    const it = uniqueMap.get(value.file.name);
 
-    useEffect(() => {
-        if (fileRejections.length) {
-            const { message = translates.error } = fileRejections[0].errors[0];
-            handleFailFiles(
-                message,
-                fileRejections.map(({ file }: { file: File & { path?: string } }) => ({
-                    type: file.type,
-                    filePath: file.path || '',
-                    name: file.name,
-                })),
-            );
-        }
-    }, [fileRejections, handleFailFiles, translates]);
-
-    useEffect(() => {
-        setUploadedFiles((prev) => {
-            if (!files) {
-                return prev;
-            }
-
-            const res = prev.concat(files.map((file) => ({ file, state: 'accepted' })));
-
-            const uniqueMap = new Map();
-
-            for (const value of res) {
-                const it = uniqueMap.get(value.file.name);
-
-                if (it == null) {
-                    uniqueMap.set(value.file.name, value);
+                    if (it == null) {
+                        uniqueMap.set(value.file.name, value);
+                    }
                 }
-            }
 
-            return Array.from(uniqueMap.values());
+                return Array.from(uniqueMap.values());
+            });
+        }, []);
+
+        const { loading, files, uploadFiles } = useUpload(onUploadSuccess, handleFailFiles, uploadLink);
+        const { isDragActive, getInputProps, getRootProps, fileRejections } = useDropzone({
+            ...props,
+            onDrop: uploadFiles,
         });
-    }, [files]);
 
-    useEffect(() => {
-        if (uploadFiles.length > 0) {
-            onChange(uploadedFiles.filter((v) => v.state === 'accepted').map(({ file }) => file));
-        }
-    }, [uploadedFiles, onChange]);
+        const handleRemove = useCallback((file: (typeof uploadedFiles)[number]) => {
+            setUploadedFiles((prev) => prev.filter((f) => f !== file));
+        }, []);
 
-    const textNodeState: FileUploadTextContentProps['state'] = useMemo(() => {
-        switch (true) {
-            case loading:
-                return 'loading';
-            case isDragActive:
-                return 'drop';
-            default:
-                return 'idle';
-        }
-    }, [loading, isDragActive]);
+        useEffect(() => {
+            if (fileRejections.length) {
+                const { message = translates.error } = fileRejections[0].errors[0];
+                handleFailFiles(
+                    message,
+                    fileRejections.map(({ file }: { file: File & { path?: string } }) => ({
+                        type: file.type,
+                        filePath: file.path || '',
+                        name: file.name,
+                    })),
+                );
+            }
+        }, [fileRejections, handleFailFiles, translates]);
 
-    return (
-        <div className={styles.FileUpload}>
-            <div
-                {...getRootProps()}
-                className={cn(styles.FileUpload_Dropzone, {
-                    [styles.FileUpload_Dropzone_disabled]: props.disabled,
-                })}
-            >
-                <input {...getInputProps()} />
-                <FileUploadTextContent state={textNodeState} translates={translates} />
-                {nullable(props.accept, () => (
-                    <Text className={styles.FileUpload_DropzoneText} size="xs" weight="thin" as="div">
-                        {translates.fileExtensionsText}
-                    </Text>
-                ))}
-            </div>
+        useEffect(() => {
+            setUploadedFiles((prev) => {
+                if (!files) {
+                    return prev;
+                }
 
-            {nullable(uploadedFiles, (fileList) => (
-                <div className={styles.FileUpload_Filelist}>
-                    {fileList.map((file) => (
-                        <FileNameBadge
-                            fullName={file.file.name}
-                            state={file.state}
-                            errorMessage={translates.error}
-                            onClick={() => handleRemove(file)}
-                        />
+                const res = prev.concat(files.map((file) => ({ file, state: 'accepted' })));
+
+                const uniqueMap = new Map();
+
+                for (const value of res) {
+                    const it = uniqueMap.get(value.file.name);
+
+                    if (it == null) {
+                        uniqueMap.set(value.file.name, value);
+                    }
+                }
+
+                return Array.from(uniqueMap.values());
+            });
+        }, [files]);
+
+        useEffect(() => {
+            if (uploadFiles.length > 0) {
+                onChange?.(uploadedFiles.filter((v) => v.state === 'accepted').map(({ file }) => file));
+            }
+        }, [uploadedFiles, onChange]);
+
+        const textNodeState: FileUploadTextContentProps['state'] = useMemo(() => {
+            switch (true) {
+                case loading:
+                    return 'loading';
+                case isDragActive:
+                    return 'drop';
+                default:
+                    return 'idle';
+            }
+        }, [loading, isDragActive]);
+
+        return (
+            <div className={styles.FileUpload}>
+                <div
+                    {...getRootProps()}
+                    className={cn(styles.FileUpload_Dropzone, {
+                        [styles.FileUpload_Dropzone_disabled]: props.disabled,
+                        [styles.FileUpload_Dropzone_error]: props.isError,
+                    })}
+                    ref={forwardedRef}
+                >
+                    <input {...getInputProps()} id={id} ref={ref} />
+                    <FileUploadTextContent state={textNodeState} translates={translates} />
+                    {nullable(props.accept, () => (
+                        <Text className={styles.FileUpload_DropzoneText} size="xs" weight="thin" as="div">
+                            {translates.fileExtensionsText}
+                        </Text>
                     ))}
                 </div>
-            ))}
-        </div>
-    );
-};
+
+                {nullable(uploadedFiles, (fileList) => (
+                    <div className={styles.FileUpload_Filelist}>
+                        {fileList.map((file) => (
+                            <FileNameBadge
+                                fullName={file.file.name}
+                                state={file.state}
+                                errorMessage={translates.error}
+                                onClick={() => handleRemove(file)}
+                            />
+                        ))}
+                    </div>
+                ))}
+            </div>
+        );
+    },
+);
