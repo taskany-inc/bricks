@@ -334,6 +334,7 @@ export const FormEditor = React.forwardRef<HTMLDivElement, FormEditorProps>(
                                 onMount={handleEditorDidMount}
                                 className={cn(s.MonacoEditor)}
                                 wrapperProps={monacoWrapperProps}
+                                hasError={view === 'danger'}
                             />
                         </div>
                     </div>

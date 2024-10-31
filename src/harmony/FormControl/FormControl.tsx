@@ -23,7 +23,7 @@ import { Text } from '../Text/Text';
 import { nullable, setRefs } from '../../utils';
 import { Tooltip } from '../Tooltip/Tooltip';
 import { FormEditor } from '../FormEditor/FormEditor';
-import { FileUpload } from '../FIleUpload/FileUpload';
+import { FileUpload } from '../FileUpload/FileUpload';
 
 import classes from './FormControl.module.css';
 
@@ -147,9 +147,9 @@ export const FormControlError = ({ children, error, placement = 'bottom', ...pro
     );
 };
 
-interface FormConrolFileUploadProps extends ComponentPropsWithoutRef<typeof FileUpload> {}
+interface FormControlFileUploadProps extends ComponentPropsWithoutRef<typeof FileUpload> {}
 
-export const FormConrolFileUpload = forwardRef<HTMLInputElement, FormConrolFileUploadProps>((props, ref) => {
+export const FormControlFileUpload = forwardRef<HTMLInputElement, FormControlFileUploadProps>((props, ref) => {
     const { id, error, popupRef } = useFormControlContext();
     const hasError = error != null && error.message != null;
 

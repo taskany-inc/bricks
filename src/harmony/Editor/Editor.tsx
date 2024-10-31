@@ -4,6 +4,10 @@ import cn from 'classnames';
 
 import './Editor.css';
 
-export const Editor = ({ className, ...props }: ComponentProps<typeof MonacoEditor>) => {
-    return <MonacoEditor className={cn('MonacoEditor', className)} {...props} />;
+interface EditorProps extends ComponentProps<typeof MonacoEditor> {
+    hasError?: boolean;
+}
+
+export const Editor: React.FC<EditorProps> = ({ className, hasError, ...props }) => {
+    return <MonacoEditor className={cn('MonacoEditor', className, { MonacoEditorHasError: hasError })} {...props} />;
 };

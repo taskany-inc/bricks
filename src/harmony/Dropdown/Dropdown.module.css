@@ -105,7 +105,9 @@
 }
 
 .DropdownTrigger_view_outline.DropdownTrigger_readOnly {
-    border-color: var(--base-hover);
+    border-color: var(--input-border);
+    background: var(--input-readonly);
+    color: var(--text-primary);
 }
 
 .DropdownTrigger_view_fill.DropdownTrigger_readOnly {
@@ -142,7 +144,7 @@
 }
 
 .DropdownTriggerValuePlaceholder_error {
-    color: currentColor;
+    color: var(--danger-700);
 }
 
 .DropdownTriggerValue_interactive {

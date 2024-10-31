@@ -178,6 +178,10 @@
     color: var(--primary-700);
 }
 
+.Input_success:is(.Input_Filled)::-webkit-datetime-edit {
+    color: var(--primary-400);
+}
+
 .Input_success:focus-visible ~ .Icon {
     color: var(--primary-500);
 }
@@ -194,6 +198,10 @@
 .Input_danger::placeholder,
 .Input_danger::-webkit-datetime-edit {
     color: var(--danger-700);
+}
+
+.Input_danger:is(.Input_Filled)::-webkit-datetime-edit {
+    color: var(--danger-400);
 }
 
 .Input_danger:focus-visible + .Icon {

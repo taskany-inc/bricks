@@ -4,7 +4,7 @@ import type { Meta } from '@storybook/react';
 import { nullable } from '../../utils';
 
 import {
-    FormConrolFileUpload,
+    FormControlFileUpload,
     FormControl,
     FormControlEditor,
     FormControlError,
@@ -57,7 +57,7 @@ const ErrorControl = () => {
 
             <FormControl>
                 <FormControlLabel>Photo</FormControlLabel>
-                <FormConrolFileUpload
+                <FormControlFileUpload
                     translates={{
                         idle: 'Choose file',
                         active: 'Drop file here',
@@ -117,7 +117,7 @@ export const Editor = () => {
                 <FormControlLabel>Date</FormControlLabel>
                 <FormControlInput
                     placeholder="Enter the name"
-                    value={String(date)}
+                    value={date ? String(date) : undefined}
                     type="date"
                     size="m"
                     outline

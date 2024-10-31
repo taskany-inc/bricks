@@ -162,7 +162,6 @@ export const DropdownTrigger = ({
                         children,
                         () => children,
                         <Text
-                            size="s"
                             ellipsis
                             className={cn(s.DropdownTriggerValuePlaceholder, {
                                 [s.DropdownTriggerValuePlaceholder_error]: error,
