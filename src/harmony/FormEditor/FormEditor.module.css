@@ -119,8 +119,8 @@
     border-color: var(--danger-500);
 }
 
-.FormEditorWrapper_view_danger .Placeholder {
-    color: var(--danger-500);
+.FormEditorWrapper_view_danger .FormEditorPlaceholder {
+    color: var(--danger-700);
 }
 
 /*
@@ -143,8 +143,6 @@
     background-color: var(--input-fill-focused);
     border-color: var(--input-border-focused);
 }
-
-
 
 .FormEditorWrapper.FormEditorWrapper_view_danger.FormEditor_focused
 .FormEditorWrapper.FormEditorWrapper_view_danger .FormEditor_focused {

@@ -46,7 +46,7 @@ const Dropdown = ({
                 disabled={disabled}
                 readOnly={readOnly}
             >
-                <Text size="s">Q4/2023</Text>
+                <Text size="s">Q4/2024</Text>
             </DropdownTrigger>
             {nullable(error, () => (
                 <DropdownTriggerError message="error" />
