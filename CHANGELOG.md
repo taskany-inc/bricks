@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.54.1](https://github.com/taskany-inc/bricks/compare/v5.54.0...v5.54.1) (2024-11-01)
+
+
+### Bug Fixes
+
+* **Dropdown,Editor,Input:** common placeholer style ([6e934db](https://github.com/taskany-inc/bricks/commit/6e934dbc2530b50fe7ac1e59e1dff9362791714f))
+
 ## [5.54.0](https://github.com/taskany-inc/bricks/compare/v5.53.1...v5.54.0) (2024-10-29)
 
 
