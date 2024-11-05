@@ -47,6 +47,11 @@
     color: var(--danger-300);
 }
 
+.ModalHeader_view_primary {
+    background-color: var(--primary-900);
+    color: var(--primary-300);
+}
+
 .Modal {
     box-sizing: border-box;
     position: absolute;
