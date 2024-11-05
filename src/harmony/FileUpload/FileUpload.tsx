@@ -24,7 +24,7 @@ interface FileNameBadgeProps {
     state: FileStatus['state'];
 }
 
-interface FileUploadProps extends Omit<DropzoneOptions, 'onDrop' | 'onDropAccepted' | 'onDropRejected'> {
+interface FileUploadProps extends Omit<DropzoneOptions, 'onDropAccepted' | 'onDropRejected'> {
     translates: {
         idle: string;
         active: string;
@@ -118,7 +118,7 @@ const FileNameBadge: React.FC<FileNameBadgeProps> = ({ fullName, onClick, state,
 };
 
 export const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(
-    ({ translates, onChange, onUploadFail, onUploadSuccess, uploadLink, forwardedRef, id, ...props }, ref) => {
+    ({ translates, onChange, onUploadFail, onUploadSuccess, onDrop, uploadLink, forwardedRef, id, ...props }, ref) => {
         const [uploadedFiles, setUploadedFiles] = useState<FileStatus[]>([]);
 
         const handleFailFiles = useCallback((message?: string, rejectionList?: FileStatus['file'][]) => {
@@ -148,7 +148,10 @@ export const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(
         const { loading, files, uploadFiles } = useUpload(onUploadSuccess, handleFailFiles, uploadLink);
         const { isDragActive, getInputProps, getRootProps, fileRejections } = useDropzone({
             ...props,
-            onDrop: uploadFiles,
+            onDrop: (accepted, rejected, event) => {
+                onDrop?.(accepted, rejected, event);
+                uploadFiles(accepted);
+            },
         });
 
         const handleRemove = useCallback((file: (typeof uploadedFiles)[number]) => {
@@ -228,7 +231,7 @@ export const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(
                 </div>
 
                 {nullable(uploadedFiles, (fileList) => (
-                    <div className={styles.FileUpload_Filelist}>
+                    <div>
                         {fileList.map((file) => (
                             <FileNameBadge
                                 fullName={file.file.name}

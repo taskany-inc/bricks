@@ -11,12 +11,14 @@ interface FileData {
 export const useUpload = (
     onSuccess?: () => void,
     onFail?: (message?: string, rejectionFiles?: FileData[]) => void,
-    uploadLink = '/api/upload',
+    uploadLink?: string,
 ) => {
     const [loading, setLoading] = useState(false);
     const [files, setFiles] = useState<FileData[]>();
 
     const uploadFiles = async (files: (File & { path?: string })[]) => {
+        if (!uploadLink) return;
+
         setLoading(true);
 
         const body = new FormData();
