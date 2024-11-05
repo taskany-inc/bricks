@@ -24,7 +24,7 @@ export type QuarterAlias = keyof typeof QuartersAliases;
 
 const urlDateRangeSeparator = '~';
 
-export const createLocaleDate = (date: Date | string, { locale }: { locale: Intl.LocalesArgument }): string =>
+export const createLocaleDate = (date: Date | string, { locale }: { locale: string }): string =>
     new Intl.DateTimeFormat(locale, {
         day: '2-digit',
         month: '2-digit',
@@ -194,7 +194,7 @@ export const formateEstimate = (
         locale,
         type,
     }: {
-        locale: Intl.LocalesArgument;
+        locale: string;
         type?: DateRangeType;
     },
 ): string => {
