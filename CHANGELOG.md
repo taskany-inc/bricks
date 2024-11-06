@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.55.0](https://github.com/taskany-inc/bricks/compare/v5.54.2...v5.55.0) (2024-11-06)
+
+
+### Features
+
+* **Modal header:** add view primary in modal header ([d538349](https://github.com/taskany-inc/bricks/commit/d538349fca9806c6a1d0187e087239906353df7c))
+
 ## [5.54.2](https://github.com/taskany-inc/bricks/compare/v5.54.1...v5.54.2) (2024-11-06)
 
 
