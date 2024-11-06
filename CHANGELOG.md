@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.54.2](https://github.com/taskany-inc/bricks/compare/v5.54.1...v5.54.2) (2024-11-06)
+
+
+### Bug Fixes
+
+* **FileUpload:** allow onDrop prop ([f40f7ff](https://github.com/taskany-inc/bricks/commit/f40f7ffa1ff00cc296048c565a57029902dee6c0))
+
 ## [5.54.1](https://github.com/taskany-inc/bricks/compare/v5.54.0...v5.54.1) (2024-11-01)
 
 
