@@ -43,6 +43,7 @@ export const ModalContent = ({ className, children, ...props }: ModalContentProp
 const modalHeaderViewMap = {
     danger: s.ModalHeader_view_danger,
     warning: s.ModalHeader_view_warning,
+    primary: s.ModalHeader_view_primary,
 };
 
 interface ModalHeaderProps extends Omit<ComponentProps<typeof Text>, 'as'> {
