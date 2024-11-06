@@ -32,6 +32,7 @@ export const Default: StoryObj<typeof Modal> = {
                         <Button text="default" view="default" onClick={() => setView(undefined)} />
                         <Button text="warning" view="warning" onClick={() => setView('warning')} />
                         <Button text="danger" view="danger" onClick={() => setView('danger')} />
+                        <Button text="primary" view="primary" onClick={() => setView('primary')} />
                     </div>
                 </ModalContent>
             </Modal>
