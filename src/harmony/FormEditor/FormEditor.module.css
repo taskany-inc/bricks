@@ -111,8 +111,6 @@
 .FormEditor_disabled {
     pointer-events: none;
     cursor: not-allowed;
-    background-color: var(--input-disabled-borderless);
-    color: var(--text-disabled);
 }
 
 .FormEditorWrapper_view_danger {
@@ -147,5 +145,13 @@
 .FormEditorWrapper.FormEditorWrapper_view_danger.FormEditor_focused
 .FormEditorWrapper.FormEditorWrapper_view_danger .FormEditor_focused {
     background-color: var(--danger-900);
-    
+}
+
+.FormEditorWrapper.FormEditor_disabled .EditorBackground:not(.FormEditor_outlined) {
+    background: var(--input-disabled-borderless);
+    color: var(--text-disabled);
+}
+.FormEditorWrapper.FormEditor_disabled .EditorBackground.FormEditor_outlined  {
+    border-color: var(--input-border-disabled);
+    background-color: var(--input-disabled);
 }

@@ -148,7 +148,7 @@ export const FormEditor = React.forwardRef<HTMLDivElement, FormEditorProps>(
         const handleEditorDidMount: OnMountCallback = (editor, monaco) => {
             monacoEditorRef.current = editor;
 
-            if (autoFocus) {
+            if (autoFocus && !disabled) {
                 if (viewValue !== value) {
                     editor.trigger('keyboard', 'type', { text: value });
                 }
@@ -277,17 +277,34 @@ export const FormEditor = React.forwardRef<HTMLDivElement, FormEditorProps>(
             };
         }, [height, contentHeight]);
 
-        const editorOptions = useMemo(() => ({ ...defaultOptions, ...options }), [options]);
+        const editorOptions = useMemo(() => {
+            let base = { ...defaultOptions, ...options };
+
+            if (disabled) {
+                base = {
+                    ...base,
+                    tabIndex: -1,
+                    tabFocusMode: false,
+                    domReadOnly: true,
+                    readOnly: true,
+                };
+            }
+
+            return base;
+        }, [options, disabled]);
 
         return (
             <div
-                tabIndex={0}
+                tabIndex={!disabled ? 0 : undefined}
                 ref={extraRef}
                 onPaste={onEditorPaste}
                 className={cn(
                     s.FormEditorWrapper,
-                    { [s.FormEditorWrapper_view_danger]: view === 'danger' },
-                    { [s.FormEditor_focused]: focused && !outline },
+                    {
+                        [s.FormEditorWrapper_view_danger]: view === 'danger',
+                        [s.FormEditor_focused]: focused && !outline,
+                        [s.FormEditor_disabled]: disabled,
+                    },
                     brick ? brickMap[brick] : '',
                 )}
                 style={formEditorWrapperStyles}
@@ -300,7 +317,7 @@ export const FormEditor = React.forwardRef<HTMLDivElement, FormEditorProps>(
                     {...onESC}
                     onClick={disabled ? undefined : () => {}}
                     {...attrs}
-                    className={cn({ [s.FormEditor_disabled]: disabled }, { [s.FormEditor_filled]: value }, className)}
+                    className={cn({ [s.FormEditor_filled]: value }, className)}
                 >
                     {nullable(isDragActive && !disableAttaches, () => (
                         <div className={s.UploadInput}>
