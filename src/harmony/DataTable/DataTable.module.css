@@ -1,0 +1,183 @@
+.DataTable {
+    position: relative;
+    background-color: var(--background);
+
+    max-width: 100%;
+    overflow: auto;
+    min-height: max-content;
+    gap: 0;
+}
+
+.DataTableHeaderCell {
+    color: var(--text-secondary);
+}
+
+.DataTableHeaderBadge {
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-start;
+    gap: var(--gap-s);
+}
+
+.DataTableHeaderBadgeText {
+    flex-grow: 1;
+}
+
+.DataTableHeaderBadgeIcon {
+    flex-basis: 1rem;
+    opacity: 0;
+    padding: var(--gap-xs);
+    border-radius: var(--radius-s);
+    color: var(--button-secondary-text);
+    transition: all var(--transition-time) var(--transition-func);
+    will-change: opacity, backgound-color;
+}
+
+.DataTableHeaderBadge.DataDataTableHeaderBadgeShownSort .DataTableHeaderBadgeIcon {
+    opacity: 1;
+}
+
+.DataTableHeaderBadge:hover:not(.DataDataTableHeaderBadgeShownSort) .DataTableHeaderBadgeIcon {
+    opacity: 1;
+}
+
+.DataTableHeaderBadgeIcon:hover {
+    background-color: var(--button-secondary-active);
+}
+
+.DataTableHeaderBadge:has(.DataTableHeaderBadgeIcon) {
+    cursor: pointer;
+}
+
+.DataTableRow {
+    position: relative;
+    box-sizing: border-box;
+
+    width: 100%;
+
+    min-height: 64px;
+
+    gap: 0;
+
+    margin-bottom: var(--gap-s);
+}
+
+.DataTableCell {
+    box-sizing: border-box;
+    position: relative;
+
+    min-height: 64px;
+
+    background-color: var(--layer);
+    border: 1px solid var(--layer-border);
+    border-right: 0;
+
+    display: flex;
+    align-items: center;
+    padding: 0 var(--gap-sm);
+    color: var(--text-primary);
+}
+
+.DataTableCell:first-child {
+    border-radius: var(--radius-m) 0 0 var(--radius-m);
+}
+
+.DataTableCell + .DataTableCell {
+    border-left: 0;
+}
+
+.DataTableCell:last-child {
+    padding-right: var(--gap-sm);
+    border-right: 1px solid var(--layer-border);
+
+    border-radius: 0 var(--radius-m) var(--radius-m) 0;
+}
+
+.DataTableCell:not(.DataTableHeaderSpacer) + .DataTableCell:not(.DataTableHeaderSpacer):before {
+    content: '';
+    width: 1px;
+    height: 28px;
+    background-color: var(--layer-border);
+
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: auto;
+
+    transform: translateY(-50%);
+}
+
+.DataTableHeader {
+    background-color: transparent;
+    border-color: transparent;
+    min-height: unset;
+    margin-bottom: 0;
+    z-index: 0;
+}
+
+.DataTableHeader .DataTableCell {
+    background-color: var(--background);
+    color: var(--text-secondary);
+    border-color: transparent;
+}
+
+.DataTableFixedColumn {
+    position: sticky;
+    z-index: 1;
+}
+
+.DataTableFixedColumn_left {
+    position: sticky;
+    left: 0;
+}
+
+.DataTableFixedColumn_right {
+    position: sticky;
+    right: 0;
+}
+
+.DataTableFixedColumn.DataTableCell_ShowShadow:after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 30px;
+    transform: translateX(-100%);
+    content: "";
+    pointer-events: none;
+    box-shadow: 0;
+    transition: box-shadow var(--transition-time) var(--transition-func);
+}
+
+.DataTableFixedColumn_left.DataTableCell_ShowShadow:after {
+    left: calc(100% + 30px);
+    box-shadow: inset 10px 0 8px -8px hsla(240, 9%, 9%, 0.1);
+}
+
+.DataTableFixedColumn_right.DataTableCell_ShowShadow:after {
+    left: 0;
+    box-shadow: inset -10px 0 8px -8px hsla(240, 9%, 9%, 0.1);
+}
+
+.DataTableCell:not(.DataTableHeaderSpacer).DataTableFixedColumn_right.DataTableCell_ShowShadow:before {
+    content: none;
+}
+
+.DataTableRow:not(.DataTableHeader):hover {
+    z-index: 1;
+}
+
+.DataTableRow_hovered {
+    position: absolute;
+
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2);
+    transition: box-shadow var(--transition-time) var(--transition-func);
+    left: 0;
+    top: 0;
+    z-index: 0;
+    border-radius: var(--radius-m);
+    pointer-events: none;
+}
+
+.DataTableRow:not(.DataTableHeader):hover .DataTableRow_hovered {
+    box-shadow: 0 0 var(--gap-s) 0 rgba(0, 0, 0, 0.2);
+}

@@ -131,14 +131,19 @@ p.Text {
 }
 
 .TextEllipsis {
-    text-overflow: ellipsis;
     overflow: hidden;
+}
+
+.TextEllipsis:not(.TextClamped) {
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .TextClamped {
     display: -webkit-box;
     -webkit-line-clamp: var(--text-line-clamp);
     -webkit-box-orient: vertical;
+    max-width: max-content;
 }
 
 .TextWrapped {
