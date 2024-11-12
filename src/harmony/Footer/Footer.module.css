@@ -1,6 +1,6 @@
 .Footer {
     display: grid;
-    grid-template-columns: 1fr 6fr 0fr;
+    grid-template-columns: minmax(max-content, 1fr) minmax(max-content, 6fr) 0fr;
     align-items: center;
     padding: 20px 40px;
     color: var(--text-secondary);

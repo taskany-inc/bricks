@@ -12,7 +12,7 @@ export const Footer: FC<HTMLAttributes<HTMLDivElement>> = ({ className, children
 );
 
 export const FooterCopyright: FC<HTMLAttributes<HTMLDivElement>> = ({ className, ...props }) => (
-    <Text className={className} {...props}>{`© ${new Date().getFullYear()} Taskany, Inc.`}</Text>
+    <Text className={className} wordBreak="keep-all" {...props}>{`© ${new Date().getFullYear()} Taskany, Inc.`}</Text>
 );
 
 export const FooterMenu: FC<HTMLAttributes<HTMLDivElement>> = ({ className, children, ...props }) => (
