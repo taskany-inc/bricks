@@ -10,6 +10,7 @@ export * from './Circle/Circle';
 export * from './CircleIcon/CircleIcon';
 export * from './CircleProgressBar/CircleProgressBar';
 export * from './Counter/Counter';
+export * from './DataTable/DataTable';
 export * from './DatePicker/DatePicker';
 export * from './Dot/Dot';
 export * from './Dropdown/Dropdown';
