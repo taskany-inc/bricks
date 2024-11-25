@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.56.0](https://github.com/taskany-inc/bricks/compare/v5.55.0...v5.56.0) (2024-11-25)
+
+
+### Features
+
+* **DataTable:** a brand new component ([64cb82d](https://github.com/taskany-inc/bricks/commit/64cb82d33a826a6cdb63e56168226a51bebc3a8e))
+
+
+### Bug Fixes
+
+* **Footer:** dont wrap content ([6d2a27b](https://github.com/taskany-inc/bricks/commit/6d2a27bcbff0332ec8ff95b1c307938bb963c31c))
+* **FormEditor:** read-only/disabled state ([5ab0392](https://github.com/taskany-inc/bricks/commit/5ab03925332c43ddff68a98b3d978a0a7f85e938))
+
 ## [5.55.0](https://github.com/taskany-inc/bricks/compare/v5.54.2...v5.55.0) (2024-11-06)
 
 
