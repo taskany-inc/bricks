@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.56.1](https://github.com/taskany-inc/bricks/compare/v5.56.0...v5.56.1) (2024-12-04)
+
+
+### Bug Fixes
+
+* **INTERNAL-1424:** fix gravatar url ([d0a425c](https://github.com/taskany-inc/bricks/commit/d0a425c2f289fa0641ef1522901e4e33dfaecab8))
+
 ## [5.56.0](https://github.com/taskany-inc/bricks/compare/v5.55.0...v5.56.0) (2024-11-25)
 
 
