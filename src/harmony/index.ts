@@ -23,6 +23,7 @@ export * from './FormControl/FormControl';
 export * from './FormEditor/FormEditor';
 export * from './GlobalSearch/GlobalSearch';
 export * from './Gravatar/Gravatar';
+export * from './Header/Header';
 export * from './HistoryRecord/HistoryRecord';
 export * from './Image/Image';
 export * from './Input/Input';
