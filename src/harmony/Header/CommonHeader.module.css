@@ -1,0 +1,49 @@
+.HeaderContainer {
+    display: grid;
+    grid-template-columns: 20px 1fr minmax(150px, auto) 55px;
+    align-items: center;
+    padding: 20px 40px;
+
+    background-color: var(--layer);
+}
+
+.HeaderLogo {
+    justify-self: center;
+    transition: transform 200ms ease-in-out;
+}
+
+.HeaderLogo:hover {
+    transform: scale(1.08);
+}
+
+.HeaderNav {
+    padding-left: 40px;
+}
+
+.HeaderContent {
+    display: flex;
+    align-items: center;
+}
+
+.HeaderMenu {
+    justify-self: end;
+}
+
+.HeaderLink {
+    display: inline-block;
+    padding-bottom: 2px;
+    margin-top: 3px;
+
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+
+    border-bottom: 1px solid transparent;
+
+    transition: color, border-color 250ms ease-in-out;
+}
+
+.HeaderLink:hover {
+    color: var(--base-white);
+    border-color: var(--text-color-primary);
+}
