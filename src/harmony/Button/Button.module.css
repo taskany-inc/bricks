@@ -41,6 +41,11 @@
     outline: 2px solid var(--button-secondary-focus);
 }
 
+.Button_main {
+    color: var(--gray-600);
+    background: var(--gray-400);
+}
+
 .Button_primary {
     color: var(--button-primary-text);
     background: var(--button-primary);
