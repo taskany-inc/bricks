@@ -1,0 +1,61 @@
+.HeaderContainer {
+    display: grid;
+    grid-template-columns: 20px 1fr minmax(150px, auto) 55px;
+    align-items: center;
+    padding: 20px 40px;
+
+    background-color: var(--layer);
+}
+
+.HeaderLogo {
+    justify-self: center;
+    transition: transform 200ms ease-in-out;
+}
+
+.HeaderLogo:hover {
+    transform: scale(1.08);
+}
+
+.HeaderNav {
+    padding-left: 2.5rem;
+}
+
+.HeaderContent {
+    display: flex;
+    align-items: center;
+}
+
+.HeaderMenu {
+    justify-self: end;
+}
+
+.HeaderNavLink {
+    display: inline-block;
+    padding-bottom: 2px;
+    margin-top: 3px;
+
+    font-size: 1.3rem;
+    font-weight: normal;
+    text-decoration: none;
+
+    border-bottom: 1px solid transparent;
+    color: var(--base-white);
+    transition: color, border-color 250ms ease-in-out;
+}
+
+.HeaderNavLink + .HeaderNavLink { 
+    margin-left: var(--gap-m);
+}
+
+.HeaderNavLink:hover {
+    color: var(--base-white);
+    border-color: var(--blue-700);
+}
+
+.HeaderNavLink:active {
+    color: var(--blue-700);
+}
+
+.HeaderNavLink:focus {
+    color: var(--blue-700);
+}
