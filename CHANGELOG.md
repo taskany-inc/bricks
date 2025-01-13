@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.57.0](https://github.com/taskany-inc/bricks/compare/v5.56.1...v5.57.0) (2025-01-13)
+
+
+### Features
+
+* **Header:** header ([e6febc6](https://github.com/taskany-inc/bricks/commit/e6febc68359db7198394ab2fff3a56962e6e7ef7))
+
 ## [5.56.1](https://github.com/taskany-inc/bricks/compare/v5.56.0...v5.56.1) (2024-12-04)
 
 
