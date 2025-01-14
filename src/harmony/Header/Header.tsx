@@ -1,4 +1,4 @@
-import React, { AnchorHTMLAttributes, FC, HTMLAttributes } from 'react';
+import React, { FC, HTMLAttributes } from 'react';
 import cn from 'classnames';
 
 import { TaskanyLogo } from '../TaskanyLogo/TaskanyLogo';
@@ -42,10 +42,17 @@ export const HeaderMenu: FC<HTMLAttributes<HTMLDivElement>> = ({ className, chil
         </div>
     );
 };
-
-export const HeaderNavLink: FC<AnchorHTMLAttributes<HTMLAnchorElement>> = ({ className, children, ...props }) => {
+interface HeaderNavLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+    active?: boolean;
+}
+export const HeaderNavLink: FC<HeaderNavLinkProps> = ({ className, children, active, ...props }) => {
     return (
-        <Link className={cn(s.HeaderNavLink, className)} {...props}>
+        <Link
+            className={cn(s.HeaderNavLink, {
+                [s.HeaderNavLinkActive]: active,
+            })}
+            {...props}
+        >
             {children}
         </Link>
     );
