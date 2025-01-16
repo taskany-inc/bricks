@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.58.0](https://github.com/taskany-inc/bricks/compare/v5.57.0...v5.58.0) (2025-01-16)
+
+
+### Features
+
+* **Header:** add color link ([8346749](https://github.com/taskany-inc/bricks/commit/8346749cab056579071b8395b9123b57e6cfaf09))
+
 ## [5.57.0](https://github.com/taskany-inc/bricks/compare/v5.56.1...v5.57.0) (2025-01-13)
 
 
