@@ -22,6 +22,15 @@
     cursor: pointer;
 }
 
+.Tag_rounded {
+    border-radius: var(--radius-xl);
+}
+
+.Tag_rounded .Button {
+    border-top-right-radius: var(--radius-xl);
+    border-bottom-right-radius: var(--radius-xl);
+}
+
 .Button {
     --button-secondary-text: var(--text-secondary);
 }

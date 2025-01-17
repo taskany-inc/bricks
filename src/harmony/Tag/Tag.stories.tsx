@@ -17,7 +17,21 @@ export const TagsList = () => {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
             <div style={{ display: 'flex', gap: 4 }}>
                 {tags.map((tag) => (
+                    <Tag key={tag} view="rounded">
+                        {tag}
+                    </Tag>
+                ))}
+            </div>
+            <div style={{ display: 'flex', gap: 4 }}>
+                {tags.map((tag) => (
                     <Tag key={tag}>{tag}</Tag>
+                ))}
+            </div>
+            <div style={{ display: 'flex', gap: 4 }}>
+                {tags.map((tag) => (
+                    <Tag key={tag} view="rounded" action={<TagCleanButton />}>
+                        {tag}
+                    </Tag>
                 ))}
             </div>
             <div style={{ display: 'flex', gap: 4 }}>
