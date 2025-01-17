@@ -24,6 +24,13 @@ export const TagsList = () => {
             </div>
             <div style={{ display: 'flex', gap: 4 }}>
                 {tags.map((tag) => (
+                    <Tag key={tag} view="rounded" color="primary">
+                        {tag}
+                    </Tag>
+                ))}
+            </div>
+            <div style={{ display: 'flex', gap: 4 }}>
+                {tags.map((tag) => (
                     <Tag key={tag}>{tag}</Tag>
                 ))}
             </div>

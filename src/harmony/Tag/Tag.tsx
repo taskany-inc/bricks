@@ -33,17 +33,24 @@ export const TagCleanButton = ({
     );
 };
 
+const colorMap = {
+    primary: s.Tag_primary,
+    secondary: null,
+};
+
 interface TagProps extends HTMLAttributes<HTMLDivElement> {
     action?: ReactNode;
     view?: 'default' | 'rounded';
+    color?: 'primary' | 'secondary';
 }
 
-export const Tag = ({ className, children, action, view = 'default', ...props }: TagProps) => {
+export const Tag = ({ className, children, action, view = 'default', color = 'secondary', ...props }: TagProps) => {
     return (
         <div
             className={cn(
                 s.Tag,
                 { [s.Tag_hovered]: !!props.onClick, [s.Tag_interactive]: !action, [s.Tag_rounded]: view === 'rounded' },
+                colorMap[color],
                 className,
             )}
             {...props}
