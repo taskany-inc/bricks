@@ -6,11 +6,13 @@ import { Text } from '../Text/Text';
 
 import s from './AppliedFilter.module.css';
 
-interface AppliedFilterProps extends React.HTMLAttributes<HTMLDivElement> {
+interface AppliedFilterProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'color'> {
     className?: string;
     label?: string;
     readOnly?: boolean;
     action?: ComponentProps<typeof Tag>['action'];
+    color?: ComponentProps<typeof Tag>['color'];
+    size?: ComponentProps<typeof Tag>['size'];
     children?: ReactNode;
 }
 
