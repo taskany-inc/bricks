@@ -2,11 +2,9 @@
     display: flex;
     align-items: center;
     gap: var(--gap-xs);
-    min-height: 24px;
     white-space: nowrap;
     user-select: none;
     color: var(--text-secondary);
-    font-size: var(--font-size-xs);
     background: var(--gray-900);
     border-radius: var(--radius-m);
     padding-left: var(--gap-sm);
@@ -15,6 +13,16 @@
 
 .Tag.Tag_primary {
     color: var(--text-primary);
+}
+
+.Tag_s {
+    font-size: var(--font-size-xs);
+    min-height: 24px;
+}
+
+.Tag_m {
+    font-size: var(--font-size-s);
+    min-height: 26px;
 }
 
 .Tag_interactive {
