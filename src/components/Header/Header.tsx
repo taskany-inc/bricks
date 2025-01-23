@@ -14,7 +14,7 @@ interface HeaderProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const HeaderContainer = styled.header`
     display: grid;
-    grid-template-columns: 20px 1fr minmax(150px, auto) 55px;
+    grid-template-columns: 100% 1fr minmax(150px, auto) 55px;
     align-items: center;
     padding: 20px 40px;
 
