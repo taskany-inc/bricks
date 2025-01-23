@@ -28,6 +28,7 @@ export interface GlobalSearchProps
     expandable?: boolean;
     popupMinWidth?: ComponentProps<typeof Popup>['minWidth'];
     popupMaxWidth?: ComponentProps<typeof Popup>['maxWidth'];
+    keyboardIcon?: boolean;
 }
 
 const defaultSizes = {
@@ -49,6 +50,7 @@ export const GlobalSearch = ({
     offset = defaultOffset,
     popupMinWidth = defaultSizes.popupMinWidth,
     popupMaxWidth = defaultSizes.popupMaxWidth,
+    keyboardIcon,
     ...attrs
 }: GlobalSearchProps) => {
     const popupContentRef = useRef<HTMLDivElement>(null);
@@ -114,7 +116,7 @@ export const GlobalSearch = ({
                 forwardedRef={popupTargetRef}
                 placeholder={placeholder}
                 iconLeft={<IconSearchOutline size="s" />}
-                iconRight={nullable(!editMode, () => (
+                iconRight={nullable(!editMode && keyboardIcon, () => (
                     <Text size="xs" onClick={inputHardFocus}>
                         <Keyboard size="s">/</Keyboard>
                     </Text>

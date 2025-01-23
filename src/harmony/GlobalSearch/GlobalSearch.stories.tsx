@@ -23,6 +23,7 @@ export const Default: StoryObj<typeof GlobalSearch> = {
                     searchResultExists={query.length > 2}
                     expandable
                     placeholder="Search or jump to..."
+                    keyboardIcon
                 >
                     hello world
                 </GlobalSearch>

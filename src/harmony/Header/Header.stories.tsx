@@ -1,5 +1,5 @@
 import React, { FC, useCallback, useState } from 'react';
-import type { Meta, StoryFn, StoryObj } from '@storybook/react';
+import type { Meta } from '@storybook/react';
 import { IconDownSmallSolid, IconUpSmallSolid } from '@taskany/icons';
 
 import { Button } from '../Button/Button';
