@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.59.0](https://github.com/taskany-inc/bricks/compare/v5.58.0...v5.59.0) (2025-01-23)
+
+
+### Features
+
+* **INTERNAL-1532:** `orgName` optional prop for `<FooterCopyright>` ([0a629cb](https://github.com/taskany-inc/bricks/commit/0a629cbe2a032de4d53377c573520e4a7bec6619))
+* **Tag:** add color prop ([514a937](https://github.com/taskany-inc/bricks/commit/514a9379a201d502eb25819c68778635096851e5))
+* **Tag:** add size prop ([5fa7198](https://github.com/taskany-inc/bricks/commit/5fa7198d3b6d5bbfae1b833ef34b2219aaf006e5))
+* **Tag:** add view prop ([afdce41](https://github.com/taskany-inc/bricks/commit/afdce41b43c4b99b46cfc64512c43c5f677fe622))
+
+
+### Bug Fixes
+
+* **AppliedFilters:** extends props from Tag ([b8cf0ad](https://github.com/taskany-inc/bricks/commit/b8cf0adf0e885adfbab17d0736bf52dea0357df2))
+* storybook upload ([16040f3](https://github.com/taskany-inc/bricks/commit/16040f373d0d2a70477f20e0058611a836918112))
+
 ## [5.58.0](https://github.com/taskany-inc/bricks/compare/v5.57.0...v5.58.0) (2025-01-16)
 
 
