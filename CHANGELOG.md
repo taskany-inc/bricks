@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.60.0](https://github.com/taskany-inc/bricks/compare/v5.59.0...v5.60.0) (2025-01-30)
+
+
+### Features
+
+* update colors version ([8b75f79](https://github.com/taskany-inc/bricks/commit/8b75f799ea40d3c9dbbf7c967971f13587a2f53e))
+
+
+### Bug Fixes
+
+* storybook upload ([e2fde12](https://github.com/taskany-inc/bricks/commit/e2fde127b098848f51452f4472098947941e79f1))
+
 ## [5.59.0](https://github.com/taskany-inc/bricks/compare/v5.58.0...v5.59.0) (2025-01-23)
 
 
