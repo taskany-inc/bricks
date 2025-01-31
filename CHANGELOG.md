@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.61.0](https://github.com/taskany-inc/bricks/compare/v5.60.0...v5.61.0) (2025-01-31)
+
+
+### Features
+
+* **Header:** add header from harmony ([1e67814](https://github.com/taskany-inc/bricks/commit/1e67814f297e9ea5e4102644bdf79de34030699e))
+
+
+### Bug Fixes
+
+* deploy pipeline ([6b3b29c](https://github.com/taskany-inc/bricks/commit/6b3b29c43dcb79b0c6938da690abf66773acf934))
+
 ## [5.60.0](https://github.com/taskany-inc/bricks/compare/v5.59.0...v5.60.0) (2025-01-30)
 
 
