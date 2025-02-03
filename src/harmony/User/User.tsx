@@ -59,6 +59,7 @@ export const User = forwardRef<HTMLDivElement, UserProps>(
                         [classes.UserSizeXs]: size === 'xs',
                         [classes.UserSizeS]: size === 's',
                         [classes.UserSizeM]: size === 'm',
+                        [classes.UserSizeL]: size === 'l',
                         [classes.User_short]: short,
                         [classes.UserOutlined]: props.view === 'outline',
                     },

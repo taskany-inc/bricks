@@ -13,6 +13,7 @@ const pixelSizeMap = {
     xs: 16,
     s: 24,
     m: 32,
+    l: 60,
 } as const;
 
 interface GravatarProps extends React.HTMLAttributes<HTMLImageElement> {
