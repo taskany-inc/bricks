@@ -13,6 +13,7 @@ export * from './Counter/Counter';
 export * from './DataTable/DataTable';
 export * from './DatePicker/DatePicker';
 export * from './Dot/Dot';
+export * from './Drawer/Drawer';
 export * from './Dropdown/Dropdown';
 export * from './Fieldset/Fieldset';
 export * from './FileUpload/FileUpload';
