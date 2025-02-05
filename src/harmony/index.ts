@@ -56,6 +56,7 @@ export * from './RadioGroup/RadioGroup';
 export * from './Select/Select';
 export * from './Separator/Separator';
 export * from './SheepLogo/SheepLogo';
+export * from './Skeleton/Skeleton';
 export * from './Spinner/Spinner';
 export * from './State/State';
 export * from './StateGroup/StateGroup';
