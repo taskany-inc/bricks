@@ -104,7 +104,7 @@ export const Text = React.forwardRef(function <T extends keyof AllowedHTMLElemen
     const textStyles = useMemo(() => calcTextSizes(Tag, size, weight), [Tag, size, weight]);
 
     const additionalStyles: React.CSSProperties = useMemo(() => {
-        const styles: Record<string, unknown> = {};
+        const styles: Record<string, unknown> = { ...rest.style };
 
         if (wordBreak) {
             styles['--text-breaked'] = wordBreak;
@@ -122,7 +122,7 @@ export const Text = React.forwardRef(function <T extends keyof AllowedHTMLElemen
         }
 
         return styles;
-    }, [ownProps.wordBreak, ownProps.wordWrap, ownProps.lines, ownProps.color]);
+    }, [ownProps.wordBreak, ownProps.wordWrap, ownProps.lines, ownProps.color, rest.style]);
 
     return (
         <Tag
