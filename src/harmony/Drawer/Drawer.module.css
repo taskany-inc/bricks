@@ -1,0 +1,88 @@
+:root {
+    --drawer-shadow: hsla(0, 0%, 0%, 0.2);
+}
+
+.Drawer {
+    box-sizing: border-box;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.DrawerWrapper {
+    position: relative;
+    background-color: var(--layer);
+    border-radius: var(--radius-xl);
+    min-height: 100vh;
+    max-height: 100vh;
+    height: 100%;
+    width: 706px;
+    box-sizing: border-box;
+    padding: 0 40px;
+    box-shadow: 0 0 16px 0 var(--drawer-shadow);
+    display: flex;
+    flex-direction: column;
+}
+
+.DrawerClosed .DrawerWrapper {
+    transform: translateX(100%);
+}
+
+.DrawerOpened .DrawerWrapper {
+    transform: translateX(0);
+}
+
+.DrawerAnimated .DrawerWrapper {
+    transition: transform var(--transition-func) var(--transition-time);
+}
+
+.DrawerHeading {
+    position: sticky;
+    top: 0;
+    border-bottom: 1px solid var(--layer-border);
+    margin-bottom: var(--gap-sm);
+    padding-top: 20px;
+    padding-bottom: var(--gap-sm);
+    background-color: var(--layer);
+}
+
+.DrawerBody {
+    flex: 1;
+    overflow: hidden;
+}
+
+.DrawerBodyContent {
+    box-sizing: border-box;
+    min-width: 100%;
+    min-height: 100%;
+    max-height: max-content;
+    margin: 0 -20px;
+    padding: 0 20px 20px;
+    overflow: auto;
+}
+
+.DrawerBodyContent::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+    background-color: var(--gray-800);
+}
+
+.DrawerBodyContent::-webkit-scrollbar-thumb {
+    background-color: var(--gray-300);
+    border-radius: 3px;
+}
+
+.DrawerTopBar {
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-start;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin-bottom: var(--gap-s);
+}
+
+.DrawerCloseBtn {
+    margin-left: auto;
+}
