@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.63.0](https://github.com/taskany-inc/bricks/compare/v5.62.0...v5.63.0) (2025-02-06)
+
+
+### Features
+
+* **Drawer:** implement a new component ([26773ac](https://github.com/taskany-inc/bricks/commit/26773acd6fdaa36ef8fa9ebc1ca571af078ee158))
+* **Skeleton:** a couple components ([48b4910](https://github.com/taskany-inc/bricks/commit/48b4910bae55c9250656e3364fcef98495839f99))
+
+
+### Bug Fixes
+
+* **Text:** pass `style` prop ([8390176](https://github.com/taskany-inc/bricks/commit/8390176efcffcedffe503b332710023a56daaf32))
+
 ## [5.62.0](https://github.com/taskany-inc/bricks/compare/v5.61.0...v5.62.0) (2025-02-05)
 
 
