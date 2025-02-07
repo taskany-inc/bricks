@@ -380,7 +380,7 @@ const DataTableHeaderCellValue: React.FC<DataTableHeaderCellValueProps> = ({
             })}
             onClick={onClick}
         >
-            <Text lines={1} size="s" weight="regular" ellipsis className={styles.DataTableHeaderBadgeText}>
+            <Text size="s" weight="regular" className={styles.DataTableHeaderBadgeText}>
                 {title}
             </Text>
             {nullable(sortable, () => (

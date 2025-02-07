@@ -1,15 +1,14 @@
 .DataTable {
     position: relative;
     background-color: var(--background);
-
     max-width: 100%;
-    overflow: auto;
     min-height: max-content;
+    color: var(--text-secondary);
     gap: 0;
 }
 
 .DataTableHeaderCell {
-    color: var(--text-secondary);
+    color: var(--text-ghost);
 }
 
 .DataTableHeaderBadge {
@@ -17,6 +16,7 @@
     align-items: baseline;
     justify-content: flex-start;
     gap: var(--gap-s);
+    color: var(--text-ghost);
 }
 
 .DataTableHeaderBadgeText {
@@ -25,16 +25,17 @@
 
 .DataTableHeaderBadgeIcon {
     flex-basis: 1rem;
-    opacity: 0;
+    opacity: 1;
     padding: var(--gap-xs);
     border-radius: var(--radius-s);
-    color: var(--button-secondary-text);
+    color: var(--text-ghost);
     transition: all var(--transition-time) var(--transition-func);
     will-change: opacity, backgound-color;
 }
 
 .DataTableHeaderBadge.DataDataTableHeaderBadgeShownSort .DataTableHeaderBadgeIcon {
     opacity: 1;
+    color: var(--button-secondary-text);
 }
 
 .DataTableHeaderBadge:hover:not(.DataDataTableHeaderBadgeShownSort) .DataTableHeaderBadgeIcon {
@@ -57,9 +58,8 @@
 
     min-height: 64px;
 
-    gap: 0;
-
     margin-bottom: var(--gap-s);
+    gap: 0;
 }
 
 .DataTableCell {
