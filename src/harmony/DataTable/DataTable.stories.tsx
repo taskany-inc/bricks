@@ -253,7 +253,7 @@ export const FluidColumns = () => {
                     fixed="right"
                     name="date"
                     title={<InteractiveTooltip title="Date of creation" tooltipText="Date of creation" />}
-                    width="100px"
+                    width="10ch"
                 >
                     {new Date().toLocaleDateString()}
                 </DataTableColumn>
