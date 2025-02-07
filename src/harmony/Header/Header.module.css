@@ -5,6 +5,7 @@
     padding: 20px 40px;
 
     background-color: var(--layer);
+    white-space: nowrap;
 }
 
 .HeaderLogo {
