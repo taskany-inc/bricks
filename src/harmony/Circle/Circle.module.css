@@ -40,6 +40,11 @@
     --circle-diameter: 2rem;
 }
 
+.CircleSizeML {
+    --circle-font-size: 1.4rem;
+    --circle-diameter: 3.125rem;
+}
+
 .CircleSizeL {
     --circle-font-size: 1.5rem;
     --circle-diameter: 3.75rem;
