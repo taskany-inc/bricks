@@ -9,6 +9,7 @@ const sizeMap = {
     xs: classes.CircleSizeXs,
     s: classes.CircleSizeS,
     m: classes.CircleSizeM,
+    ml: classes.CircleSizeML,
     l: classes.CircleSizeL,
 };
 
