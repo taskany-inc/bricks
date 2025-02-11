@@ -1,8 +1,38 @@
 .Breadcrumbs {
     display: flex;
     gap: var(--gap-xs);
+    align-items: center;
 }
 
-.BreadcrumbSeparator:last-child {
+.Breadcrumb {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.BreadcrumbEllipsis {
+    min-width: 30px;
+    cursor: pointer;
+}
+
+.Breadcrumbs > :nth-last-child(1 of .Breadcrumb) {
+    color: var(--text-secondary);
+}
+
+.BreadcrumbSeparator {
+    padding: var(--gap-xs);
+}
+
+.BreadcrumbSeparator:nth-last-child(1 of .BreadcrumbSeparator) {
     display: none;
+}
+
+.BreadcrumbsHiddenItemsPopup {
+    padding-right: var(--gap-m);
+}
+
+.BreadcrumbListItem {
+    display: flex;
+    align-items: center;
 }
