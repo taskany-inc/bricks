@@ -1,8 +1,30 @@
 .Breadcrumbs {
     display: flex;
     gap: var(--gap-xs);
+    align-items: center;
+}
+
+.Breadcrumb {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    min-width: 30px;
+    text-align: center;
+}
+
+.Breadcrumbs > :nth-last-child(1 of .Breadcrumb) {
+    color: var(--text-secondary);
+}
+
+.BreadcrumbSeparator {
+    min-width: 24px;
 }
 
 .BreadcrumbSeparator:last-child {
     display: none;
+}
+
+.BreadcrumbListItem {
+    display: flex;
+    align-items: center;
 }

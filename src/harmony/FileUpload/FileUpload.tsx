@@ -232,8 +232,9 @@ export const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(
 
                 {nullable(uploadedFiles, (fileList) => (
                     <div>
-                        {fileList.map((file) => (
+                        {fileList.map((file, i) => (
                             <FileNameBadge
+                                key={`${file.file.name}-${i}`}
                                 fullName={file.file.name}
                                 state={file.state}
                                 errorMessage={translates.error}
