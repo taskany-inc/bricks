@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.65.0](https://github.com/taskany-inc/bricks/compare/v5.64.0...v5.65.0) (2025-02-12)
+
+
+### Features
+
+* **Avatar:** xl size ([110df70](https://github.com/taskany-inc/bricks/commit/110df704c37e6e825a72ce08c8145f63331eeafd))
+
 ## [5.64.0](https://github.com/taskany-inc/bricks/compare/v5.63.0...v5.64.0) (2025-02-10)
 
 
