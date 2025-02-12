@@ -11,6 +11,7 @@ const sizeMap = {
     m: classes.CircleSizeM,
     ml: classes.CircleSizeML,
     l: classes.CircleSizeL,
+    xl: classes.CircleSizeXL,
 };
 
 interface CircleProps extends React.HTMLAttributes<HTMLSpanElement> {

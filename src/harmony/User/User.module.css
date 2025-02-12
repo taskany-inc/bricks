@@ -22,6 +22,10 @@
     --badge-icon-size: 3.75rem; /* as `Circle` dimensions */
 }
 
+.UserSizeXL {
+    --badge-icon-size: 5.5rem; /* as `Circle` dimensions */
+}
+
 .UserPicWrapper {
     overflow: hidden;
 }
