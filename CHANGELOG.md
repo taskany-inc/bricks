@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.65.1](https://github.com/taskany-inc/bricks/compare/v5.65.0...v5.65.1) (2025-02-14)
+
+
+### Bug Fixes
+
+* **INTERNAL-1401:** update dataTable ([0664e59](https://github.com/taskany-inc/bricks/commit/0664e593309efb418d5d1d07e95b9639900c7303))
+
 ## [5.65.0](https://github.com/taskany-inc/bricks/compare/v5.64.0...v5.65.0) (2025-02-12)
 
 
