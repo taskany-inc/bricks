@@ -288,6 +288,12 @@ export const FormEditor = React.forwardRef<HTMLDivElement, FormEditorProps>(
                     domReadOnly: true,
                     readOnly: true,
                 };
+            } else {
+                base = {
+                    ...base,
+                    readOnly: false,
+                    domReadOnly: false,
+                };
             }
 
             return base;
