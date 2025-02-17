@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.65.3](https://github.com/taskany-inc/bricks/compare/v5.65.2...v5.65.3) (2025-02-17)
+
+
+### Bug Fixes
+
+* **INTERNAL-1515:** breadcrumbs size fix ([2d11467](https://github.com/taskany-inc/bricks/commit/2d11467166fa23a376e3e02ad06984e6fe749321))
+
 ## [5.65.2](https://github.com/taskany-inc/bricks/compare/v5.65.1...v5.65.2) (2025-02-17)
 
 
