@@ -1,4 +1,4 @@
-import React, { Children, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { Children, useCallback, useMemo, useRef, useState } from 'react';
 import { IconRightOutline } from '@taskany/icons';
 import cn from 'classnames';
 
@@ -24,68 +24,83 @@ export const Breadcrumbs = ({ className, children, ...rest }: BreadcrumbsProps) 
 
     const containerRef = useRef<HTMLDivElement>(null);
 
+    const childrenWidths = useRef<number[]>([]);
+
     const lastContainerWidth = useRef(0);
 
-    const checkHiding = useCallback(() => {
+    const checkHiding = useCallback((force?: boolean) => {
         if (!containerRef.current) return;
         const containerWidth = containerRef.current.clientWidth;
-        if (lastContainerWidth.current === containerWidth) return;
+        if (!force && lastContainerWidth.current === containerWidth) return;
         lastContainerWidth.current = containerWidth;
-
-        const children = Array.from(containerRef.current.children);
-        const childrenWidths: number[] = [];
-        children.forEach((c, i) => {
-            if (i % 2 === 1) return; // skip separator
-            const minWidth = Math.min(100, c.scrollWidth);
-            if (minWidth) (c as HTMLElement).style.minWidth = `${minWidth}px`;
-            childrenWidths.push(c.clientWidth);
-        });
         const childrenWidthsSum =
-            childrenWidths.reduce((prev, curr) => prev + curr) + childrenWidths.length * separatorWidth;
+            childrenWidths.current.reduce((prev, curr) => prev + curr, 0) +
+            (childrenWidths.current.length - 1) * separatorWidth;
         if (childrenWidthsSum > containerWidth) {
-            let hide = 1;
+            let hide = 0;
             let newSum = childrenWidthsSum + ellipsisWidth + separatorWidth;
-            while (newSum > containerWidth) {
-                newSum -= childrenWidths[hide];
-                hide += 1;
+            for (let i = childrenWidths.current.length - 1; i >= 0; i--) {
+                if (newSum > containerWidth) {
+                    newSum = newSum - childrenWidths.current[i] - separatorWidth;
+                    hide += 1;
+                }
             }
-            setHideCount(hide + 1);
+            setHideCount(hide);
         } else {
             setHideCount(0);
         }
     }, []);
 
-    useEffect(checkHiding, []);
+    const measureChildren = useCallback(
+        (el: HTMLDivElement | null) => {
+            if (!el) return;
+            const result: number[] = [];
+            const children = Array.from(el.children);
+            children.forEach((c, i) => {
+                if (i % 2 === 1) return; // skip separator
+                const minWidth = Math.min(100, c.scrollWidth);
+                result.push(minWidth);
+            });
+            childrenWidths.current = result;
+            checkHiding(true);
+        },
+        [children, checkHiding],
+    );
 
-    useResizeObserver(containerRef, checkHiding);
+    useResizeObserver(containerRef, () => checkHiding());
 
-    const { first, hidden, middle, last } = useMemo(() => {
+    const { first, hidden, last } = useMemo(() => {
         const childrenArray = Children.toArray(children);
         breadcrumbCount.current = childrenArray.length;
         const first = childrenArray.shift();
-        const last = childrenArray.pop();
-        const hidden = childrenArray.slice(0, hideCount + 1);
-        const middle = childrenArray.slice(hideCount + 1);
-        return { first, hidden, middle, last };
+        const hidden = childrenArray.slice(0, hideCount);
+        const last = childrenArray.slice(hideCount);
+        return { first, hidden, last };
     }, [children, hideCount]);
 
     return (
-        <div className={cn(s.Breadcrumbs, className)} ref={containerRef} {...rest}>
-            {first}
-            {nullable(hidden, () => (
-                <>
-                    <span
-                        className={cn(s.Breadcrumb, s.BreadcrumbEllipsis)}
-                        onClick={() => setShowHiddenPopup((v) => !v)}
-                        ref={hiddenRef}
-                    >
-                        ...
-                    </span>
-                    <IconRightOutline size="s" className={s.BreadcrumbSeparator} />
-                </>
-            ))}
-            {middle}
-            {last}
+        <div className={className} {...rest}>
+            <div className={s.BreadcrumbsMeasuringWrapper} ref={measureChildren}>
+                {children}
+            </div>
+
+            <div className={s.Breadcrumbs} ref={containerRef}>
+                {first}
+                {nullable(hidden, () => (
+                    <>
+                        <span
+                            className={cn(s.Breadcrumb, s.BreadcrumbEllipsis)}
+                            onClick={() => setShowHiddenPopup((v) => !v)}
+                            ref={hiddenRef}
+                        >
+                            ...
+                        </span>
+                        <IconRightOutline size="s" className={s.BreadcrumbSeparator} />
+                    </>
+                ))}
+                {last}
+            </div>
+
             {nullable(showHiddenPopup && hidden, (h) => (
                 <Popup
                     visible
