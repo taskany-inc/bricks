@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.65.2](https://github.com/taskany-inc/bricks/compare/v5.65.1...v5.65.2) (2025-02-17)
+
+
+### Bug Fixes
+
+* **FormEditor:** fix read only update ([462c101](https://github.com/taskany-inc/bricks/commit/462c10114617494a51d3492d7c41b2f15b5c2f18))
+
 ## [5.65.1](https://github.com/taskany-inc/bricks/compare/v5.65.0...v5.65.1) (2025-02-14)
 
 
