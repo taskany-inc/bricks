@@ -4,15 +4,22 @@
     align-items: center;
 }
 
+.BreadcrumbsMeasuringWrapper {
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    position: absolute;
+}
+
 .Breadcrumb {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
     text-align: center;
+    min-width: 30px;
 }
 
 .BreadcrumbEllipsis {
-    min-width: 30px;
     cursor: pointer;
 }
 
