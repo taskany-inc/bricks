@@ -1,7 +1,8 @@
 .DataTable {
     position: relative;
     background-color: var(--background);
-    max-width: 100%;
+    max-width: 100%;    
+    overflow: auto;
     min-height: max-content;
     color: var(--text-secondary);
     gap: 0;
