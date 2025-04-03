@@ -303,7 +303,7 @@ export const FormEditor = React.forwardRef<HTMLDivElement, FormEditorProps>(
             <div
                 tabIndex={!disabled ? 0 : undefined}
                 ref={extraRef}
-                onPaste={onEditorPaste}
+                onPasteCapture={onEditorPaste}
                 className={cn(
                     s.FormEditorWrapper,
                     {
