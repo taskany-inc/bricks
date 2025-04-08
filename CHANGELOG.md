@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.65.5](https://github.com/taskany-inc/bricks/compare/v5.65.4...v5.65.5) (2025-04-08)
+
+
+### Bug Fixes
+
+* **INTERNAL-1682:** fix editor file paste ([db5d2e0](https://github.com/taskany-inc/bricks/commit/db5d2e03ad4d54c6dcf115c65c92a7c3c2beb249))
+
 ## [5.65.4](https://github.com/taskany-inc/bricks/compare/v5.65.3...v5.65.4) (2025-02-18)
 
 
