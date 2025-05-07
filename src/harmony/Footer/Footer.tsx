@@ -15,7 +15,7 @@ interface FooterCopyrightProps extends HTMLAttributes<HTMLDivElement> {
     orgName?: string;
 }
 
-export const FooterCopyright: FC<FooterCopyrightProps> = ({ className, orgName = 'Taskany, Inc.', ...props }) => (
+export const FooterCopyright: FC<FooterCopyrightProps> = ({ className, orgName, ...props }) => (
     <Text className={className} wordBreak="keep-all" {...props}>{`© ${new Date().getFullYear()} ${orgName}`}</Text>
 );
 
