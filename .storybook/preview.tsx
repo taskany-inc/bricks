@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import type { Decorator, Preview } from '@storybook/react';
 import { DarkTheme, LightTheme, backgroundColor, fontDisplay, textColor } from '@taskany/colors';
 import { createGlobalStyle } from 'styled-components';
 import darkTheme from '@taskany/colors/harmony/dark.css?inline';
 import lightTheme from '@taskany/colors/harmony/light.css?inline';
+import webThemes from '@salutejs/plasma-themes/css/plasma_web.module.css';
 
 import { TextStyle } from '../src/components/Text/Text';
 
@@ -30,6 +31,10 @@ const SCThemeMap = {
 const withTheme: Decorator = (StoryFn, context) => {
     const { theme } = context.globals;
     const Theme = SCThemeMap[theme];
+
+    useLayoutEffect(() => {
+        document.documentElement.className = webThemes[theme];
+    }, [theme]);
 
     return (
         <>
