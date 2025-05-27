@@ -581,6 +581,7 @@ export const DatePickerQuarter: React.FC<DatePickerQuarterProps> = ({
     const {
         currentQuarter,
         currentYear,
+        selectedYear,
         selectedQuarter,
         selectedAlias,
         setSelectedQuarterAlias,
@@ -598,7 +599,7 @@ export const DatePickerQuarter: React.FC<DatePickerQuarterProps> = ({
     const handleClick = useCallback(() => {
         setCollapseFields('Quarter');
         setSelectedQuarter(currentQuarter);
-        setSelectedYear(currentYear);
+        if (!selectedYear) setSelectedYear(currentYear);
     }, [setCollapseFields, currentQuarter, currentYear]);
 
     const handleSelectQuarterAlias = useCallback(
