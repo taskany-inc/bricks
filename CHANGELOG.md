@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.65.6](https://github.com/taskany-inc/bricks/compare/v5.65.5...v5.65.6) (2025-05-27)
+
+
+### Bug Fixes
+
+* **INTERNAL-1813:** dont reset year when switching to quarter ([d47de9b](https://github.com/taskany-inc/bricks/commit/d47de9b9c8d14f1dbf7639f82d70c6f9ac42235b))
+
 ## [5.65.5](https://github.com/taskany-inc/bricks/compare/v5.65.4...v5.65.5) (2025-04-08)
 
 
