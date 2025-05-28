@@ -6,7 +6,7 @@ module.exports = {
         'plugin:storybook/recommended',
     ],
     parser: '@typescript-eslint/parser',
-    plugins: ['import', 'prettier','@taskany/rules', 'react'],
+    plugins: ['import', 'prettier','@taskany/rules', 'react', 'react-hooks'],
     rules: {
         '@taskany/rules/prefer-interface': 'error',
         '@typescript-eslint/no-empty-function': 'off',
@@ -78,5 +78,6 @@ module.exports = {
         'no-use-before-define': 'off',
         '@typescript-eslint/no-use-before-define': ['error'],
         'react/display-name': 'off',
+        'react-hooks/exhaustive-deps': 'warn',
     },
 };
