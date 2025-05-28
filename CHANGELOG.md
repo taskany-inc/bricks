@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.65.7](https://github.com/taskany-inc/bricks/compare/v5.65.6...v5.65.7) (2025-05-28)
+
+
+### Bug Fixes
+
+* **INTERNAL-1813:** year dep in quarter click handle ([c814ee3](https://github.com/taskany-inc/bricks/commit/c814ee3832a42e5f0791d6b3c1f166a2266a1d86))
+
 ## [5.65.6](https://github.com/taskany-inc/bricks/compare/v5.65.5...v5.65.6) (2025-05-27)
 
 
