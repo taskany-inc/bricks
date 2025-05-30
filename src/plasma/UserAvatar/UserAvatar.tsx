@@ -5,7 +5,7 @@ import md5Hash from 'md5';
 import { preloadImage } from '../../utils/preloadImage';
 import { getInitials } from '../../utils/getInitials';
 import { isRetina } from '../../utils/isRetina';
-import { Circle } from '../../components/Circle';
+import { Circle } from '../Circle/Circle';
 
 interface UserAvatarProps {
     size: number;
@@ -73,7 +73,7 @@ export const UserAvatar: React.FC<UserAvatarProps> = ({
     };
 
     return !isLoad || isError ? (
-        <Circle size={size} str={`${email}`}>
+        <Circle size={size} string={`${email}`}>
             {getInitials(name)}
         </Circle>
     ) : (
