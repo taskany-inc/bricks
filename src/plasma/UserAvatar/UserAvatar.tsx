@@ -1,14 +1,24 @@
 import { Avatar } from '@salutejs/plasma-web';
-import React, { useEffect, useState } from 'react';
+import React, { ComponentProps, useEffect, useState } from 'react';
 import md5Hash from 'md5';
 
 import { preloadImage } from '../../utils/preloadImage';
 import { getInitials } from '../../utils/getInitials';
 import { isRetina } from '../../utils/isRetina';
-import { Circle } from '../../components/Circle';
+import { Circle } from '../../harmony';
+
+const pixelSizeMap = {
+    xs: 16,
+    s: 24,
+    m: 32,
+    ml: 50,
+    l: 60,
+    xl: 88,
+    xxl: 120,
+} as const;
 
 interface UserAvatarProps {
-    size: number;
+    size: ComponentProps<typeof Circle>['size'];
     email?: string | null;
     md5?: string;
     rating?: string;
@@ -18,7 +28,7 @@ interface UserAvatarProps {
 }
 
 export const UserAvatar: React.FC<UserAvatarProps> = ({
-    size = 120,
+    size = 'xxl',
     rating = 'g',
     def = 'retro',
     domain = process.env.NEXT_PUBLIC_GRAVATAR_HOST || 'www.gravatar.com',
@@ -29,14 +39,16 @@ export const UserAvatar: React.FC<UserAvatarProps> = ({
     const [isError, setIsError] = useState(false);
     const [isLoad, setIsLoad] = useState(false);
 
+    const pixelSize = pixelSizeMap[size];
+
     const query = new URLSearchParams({
-        s: String(size),
+        s: String(pixelSize),
         r: rating,
         d: def,
     });
 
     const retinaQuery = new URLSearchParams({
-        s: String(size * 2),
+        s: String(pixelSize * 2),
         r: rating,
         d: def,
     });
@@ -73,7 +85,7 @@ export const UserAvatar: React.FC<UserAvatarProps> = ({
     };
 
     return !isLoad || isError ? (
-        <Circle size={size} str={`${email}`}>
+        <Circle size={size} string={`${email}`}>
             {getInitials(name)}
         </Circle>
     ) : (
