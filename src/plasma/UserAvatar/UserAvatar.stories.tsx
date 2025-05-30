@@ -17,7 +17,7 @@ export const Default: StoryObj<typeof UserAvatar> = {
         </div>
     ),
     args: {
-        size: 120,
+        size: 'xxl',
         email: 'john_doe_77@taskany-inc.io',
         domain: 'www.gravatar.com',
         name: 'John Doe',

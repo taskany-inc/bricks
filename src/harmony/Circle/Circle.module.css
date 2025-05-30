@@ -54,3 +54,8 @@
     --circle-font-size: 2.5rem;
     --circle-diameter: 5.5rem;
 }
+
+.CircleSizeXXL {
+    --circle-font-size: 3.75rem;
+    --circle-diameter: 7.5rem;
+}
