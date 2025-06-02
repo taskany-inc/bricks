@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.66.1](https://github.com/taskany-inc/bricks/compare/v5.66.0...v5.66.1) (2025-06-02)
+
+
+### Bug Fixes
+
+* **INTERNAL-1863:** user avatar fix ([b06a0df](https://github.com/taskany-inc/bricks/commit/b06a0df4ce9897cc74928b80bbcf501b7f73ac2a))
+
 ## [5.66.0](https://github.com/taskany-inc/bricks/compare/v5.65.7...v5.66.0) (2025-05-30)
 
 
