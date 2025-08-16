@@ -6,7 +6,9 @@ export const useDetectOverflow = (ref: RefObject<HTMLElement>) => {
     useEffect(() => {
         const observer = new ResizeObserver((entries) => {
             entries.forEach((entry) => {
-                setOverflow(entry.target.scrollWidth > entry.target.clientWidth);
+                const hasHorizontalOverflow = entry.target.scrollWidth > entry.target.clientWidth;
+                const hasVerticalOverflow = entry.target.scrollHeight > entry.target.clientHeight;
+                setOverflow(hasHorizontalOverflow || hasVerticalOverflow);
             });
         });
 
