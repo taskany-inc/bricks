@@ -8,19 +8,30 @@ import { isRetina } from '../../utils/isRetina';
 import { Circle } from '../Circle/Circle';
 
 interface UserAvatarProps {
-    size: number;
+    size?: 's' | 'm' | 'l' | 'xl' | 'xxl' | 'fit';
     email?: string | null;
     md5?: string;
     rating?: string;
     def?: string;
+    shape?: 'circled' | 'rounded';
     domain?: string;
     name?: string | null;
 }
 
+const sizesMap = {
+    s: 24,
+    m: 36,
+    l: 48,
+    xl: 100,
+    xxl: 120,
+    fit: 120,
+};
+
 export const UserAvatar: React.FC<UserAvatarProps> = ({
-    size = 120,
+    size = 'xxl',
     rating = 'g',
     def = 'retro',
+    shape = 'rounded',
     domain = process.env.NEXT_PUBLIC_GRAVATAR_HOST || 'www.gravatar.com',
     email,
     md5,
@@ -30,13 +41,13 @@ export const UserAvatar: React.FC<UserAvatarProps> = ({
     const [isLoad, setIsLoad] = useState(false);
 
     const query = new URLSearchParams({
-        s: String(size),
+        s: String(sizesMap[size]),
         r: rating,
         d: def,
     });
 
     const retinaQuery = new URLSearchParams({
-        s: String(size * 2),
+        s: String(sizesMap[size] * 2),
         r: rating,
         d: def,
     });
@@ -68,17 +79,17 @@ export const UserAvatar: React.FC<UserAvatarProps> = ({
     }, [hash]);
 
     const containerStyle = {
-        width: `${size}px`,
-        height: `${size}px`,
+        width: `${sizesMap[size]}px`,
+        height: `${sizesMap[size]}px`,
     };
 
     return !isLoad || isError ? (
-        <Circle size={size} string={`${email}`}>
+        <Circle size={sizesMap[size]} string={`${email}`}>
             {getInitials(name)}
         </Circle>
     ) : (
         <div style={containerStyle}>
-            <Avatar url={img} size="fit" />
+            <Avatar url={img} shape={shape} size={size} />
         </div>
     );
 };
