@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.67.0](https://github.com/taskany-inc/bricks/compare/v5.66.1...v5.67.0) (2025-10-27)
+
+
+### Features
+
+* **INTERNAL-2220:** user avatar update ([40f027b](https://github.com/taskany-inc/bricks/commit/40f027b11686db11a986c7f7b5190d057dd15133))
+
 ## [5.66.1](https://github.com/taskany-inc/bricks/compare/v5.66.0...v5.66.1) (2025-06-02)
 
 
