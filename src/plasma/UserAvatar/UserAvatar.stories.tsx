@@ -21,5 +21,6 @@ export const Default: StoryObj<typeof UserAvatar> = {
         email: 'john_doe_77@taskany-inc.io',
         domain: 'www.gravatar.com',
         name: 'John Doe',
+        shape: 'rounded',
     },
 };
