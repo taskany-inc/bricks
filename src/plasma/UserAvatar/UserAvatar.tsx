@@ -1,4 +1,5 @@
 import { Avatar } from '@salutejs/plasma-web';
+import cn from 'classnames';
 import React, { useEffect, useState } from 'react';
 import md5Hash from 'md5';
 
@@ -6,6 +7,8 @@ import { preloadImage } from '../../utils/preloadImage';
 import { getInitials } from '../../utils/getInitials';
 import { isRetina } from '../../utils/isRetina';
 import { Circle } from '../Circle/Circle';
+
+import s from './UserAvatarModule.module.css';
 
 interface UserAvatarProps {
     size?: 's' | 'm' | 'l' | 'xl' | 'xxl' | 'fit';
@@ -28,10 +31,10 @@ const sizesMap = {
 };
 
 export const UserAvatar: React.FC<UserAvatarProps> = ({
-    size = 'xxl',
+    size = 'l',
     rating = 'g',
     def = 'retro',
-    shape = 'rounded',
+    shape = 'circled',
     domain = process.env.NEXT_PUBLIC_GRAVATAR_HOST || 'www.gravatar.com',
     email,
     md5,
@@ -84,7 +87,7 @@ export const UserAvatar: React.FC<UserAvatarProps> = ({
     };
 
     return !isLoad || isError ? (
-        <Circle size={sizesMap[size]} string={`${email}`}>
+        <Circle size={sizesMap[size]} string={`${email}`} className={cn({ [s.Rounded]: shape === 'rounded' })}>
             {getInitials(name)}
         </Circle>
     ) : (
