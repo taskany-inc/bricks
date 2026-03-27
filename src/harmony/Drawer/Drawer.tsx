@@ -16,32 +16,6 @@ interface DrawerProps {
     onClose?: () => void;
 }
 
-const useFocusedState = (visible?: boolean) => {
-    const [focused, setFocused] = useState(false);
-    const onMouseEnter = useCallback(() => {
-        setFocused(true);
-    }, []);
-
-    const onMouseLeave = useCallback(() => {
-        setFocused(false);
-    }, []);
-
-    useEffect(() => {
-        if (visible) {
-            document.body.style.overflow = focused ? 'hidden' : 'unset';
-        }
-
-        return () => {
-            document.body.style.overflow = 'unset';
-        };
-    }, [visible, focused]);
-
-    return {
-        onMouseEnter,
-        onMouseLeave,
-    };
-};
-
 const DrawerContext = React.createContext<Partial<{ onClose(): void }>>({
     onClose: () => {
         throw new Error('Not implemented');
@@ -68,7 +42,6 @@ export const Drawer: React.FC<React.PropsWithChildren<DrawerProps>> = ({
     const [onESC] = useKeyboard([KeyCode.Escape], () => onClose?.(), {
         disableGlobalEvent: false,
     });
-    const onFocusState = useFocusedState(visible);
 
     const performState = useCallback((condition: boolean, classes: [string, string]) => {
         if (drawerRef.current == null) {
@@ -116,7 +89,6 @@ export const Drawer: React.FC<React.PropsWithChildren<DrawerProps>> = ({
                 })}
                 ref={drawerRef}
                 {...onESC}
-                {...onFocusState}
             >
                 <DrawerContext.Provider value={{ onClose }}>
                     <DrawerBody className={s.DrawerWrapper}>{children}</DrawerBody>
