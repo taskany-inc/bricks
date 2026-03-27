@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.68.1](https://github.com/taskany-inc/bricks/compare/v5.68.0...v5.68.1) (2026-03-27)
+
+
+### Bug Fixes
+
+* **INTERNAL-2566:** drawer dance fix ([88ec9f4](https://github.com/taskany-inc/bricks/commit/88ec9f487535bf908c558daab58ab05e40a5eaec))
+
 ## [5.68.0](https://github.com/taskany-inc/bricks/compare/v5.67.0...v5.68.0) (2025-10-28)
 
 
