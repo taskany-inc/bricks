@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [5.68.2](https://github.com/taskany-inc/bricks/compare/v5.68.1...v5.68.2) (2026-08-04)
+
+
+### Bug Fixes
+
+* **INTERNAL-2620:** close drawer on outside click ([e7c4563](https://github.com/taskany-inc/bricks/commit/e7c4563e72c81de79202b8bf26704d93daf9a30e))
+
 ## [5.68.1](https://github.com/taskany-inc/bricks/compare/v5.68.0...v5.68.1) (2026-03-27)
 
 
