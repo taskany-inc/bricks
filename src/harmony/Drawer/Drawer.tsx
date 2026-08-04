@@ -14,6 +14,7 @@ interface DrawerProps {
     className?: string;
     animated?: boolean;
     onClose?: () => void;
+    closeOnClickOutside?: boolean;
 }
 
 const DrawerContext = React.createContext<Partial<{ onClose(): void }>>({
@@ -36,12 +37,30 @@ export const Drawer: React.FC<React.PropsWithChildren<DrawerProps>> = ({
     children,
     onClose,
     className,
+    closeOnClickOutside = false,
 }) => {
     const drawerRef = useRef<HTMLDivElement>(null);
     const [opened, setOpened] = useState(false);
     const [onESC] = useKeyboard([KeyCode.Escape], () => onClose?.(), {
         disableGlobalEvent: false,
     });
+
+    useEffect(() => {
+        if (!onClose || !visible || !closeOnClickOutside) return;
+
+        const handleClickOutside = (event: MouseEvent) => {
+            const target = event.target as Node;
+            if (drawerRef.current && !drawerRef.current.contains(target)) {
+                onClose();
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [onClose, visible, closeOnClickOutside]);
 
     const performState = useCallback((condition: boolean, classes: [string, string]) => {
         if (drawerRef.current == null) {
