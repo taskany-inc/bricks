@@ -25,6 +25,8 @@ type TextBadgeProps = Pick<
 >;
 
 const sizeMap = {
+    xxs: s.BadgeSizeXXS,
+    xs: s.BadgeSizeXS,
     s: s.BadgeSizeS,
     m: s.BadgeSizeM,
     l: s.BadgeSizeL,

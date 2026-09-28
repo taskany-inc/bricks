@@ -13,6 +13,16 @@ const meta: Meta<typeof Badge> = {
 
 export default meta;
 
+type DotSize = React.ComponentProps<typeof Dot>['size'];
+
+const sizeMap: Record<string, DotSize> = {
+    xl: 'l',
+    xs: 's',
+    xxs: 's',
+};
+
+const getDotSize = (size?: string) => (size ? sizeMap[size] ?? (size as DotSize) : undefined);
+
 export const Default: StoryObj<typeof Badge> = {
     render(props) {
         return (
@@ -20,13 +30,10 @@ export const Default: StoryObj<typeof Badge> = {
                 <Badge
                     {...props}
                     text="Status"
-                    iconLeft={
-                        <Dot
-                            size={props.size === 'xl' ? 'l' : props.size}
-                            style={{ backgroundColor: 'currentcolor' }}
-                        />
-                    }
+                    iconLeft={<Dot size={getDotSize(props.size)} style={{ backgroundColor: 'currentcolor' }} />}
                 />
+                <br />
+                <Badge {...props} text="Status" />
                 <br />
                 <Badge {...props} text="Status" iconLeft={<IconTargetOutline size="s" />} />
                 <br />
